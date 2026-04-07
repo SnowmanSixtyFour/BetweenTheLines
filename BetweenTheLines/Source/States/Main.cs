@@ -13,69 +13,51 @@ namespace BetweenTheLines.Source.States
     {
         private State currentState;
 
+        private IntroState introState;
+        private TitleState titleState;
         private LevelState levelState;
 
         public Main()
         {
+            // Set Main
+            cursorVisible = false;
+            canPause = false;
+
             // Set States
-            levelState = new LevelState();
+            introState = new IntroState(); // Intro
+            titleState = new TitleState(); // Title
+            levelState = new LevelState(); // Level
 
             // Set Current State
-            currentState = levelState;
-
-            // Set Objects
-            cursor.X = 0;
-            cursor.Y = 0;
+            currentState = introState; // NOTE: Always start on intro! Will be different for debug purposes.
         }
 
         public override void OnUpdate(GameTime gameTime)
         {
-            // Pausing
-            if (canPause) // If Pausing is Possible
+            // --- State Behaviour ---
+
+            // Intro
+            if (Global.currentState == Global.State.intro)
             {
-                // Toggle Pause
-                if (KeyPress(Keys.Escape))
-                {
-                    Global.paused = !Global.paused;
-                }
+                // Go to Title when Intro Finishes
+                if (introState.introFinished) Global.currentState = Global.State.title;
             }
 
-            // Mouse Visibility
-            Global.mouseVisible = Global.paused;
+            // --- Current State ---
 
-            // Pause Game when Inactive
-            if (Global.pauseWhenInactive && !Global.active) Global.paused = true;
+            // Set State
+            if (Global.currentState == Global.State.intro) currentState = introState; // Intro
+            if (Global.currentState == Global.State.title) currentState = titleState; // Title
+            if (Global.currentState == Global.State.level) currentState = levelState; // Level
 
-            // Center Mouse
-            if (!Global.paused)
-            {
-                // On Mouse Move
-                if (MouseMoved())
-                {
-                    // Update Cursor Position
-                    cursor.X += (mouse.X - screenWidth / 2);    // X
-                    cursor.Y += (mouse.Y - screenHeight / 2);   // Y
-                }
-
-                // Cursor Bounds
-                if (cursor.X < 0) cursor.X = 0; // Left
-                if (cursor.X > cam.Width - Global.cursorSize.X) cursor.X = cam.Width - Global.cursorSize.X;   // Right
-                if (cursor.Y < 0) cursor.Y = 0; // Top
-                if (cursor.Y > cam.Height - Global.cursorSize.Y) cursor.Y = cam.Height - Global.cursorSize.Y; // Bottom
-
-                // Center Mouse
-                Mouse.SetPosition(screenWidth / 2, screenHeight / 2);
-            }
-
-            // Update Current State
+            // Update State
             currentState.Update(gameTime);
-            cursor.Update(gameTime);
         }
 
         public override void OnDraw(SpriteBatch spriteBatch)
         {
             // Draw Current State
-            currentState.OnDraw(spriteBatch);
+            currentState.Draw(spriteBatch);
         }
     }
 }

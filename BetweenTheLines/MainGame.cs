@@ -101,7 +101,11 @@ namespace BetweenTheLines
         // Update Global Variables
         private void UpdateGlobal()
         {
+            // Set Window
             IsMouseVisible = Global.mouseVisible;
+
+            // Set Global Variables
+            Global.active = this.IsActive;
         }
 
         protected override void Update(GameTime gameTime)

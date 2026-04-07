@@ -5,13 +5,17 @@
   <Config />
   <SourceFiles>
     <File>C:/Users/CJMT/Documents/GitHub/BetweenTheLines/BetweenTheLines/Content/Assets/Fonts/Arial.png</File>
-    <File>C:/Users/CJMT/Documents/GitHub/BetweenTheLines/BetweenTheLines/Content/Assets/Images/Cursor.png</File>
-    <File>C:/Users/CJMT/Documents/GitHub/BetweenTheLines/BetweenTheLines/Content/Assets/Images/CursorHighlight.png</File>
-    <File>C:/Users/CJMT/Documents/GitHub/BetweenTheLines/BetweenTheLines/Content/Assets/Images/Giovanni.png</File>
-    <File>C:/Users/CJMT/Documents/GitHub/BetweenTheLines/BetweenTheLines/Content/Assets/Images/pixel.png</File>
+    <File>C:/Users/CJMT/Documents/GitHub/BetweenTheLines/BetweenTheLines/Content/Assets/Images/Global/Cursor.png</File>
+    <File>C:/Users/CJMT/Documents/GitHub/BetweenTheLines/BetweenTheLines/Content/Assets/Images/Global/CursorHighlight.png</File>
+    <File>C:/Users/CJMT/Documents/GitHub/BetweenTheLines/BetweenTheLines/Content/Assets/Images/Global/pixel.png</File>
+    <File>C:/Users/CJMT/Documents/GitHub/BetweenTheLines/BetweenTheLines/Content/Assets/Images/Intro/Snowman64.png</File>
+    <File>C:/Users/CJMT/Documents/GitHub/BetweenTheLines/BetweenTheLines/Content/Assets/Images/Level/Giovanni.png</File>
+    <File>C:/Users/CJMT/Documents/GitHub/BetweenTheLines/BetweenTheLines/Content/Assets/Images/Title/Logo.png</File>
     <File>C:/Users/CJMT/Documents/GitHub/BetweenTheLines/BetweenTheLines/Content/Assets/Shaders/CRTFilter.fx</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

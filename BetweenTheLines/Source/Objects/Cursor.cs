@@ -17,11 +17,24 @@ namespace BetweenTheLines.Source.Objects
         // Public Variables
 
         public int X, Y;
+        public Rectangle Bounds;
 
         // Protected Variables
 
         protected Point size;
         protected StaticSprite sprite;
+        public int opacity;
+
+        // States
+        protected bool
+            highlighted = false;
+
+        // Functions
+        protected bool
+            fadingOut = false;
+
+        public float timer = 0f;
+        protected float timerStart = 0f, timerEnd = 0.05f;
 
         public Cursor(Point size)
         {
@@ -31,14 +44,74 @@ namespace BetweenTheLines.Source.Objects
             sprite = new StaticSprite(Global.cursor, new Rectangle(new Point(X, Y), size), Color.White); // Sprite
         }
 
+        int previousX;
+
         public void Update(GameTime gameTime)
         {
-            sprite.SetDestRect(new Rectangle(new Point(X, Y), size)); // Position
+            // Update Global Variables
+            this.Bounds = this.sprite.GetDestRect();
+
+            // Update Timer
+            if (timer > timerEnd) timer = timerStart;
+            else timer += 0.1f;
+
+            // Update Sprite
+            sprite.SetDestRect(new Rectangle(new Point(X, Y), size)); // Rectangle (Position)
+            sprite.SetColor(new Color(opacity, opacity, opacity, opacity)); // Color
+
+            // --- Highlight ---
+
+            // --- Fade Out ---
+
+            // When Not Fading Out, Reset Values
+            if (!fadingOut)
+            {
+                // Keep original cursor position stored (for when fade out is finished)
+                previousX = X;
+
+                // Set Opacity to Full if game is not paused
+                if (!Global.paused) opacity = 255;
+            }
+
+            // On Fade Out
+            if (timer > timerEnd)
+            {
+                if (fadingOut)
+                {
+                    // Update Size
+                    size = new Point((int)(size.X * 1.1f), (int)(size.Y * 1.1f));
+
+                    X -= (Global.cursorResize / 2); // Move Left to Keep Centered
+
+                    // Lower Opacity
+                    if (opacity > 0) opacity -= 30;
+                    else opacity = 0;
+
+                    // End Fade Out when Size Limit Reached
+                    if (size.X > Global.cursorSize.X * 2)
+                    {
+                        // End fade
+                        fadingOut = false;
+
+                        X = previousX;
+                    }
+                }
+            }
+
+            if (highlighted) this.sprite.SetTexture(Global.cursorHighlight);
+            else this.sprite.SetTexture(Global.cursor);
+
+            highlighted = false;
+        }
+
+        public void ResetValues()
+        {
+            this.X = previousX;
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            sprite.Draw(spriteBatch);
+            this.sprite.Draw(spriteBatch);
         }
 
         // Setters
@@ -46,6 +119,31 @@ namespace BetweenTheLines.Source.Objects
         public void setSize(Point newSize)
         {
             this.size = newSize;
+        }
+
+        // Transitions
+
+        public void FadeOut()
+        {
+            this.fadingOut = true;
+        }
+
+        public void ResetSize()
+        {
+            this.fadingOut = false;
+            this.size = Global.cursorSize;
+        }
+
+        // Unique Behaviours
+
+        public void Highlight(Character collider)
+        {
+            if (this.Bounds.Intersects(collider.Bounds)) highlighted = true;
+        }
+
+        public bool HoveringOver(Rectangle rect)
+        {
+            return this.Bounds.Intersects(rect);
         }
     }
 }

@@ -42,21 +42,43 @@ namespace BetweenTheLines.Source
             paused = false,
             mouseVisible = false;
 
+        // State
+        public enum State
+        {
+            intro,
+            title,
+            level
+        }
+
+        public static State currentState = State.intro; // Current state of the game - NOTE: Always starts on intro!
+
         // Cursor Size
         public static int
             cursorWidth = 16, cursorHeight = 20, // Size of Cursor
-            cursorResize = 1; // Amount to Resize Cursor by
+            cursorResize = 2; // Amount to Resize Cursor by
         public static Point cursorSize = new Point((cursorWidth * cursorResize), (cursorHeight * cursorResize)); // Size as Point
 
         // Graphics
 
-        public static bool shadersEnabled = false;
+        public static bool
+            shadersEnabled = false,
+            menuAnimations = true;
 
         // Sprites
 
+        // Load Textures
         public static Texture2D
+            // --- Global ---
             noImg,
             cursor, cursorHighlight,
+
+            // --- Intro ---
+            snowman64,
+
+            // --- Title ---
+            logo,
+
+            // --- Level ---
             giovanni;
         public static SpriteFont arial;
         public static Effect crt;
@@ -66,12 +88,16 @@ namespace BetweenTheLines.Source
         {
             // Images
 
-            Global.noImg = content.Load<Texture2D>("Assets/Images/pixel");
+            Global.noImg = content.Load<Texture2D>("Assets/Images/Global/pixel");
 
-            Global.cursor = content.Load<Texture2D>("Assets/Images/Cursor");
-            Global.cursorHighlight = content.Load<Texture2D>("Assets/Images/CursorHighlight");
+            Global.cursor = content.Load<Texture2D>("Assets/Images/Global/Cursor");
+            Global.cursorHighlight = content.Load<Texture2D>("Assets/Images/Global/CursorHighlight");
 
-            Global.giovanni = content.Load<Texture2D>("Assets/Images/Giovanni");
+            Global.snowman64 = content.Load<Texture2D>("Assets/Images/Intro/Snowman64");
+
+            Global.logo = content.Load<Texture2D>("Assets/Images/Title/Logo");
+
+            Global.giovanni = content.Load<Texture2D>("Assets/Images/Level/Giovanni");
 
             // Fonts
 

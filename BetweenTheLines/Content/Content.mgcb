@@ -21,7 +21,7 @@
 /processorParam:TextureFormat=Color
 /build:Assets/Fonts/Arial.png
 
-#begin Assets/Images/Cursor.png
+#begin Assets/Images/Global/Cursor.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -31,9 +31,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Assets/Images/Cursor.png
+/build:Assets/Images/Global/Cursor.png
 
-#begin Assets/Images/CursorHighlight.png
+#begin Assets/Images/Global/CursorHighlight.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -43,9 +43,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Assets/Images/CursorHighlight.png
+/build:Assets/Images/Global/CursorHighlight.png
 
-#begin Assets/Images/Giovanni.png
+#begin Assets/Images/Global/pixel.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -55,9 +55,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Assets/Images/Giovanni.png
+/build:Assets/Images/Global/pixel.png
 
-#begin Assets/Images/pixel.png
+#begin Assets/Images/Intro/Snowman64.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -67,7 +67,31 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Assets/Images/pixel.png
+/build:Assets/Images/Intro/Snowman64.png
+
+#begin Assets/Images/Level/Giovanni.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Assets/Images/Level/Giovanni.png
+
+#begin Assets/Images/Title/Logo.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Assets/Images/Title/Logo.png
 
 #begin Assets/Shaders/CRTFilter.fx
 /importer:EffectImporter

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <SourceFile>C:/Users/CJMT/Documents/GitHub/BetweenTheLines/BetweenTheLines/Content/Assets/Images/pixel.png</SourceFile>
-  <SourceTime>2026-01-27T22:06:08.5944069-08:00</SourceTime>
-  <DestFile>C:/Users/CJMT/Documents/GitHub/BetweenTheLines/BetweenTheLines/Content/bin/DesktopGL/Content/Assets/Images/pixel.xnb</DestFile>
-  <DestTime>2026-04-07T13:00:36.3442631-07:00</DestTime>
+  <SourceFile>C:/Users/CJMT/Documents/GitHub/BetweenTheLines/BetweenTheLines/Content/Assets/Images/Global/Cursor.png</SourceFile>
+  <SourceTime>2026-04-03T13:19:36.3891697-07:00</SourceTime>
+  <DestFile>C:/Users/CJMT/Documents/GitHub/BetweenTheLines/BetweenTheLines/Content/bin/DesktopGL/Content/Assets/Images/Global/Cursor.xnb</DestFile>
+  <DestTime>2026-04-07T13:28:25.5977957-07:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2025-06-02T03:31:02-07:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

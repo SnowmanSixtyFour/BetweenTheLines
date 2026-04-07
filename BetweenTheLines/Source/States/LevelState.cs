@@ -15,6 +15,9 @@ namespace BetweenTheLines.Source.States
 
         public LevelState()
         {
+            // Set Level
+            cursorVisible = true;
+
             // Test Character
             giovanni = new Character(Global.giovanni, new Point(10, 200), new Point(48, 29), new Point(16, 29), Color.White);
             giovanni.SetSize(2);

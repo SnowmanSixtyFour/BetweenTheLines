@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <SourceFile>C:/Users/CJMT/Documents/GitHub/BetweenTheLines/BetweenTheLines/Content/Assets/Images/CursorHighlight.png</SourceFile>
-  <SourceTime>2026-04-03T13:19:21.8307056-07:00</SourceTime>
-  <DestFile>C:/Users/CJMT/Documents/GitHub/BetweenTheLines/BetweenTheLines/Content/bin/DesktopGL/Content/Assets/Images/CursorHighlight.xnb</DestFile>
-  <DestTime>2026-04-07T13:05:23.5735745-07:00</DestTime>
+  <SourceFile>C:/Users/CJMT/Documents/GitHub/BetweenTheLines/BetweenTheLines/Content/Assets/Images/Level/Giovanni.png</SourceFile>
+  <SourceTime>2026-01-27T22:06:08.5934053-08:00</SourceTime>
+  <DestFile>C:/Users/CJMT/Documents/GitHub/BetweenTheLines/BetweenTheLines/Content/bin/DesktopGL/Content/Assets/Images/Level/Giovanni.xnb</DestFile>
+  <DestTime>2026-04-07T13:32:34.9523414-07:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2025-06-02T03:31:02-07:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
