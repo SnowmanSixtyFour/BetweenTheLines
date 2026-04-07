@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <SourceFile>C:/Users/CJMT/Documents/GitHub/ZEngine/ZEngine/Content/Assets/Shaders/CRTFilter.fx</SourceFile>
+  <SourceTime>2026-01-30T19:10:54.9885334-08:00</SourceTime>
+  <DestFile>C:/Users/CJMT/Documents/GitHub/ZEngine/ZEngine/Content/bin/DesktopGL/Content/Assets/Shaders/CRTFilter.xnb</DestFile>
+  <DestTime>2026-01-30T19:12:12.5218928-08:00</DestTime>
+  <Importer>EffectImporter</Importer>
+  <ImporterTime>2025-06-02T03:31:02-07:00</ImporterTime>
+  <Processor>EffectProcessor</Processor>
+  <ProcessorTime>2025-06-02T03:31:02-07:00</ProcessorTime>
+  <Parameters>
+    <Key>DebugMode</Key>
+    <Value>Auto</Value>
+  </Parameters>
+  <Dependencies />
+  <BuildAsset />
+  <BuildOutput />
+</PipelineBuildEvent>

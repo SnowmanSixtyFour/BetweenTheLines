@@ -1,0 +1,5 @@
+Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
+"C:/Users/CJMT/Documents/GitHub/ZEngine/ZEngine/Content/Assets/Fonts/Arial.png","C:/Users/CJMT/Documents/GitHub/ZEngine/ZEngine/Content/bin/DesktopGL/Content/Assets/Fonts/Arial.xnb","FontTextureProcessor","SpriteFontContent",15204,91161,0.1190443
+"C:/Users/CJMT/Documents/GitHub/ZEngine/ZEngine/Content/Assets/Images/Giovanni.png","C:/Users/CJMT/Documents/GitHub/ZEngine/ZEngine/Content/bin/DesktopGL/Content/Assets/Images/Giovanni.xnb","TextureProcessor","Texture2DContent",610,5653,0.0046007
+"C:/Users/CJMT/Documents/GitHub/ZEngine/ZEngine/Content/Assets/Images/pixel.png","C:/Users/CJMT/Documents/GitHub/ZEngine/ZEngine/Content/bin/DesktopGL/Content/Assets/Images/pixel.xnb","TextureProcessor","Texture2DContent",352,89,0.0020225
+"C:/Users/CJMT/Documents/GitHub/ZEngine/ZEngine/Content/Assets/Shaders/CRTFilter.fx","C:/Users/CJMT/Documents/GitHub/ZEngine/ZEngine/Content/bin/DesktopGL/Content/Assets/Shaders/CRTFilter.xnb","EffectProcessor","CompiledEffectContent",9063,11957,0.428535

@@ -1,0 +1,4 @@
+Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
+"C:/Users/Admin/Documents/GitHub/ZEngine/ZEngine/Content/Assets/Fonts/Arial.png","C:/Users/Admin/Documents/GitHub/ZEngine/ZEngine/Content/bin/DesktopGL/Content/Assets/Fonts/Arial.xnb","FontTextureProcessor","SpriteFontContent",15204,91161,0.2786394
+"C:/Users/Admin/Documents/GitHub/ZEngine/ZEngine/Content/Assets/Images/Giovanni.png","C:/Users/Admin/Documents/GitHub/ZEngine/ZEngine/Content/bin/DesktopGL/Content/Assets/Images/Giovanni.xnb","TextureProcessor","Texture2DContent",610,5653,0.1878089
+"C:/Users/Admin/Documents/GitHub/ZEngine/ZEngine/Content/Assets/Images/pixel.png","C:/Users/Admin/Documents/GitHub/ZEngine/ZEngine/Content/bin/DesktopGL/Content/Assets/Images/pixel.xnb","TextureProcessor","Texture2DContent",352,89,0.204399
