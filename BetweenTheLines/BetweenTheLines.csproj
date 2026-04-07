@@ -17,6 +17,7 @@
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
     <IncludeSymbols>False</IncludeSymbols>
+    <FileVersion>1.0.0</FileVersion>
   </PropertyGroup>
   <ItemGroup>
     <None Remove="Icon.ico" />

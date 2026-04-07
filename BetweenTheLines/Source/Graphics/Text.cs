@@ -24,7 +24,7 @@ namespace BetweenTheLines.Source.Graphics
         /// <param name="position"></param>
         /// <param name="color"></param>
         /// <param name="size">A float that controls the size of the text. (E.g. 1.0f, 2.0f)</param>
-        public Text(SpriteFont font, String text, Vector2 position, Color color, float size)
+        public Text(SpriteFont font, String text, Vector2 position, Color color, float size, bool centered)
         {
             // Initialize text
             setFont(font);
@@ -33,8 +33,9 @@ namespace BetweenTheLines.Source.Graphics
             setColor(color);
             setSize(size);
 
-            // Find the center of the string
-            origin = (font.MeasureString(text) / 2);
+            // Center Text
+            if (centered) origin = (font.MeasureString(text) / 2);
+            else origin = Vector2.Zero;
         }
 
         public void Draw(SpriteBatch spriteBatch)

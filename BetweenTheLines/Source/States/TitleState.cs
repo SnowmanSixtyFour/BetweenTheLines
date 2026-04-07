@@ -14,9 +14,16 @@ namespace BetweenTheLines.Source.States
 {
     internal class TitleState : State
     {
+        // Variables
+
+        // Sprites
         private StaticSprite logo;
         private Point logoSize = new Point(364, 214);
-        private int logoPadding = 30;
+        private int logoPadding = 20;
+
+        private Text
+            gameVersion,
+            gameCredits;
 
         public TitleState()
         {
@@ -27,6 +34,11 @@ namespace BetweenTheLines.Source.States
 
             // Logo
             logo = new StaticSprite(Global.logo, new Rectangle(new Point((cam.Width / 2) - (logoSize.X / 2), logoPadding), logoSize), Color.White);
+
+            // Text
+            gameVersion = new Text(Global.arial, (Global.gameVersion), new Vector2(10, (cam.Height - 30)), Color.Black, 1.0f, false);
+
+            gameCredits = new Text(Global.arial, "Created by Snowman64.", new Vector2((cam.Width - 265), (cam.Height - 30)), Color.Black, 1.0f, false);
         }
 
         public override void OnUpdate(GameTime gameTime)
@@ -35,11 +47,13 @@ namespace BetweenTheLines.Source.States
 
         public override void OnDraw(SpriteBatch spriteBatch)
         {
-            // BG Color
+            // Background
             graphicsDevice.Clear(Color.LightGray);
 
-            // Logo
+            // Sprites
             logo.Draw(spriteBatch);
+            gameVersion.Draw(spriteBatch);
+            gameCredits.Draw(spriteBatch);
         }
     }
 }

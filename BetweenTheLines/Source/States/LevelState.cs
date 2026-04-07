@@ -26,7 +26,7 @@ namespace BetweenTheLines.Source.States
             giovanni.CreateAnimation("idle", 0, 0);
             giovanni.CreateAnimation("walk", 1, 2);
 
-            debug = new Text(Global.arial, "", new Vector2(10, 10), Color.White, 1.0f);
+            debug = new Text(Global.arial, "", new Vector2(10, 10), Color.White, 1.0f, false);
         }
 
         public override void OnUpdate(GameTime gameTime)
