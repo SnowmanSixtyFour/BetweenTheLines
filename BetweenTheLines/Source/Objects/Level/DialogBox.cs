@@ -1,4 +1,6 @@
-﻿using System;
+﻿// The Dialog Box for gameplay, when someone is speaking.
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
