@@ -50,10 +50,11 @@ namespace BetweenTheLines.Source
         {
             intro,
             title,
-            level
+            level,
+            credits
         }
 
-        public static State currentState = State.intro; // Current state of the game - NOTE: Always starts on intro!
+        public static State currentState = State.credits; // Current state of the game - NOTE: Always starts on intro!
 
         // Cursor Size
         public static int

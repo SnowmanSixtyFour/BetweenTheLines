@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using BetweenTheLines.Source.Graphics;
 
-namespace BetweenTheLines.Source.Objects
+namespace BetweenTheLines.Source.Objects.GUI
 {
     internal class Cursor
     {
@@ -49,7 +49,7 @@ namespace BetweenTheLines.Source.Objects
         public void Update(GameTime gameTime)
         {
             // Update Global Variables
-            this.Bounds = this.sprite.GetDestRect();
+            Bounds = sprite.GetDestRect();
 
             // Update Timer
             if (timer > timerEnd) timer = timerStart;
@@ -81,7 +81,7 @@ namespace BetweenTheLines.Source.Objects
                     // Update Size
                     size = new Point((int)(size.X * 1.1f), (int)(size.Y * 1.1f));
 
-                    X -= (Global.cursorResize / 2); // Move Left to Keep Centered
+                    X -= Global.cursorResize / 2; // Move Left to Keep Centered
 
                     // Lower Opacity
                     if (opacity > 0) opacity -= 30;
@@ -98,52 +98,52 @@ namespace BetweenTheLines.Source.Objects
                 }
             }
 
-            if (highlighted) this.sprite.SetTexture(Global.cursorHighlight);
-            else this.sprite.SetTexture(Global.cursor);
+            if (highlighted) sprite.SetTexture(Global.cursorHighlight);
+            else sprite.SetTexture(Global.cursor);
 
             highlighted = false;
         }
 
         public void ResetValues()
         {
-            this.X = previousX;
+            X = previousX;
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            this.sprite.Draw(spriteBatch);
+            sprite.Draw(spriteBatch);
         }
 
         // Setters
 
         public void setSize(Point newSize)
         {
-            this.size = newSize;
+            size = newSize;
         }
 
         // Transitions
 
         public void FadeOut()
         {
-            this.fadingOut = true;
+            fadingOut = true;
         }
 
         public void ResetSize()
         {
-            this.fadingOut = false;
-            this.size = Global.cursorSize;
+            fadingOut = false;
+            size = Global.cursorSize;
         }
 
         // Unique Behaviours
 
         public void Highlight(Character collider)
         {
-            if (this.Bounds.Intersects(collider.Bounds)) highlighted = true;
+            if (Bounds.Intersects(collider.Bounds)) highlighted = true;
         }
 
         public bool HoveringOver(Rectangle rect)
         {
-            return this.Bounds.Intersects(rect);
+            return Bounds.Intersects(rect);
         }
     }
 }

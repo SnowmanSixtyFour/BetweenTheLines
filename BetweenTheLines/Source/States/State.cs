@@ -21,6 +21,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using BetweenTheLines.Source.Objects;
 using BetweenTheLines.Source.Graphics;
+using BetweenTheLines.Source.Objects.GUI;
 
 namespace BetweenTheLines.Source.States
 {

@@ -11,11 +11,13 @@ namespace BetweenTheLines.Source.States
 {
     internal class Main : State
     {
-        private State currentState;
+        private State currentState; // Current State of Game
 
-        private IntroState introState;
-        private TitleState titleState;
-        private LevelState levelState;
+        // States
+        private IntroState intro;
+        private TitleState title;
+        private LevelState level;
+        private CreditsState credits;
 
         public Main()
         {
@@ -24,28 +26,21 @@ namespace BetweenTheLines.Source.States
             canPause = false;
 
             // Set States
-            introState = new IntroState(); // Intro
-            titleState = new TitleState(); // Title
-            levelState = new LevelState(); // Level
+            intro = new IntroState(); // Intro
+            title = new TitleState(); // Title
+            level = new LevelState(); // Level
+            credits = new CreditsState(); // Credits
         }
 
         public override void OnUpdate(GameTime gameTime)
         {
-            // --- State Behaviour ---
-
-            // Intro
-            if (Global.currentState == Global.State.intro)
-            {
-                // Go to Title when Intro Finishes
-                if (introState.introFinished) Global.currentState = Global.State.title;
-            }
-
             // --- Current State ---
 
             // Set State
-            if (Global.currentState == Global.State.intro) currentState = introState; // Intro
-            if (Global.currentState == Global.State.title) currentState = titleState; // Title
-            if (Global.currentState == Global.State.level) currentState = levelState; // Level
+            if (Global.currentState == Global.State.intro) currentState = intro; // Intro
+            if (Global.currentState == Global.State.title) currentState = title; // Title
+            if (Global.currentState == Global.State.level) currentState = level; // Level
+            if (Global.currentState == Global.State.credits) currentState = credits; // Credits
 
             // Update State
             currentState.Update(gameTime);

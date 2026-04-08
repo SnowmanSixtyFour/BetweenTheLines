@@ -1,21 +1,7 @@
 ﻿// --- Between the Lines ---
 
-// Created by Snowman64
-
-// Developed from April 7, 2026 - TBA
-// Made for the Mystery Game Jam 2026 on itch.io.
-// https://itch.io/jam/mystery-game-jam-2026
-
-// Built on Z Engine.
-// https://github.com/Z-Engine/ZEngine
-
-// Special Thanks:
-// CRT Scanline Shaders (Public Domain) - Timothy Lottes
-
-// Freesound.org Sounds
-
-// Typewriter Button SLIDE 1A.wav - mincedbeats
-// https://freesound.org/people/mincedbeats/sounds/433600/
+// Created by Snowman64.
+// Credits can be found in-game or in CreditsState.cs.
 
 // -------------------------
 

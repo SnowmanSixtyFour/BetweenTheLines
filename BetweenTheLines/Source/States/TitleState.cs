@@ -38,7 +38,7 @@ namespace BetweenTheLines.Source.States
             // Text
             gameVersion = new Text(Global.arial, (Global.gameVersion), new Vector2(10, (cam.Height - 30)), Color.Black, 1.0f, false);
 
-            gameCredits = new Text(Global.arial, "Created by Snowman64.", new Vector2((cam.Width - 265), (cam.Height - 30)), Color.Black, 1.0f, false);
+            gameCredits = new Text(Global.arial, "2026 Snowman64", new Vector2((cam.Width - 195), (cam.Height - 30)), Color.Black, 1.0f, false);
         }
 
         public override void OnUpdate(GameTime gameTime)

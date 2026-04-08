@@ -25,8 +25,6 @@ namespace BetweenTheLines.Source.States
             logoAppear = 4f,
             logoDisappear = 18f;
 
-        public bool introFinished = false; // If Intro is Finished
-
         // Graphics
         protected StaticSprite snowman64;
         protected int
@@ -38,6 +36,9 @@ namespace BetweenTheLines.Source.States
         {
             // Set Intro
             cursorVisible = false;
+            canPause = false;
+
+            // Set Logo
             snowman64 = new StaticSprite(Global.snowman64, new Rectangle(
                 ((cam.Width / 2) - (logoWidth * (logoResize / 2))),
                 ((cam.Height / 2) - (logoHeight * logoResize)),
@@ -48,14 +49,18 @@ namespace BetweenTheLines.Source.States
 
         public override void OnUpdate(GameTime gameTime)
         {
-            // NOTE: Everything in the intro will run, even if the game is paused!
-
             // Keep Logo Variables Update
             snowman64.SetColor(new Color(opacity, opacity, opacity, opacity));
 
             // Run Timer for Scene
             if (introTime < timerEnd) introTime += increment;
-            else introFinished = true;
+            
+            // When Intro is Finished
+            else
+            {
+                // Switch State to Title
+                Global.currentState = Global.State.title;
+            }
 
             // Fade In
             if (introTime > logoAppear && introTime < logoDisappear)
