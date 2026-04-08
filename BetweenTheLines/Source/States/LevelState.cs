@@ -49,29 +49,32 @@ namespace BetweenTheLines.Source.States
 
             // Dialog Box
 
-            // If Dialog is not finished
-            if (!dialogBox.endOfDialog)
+            if (!Global.paused)
             {
-                // Proceed Dialog
-                if (KeyPress(Keys.Enter) || LeftClicked()) dialogBox.Proceed();
+                // If Dialog is not finished
+                if (!dialogBox.endOfDialog)
+                {
+                    // Proceed Dialog
+                    if (KeyPress(Keys.Enter) || LeftClicked()) dialogBox.Proceed();
+                }
+                // When Dialog is finished
+                else
+                {
+                    // NOTE: Functions trigger after chosen dialog is finished.
+                    // Dialog must be ordered from last to first, or else triggers will conflict!
+
+                    // Intro 2
+                    if (dialogBox.dialog == Dialog.intro2) dialogBox.Hide(); // Hide
+
+                    // Intro 1
+                    if (dialogBox.dialog == Dialog.intro1) dialogBox.setDialog(Dialog.intro2); // Set to Intro 2
+                }
+
+                // Update Objects
+
+                // Dialog Box
+                dialogBox.Update(gameTime);
             }
-            // When Dialog is finished
-            else
-            {
-                // NOTE: Functions trigger after chosen dialog is finished.
-                // Dialog must be ordered from last to first, or else triggers will conflict!
-
-                // Intro 2
-                if (dialogBox.dialog == Dialog.intro2) dialogBox.Hide(); // Hide
-
-                // Intro 1
-                if (dialogBox.dialog == Dialog.intro1) dialogBox.setDialog(Dialog.intro2); // Set to Intro 2
-            }
-
-            // Update Objects
-
-            // Dialog Box
-            dialogBox.Update(gameTime);
 
             // --- IGNORE ---
             /*
