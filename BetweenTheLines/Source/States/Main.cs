@@ -27,9 +27,6 @@ namespace BetweenTheLines.Source.States
             introState = new IntroState(); // Intro
             titleState = new TitleState(); // Title
             levelState = new LevelState(); // Level
-
-            // Set Current State
-            currentState = introState; // NOTE: Always start on intro! Will be different for debug purposes.
         }
 
         public override void OnUpdate(GameTime gameTime)

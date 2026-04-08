@@ -5,19 +5,29 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using BetweenTheLines.Source.Graphics;
 using BetweenTheLines.Source.Objects;
+using BetweenTheLines.Source.Objects.Level;
 
 namespace BetweenTheLines.Source.States
 {
     internal class LevelState : State
     {
-        Character giovanni;
-        Text debug;
+        // Objects
+        private StaticSprite cinematic;
+        private DialogBox dialogBox;
 
         public LevelState()
         {
             // Set Level
             cursorVisible = true;
 
+            // Set Objects
+            cinematic = new StaticSprite(null, new Rectangle(0, 0, cam.Width, cam.Height), Color.White);
+
+            dialogBox = new DialogBox();
+            dialogBox.setDialog(Dialog.intro1);
+
+            // --- IGNORE ---
+            /*
             // Test Character
             giovanni = new Character(Global.giovanni, new Point(10, 200), new Point(48, 29), new Point(16, 29), Color.White);
             giovanni.SetSize(2);
@@ -27,10 +37,44 @@ namespace BetweenTheLines.Source.States
             giovanni.CreateAnimation("walk", 1, 2);
 
             debug = new Text(Global.arial, "", new Vector2(10, 10), Color.White, 1.0f, false);
+            */
         }
 
         public override void OnUpdate(GameTime gameTime)
         {
+            // Cinematic
+
+            if (dialogBox.dialog == Dialog.intro1) cinematic.SetTexture(Global.intro1); // Intro 1
+            if (dialogBox.dialog == Dialog.intro2) cinematic.SetTexture(Global.intro2); // Intro 2
+
+            // Dialog Box
+
+            // If Dialog is not finished
+            if (!dialogBox.endOfDialog)
+            {
+                // Proceed Dialog
+                if (KeyPress(Keys.Enter) || LeftClicked()) dialogBox.Proceed();
+            }
+            // When Dialog is finished
+            else
+            {
+                // NOTE: Functions trigger after chosen dialog is finished.
+                // Dialog must be ordered from last to first, or else triggers will conflict!
+
+                // Intro 2
+                if (dialogBox.dialog == Dialog.intro2) dialogBox.Hide(); // Hide
+
+                // Intro 1
+                if (dialogBox.dialog == Dialog.intro1) dialogBox.setDialog(Dialog.intro2); // Set to Intro 2
+            }
+
+            // Update Objects
+
+            // Dialog Box
+            dialogBox.Update(gameTime);
+
+            // --- IGNORE ---
+            /*
             // Text
             debug.setText("X: " + giovanni.X
                 + "\nY: " + giovanni.Y
@@ -73,14 +117,15 @@ namespace BetweenTheLines.Source.States
             {
                 Global.shadersEnabled = !Global.shadersEnabled;
             }
+            */
         }
 
         public override void OnDraw(SpriteBatch spriteBatch)
         {
-            graphicsDevice.Clear(Color.CornflowerBlue);
+            // Draw Objects
 
-            debug.Draw(spriteBatch);
-            giovanni.Draw(spriteBatch);
+            cinematic.Draw(spriteBatch); // Cinematic Artwork
+            dialogBox.Draw(spriteBatch); // Dialog Box
         }
     }
 }

@@ -80,7 +80,7 @@ namespace BetweenTheLines
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // Load Content
-            Global.LoadContent(Content);
+            Assets.LoadContent(Content);
 
             // Set game state
             game = new Main();
