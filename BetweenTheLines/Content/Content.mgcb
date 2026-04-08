@@ -13,6 +13,12 @@
 
 #---------------------------------- Content ---------------------------------#
 
+#begin Assets/Audio/SFX/typewriter.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Assets/Audio/SFX/typewriter.wav
+
 #begin Assets/Fonts/Arial.png
 /importer:TextureImporter
 /processor:FontTextureProcessor

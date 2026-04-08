@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework;
 using BetweenTheLines.Source.Graphics;
 using Microsoft.Xna.Framework.Graphics;
 using System.Diagnostics;
+using Microsoft.Xna.Framework.Audio;
 
 namespace BetweenTheLines.Source.Objects.Level
 {
@@ -21,6 +22,11 @@ namespace BetweenTheLines.Source.Objects.Level
         private Text
             text, name;
         private int textPadding = 20;
+
+        private String typewriterText = "";
+        private bool typewriterFinished = false;
+        private int currentChar = 0;
+        private float timeElapsed = 0;
 
         // Names
         private String[] names = {
@@ -49,15 +55,45 @@ namespace BetweenTheLines.Source.Objects.Level
             this.text = new Text(Global.arial, "", new Vector2((box.GetDestRect().X + textPadding), (box.GetDestRect().Y + 60)), textColor, 1.0f, false);
         }
 
-        public void Update(GameTime gameTime)
+        public void Update(GameTime gameTime, float dialogSpeed)
         {
+            // If Dialog is not finished
             if (steps < dialog.Length)
             {
-                // Set Text to Current Line of Dialog
-                this.text.setText(dialog[steps].text);
+                // Update Timer
+                timeElapsed += (float)gameTime.ElapsedGameTime.TotalSeconds;
 
                 // Set Name to Array Name
                 this.name.setText(names[dialog[steps].name]);
+
+                // Set Text to Current Line in Typewriter Text
+                if (!typewriterFinished)
+                {
+                    // When Timer Reaches Dialog Speed
+                    if (timeElapsed >= dialogSpeed)
+                    {
+                        // Update Text to Match Current Character
+                        typewriterText = dialog[steps].text.Substring(0, currentChar);
+
+                        // Update Current Character of Dialog
+                        currentChar++;
+
+                        // Play Sound Effect
+                        Global.typewriter.Play();
+
+                        // Display Text
+                        this.text.setText(typewriterText);
+
+                        // Reset Timer
+                        timeElapsed = 0f;
+
+                        // When End of Dialog is Reached
+                        if (currentChar >= (dialog[steps].text.Length + 1))
+                        {
+                            typewriterFinished = true;
+                        }
+                    }
+                }
             }
             // When End of Dialog Reached
             else
@@ -76,18 +112,47 @@ namespace BetweenTheLines.Source.Objects.Level
 
         // --- Unique Behaviours ---
 
+        // Reset Typewriter Variables for Reuse
+        public void ResetTypewriter()
+        {
+            this.currentChar = 0; // Reset Character
+
+            // Bool to Loop Typewriter Effect
+            typewriterFinished = false;
+
+            // Reset Text
+            typewriterText = "";
+
+            // Reset Timer
+            timeElapsed = 0f;
+        }
+
         // Set Dialog
         public void setDialog(DialogString[] newDialog)
         {
+            ResetTypewriter();
+
             this.steps = 0; // Reset Steps
+
             this.endOfDialog = false; // Set Bool to False
+
             this.dialog = newDialog; // Set New Dialog
         }
 
         // Continue Dialog
         public void Proceed()
         {
-            steps++;
+            // Go To Next Line
+            if (currentChar >= (dialog[steps].text.Length + 1))
+            {
+                ResetTypewriter();
+                steps++;
+            }
+            // Skip Dialog
+            else
+            {
+                currentChar = dialog[steps].text.Length;
+            }
         }
 
         int boxLowerAmount = 5;
@@ -98,6 +163,7 @@ namespace BetweenTheLines.Source.Objects.Level
             // Lower Box
             if (box.GetDestRect().Y <= Global.windowHeight) box.SetDestRect(new Rectangle(boxRectangle.X, boxRectangle.Y += boxLowerAmount, boxRectangle.Width, boxRectangle.Height));
 
+            // Hide all Text
             this.name.setColor(invisibleColor);
             this.text.setColor(invisibleColor);
         }
@@ -109,6 +175,7 @@ namespace BetweenTheLines.Source.Objects.Level
             if (box.GetDestRect().Y > boxRectangle.Y) box.SetDestRect(new Rectangle(boxRectangle.X, boxRectangle.Y -= boxLowerAmount, boxRectangle.Width, boxRectangle.Height));
             else box.SetDestRect(boxRectangle); // Reset Position if too high up
             
+            // Show all Text
             this.name.setColor(nameColor);
             this.text.setColor(textColor);
         }

@@ -12,6 +12,11 @@
 // Special Thanks:
 // CRT Scanline Shaders (Public Domain) - Timothy Lottes
 
+// Freesound.org Sounds
+
+// Typewriter Button SLIDE 1A.wav - mincedbeats
+// https://freesound.org/people/mincedbeats/sounds/433600/
+
 // -------------------------
 
 using System;
@@ -40,6 +45,8 @@ namespace BetweenTheLines
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
+
+            IsFixedTimeStep = false;
         }
 
         protected override void Initialize()

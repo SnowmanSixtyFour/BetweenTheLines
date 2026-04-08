@@ -13,7 +13,15 @@ namespace BetweenTheLines.Source.States
     {
         // Objects
         private StaticSprite cinematic;
+
         private DialogBox dialogBox;
+
+        // Dialog Speed
+        private float
+            defaultDialogSpeed = 0.02f, // Normal - 20 Milliseconds
+            fastDialogSpeed = 0.01f; // Fast - 10 Milliseconds
+
+        private float dialogSpeed;
 
         public LevelState()
         {
@@ -25,6 +33,9 @@ namespace BetweenTheLines.Source.States
 
             dialogBox = new DialogBox();
             dialogBox.setDialog(Dialog.intro1);
+
+            // Set Dialog Speed
+            dialogSpeed = defaultDialogSpeed;
 
             // --- IGNORE ---
             /*
@@ -73,7 +84,7 @@ namespace BetweenTheLines.Source.States
                 // Update Objects
 
                 // Dialog Box
-                dialogBox.Update(gameTime);
+                dialogBox.Update(gameTime, dialogSpeed);
             }
 
             // --- IGNORE ---

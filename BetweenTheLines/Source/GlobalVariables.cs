@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using BetweenTheLines.Source.Objects.Level;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -52,7 +53,7 @@ namespace BetweenTheLines.Source
             level
         }
 
-        public static State currentState = State.intro; // Current state of the game - NOTE: Always starts on intro!
+        public static State currentState = State.level; // Current state of the game - NOTE: Always starts on intro!
 
         // Cursor Size
         public static int
@@ -86,6 +87,14 @@ namespace BetweenTheLines.Source
             intro1, intro2,
 
             giovanni;
+
+        // Audio
+
+        // Load Sound Effects
+        public static SoundEffect
+            // --- Dialog ---
+            typewriter;
+
         public static SpriteFont arial;
         public static Effect crt;
     }
@@ -117,6 +126,10 @@ namespace BetweenTheLines.Source
             Global.intro1 = content.Load<Texture2D>("Assets/Images/Level/Intro/intro1");
             Global.intro2 = content.Load<Texture2D>("Assets/Images/Level/Intro/intro2");
 
+            // Audio
+
+            Global.typewriter = content.Load<SoundEffect>("Assets/Audio/SFX/typewriter");
+
             // Fonts
 
             Global.arial = content.Load<SpriteFont>("Assets/Fonts/Arial");
@@ -133,19 +146,25 @@ namespace BetweenTheLines.Source
         // Intro
 
         public static DialogString[] intro1 = {
-            new DialogString(1, "Last night, I got this letter..."),
-            new DialogString(1, "It said \"Congratulations! You have won $1 000 000 dollars!\""),
-            new DialogString(1, "...Yeah, as if."),
-            new DialogString(1, "In my line of work... I make a decent amount of money."),
-            new DialogString(1, "But this?..."),
-            new DialogString(1, "I'm gonna get to the bottom of this."),
-            new DialogString(1, "Besides... Who would fall for a scheme like this?")
+            CreateDialog(1, "Last night, I got this letter..."),
+            CreateDialog(1, "It said \"Congratulations! You have won $1 000 000 dollars!\""),
+            CreateDialog(1, "...Yeah, as if."),
+            CreateDialog(1, "In my line of work... I make a decent amount of money."),
+            CreateDialog(1, "But this?..."),
+            CreateDialog(1, "I'm gonna get to the bottom of this."),
+            CreateDialog(1, "Besides... Who would fall for a scheme like this?")
         };
 
         public static DialogString[] intro2 = {
-            new DialogString(1, "Well, here I am."),
-            new DialogString(1, "This place's address was at the bottom of the letter."),
-            new DialogString(1, "Let's hope this wasn't a waste of my time.")
+            CreateDialog(1, "Well, here I am."),
+            CreateDialog(1, "This place's address was at the bottom of the letter."),
+            CreateDialog(1, "Let's hope this wasn't a waste of my time.")
         };
+
+        // Create Dialog String
+        public static DialogString CreateDialog(int name, string text)
+        {
+            return new DialogString(name, text);
+        }
     }
 }
