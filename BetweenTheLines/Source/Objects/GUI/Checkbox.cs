@@ -15,7 +15,6 @@ namespace BetweenTheLines.Source.Objects.GUI
         private StaticSprite sprite;
         private Text text;
         private int textPadding = 20;
-        private Color color = Color.White;
 
         // Public Variables
         public int
@@ -33,8 +32,8 @@ namespace BetweenTheLines.Source.Objects.GUI
         public Checkbox(Point position, String text = "")
         {
             // Set Checkbox
-            this.sprite = new StaticSprite(Global.checkboxInactive, Rectangle.Empty, color);
-            this.text = new Text(Global.arial, text, Vector2.Zero, Color.White, 1.0f, false);
+            this.sprite = new StaticSprite(Global.checkboxInactive, Rectangle.Empty, Color.White);
+            this.text = new Text(Global.arial, text, Vector2.Zero, Color.Black, 1.0f, false);
 
             SetPosition(position);
         }
