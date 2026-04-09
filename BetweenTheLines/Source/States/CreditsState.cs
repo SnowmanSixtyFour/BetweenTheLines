@@ -1,5 +1,7 @@
 ﻿// Display credits for the game.
 
+// Full credits can be found in-game, or via the creditsString variable below.
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,7 +29,7 @@ namespace BetweenTheLines.Source.States
         private Vector2 creditsPosition;
         private int
             yStart = 700,
-            yEnd = -215;
+            yEnd = -200;
 
         // String
         private String creditsString = """
@@ -38,9 +40,6 @@ namespace BetweenTheLines.Source.States
             Developed from April 7, 2026 - TBA
             Made for the Mystery Game Jam 2026 on itch.io.
             https://itch.io/jam/mystery-game-jam-2026
-
-            Built on Z Engine.
-            https://github.com/Z-Engine/ZEngine
 
             Special Thanks:
             CRT Scanline Shaders (Public Domain) - Timothy Lottes
@@ -91,6 +90,10 @@ namespace BetweenTheLines.Source.States
                 {
                     GoToTitle();
                 }
+
+                // --- Button Highlights ---
+
+                cursor.Highlight(backButton);
 
                 // --- Button Clicks ---
 

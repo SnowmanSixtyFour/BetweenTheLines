@@ -108,6 +108,9 @@ namespace BetweenTheLines
                 Exit();
             */
 
+            // Quit Game on Global Trigger
+            if (Global.quit) Exit();
+
             // Update game variables
             UpdateGlobal();
 

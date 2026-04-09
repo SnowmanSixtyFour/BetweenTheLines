@@ -141,6 +141,12 @@ namespace BetweenTheLines.Source.Objects.GUI
             if (Bounds.Intersects(collider.Bounds)) highlighted = true;
         }
 
+        public void Highlight(Button button)
+        {
+            if (this.Bounds.Intersects(button.rect)) highlighted = true;
+        }
+
+
         public bool HoveringOver(Rectangle rect)
         {
             return Bounds.Intersects(rect);

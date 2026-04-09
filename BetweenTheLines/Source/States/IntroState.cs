@@ -36,7 +36,6 @@ namespace BetweenTheLines.Source.States
         {
             // Set Intro
             cursorVisible = false;
-            canPause = false;
 
             // Set Logo
             snowman64 = new StaticSprite(Global.snowman64, new Rectangle(

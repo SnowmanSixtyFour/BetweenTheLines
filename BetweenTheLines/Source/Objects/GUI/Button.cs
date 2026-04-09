@@ -27,14 +27,15 @@ namespace BetweenTheLines.Source.Objects.GUI
         private Color
             defaultColor = Color.White,
             highlightColor = Color.Yellow;
+        private bool highlighted = false;
 
         public Button(String text, Point position)
         {
             // Set Sprite
-            this.sprite = new StaticSprite(Global.button, Rectangle.Empty, Color.Gray);
+            this.sprite = new StaticSprite(Global.button, Rectangle.Empty, defaultColor);
 
             // Set Text
-            this.text = new Text(Global.arial, text, Vector2.Zero, defaultColor, 1.0f, false);
+            this.text = new Text(Global.arial, text, Vector2.Zero, Color.Black, 1.0f, false);
 
             // Update Position
             SetPosition(position);
@@ -60,12 +61,23 @@ namespace BetweenTheLines.Source.Objects.GUI
             this.text.setPosition(new Vector2(newPosition.X + (this.Width / 2) - (this.Width / 4), // X
                 newPosition.Y + (this.Height / 3)) // Y
                 );
+
+            // Highlight
+            if (this.highlighted)
+            {
+                this.sprite.SetColor(highlightColor);
+            }
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
             this.sprite.Draw(spriteBatch);
             this.text.Draw(spriteBatch);
+        }
+
+        public void Highlight()
+        {
+            this.highlighted = true;
         }
     }
 }

@@ -1,15 +1,16 @@
 ﻿// The intro animation when the game is first opened.
 
+using BetweenTheLines.Source.Graphics;
+using BetweenTheLines.Source.Objects;
+using BetweenTheLines.Source.Objects.GUI;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using BetweenTheLines.Source.Graphics;
-using BetweenTheLines.Source.Objects;
-using BetweenTheLines.Source.Objects.GUI;
 
 namespace BetweenTheLines.Source.States
 {
@@ -28,7 +29,11 @@ namespace BetweenTheLines.Source.States
             gameCredits;
 
         // Buttons
-        private Button creditsButton;
+        private Button
+            startButton,
+            optionsButton,
+            creditsButton,
+            exitButton;
         private int
             xPadding = 196,
             yPadding = 144;
@@ -49,29 +54,42 @@ namespace BetweenTheLines.Source.States
             gameCredits = new Text(Global.arial, "2026 Snowman64", new Vector2((cam.Width - 195), (cam.Height - 30)), Color.Black, 1.0f, false);
 
             // Buttons
-            creditsButton = new Button("Credits", new Point(cam.Width - xPadding, cam.Height - yPadding));
+            startButton = new Button("Start", new Point(xPadding / 2, cam.Height - yPadding));
+            optionsButton = new Button("Options", new Point(xPadding + 80, cam.Height - yPadding));
+            creditsButton = new Button("Credits", new Point(cam.Width - (xPadding * 2) + 20, cam.Height - yPadding));
+            exitButton = new Button("Quit", new Point(cam.Width - xPadding, cam.Height - yPadding));
         }
 
         public override void OnUpdate(GameTime gameTime)
         {
             if (!Global.paused)
             {
+                // --- Button Highlights ---
+
+                cursor.Highlight(startButton);
+                cursor.Highlight(optionsButton);
+                cursor.Highlight(creditsButton);
+                cursor.Highlight(exitButton);
+
                 // --- Button Clicks ---
+
+                // Start
+                if (cursor.HoveringOver(startButton.rect) && LeftClicked()) GoToLevel();
+
+                // Options
+                if (cursor.HoveringOver(optionsButton.rect) && LeftClicked()) GoToOptions();
 
                 // Credits
                 if (cursor.HoveringOver(creditsButton.rect) && LeftClicked()) GoToCredits();
+
+                // Exit
+                if (cursor.HoveringOver(exitButton.rect) && LeftClicked()) Global.quit = true;
             }
         }
 
         public override void ResetState()
         {
             base.ResetState();
-        }
-
-        public void GoToCredits()
-        {
-            this.changeState = true;
-            Global.currentState = Global.State.credits;
         }
 
         public override void OnDraw(SpriteBatch spriteBatch)
@@ -85,7 +103,32 @@ namespace BetweenTheLines.Source.States
             gameCredits.Draw(spriteBatch);
 
             // Buttons
+            startButton.Draw(spriteBatch);
+            optionsButton.Draw(spriteBatch);
             creditsButton.Draw(spriteBatch);
+            exitButton.Draw(spriteBatch);
+        }
+
+        // State Switches
+
+        public void GoToLevel()
+        {
+            this.changeState = true;
+            Global.currentState = Global.State.level;
+        }
+
+        public void GoToOptions()
+        {
+            // NOTE: Change this later! Error will only display while options are still WIP.
+
+            // Display Error Message
+            MessageBox.Show("Wait!", "The options aren't finished!", new[] { "Okay" });
+        }
+
+        public void GoToCredits()
+        {
+            this.changeState = true;
+            Global.currentState = Global.State.credits;
         }
     }
 }

@@ -15,6 +15,9 @@ namespace BetweenTheLines.Source
     // Global Variables
     internal class Global
     {
+        // Quit Game
+        public static bool quit = false;
+
         // Window
 
         public static string windowName = "Between the Lines";
