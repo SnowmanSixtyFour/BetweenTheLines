@@ -136,6 +136,11 @@ namespace BetweenTheLines.Source.Objects.GUI
 
         // Unique Behaviours
 
+        public void Highlight(Rectangle rect)
+        {
+            if (Bounds.Intersects(rect)) highlighted = true;
+        }
+
         public void Highlight(Character collider)
         {
             if (Bounds.Intersects(collider.Bounds)) highlighted = true;

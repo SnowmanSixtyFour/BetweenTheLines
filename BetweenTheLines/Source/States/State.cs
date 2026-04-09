@@ -102,6 +102,8 @@ namespace BetweenTheLines.Source.States
 
         public void Update(GameTime gameTime)
         {
+            // --- State ---
+
             // Update state variables
             screenWidth = graphicsDevice.PresentationParameters.Bounds.Width;
             screenHeight = graphicsDevice.PresentationParameters.Bounds.Height;
@@ -155,7 +157,7 @@ namespace BetweenTheLines.Source.States
                 }
             }
 
-            // Update Controls
+            // --- Controls ---
 
             // Mouse Delta
             mouseDelta = new Vector2(Math.Min(MAXDELTA, (previousMouse.X - mouse.X)), Math.Min(MAXDELTA, (previousMouse.Y - mouse.Y)));
@@ -196,6 +198,28 @@ namespace BetweenTheLines.Source.States
 
             // Update Cursor
             cursor.Update(gameTime);
+
+            // --- Audio ---
+
+            // Music Toggled
+            if (Global.musicToggled)
+            {
+                // Music Disabled
+                if (!Global.musicEnabled)
+                {
+                    // Lower the volume to 0
+                    MediaPlayer.Volume = 0.0f;
+                }
+                // Music Enabled
+                else
+                {
+                    // Set the volume back to default
+                    MediaPlayer.Volume = 1.0f;
+                }
+
+                // End Event
+                Global.musicToggled = false;
+            }
         }
 
         public virtual void OnUpdate(GameTime gameTime)

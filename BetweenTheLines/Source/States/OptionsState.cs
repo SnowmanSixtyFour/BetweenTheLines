@@ -19,6 +19,11 @@ namespace BetweenTheLines.Source.States
             optionsLabel;
         private int labelPadding = 30;
 
+        // Checkboxes
+        private Checkbox
+            music,
+            fullscreen;
+
         // Buttons
         private Button backButton; // Back
         private int backButtonPadding = 20;
@@ -33,6 +38,12 @@ namespace BetweenTheLines.Source.States
             // Text
             optionsLabel = new Text(Global.arial, "Options", new Vector2(cam.Width / 2, labelPadding), Color.Black, 1.5f, true);
 
+            // Checkboxes
+            music = new Checkbox(new Point(40, 60), "Music");
+            fullscreen = new Checkbox(new Point(40, 120), "Fullscreen");
+
+            SetCheckboxStatus();
+
             // Buttons
             backButton = new Button("Back", Point.Zero);
             backButton.SetPosition(new Point(
@@ -45,6 +56,34 @@ namespace BetweenTheLines.Source.States
         {
             if (!Global.paused)
             {
+                // --- Checkbox Clicks ---
+
+                if (music.clicked)
+                {
+                    // Toggle Music
+                    Global.musicEnabled = !Global.musicEnabled;
+                    Global.musicToggled = true;
+
+                    // Update Status
+                    SetCheckboxStatus();
+
+                    // End Click Event
+                    music.clicked = false;
+                }
+
+                if (fullscreen.clicked)
+                {
+                    // Toggle Fullscreen
+                    Global.fullscreen = !Global.fullscreen;
+                    Global.fullscreenChanged = true;
+
+                    // Update Status
+                    SetCheckboxStatus();
+
+                    // End Click Event
+                    fullscreen.clicked = false;
+                }
+
                 // --- Button Highlights ---
 
                 cursor.Highlight(backButton);
@@ -53,7 +92,24 @@ namespace BetweenTheLines.Source.States
 
                 // Back
                 if (cursor.HoveringOver(backButton.bounds) && LeftClicked()) GoToTitle();
+
+                // --- Object Updates ---
+
+                music.Update(gameTime, cursor, LeftClicked());
+                fullscreen.Update(gameTime, cursor, LeftClicked());
             }
+        }
+
+        /// <summary>
+        /// Set the active status of each checkbox to their respective variables.
+        /// </summary>
+        public void SetCheckboxStatus()
+        {
+            // Music
+            music.active = Global.musicEnabled;
+
+            // Fullscreen
+            fullscreen.active = Global.fullscreen;
         }
 
         public override void ResetState()
@@ -73,6 +129,10 @@ namespace BetweenTheLines.Source.States
 
             // Text
             optionsLabel.Draw(spriteBatch);
+
+            // Checkboxes
+            music.Draw(spriteBatch);
+            fullscreen.Draw(spriteBatch);
 
             // Buttons
             backButton.Draw(spriteBatch);

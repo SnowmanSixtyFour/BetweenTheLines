@@ -28,7 +28,9 @@ namespace BetweenTheLines.Source
             windowWidth = 844,
             windowHeight = 480;
 
-        public static bool active = true;
+        public static bool
+            active = true,
+            fullscreen = false, fullscreenChanged = false;
 
         // Settings
 
@@ -48,7 +50,9 @@ namespace BetweenTheLines.Source
 
         public static bool
             paused = false,
-            mouseVisible = false;
+            mouseVisible = false,
+
+            musicEnabled = true, musicToggled = false;
 
         // State
         public enum State

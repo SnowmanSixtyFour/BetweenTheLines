@@ -12,6 +12,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using BetweenTheLines.Source;
 using BetweenTheLines.Source.States;
+using System.Diagnostics;
 
 namespace BetweenTheLines
 {
@@ -23,6 +24,9 @@ namespace BetweenTheLines
         public static GraphicsDeviceManager publicGraphics;
         public static GraphicsDevice publicGraphicsDevice;
         public static GameTime gameTime;
+
+        private int
+            windowedWidth, windowedHeight;
 
         private Main game;
 
@@ -99,6 +103,50 @@ namespace BetweenTheLines
 
             // Set Global Variables
             Global.active = this.IsActive;
+
+            // --- Fullscreen ---
+
+            if (!graphics.IsFullScreen)
+            {
+                this.windowedWidth = this.GraphicsDevice.Viewport.Width;
+                this.windowedHeight = this.GraphicsDevice.Viewport.Height;
+            }
+
+            // Update Variables when Fullscreen Toggled
+            if (Global.fullscreenChanged) UpdateFullscreen();
+        }
+
+        /// <summary>
+        /// Keeps the size of the window update, depending on fullscreen or windowed mode.
+        /// </summary>
+        public void UpdateFullscreen()
+        {
+            // Set Bool to False (so method only runs once)
+            Global.fullscreenChanged = false;
+
+            // Change Screen Size depending on Fullscreen Status
+            if (Global.fullscreen) // Fullscreen Mode
+            {
+                // Set Window to Monitor Size
+                graphics.PreferredBackBufferWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
+                graphics.PreferredBackBufferHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
+
+                // Apply Changes before Fullscreen Status is Set
+                // NOTE: This is to prevent any lag when the window is set to fullscreen.
+                graphics.ApplyChanges();
+            }
+            if (!Global.fullscreen) // Windowed Mode
+            {
+                // Set Window to Previous Windowed Size
+                graphics.PreferredBackBufferWidth = this.windowedWidth;
+                graphics.PreferredBackBufferHeight = this.windowedHeight;
+            }
+
+            // Update Fullscreen Mode for Window
+            this.graphics.IsFullScreen = Global.fullscreen;
+
+            // Apply Changes to Window
+            graphics.ApplyChanges();
         }
 
         protected override void Update(GameTime gameTime)
