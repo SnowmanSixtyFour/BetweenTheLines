@@ -89,10 +89,28 @@ namespace BetweenTheLines.Source.States
                 // When Credits are off-screen
                 else
                 {
-                    // Switch to Title
-                    Global.currentState = Global.State.title;
+                    GoToTitle();
                 }
+
+                // --- Button Clicks ---
+
+                // Back
+                if (cursor.HoveringOver(backButton.rect) && LeftClicked()) GoToTitle();
             }
+        }
+
+        public override void ResetState()
+        {
+            // Reset Credits Position
+            creditsPosition.Y = yStart;
+
+            base.ResetState();
+        }
+
+        public void GoToTitle()
+        {
+            this.changeState = true;
+            Global.currentState = Global.State.title;
         }
 
         public override void OnDraw(SpriteBatch spriteBatch)

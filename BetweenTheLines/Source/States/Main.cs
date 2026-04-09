@@ -42,6 +42,16 @@ namespace BetweenTheLines.Source.States
             if (Global.currentState == Global.State.level) currentState = level; // Level
             if (Global.currentState == Global.State.credits) currentState = credits; // Credits
 
+            // When State Switched
+            if (currentState.changeState)
+            {
+                // Reset the Current State
+                currentState.ResetState();
+
+                // After State is Switched
+                currentState.changeState = false;
+            }
+
             // Update State
             currentState.Update(gameTime);
         }

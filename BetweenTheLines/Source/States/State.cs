@@ -53,6 +53,9 @@ namespace BetweenTheLines.Source.States
         private Text pauseText, pauseTooltip;
         private int pauseTextPadding = 30;
 
+        // State Changed
+        public bool changeState = false;
+
         public State()
         {
             // --- Set State ---
@@ -212,6 +215,19 @@ namespace BetweenTheLines.Source.States
         /// <param name="spriteBatch">The spriteBatch used in Draw.</param>
         public virtual void OnDraw(SpriteBatch spriteBatch)
         {
+        }
+
+        /// <summary>
+        /// Resets the current state.
+        /// </summary>
+        public virtual void ResetState()
+        {
+            // Unpause State
+            if (Global.active && Global.paused) Global.paused = false;
+
+            // Reset Mouse Position to Center of Screen
+            cursor.X = (screenWidth / 2);    // X
+            cursor.Y = (screenHeight / 2);   // Y
         }
 
         // --- Controls ---

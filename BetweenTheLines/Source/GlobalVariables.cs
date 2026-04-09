@@ -54,7 +54,7 @@ namespace BetweenTheLines.Source
             credits
         }
 
-        public static State currentState = State.credits; // Current state of the game - NOTE: Always starts on intro!
+        public static State currentState = State.intro; // Current state of the game - NOTE: Always starts on intro!
 
         // Cursor Size
         public static int
@@ -75,6 +75,7 @@ namespace BetweenTheLines.Source
             // --- Global ---
             noImg,
             cursor, cursorHighlight,
+            button,
 
             // --- Intro ---
             snowman64,
@@ -113,6 +114,8 @@ namespace BetweenTheLines.Source
 
             Global.cursor = content.Load<Texture2D>("Assets/Images/Global/Cursor");
             Global.cursorHighlight = content.Load<Texture2D>("Assets/Images/Global/CursorHighlight");
+
+            Global.button = content.Load<Texture2D>("Assets/Images/Global/Button");
 
             // --- Intro ---
             Global.snowman64 = content.Load<Texture2D>("Assets/Images/Intro/Snowman64");

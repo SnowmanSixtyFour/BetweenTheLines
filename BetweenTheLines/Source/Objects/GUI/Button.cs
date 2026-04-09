@@ -22,17 +22,19 @@ namespace BetweenTheLines.Source.Objects.GUI
             Width = 128,
             Height = 64;
 
+        public Rectangle rect;
+
+        private Color
+            defaultColor = Color.White,
+            highlightColor = Color.Yellow;
+
         public Button(String text, Point position)
         {
-            // Update Variables
-            this.X = position.X;
-            this.Y = position.Y;
-
             // Set Sprite
-            this.sprite = new StaticSprite(null, Rectangle.Empty, Color.Gray);
+            this.sprite = new StaticSprite(Global.button, Rectangle.Empty, Color.Gray);
 
             // Set Text
-            this.text = new Text(Global.arial, text, Vector2.Zero, Color.White, 1.0f, false);
+            this.text = new Text(Global.arial, text, Vector2.Zero, defaultColor, 1.0f, false);
 
             // Update Position
             SetPosition(position);
@@ -46,13 +48,16 @@ namespace BetweenTheLines.Source.Objects.GUI
             this.X = newPosition.X;
             this.Y = newPosition.Y;
 
+            // Rectangle
+            this.rect = new Rectangle(X, Y, Width, Height);
+
             // --- Reposition Variables ---
 
             // Sprite Position
             this.sprite.SetDestRect(new Rectangle(X, Y, Width, Height));
 
             // Text Position
-            this.text.setPosition(new Vector2(newPosition.X + (this.Width / 2) - (this.text.getText().Length * 4), // X
+            this.text.setPosition(new Vector2(newPosition.X + (this.Width / 2) - (this.Width / 4), // X
                 newPosition.Y + (this.Height / 3)) // Y
                 );
         }
