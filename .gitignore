@@ -3,3 +3,7 @@
 /BetweenTheLines/bin
 /BetweenTheLines/obj
 .vs/
+
+# Do not include music for now, as the placeholder tracks are copyrighted.
+/BetweenTheLines/Content/Assets/Audio/Music
+/BetweenTheLines/Content/bin/DesktopGL/Content/Assets/Audio/Music

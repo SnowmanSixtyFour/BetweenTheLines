@@ -6,6 +6,7 @@ using BetweenTheLines.Source.Objects.GUI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -74,16 +75,16 @@ namespace BetweenTheLines.Source.States
                 // --- Button Clicks ---
 
                 // Start
-                if (cursor.HoveringOver(startButton.rect) && LeftClicked()) GoToLevel();
+                if (cursor.HoveringOver(startButton.bounds) && LeftClicked()) GoToLevel();
 
                 // Options
-                if (cursor.HoveringOver(optionsButton.rect) && LeftClicked()) GoToOptions();
+                if (cursor.HoveringOver(optionsButton.bounds) && LeftClicked()) GoToOptions();
 
                 // Credits
-                if (cursor.HoveringOver(creditsButton.rect) && LeftClicked()) GoToCredits();
+                if (cursor.HoveringOver(creditsButton.bounds) && LeftClicked()) GoToCredits();
 
                 // Exit
-                if (cursor.HoveringOver(exitButton.rect) && LeftClicked()) Global.quit = true;
+                if (cursor.HoveringOver(exitButton.bounds) && LeftClicked()) Global.quit = true;
             }
         }
 
@@ -95,7 +96,7 @@ namespace BetweenTheLines.Source.States
         public override void OnDraw(SpriteBatch spriteBatch)
         {
             // Background
-            graphicsDevice.Clear(Color.LightGray);
+            graphicsDevice.Clear(Global.titleColor);
 
             // Sprites
             logo.Draw(spriteBatch);
@@ -113,16 +114,19 @@ namespace BetweenTheLines.Source.States
 
         public void GoToLevel()
         {
+            // Change Music
+            StopSong();
+            MediaPlayer.Play(OST.intro); // Intro Music
+
+            // Switch State
             this.changeState = true;
             Global.currentState = Global.State.level;
         }
 
         public void GoToOptions()
         {
-            // NOTE: Change this later! Error will only display while options are still WIP.
-
-            // Display Error Message
-            MessageBox.Show("Wait!", "The options aren't finished!", new[] { "Okay" });
+            this.changeState = true;
+            Global.currentState = Global.State.options;
         }
 
         public void GoToCredits()

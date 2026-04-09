@@ -16,6 +16,7 @@ namespace BetweenTheLines.Source.States
         // States
         private IntroState intro;
         private TitleState title;
+        private OptionsState options;
         private LevelState level;
         private CreditsState credits;
 
@@ -28,6 +29,7 @@ namespace BetweenTheLines.Source.States
             // Set States
             intro = new IntroState(); // Intro
             title = new TitleState(); // Title
+            options = new OptionsState(); // Options
             level = new LevelState(); // Level
             credits = new CreditsState(); // Credits
         }
@@ -39,6 +41,7 @@ namespace BetweenTheLines.Source.States
             // Set State
             if (Global.currentState == Global.State.intro) currentState = intro; // Intro
             if (Global.currentState == Global.State.title) currentState = title; // Title
+            if (Global.currentState == Global.State.options) currentState = options; // Options
             if (Global.currentState == Global.State.level) currentState = level; // Level
             if (Global.currentState == Global.State.credits) currentState = credits; // Credits
 

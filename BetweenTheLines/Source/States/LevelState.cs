@@ -3,6 +3,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
 using BetweenTheLines.Source.Graphics;
 using BetweenTheLines.Source.Objects;
 using BetweenTheLines.Source.Objects.Level;
@@ -124,12 +125,6 @@ namespace BetweenTheLines.Source.States
             else // Walking
             {
                 giovanni.PlayAnimation("walk");
-            }
-
-            // Toggle Filter
-            if (KeyPress(Keys.Enter))
-            {
-                Global.shadersEnabled = !Global.shadersEnabled;
             }
             */
         }

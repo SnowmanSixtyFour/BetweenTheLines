@@ -1,14 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
-using BetweenTheLines.Source.Objects.Level;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Media;
+using BetweenTheLines.Source.Objects.Level;
 
 namespace BetweenTheLines.Source
 {
@@ -53,6 +55,7 @@ namespace BetweenTheLines.Source
         {
             intro,
             title,
+            options,
             level,
             credits
         }
@@ -71,14 +74,20 @@ namespace BetweenTheLines.Source
             shadersEnabled = false,
             menuAnimations = true;
 
-        // Sprites
+        // GUI Colors
+        public static Color titleColor = Color.LightGray;
+
+        // --- Sprites ---
 
         // Load Textures
         public static Texture2D
             // --- Global ---
             noImg,
+
+            // --- GUI ---
             cursor, cursorHighlight,
             button,
+            checkboxInactive, checkboxActive,
 
             // --- Intro ---
             snowman64,
@@ -93,7 +102,7 @@ namespace BetweenTheLines.Source
 
             giovanni;
 
-        // Audio
+        // --- Audio ---
 
         // Load Sound Effects
         public static SoundEffect
@@ -102,6 +111,15 @@ namespace BetweenTheLines.Source
 
         public static SpriteFont arial;
         public static Effect crt;
+    }
+
+    // Store Game Soundtrack in OST
+    internal class OST
+    {
+        public static Song
+            title,
+            intro,
+            intense;
     }
 
     // Game Assets
@@ -115,10 +133,14 @@ namespace BetweenTheLines.Source
             // --- Utilities ---
             Global.noImg = content.Load<Texture2D>("Assets/Images/Global/pixel");
 
+            // --- GUI ---
             Global.cursor = content.Load<Texture2D>("Assets/Images/Global/Cursor");
             Global.cursorHighlight = content.Load<Texture2D>("Assets/Images/Global/CursorHighlight");
 
             Global.button = content.Load<Texture2D>("Assets/Images/Global/Button");
+
+            Global.checkboxInactive = content.Load<Texture2D>("Assets/Images/Global/CheckboxInactive");
+            Global.checkboxActive = content.Load<Texture2D>("Assets/Images/Global/CheckboxActive");
 
             // --- Intro ---
             Global.snowman64 = content.Load<Texture2D>("Assets/Images/Intro/Snowman64");
@@ -135,7 +157,22 @@ namespace BetweenTheLines.Source
 
             // Audio
 
+            // SFX
             Global.typewriter = content.Load<SoundEffect>("Assets/Audio/SFX/typewriter");
+
+            // NOTE: Music is ran in try and catch to prevent errors while copyrighted placeholder music is left out of the source code.
+
+            // Music
+            try
+            {
+                OST.title = content.Load<Song>("Assets/Audio/Music/Title");
+                OST.intro = content.Load<Song>("Assets/Audio/Music/Intro");
+                OST.intense = content.Load<Song>("Assets/Audio/Music/Intense");
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Error! " + e);
+            }
 
             // Fonts
 
@@ -153,23 +190,23 @@ namespace BetweenTheLines.Source
         // Intro
 
         public static DialogString[] intro1 = {
-            CreateDialog(1, "Last night, I got this letter..."),
-            CreateDialog(1, "It said \"Congratulations! You have won $1 000 000 dollars!\""),
-            CreateDialog(1, "...Yeah, as if."),
-            CreateDialog(1, "In my line of work... I make a decent amount of money."),
-            CreateDialog(1, "But this?..."),
-            CreateDialog(1, "I'm gonna get to the bottom of this."),
-            CreateDialog(1, "Besides... Who would fall for a scheme like this?")
+            Line(1, "Last night, I got this letter..."),
+            Line(1, "It said \"Congratulations! You have won $1 000 000 dollars!\""),
+            Line(1, "...Yeah, as if."),
+            Line(1, "In my line of work... I make a decent amount of money."),
+            Line(1, "But this?..."),
+            Line(1, "I'm gonna get to the bottom of this."),
+            Line(1, "Besides... Who would fall for a scheme like this?")
         };
 
         public static DialogString[] intro2 = {
-            CreateDialog(1, "Well, here I am."),
-            CreateDialog(1, "This place's address was at the bottom of the letter."),
-            CreateDialog(1, "Let's hope this wasn't a waste of my time.")
+            Line(1, "Well, here I am."),
+            Line(1, "This place's address was at the bottom of the letter."),
+            Line(1, "Let's hope this wasn't a waste of my time.")
         };
 
         // Create Dialog String
-        public static DialogString CreateDialog(int name, string text)
+        public static DialogString Line(int name, string text)
         {
             return new DialogString(name, text);
         }

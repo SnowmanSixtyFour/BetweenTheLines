@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <SourceFile>C:/Users/CJMT/Documents/GitHub/BetweenTheLines/BetweenTheLines/Content/Assets/Audio/Music/Intro.mp3</SourceFile>
+  <SourceTime>2026-04-09T09:15:21.1784089-07:00</SourceTime>
+  <DestFile>C:/Users/CJMT/Documents/GitHub/BetweenTheLines/BetweenTheLines/Content/bin/DesktopGL/Content/Assets/Audio/Music/Intro.xnb</DestFile>
+  <DestTime>2026-04-09T09:15:55.8659008-07:00</DestTime>
+  <Importer>Mp3Importer</Importer>
+  <ImporterTime>2025-06-02T03:31:02-07:00</ImporterTime>
+  <Processor>SongProcessor</Processor>
+  <ProcessorTime>2025-06-02T03:31:02-07:00</ProcessorTime>
+  <Parameters>
+    <Key>Quality</Key>
+    <Value>Best</Value>
+  </Parameters>
+  <Dependencies />
+  <BuildAsset />
+  <BuildOutput>
+    <string>C:/Users/CJMT/Documents/GitHub/BetweenTheLines/BetweenTheLines/Content/bin/DesktopGL/Content/Assets/Audio/Music/Intro.ogg</string>
+  </BuildOutput>
+</PipelineBuildEvent>

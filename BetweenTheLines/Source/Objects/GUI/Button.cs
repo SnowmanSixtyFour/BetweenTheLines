@@ -22,7 +22,7 @@ namespace BetweenTheLines.Source.Objects.GUI
             Width = 128,
             Height = 64;
 
-        public Rectangle rect;
+        public Rectangle bounds;
 
         private Color
             defaultColor = Color.White,
@@ -50,7 +50,7 @@ namespace BetweenTheLines.Source.Objects.GUI
             this.Y = newPosition.Y;
 
             // Rectangle
-            this.rect = new Rectangle(X, Y, Width, Height);
+            this.bounds = new Rectangle(X, Y, Width, Height);
 
             // --- Reposition Variables ---
 

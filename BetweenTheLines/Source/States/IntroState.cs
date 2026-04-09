@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using BetweenTheLines.Source.Graphics;
+using Microsoft.Xna.Framework.Media;
 using BetweenTheLines.Source.Objects;
 
 namespace BetweenTheLines.Source.States
@@ -34,8 +35,17 @@ namespace BetweenTheLines.Source.States
 
         public IntroState()
         {
+            // --- State ---
+
             // Set Intro
             cursorVisible = false;
+
+            // --- Audio ---
+
+            // Play Title Music
+            MediaPlayer.Play(OST.title);
+
+            // --- Graphics ---
 
             // Set Logo
             snowman64 = new StaticSprite(Global.snowman64, new Rectangle(

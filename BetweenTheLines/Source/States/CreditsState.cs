@@ -98,7 +98,7 @@ namespace BetweenTheLines.Source.States
                 // --- Button Clicks ---
 
                 // Back
-                if (cursor.HoveringOver(backButton.rect) && LeftClicked()) GoToTitle();
+                if (cursor.HoveringOver(backButton.bounds) && LeftClicked()) GoToTitle();
             }
         }
 

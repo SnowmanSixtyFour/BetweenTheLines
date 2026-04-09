@@ -22,6 +22,7 @@ using Microsoft.Xna.Framework.Input;
 using BetweenTheLines.Source.Objects;
 using BetweenTheLines.Source.Graphics;
 using BetweenTheLines.Source.Objects.GUI;
+using Microsoft.Xna.Framework.Media;
 
 namespace BetweenTheLines.Source.States
 {
@@ -56,9 +57,15 @@ namespace BetweenTheLines.Source.States
         // State Changed
         public bool changeState = false;
 
+        // Audio
+        public bool musicLoop = true;
+
         public State()
         {
             // --- Set State ---
+
+            // Audio
+            MediaPlayer.IsRepeating = musicLoop;
 
             // Camera
             cam = new Camera(this.graphicsDevice, Global.windowWidth, Global.windowHeight);
@@ -80,6 +87,17 @@ namespace BetweenTheLines.Source.States
             // Text
             pauseText = new Text(Global.arial, "Paused", new Vector2((cam.Width / 2), (cam.Height / 2) - pauseTextPadding), Color.White, 2.0f, true);
             pauseTooltip = new Text(Global.arial, "Press ESCAPE to resume focus.", new Vector2((cam.Width / 2), (cam.Height / 2) + pauseTextPadding), Color.LightGray, 1.0f, true);
+        }
+
+        /// <summary>
+        /// Stop the current song playing in MediaPlayer.
+        /// </summary>
+        public void StopSong()
+        {
+            if (MediaPlayer.State == MediaState.Playing)
+            {
+                MediaPlayer.Stop();
+            }
         }
 
         public void Update(GameTime gameTime)

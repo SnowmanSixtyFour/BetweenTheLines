@@ -143,7 +143,7 @@ namespace BetweenTheLines.Source.Objects.GUI
 
         public void Highlight(Button button)
         {
-            if (this.Bounds.Intersects(button.rect)) highlighted = true;
+            if (this.Bounds.Intersects(button.bounds)) highlighted = true;
         }
 
 
