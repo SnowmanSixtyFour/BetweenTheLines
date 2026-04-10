@@ -11,6 +11,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using BetweenTheLines.Source.Graphics;
 using BetweenTheLines.Source.Objects.GUI;
+using Microsoft.Xna.Framework.Media;
 
 namespace BetweenTheLines.Source.States
 {
@@ -52,9 +53,6 @@ namespace BetweenTheLines.Source.States
 
         public CreditsState()
         {
-            // Set State
-            cursorVisible = true;
-
             // Set Variables
 
             // Position
@@ -91,19 +89,42 @@ namespace BetweenTheLines.Source.States
                     if (!backButton.clicked) GoToTitle();
                 }
 
-                // --- Button Clicks ---
-
-                // Back
-                if (backButton.clicked) GoToTitle();
-
                 // --- Object Updates ---
 
-                backButton.Update(gameTime, cursor, LeftClicked());
+                // If Viewing Credits on Title
+                if (Global.viewingCreditsFromTitle)
+                {
+                    // --- State ---
+                    cursorVisible = true;
+
+                    // --- Button Clicks ---
+
+                    // Back
+                    if (backButton.clicked) GoToTitle();
+
+                    // --- Button Updates ---
+
+                    // Back
+                    backButton.Update(gameTime, cursor, LeftClicked());
+                }
+
+                // If Viewing Credits after Beaten Game
+                else
+                {
+                    // --- State ---
+                    cursorVisible = false;
+                }
             }
         }
 
         public override void ResetState()
         {
+            // Play Title Music
+            if (MediaPlayer.State == MediaState.Stopped) // If Music is Not Playing
+            {
+                MediaPlayer.Play(OST.title);
+            }
+
             // Reset Credits Position
             creditsPosition.Y = yStart;
 
@@ -112,6 +133,10 @@ namespace BetweenTheLines.Source.States
 
         public void GoToTitle()
         {
+            // Reset Credits Version
+            Global.viewingCreditsFromTitle = false;
+
+            // Switch State
             this.changeState = true;
             Global.currentState = Global.State.title;
         }
@@ -124,7 +149,7 @@ namespace BetweenTheLines.Source.States
             creditsText.Draw(spriteBatch);
 
             // Buttons
-            backButton.Draw(spriteBatch);
+            if (Global.viewingCreditsFromTitle) backButton.Draw(spriteBatch);
         }
     }
 }

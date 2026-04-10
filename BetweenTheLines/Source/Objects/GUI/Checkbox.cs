@@ -13,6 +13,7 @@ namespace BetweenTheLines.Source.Objects.GUI
     {
         // Private Variables
         private StaticSprite sprite;
+        private Color color;
         private Text text;
         private int textPadding = 20;
 
@@ -25,14 +26,19 @@ namespace BetweenTheLines.Source.Objects.GUI
 
         public Rectangle bounds;
 
+        private Color
+            defaultColor = Color.White,
+            highlightedColor = Color.LightGoldenrodYellow;
+
         public bool
+            highlighted = false, // Highlight (Hovering over with Cursor)
             clicked = false, // Click Event
             active = false; // Active Sprite
 
         public Checkbox(Point position, String text = "")
         {
             // Set Checkbox
-            this.sprite = new StaticSprite(Global.checkboxInactive, Rectangle.Empty, Color.White);
+            this.sprite = new StaticSprite(Global.checkboxInactive, Rectangle.Empty, defaultColor);
             this.text = new Text(Global.arial, text, Vector2.Zero, Color.Black, 1.0f, false);
 
             SetPosition(position);
@@ -40,15 +46,36 @@ namespace BetweenTheLines.Source.Objects.GUI
 
         public void Update(GameTime gameTime, Cursor cursor, bool clicked)
         {
+            // --- Update Variables ---
+
+            // Highlighted Color
+            if (this.highlighted) this.color = this.highlightedColor;
+            else this.color = this.defaultColor;
+
+            // --- Update Sprite ---
+
+            // Color
+            this.sprite.SetColor(color);
+
             // --- Cursor Properties ---
 
             // Highlight Cursor
             cursor.Highlight(this.bounds);
 
-            // Get Cursor Click
-            if (cursor.HoveringOver(this.bounds) && clicked)
+            // Get Cursor Hover
+            if (cursor.HoveringOver(this.bounds))
             {
-                this.clicked = true;
+                // Highlight
+                this.highlighted = true;
+
+                // Click Event
+                if (clicked) this.clicked = true;
+            }
+            // Cursor is Not Hovering over Button
+            else
+            {
+                // Unhighlight
+                this.highlighted = false;
             }
 
             // --- Checkbox Properties ---

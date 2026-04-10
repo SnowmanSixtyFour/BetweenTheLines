@@ -67,6 +67,7 @@ namespace BetweenTheLines.Source
             credits
         }
 
+        public static bool viewingCreditsFromTitle = false;
         public static State currentState = State.intro; // Current state of the game - NOTE: Always starts on intro!
 
         // Cursor Size
@@ -194,6 +195,9 @@ namespace BetweenTheLines.Source
     // Game Dialog
     internal class Dialog
     {
+        // NOTE: Lines of dialog are formatted like this:
+        // Integer number Name | String Text
+
         // Intro
 
         public static DialogString[] intro1 = {

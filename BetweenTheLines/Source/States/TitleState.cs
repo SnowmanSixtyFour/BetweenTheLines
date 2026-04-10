@@ -131,6 +131,10 @@ namespace BetweenTheLines.Source.States
 
         public void GoToCredits()
         {
+            // Set Credits to Title Version
+            Global.viewingCreditsFromTitle = true;
+
+            // Switch State
             this.changeState = true;
             Global.currentState = Global.State.credits;
         }

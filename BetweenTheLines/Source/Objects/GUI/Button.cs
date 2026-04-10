@@ -13,6 +13,7 @@ namespace BetweenTheLines.Source.Objects.GUI
     {
         // Variables
         private StaticSprite sprite;
+        private Color color;
         private Text text;
 
         // Public Variables
@@ -26,9 +27,9 @@ namespace BetweenTheLines.Source.Objects.GUI
 
         private Color
             defaultColor = Color.White,
-            highlightColor = Color.Yellow;
-        private bool highlighted = false;
+            highlightedColor = Color.LightGoldenrodYellow;
 
+        private bool highlighted = false;
         public bool clicked = false;
 
         public Button(String text, Point position)
@@ -60,25 +61,31 @@ namespace BetweenTheLines.Source.Objects.GUI
             this.sprite.SetDestRect(new Rectangle(X, Y, Width, Height));
 
             // Text Position
-            this.text.setPosition(new Vector2(newPosition.X + (this.Width / 2) - (this.Width / 4), // X
-                newPosition.Y + (this.Height / 3)) // Y
-                );
-
-            // Highlight
-            if (this.highlighted)
-            {
-                this.sprite.SetColor(highlightColor);
-            }
+            this.text.setPosition(new Vector2(
+                newPosition.X + (this.Width / 2) - (this.Width / 4), // X
+                newPosition.Y + (this.Height / 3) // Y
+                ));
         }
 
         public void Update(GameTime gameTime, Cursor cursor, bool clicked)
         {
+            // --- Update Variables ---
+
+            // Highlighted Color
+            if (this.highlighted) this.color = this.highlightedColor;
+            else this.color = this.defaultColor;
+
+            // --- Update Sprite ---
+
+            // Color
+            this.sprite.SetColor(color);
+
             // --- Cursor Properties ---
 
             // Highlight Cursor
             cursor.Highlight(this);
 
-            // Get Cursor Click
+            // Get Cursor Hover
             if (cursor.HoveringOver(this.bounds))
             {
                 // Highlight
@@ -90,9 +97,10 @@ namespace BetweenTheLines.Source.Objects.GUI
                 // End Click Event
                 else this.clicked = false;
             }
-            // Unhighlight when Not Clicked
+            // Cursor is Not Hovering over Button
             else
             {
+                // Unhighlight
                 this.highlighted = false;
             }
         }
