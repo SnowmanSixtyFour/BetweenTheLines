@@ -6,13 +6,16 @@
 // -------------------------
 
 using System;
+using System.Diagnostics;
+using System.IO;
+using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Xml.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using BetweenTheLines.Source;
 using BetweenTheLines.Source.States;
-using System.Diagnostics;
 
 namespace BetweenTheLines
 {
@@ -79,6 +82,27 @@ namespace BetweenTheLines
             // Load Content
             Assets.LoadContent(Content);
 
+            // Load Settings.xml File
+            if (File.Exists("C:/Users/" + Environment.UserName + "/Documents/My Games/Between the Lines/Settings.xml"))
+            {
+                Debug.Print("Loading Settings.xml.");
+
+                // Load File
+                XDocument settingsDoc = XDocument.Load("C:/Users/" + Environment.UserName + "/Documents/My Games/Between the Lines/Settings.xml");
+
+                // Set Settings to File Properties
+                Global.fullscreen = Convert.ToBoolean(settingsDoc.Descendants("Fullscreen").First().Value);
+                Global.crtFilter = Convert.ToBoolean(settingsDoc.Descendants("CRTFilter").First().Value);
+                Global.musicEnabled = Convert.ToBoolean(settingsDoc.Descendants("Music").First().Value);
+
+                Debug.Print("Settings.xml loaded!");
+            }
+            else // If Settings.xml does not exist
+            {
+                // Create Settings File
+                CheckAndCreateSettingsFile();
+            }
+
             // Set game state
             game = new Main();
 
@@ -93,6 +117,14 @@ namespace BetweenTheLines
 
             // Set Cam
             ChangeWindowSize(Global.windowWidth, Global.windowHeight);
+
+            // Update Window Size
+
+            // Set Windowed Size
+            this.windowedWidth = Global.windowWidth;
+            this.windowedHeight = Global.windowHeight;
+            
+            UpdateFullscreen(); // Fullscreen Mode
         }
 
         // Update Global Variables
@@ -114,6 +146,9 @@ namespace BetweenTheLines
 
             // Update Variables when Fullscreen Toggled
             if (Global.fullscreenChanged) UpdateFullscreen();
+
+            // Toggle Music
+            Global.musicToggled = true;
         }
 
         /// <summary>
@@ -149,12 +184,78 @@ namespace BetweenTheLines
             graphics.ApplyChanges();
         }
 
+        private void CheckAndCreateSettingsFile()
+        {
+            Debug.Print("Settings.xml does not exist in the current directory. Creating a new file...");
+
+            if (Directory.Exists("C:/Users/" + Environment.UserName + "/Documents/"))
+            {
+                if (Directory.Exists("C:/Users/" + Environment.UserName + "/Documents/My Games/"))
+                {
+                    if (Directory.Exists("C:/Users/" + Environment.UserName + "/Documents/My Games/Between the Lines/"))
+                    {
+                        Debug.Print("Directory has been found!"); //Write to console
+                    }
+                    else // If Game Directory does not exist
+                    {
+                        Directory.CreateDirectory("C:/Users/" + Environment.UserName + "/Documents/My Games/Between the Lines/"); //Create the directory
+                        Debug.Print("Creating new directory for C:/Users/" + Environment.UserName + "/Documents/My Games/Between the Lines/"); //Write to console
+                    }
+                }
+                else // If "My Games" does not exist
+                {
+                    Directory.CreateDirectory("C:/Users/" + Environment.UserName + "/Documents/My Games/"); //Create the directory
+                    Debug.Print("Creating new directory for C:/Users/" + Environment.UserName + "/Documents/My Games/"); //Write to console
+                }
+            }
+            else // If Documents does not exist
+            {
+                Directory.CreateDirectory("C:/Users/" + Environment.UserName + "/Documents/"); //Create the directory
+                Debug.Print("Creating new directory for C:/Users/" + Environment.UserName + "/Documents/"); //Write to console
+            }
+
+            // If File Already Exists
+            if (Directory.Exists("C:/Users/" + Environment.UserName + "/Documents/My Games/Between the Lines/"))
+            {
+                CreateSettingsFile();
+            }
+            else
+            {
+                CheckAndCreateSettingsFile();
+            }
+        }
+
+        private void CreateSettingsFile()
+        {
+            // Create Settings.xml File
+            var settingsDoc = new XDocument(new XElement("Settings",
+                new XElement("Fullscreen", new XElement("Value", graphics.IsFullScreen)),
+                new XElement("CRTFilter", new XElement("Value", Global.crtFilter)),
+                new XElement("Music", new XElement("Value", Global.musicEnabled))
+                ));
+            
+            // Save File
+            settingsDoc.Save("C:/Users/" + Environment.UserName + "/Documents/My Games/Between the Lines/Settings.xml", SaveOptions.None);
+
+            Debug.Print("Created Settings.xml.");
+        }
+
         protected override void Update(GameTime gameTime)
         {
             /*
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
             */
+
+            // When Create Settings Called
+            if (Global.checkAndCreateSettings)
+            {
+                // Run Create Settings.xml File
+                CheckAndCreateSettingsFile();
+
+                // End Event
+                Global.checkAndCreateSettings = false;
+            }
 
             // Quit Game on Global Trigger
             if (Global.quit) Exit();

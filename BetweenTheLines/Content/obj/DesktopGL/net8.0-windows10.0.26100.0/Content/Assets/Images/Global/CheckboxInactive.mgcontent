@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <SourceFile>C:/Users/CJMT/Documents/GitHub/BetweenTheLines/BetweenTheLines/Content/Assets/Images/Global/CheckboxInactive.png</SourceFile>
-  <SourceTime>2026-04-09T08:04:22.9493299-07:00</SourceTime>
+  <SourceTime>2026-04-09T15:53:58.3502564-07:00</SourceTime>
   <DestFile>C:/Users/CJMT/Documents/GitHub/BetweenTheLines/BetweenTheLines/Content/bin/DesktopGL/Content/Assets/Images/Global/CheckboxInactive.xnb</DestFile>
-  <DestTime>2026-04-09T08:33:25.0575274-07:00</DestTime>
+  <DestTime>2026-04-09T16:40:12.0399727-07:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2025-06-02T03:31:02-07:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

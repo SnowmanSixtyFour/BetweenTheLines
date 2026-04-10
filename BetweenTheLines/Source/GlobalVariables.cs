@@ -34,6 +34,9 @@ namespace BetweenTheLines.Source
 
         // Settings
 
+        public static bool
+            checkAndCreateSettings = false; // Create Settings
+
         // When Inactive
         public static bool
             renderInactive = true,
@@ -75,7 +78,7 @@ namespace BetweenTheLines.Source
         // Graphics
 
         public static bool
-            shadersEnabled = false,
+            crtFilter = false,
             menuAnimations = true;
 
         // GUI Colors

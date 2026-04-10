@@ -1,8 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Runtime.CompilerServices;
+using System.Xml.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using BetweenTheLines.Source.Graphics;
@@ -22,7 +23,8 @@ namespace BetweenTheLines.Source.States
         // Checkboxes
         private Checkbox
             music,
-            fullscreen;
+            fullscreen,
+            crtFilter;
 
         // Buttons
         private Button backButton; // Back
@@ -40,12 +42,15 @@ namespace BetweenTheLines.Source.States
 
             // Checkboxes
             music = new Checkbox(new Point(40, 60), "Music");
-            fullscreen = new Checkbox(new Point(40, 120), "Fullscreen");
+            fullscreen = new Checkbox(new Point(40, 130), "Fullscreen");
+
+            crtFilter = new Checkbox(new Point(620, 60), "CRT Filter");
+            // crtFilter = new Checkbox(new Point(40, 320), "CRT Filter");
 
             SetCheckboxStatus();
 
             // Buttons
-            backButton = new Button("Back", Point.Zero);
+            backButton = new Button("Save & Exit", Point.Zero);
             backButton.SetPosition(new Point(
                 backButtonPadding, // X
                 (cam.Height - backButton.Height) - backButtonPadding) // Y
@@ -56,7 +61,7 @@ namespace BetweenTheLines.Source.States
         {
             if (!Global.paused)
             {
-                // --- Checkbox Clicks ---
+                // --- Interactive Options ---
 
                 if (music.clicked)
                 {
@@ -84,6 +89,18 @@ namespace BetweenTheLines.Source.States
                     fullscreen.clicked = false;
                 }
 
+                if (crtFilter.clicked)
+                {
+                    // Toggle CRT Filter
+                    Global.crtFilter = !Global.crtFilter;
+
+                    // Update Status
+                    SetCheckboxStatus();
+
+                    // End Click Event
+                    crtFilter.clicked = false;
+                }    
+
                 // --- Button Highlights ---
 
                 cursor.Highlight(backButton);
@@ -97,6 +114,8 @@ namespace BetweenTheLines.Source.States
 
                 music.Update(gameTime, cursor, LeftClicked());
                 fullscreen.Update(gameTime, cursor, LeftClicked());
+
+                crtFilter.Update(gameTime, cursor, LeftClicked());
             }
         }
 
@@ -110,6 +129,9 @@ namespace BetweenTheLines.Source.States
 
             // Fullscreen
             fullscreen.active = Global.fullscreen;
+
+            // CRT Filter
+            crtFilter.active = Global.crtFilter;
         }
 
         public override void ResetState()
@@ -119,6 +141,25 @@ namespace BetweenTheLines.Source.States
 
         public void GoToTitle()
         {
+            // --- Write to Settings.xml ---
+            if (File.Exists("C:/Users/" + Environment.UserName + "/Documents/My Games/Between the Lines/Settings.xml"))
+            {
+                XDocument settingsDoc = XDocument.Load("C:/Users/" + Environment.UserName + "/Documents/My Games/Between the Lines/Settings.xml");
+
+                settingsDoc.Descendants("Fullscreen").First().Value = Convert.ToString(Global.fullscreen);
+                settingsDoc.Descendants("CRTFilter").First().Value = Convert.ToString(Global.crtFilter);
+                settingsDoc.Descendants("Music").First().Value = Convert.ToString(Global.musicEnabled);
+
+                settingsDoc.Save("C:/Users/" + Environment.UserName + "/Documents/My Games/Between the Lines/Settings.xml", SaveOptions.None);
+
+                Debug.Print("Saved to Settings.xml.");
+            }
+            else // If Settings.xml does not exist
+            {
+                Global.checkAndCreateSettings = true;
+            }
+
+            // --- Change State ---
             this.changeState = true;
             Global.currentState = Global.State.title;
         }
@@ -130,11 +171,12 @@ namespace BetweenTheLines.Source.States
             // Text
             optionsLabel.Draw(spriteBatch);
 
-            // Checkboxes
+            // Interactive Options
             music.Draw(spriteBatch);
             fullscreen.Draw(spriteBatch);
 
-            // Buttons
+            crtFilter.Draw(spriteBatch);
+
             backButton.Draw(spriteBatch);
         }
     }
