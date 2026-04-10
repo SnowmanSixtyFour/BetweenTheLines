@@ -29,6 +29,8 @@ namespace BetweenTheLines.Source.Objects.GUI
             highlightColor = Color.Yellow;
         private bool highlighted = false;
 
+        public bool clicked = false;
+
         public Button(String text, Point position)
         {
             // Set Sprite
@@ -69,15 +71,36 @@ namespace BetweenTheLines.Source.Objects.GUI
             }
         }
 
+        public void Update(GameTime gameTime, Cursor cursor, bool clicked)
+        {
+            // --- Cursor Properties ---
+
+            // Highlight Cursor
+            cursor.Highlight(this);
+
+            // Get Cursor Click
+            if (cursor.HoveringOver(this.bounds))
+            {
+                // Highlight
+                this.highlighted = true;
+
+                // When Clicked
+                if (clicked) this.clicked = true;
+
+                // End Click Event
+                else this.clicked = false;
+            }
+            // Unhighlight when Not Clicked
+            else
+            {
+                this.highlighted = false;
+            }
+        }
+
         public void Draw(SpriteBatch spriteBatch)
         {
             this.sprite.Draw(spriteBatch);
             this.text.Draw(spriteBatch);
-        }
-
-        public void Highlight()
-        {
-            this.highlighted = true;
         }
     }
 }

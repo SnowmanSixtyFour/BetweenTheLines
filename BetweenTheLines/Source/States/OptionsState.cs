@@ -50,7 +50,7 @@ namespace BetweenTheLines.Source.States
             SetCheckboxStatus();
 
             // Buttons
-            backButton = new Button("Save & Exit", Point.Zero);
+            backButton = new Button("Back", Point.Zero);
             backButton.SetPosition(new Point(
                 backButtonPadding, // X
                 (cam.Height - backButton.Height) - backButtonPadding) // Y
@@ -99,16 +99,9 @@ namespace BetweenTheLines.Source.States
 
                     // End Click Event
                     crtFilter.clicked = false;
-                }    
+                }
 
-                // --- Button Highlights ---
-
-                cursor.Highlight(backButton);
-
-                // --- Button Clicks ---
-
-                // Back
-                if (cursor.HoveringOver(backButton.bounds) && LeftClicked()) GoToTitle();
+                if (backButton.clicked) GoToTitle();
 
                 // --- Object Updates ---
 
@@ -116,6 +109,8 @@ namespace BetweenTheLines.Source.States
                 fullscreen.Update(gameTime, cursor, LeftClicked());
 
                 crtFilter.Update(gameTime, cursor, LeftClicked());
+
+                backButton.Update(gameTime, cursor, LeftClicked());
             }
         }
 

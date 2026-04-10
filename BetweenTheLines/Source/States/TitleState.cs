@@ -65,26 +65,26 @@ namespace BetweenTheLines.Source.States
         {
             if (!Global.paused)
             {
-                // --- Button Highlights ---
-
-                cursor.Highlight(startButton);
-                cursor.Highlight(optionsButton);
-                cursor.Highlight(creditsButton);
-                cursor.Highlight(exitButton);
-
                 // --- Button Clicks ---
 
                 // Start
-                if (cursor.HoveringOver(startButton.bounds) && LeftClicked()) GoToLevel();
+                if (startButton.clicked) GoToLevel();
 
                 // Options
-                if (cursor.HoveringOver(optionsButton.bounds) && LeftClicked()) GoToOptions();
+                if (optionsButton.clicked) GoToOptions();
 
                 // Credits
-                if (cursor.HoveringOver(creditsButton.bounds) && LeftClicked()) GoToCredits();
+                if (creditsButton.clicked) GoToCredits();
 
                 // Exit
-                if (cursor.HoveringOver(exitButton.bounds) && LeftClicked()) Global.quit = true;
+                if (exitButton.clicked) Global.quit = true;
+
+                // --- Object Updates ---
+
+                startButton.Update(gameTime, cursor, LeftClicked());
+                optionsButton.Update(gameTime, cursor, LeftClicked());
+                creditsButton.Update(gameTime, cursor, LeftClicked());
+                exitButton.Update(gameTime, cursor, LeftClicked());
             }
         }
 

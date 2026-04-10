@@ -88,17 +88,17 @@ namespace BetweenTheLines.Source.States
                 // When Credits are off-screen
                 else
                 {
-                    GoToTitle();
+                    if (!backButton.clicked) GoToTitle();
                 }
-
-                // --- Button Highlights ---
-
-                cursor.Highlight(backButton);
 
                 // --- Button Clicks ---
 
                 // Back
-                if (cursor.HoveringOver(backButton.bounds) && LeftClicked()) GoToTitle();
+                if (backButton.clicked) GoToTitle();
+
+                // --- Object Updates ---
+
+                backButton.Update(gameTime, cursor, LeftClicked());
             }
         }
 
