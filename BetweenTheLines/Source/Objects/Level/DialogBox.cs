@@ -39,7 +39,9 @@ namespace BetweenTheLines.Source.Objects.Level
         // Dialog
         public DialogString[] dialog;
         private int steps = 0; // Current Line of Dialog
-        public bool endOfDialog = false;
+        public bool
+            endOfDialog = false,
+            visible = true;
 
         // Colors
         private Color
@@ -162,6 +164,9 @@ namespace BetweenTheLines.Source.Objects.Level
         // Hide Dialog Box
         public void Hide()
         {
+            // Set Variables
+            this.visible = false;
+
             // Lower Box
             if (box.GetDestRect().Y <= Global.windowHeight) box.SetDestRect(new Rectangle(boxRectangle.X, boxRectangle.Y += boxLowerAmount, boxRectangle.Width, boxRectangle.Height));
 
@@ -173,6 +178,9 @@ namespace BetweenTheLines.Source.Objects.Level
         // Show Dialog Box
         public void Show()
         {
+            // Set Variables
+            this.visible = true;
+
             // Bring Box back up
             if (box.GetDestRect().Y > boxRectangle.Y) box.SetDestRect(new Rectangle(boxRectangle.X, boxRectangle.Y -= boxLowerAmount, boxRectangle.Width, boxRectangle.Height));
             else box.SetDestRect(boxRectangle); // Reset Position if too high up

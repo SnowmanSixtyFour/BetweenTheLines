@@ -15,6 +15,7 @@ namespace BetweenTheLines.Source.Objects.GUI
         private StaticSprite sprite;
         private Color color;
         private Text text;
+        private float textSize;
 
         // Public Variables
         public int
@@ -32,13 +33,14 @@ namespace BetweenTheLines.Source.Objects.GUI
         private bool highlighted = false;
         public bool clicked = false;
 
-        public Button(String text, Point position)
+        public Button(String text, Point position, float textSize = 1.0f)
         {
             // Set Sprite
             this.sprite = new StaticSprite(Global.button, Rectangle.Empty, defaultColor);
 
             // Set Text
-            this.text = new Text(Global.arial, text, Vector2.Zero, Color.Black, 1.0f, false);
+            this.textSize = textSize;
+            this.text = new Text(Global.arial, text, Vector2.Zero, Color.Black, this.textSize, false);
 
             // Update Position
             SetPosition(position);
@@ -62,7 +64,7 @@ namespace BetweenTheLines.Source.Objects.GUI
 
             // Text Position
             this.text.setPosition(new Vector2(
-                newPosition.X + (this.Width / 2) - (this.Width / 4), // X
+                newPosition.X + (this.Width / 2) - (this.text.getText().Length * (this.textSize * 5) + 4), // X
                 newPosition.Y + (this.Height / 3) // Y
                 ));
         }

@@ -15,6 +15,12 @@ namespace BetweenTheLines.Source.States
     {
         // Variables
 
+        // Stored Previous Settings
+        private bool
+            previousMusic,
+            previousFullscreen,
+            previousCRT;
+
         // Text
         private Text
             optionsLabel;
@@ -27,13 +33,19 @@ namespace BetweenTheLines.Source.States
             crtFilter;
 
         // Buttons
-        private Button backButton; // Back
+        private Button
+            backSave, // Save Changes and Exit
+            backDont; // Exit without Saving Changes
+
         private int backButtonPadding = 20;
 
         public OptionsState()
         {
             // Set Options
             cursorVisible = true;
+
+            // Set Previous Options (For Exitting without Saving Changes)
+            SetPreviousOptions();
 
             // --- Set Objects ---
 
@@ -47,14 +59,32 @@ namespace BetweenTheLines.Source.States
             crtFilter = new Checkbox(new Point(620, 60), "CRT Filter");
             // crtFilter = new Checkbox(new Point(40, 320), "CRT Filter");
 
-            SetCheckboxStatus();
+            UpdateSprites();
 
-            // Buttons
-            backButton = new Button("Back", Point.Zero);
-            backButton.SetPosition(new Point(
+            // --- Set Buttons ---
+
+            // Save Changes
+            backSave = new Button("Save and Exit", Point.Zero, 0.77f);
+            backSave.SetPosition(new Point(
                 backButtonPadding, // X
-                (cam.Height - backButton.Height) - backButtonPadding) // Y
+                (cam.Height - backSave.Height) - backButtonPadding) // Y
                 );
+
+            // Exit without Saving Changes
+            backDont = new Button("Exit w/o Saving", Point.Zero, 0.7f);
+            backDont.SetPosition(new Point(
+                (backDont.Width * 2) + (backButtonPadding * 2), // X
+                (cam.Height - backDont.Height) - backButtonPadding) // Y
+                );
+        }
+
+        public void SetPreviousOptions()
+        {
+            previousMusic = Global.musicEnabled; // Music
+
+            previousFullscreen = Global.fullscreen; // Fullscreen Mode
+
+            previousCRT = Global.crtFilter; // CRT Filter
         }
 
         public override void OnUpdate(GameTime gameTime)
@@ -70,7 +100,7 @@ namespace BetweenTheLines.Source.States
                     Global.musicToggled = true;
 
                     // Update Status
-                    SetCheckboxStatus();
+                    UpdateSprites();
 
                     // End Click Event
                     music.clicked = false;
@@ -83,7 +113,7 @@ namespace BetweenTheLines.Source.States
                     Global.fullscreenChanged = true;
 
                     // Update Status
-                    SetCheckboxStatus();
+                    UpdateSprites();
 
                     // End Click Event
                     fullscreen.clicked = false;
@@ -95,13 +125,15 @@ namespace BetweenTheLines.Source.States
                     Global.crtFilter = !Global.crtFilter;
 
                     // Update Status
-                    SetCheckboxStatus();
+                    UpdateSprites();
 
                     // End Click Event
                     crtFilter.clicked = false;
                 }
 
-                if (backButton.clicked) GoToTitle();
+                // Buttons
+                if (backSave.clicked) SaveAndExit();
+                if (backDont.clicked) ExitWithoutSaving();
 
                 // --- Object Updates ---
 
@@ -110,14 +142,15 @@ namespace BetweenTheLines.Source.States
 
                 crtFilter.Update(gameTime, cursor, LeftClicked());
 
-                backButton.Update(gameTime, cursor, LeftClicked());
+                backDont.Update(gameTime, cursor, LeftClicked());
+                backSave.Update(gameTime, cursor, LeftClicked());
             }
         }
 
         /// <summary>
         /// Set the active status of each checkbox to their respective variables.
         /// </summary>
-        public void SetCheckboxStatus()
+        public void UpdateSprites()
         {
             // Music
             music.active = Global.musicEnabled;
@@ -131,12 +164,15 @@ namespace BetweenTheLines.Source.States
 
         public override void ResetState()
         {
+            SetPreviousOptions();
+
             base.ResetState();
         }
 
-        public void GoToTitle()
+        public void SaveAndExit()
         {
             // --- Write to Settings.xml ---
+
             if (File.Exists("C:/Users/" + Environment.UserName + "/Documents/My Games/Between the Lines/Settings.xml"))
             {
                 XDocument settingsDoc = XDocument.Load("C:/Users/" + Environment.UserName + "/Documents/My Games/Between the Lines/Settings.xml");
@@ -153,6 +189,33 @@ namespace BetweenTheLines.Source.States
             {
                 Global.checkAndCreateSettings = true;
             }
+
+            // --- Exit State ---
+
+            GoToTitle();
+        }
+
+        public void ExitWithoutSaving()
+        {
+            // --- Settings ---
+
+            // Alter Fullscreen
+            if (Global.fullscreen != previousFullscreen) Global.fullscreenChanged = true;
+
+            // Reset Options to their Previous State
+            Global.musicEnabled = previousMusic;
+            Global.fullscreen = previousFullscreen;
+            Global.crtFilter = previousCRT;
+
+            // --- Exit State ---
+
+            GoToTitle();
+        }
+
+        public void GoToTitle()
+        {
+            // Update Checkboxes
+            UpdateSprites();
 
             // --- Change State ---
             this.changeState = true;
@@ -172,7 +235,8 @@ namespace BetweenTheLines.Source.States
 
             crtFilter.Draw(spriteBatch);
 
-            backButton.Draw(spriteBatch);
+            backSave.Draw(spriteBatch);
+            backDont.Draw(spriteBatch);
         }
     }
 }
