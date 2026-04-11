@@ -18,7 +18,11 @@ namespace BetweenTheLines.Source.States
     internal class CreditsState : State
     {
         // Variables
-        
+
+        // Sprites
+        private StaticSprite logo;
+        private Point logoSize = new Point(364, 214);
+
         // Buttons
         private Button backButton; // Back
         private int backButtonPadding = 20;
@@ -29,13 +33,14 @@ namespace BetweenTheLines.Source.States
         // Position
         private Vector2 creditsPosition;
         private int
-            yStart = 700,
-            yEnd = -200;
+            logoYStart = 700,
+            creditsYStart = 900,
+            creditsYEnd = -200;
+
+        private int amountToMove = 1;
 
         // String
         private String creditsString = """
-            Between the Lines
-
             Created by Snowman64
 
             Developed from April 7, 2026 - TBA
@@ -55,8 +60,15 @@ namespace BetweenTheLines.Source.States
         {
             // Set Variables
 
+            // --- Sprites ---
+
+            // Game Logo
+            logo = new StaticSprite(Global.logo, new Rectangle(new Point((cam.Width / 2) - (logoSize.X / 2), logoYStart - logoSize.Y), logoSize), Color.White);
+
+            // --- Credits ---
+
             // Position
-            creditsPosition = new Vector2(cam.Width / 2, yStart);
+            creditsPosition = new Vector2(cam.Width / 2, creditsYStart);
 
             // Set Text
             creditsText = new Text(Global.arial, creditsString, creditsPosition, Color.White, 1.0f, true);
@@ -74,10 +86,11 @@ namespace BetweenTheLines.Source.States
             if (!Global.paused)
             {
                 // If Credits are on-screen
-                if (creditsPosition.Y > yEnd)
+                if (creditsPosition.Y > creditsYEnd)
                 {
                     // Move Y Position Up
-                    creditsPosition.Y--;
+                    logo.SetDestRect(new Rectangle(logo.GetDestRect().X, logo.GetDestRect().Y - amountToMove, logo.GetDestRect().Width, logo.GetDestRect().Height));
+                    creditsPosition.Y -= amountToMove;
 
                     // Keep Credits Updated
                     creditsText.setPosition(creditsPosition);
@@ -125,8 +138,16 @@ namespace BetweenTheLines.Source.States
                 MediaPlayer.Play(OST.title);
             }
 
-            // Reset Credits Position
-            creditsPosition.Y = yStart;
+            // Reset Positions
+            
+            // Logo
+            logo.SetDestRect(new Rectangle
+                (logo.GetDestRect().X,
+                (logoYStart - logoSize.Y), // Y
+                logo.GetDestRect().Width,
+                logo.GetDestRect().Height));
+
+            creditsPosition.Y = creditsYStart; // Credits
 
             base.ResetState();
         }
@@ -144,6 +165,9 @@ namespace BetweenTheLines.Source.States
         public override void OnDraw(SpriteBatch spriteBatch)
         {
             // Draw Variables
+
+            // Sprites
+            logo.Draw(spriteBatch);
 
             // Text
             creditsText.Draw(spriteBatch);

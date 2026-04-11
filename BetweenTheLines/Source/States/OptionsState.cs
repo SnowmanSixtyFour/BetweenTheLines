@@ -54,7 +54,7 @@ namespace BetweenTheLines.Source.States
 
             // Checkboxes
             music = new Checkbox(new Point(40, 60), "Music");
-            fullscreen = new Checkbox(new Point(40, 130), "Fullscreen");
+            fullscreen = new Checkbox(new Point(40, 150), "Fullscreen");
 
             crtFilter = new Checkbox(new Point(620, 60), "CRT Filter");
             // crtFilter = new Checkbox(new Point(40, 320), "CRT Filter");
@@ -73,7 +73,7 @@ namespace BetweenTheLines.Source.States
             // Exit without Saving Changes
             backDont = new Button("Exit w/o Saving", Point.Zero, 0.7f);
             backDont.SetPosition(new Point(
-                (backDont.Width * 2) + (backButtonPadding * 2), // X
+                (int)(backDont.Width * 1.5f) + (backButtonPadding * 2), // X
                 (cam.Height - backDont.Height) - backButtonPadding) // Y
                 );
         }
