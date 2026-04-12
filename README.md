@@ -5,4 +5,6 @@
 ### Between the Lines is a murder mystery game, developed using Monogame and made for [Mystery Game Jam 2026](https://itch.io/jam/mystery-game-jam-2026).
 
 ## About
+Play as Detective Pickles, a well-known investigator in all crime, big and small. His latest mystery... is one he'll never forget. <img style="float: right;" src="img/detective.png" />
+
 TBA
