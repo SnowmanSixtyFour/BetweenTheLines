@@ -8,4 +8,4 @@
 <img style="display: block;" src="img/banner.png">
 Play as Detective Pickles, a well-known investigator in all crime, big and small. His latest mystery... is one he'll never forget.
 
-TBA
+More to be added soon.

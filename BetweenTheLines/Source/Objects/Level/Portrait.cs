@@ -65,16 +65,16 @@ namespace BetweenTheLines.Source.Objects.Level
             if (fromLeftToCenter) // Center, from Left Edge of Screen
             {
                 // Move to Center
-                if (this.sprite.GetDestRect().X < positionX)
+                if (this.sprite.GetX() < positionX)
                 {
-                    this.sprite.SetDestRect(new Rectangle(sprite.GetDestRect().X + increment, sprite.GetDestRect().Y, sprite.GetDestRect().Width, sprite.GetDestRect().Height));
+                    this.sprite.SetX(sprite.GetX() + increment);
                 }
 
                 // When Reached Center
                 else
                 {
                     // Reposition Sprite to Center
-                    this.sprite.SetDestRect(new Rectangle(positionX, sprite.GetDestRect().Y, sprite.GetDestRect().Width, sprite.GetDestRect().Height));
+                    this.sprite.SetX(positionX);
 
                     // End Event
                     fromLeftToCenter = false;
@@ -84,16 +84,16 @@ namespace BetweenTheLines.Source.Objects.Level
             if (fromRightToCenter) // Center, from Right Edge of Screen
             {
                 // Move to Center
-                if (this.sprite.GetDestRect().X > positionX)
+                if (this.sprite.GetX() > positionX)
                 {
-                    this.sprite.SetDestRect(new Rectangle(sprite.GetDestRect().X - increment, sprite.GetDestRect().Y, sprite.GetDestRect().Width, sprite.GetDestRect().Height));
+                    this.sprite.SetX(sprite.GetX() - increment);
                 }
 
                 // When Reached Center
                 else
                 {
                     // Reposition Sprite to Center
-                    this.sprite.SetDestRect(new Rectangle(positionX, sprite.GetDestRect().Y, sprite.GetDestRect().Width, sprite.GetDestRect().Height));
+                    this.sprite.SetX(positionX);
 
                     // End Event
                     fromRightToCenter = false;
@@ -103,16 +103,16 @@ namespace BetweenTheLines.Source.Objects.Level
             if (moveToLeftOffscreen) // Left Edge of Screen, from Center
             {
                 // Move to Center
-                if (this.sprite.GetDestRect().X > (0 - size.X))
+                if (this.sprite.GetX() > (0 - size.X))
                 {
-                    this.sprite.SetDestRect(new Rectangle(sprite.GetDestRect().X - increment, sprite.GetDestRect().Y, sprite.GetDestRect().Width, sprite.GetDestRect().Height));
+                    this.sprite.SetX(sprite.GetX() - increment);
                 }
 
                 // When Reached Center
                 else
                 {
                     // Reposition Sprite to Center
-                    this.sprite.SetDestRect(new Rectangle((0 - size.X), sprite.GetDestRect().Y, sprite.GetDestRect().Width, sprite.GetDestRect().Height));
+                    this.sprite.SetX((0 - size.X));
 
                     // End Event
                     moveToLeftOffscreen = false;
@@ -122,16 +122,16 @@ namespace BetweenTheLines.Source.Objects.Level
             if (moveToRightOffscreen) // Right Edge of Screen, from Center
             {
                 // Move to Center
-                if (this.sprite.GetDestRect().X > (0 - size.X))
+                if (this.sprite.GetX() > (0 - size.X))
                 {
-                    this.sprite.SetDestRect(new Rectangle(sprite.GetDestRect().X + increment, sprite.GetDestRect().Y, sprite.GetDestRect().Width, sprite.GetDestRect().Height));
+                    this.sprite.SetX(sprite.GetX() + increment);
                 }
 
                 // When Reached Center
                 else
                 {
                     // Reposition Sprite to Center
-                    this.sprite.SetDestRect(new Rectangle((0 - size.X), sprite.GetDestRect().Y, sprite.GetDestRect().Width, sprite.GetDestRect().Height));
+                    this.sprite.SetX((0 - size.X));
 
                     // End Event
                     moveToRightOffscreen = false;

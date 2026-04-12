@@ -30,6 +30,8 @@ namespace BetweenTheLines.Source.Graphics
             spriteBatch.Draw(texture, destRect, color);
         }
 
+        // --- Modifiers ---
+
         // Getters
 
         public Texture2D GetTexture()
@@ -47,6 +49,28 @@ namespace BetweenTheLines.Source.Graphics
             return this.color;
         }
 
+        // Position and Size
+
+        public int GetX()
+        {
+            return this.destRect.X;
+        }
+
+        public int GetY()
+        {
+            return this.destRect.Y;
+        }
+
+        public int GetWidth()
+        {
+            return this.destRect.Width;
+        }
+
+        public int GetHeight()
+        {
+            return this.destRect.Height;
+        }
+
         // Setters
 
         public void SetTexture(Texture2D newTexture)
@@ -62,6 +86,28 @@ namespace BetweenTheLines.Source.Graphics
         public void SetColor(Color newColor)
         {
             this.color = newColor;
+        }
+
+        // Position and Size
+
+        public void SetX(int newX)
+        {
+            this.destRect.X = newX;
+        }
+
+        public void SetY(int newY)
+        {
+            this.destRect.Y = newY;
+        }
+
+        public void SetWidth(int newWidth)
+        {
+            this.destRect.Width = newWidth;
+        }
+
+        public void SetHeight(int newHeight)
+        {
+            this.destRect.Height = newHeight;
         }
     }
 }
