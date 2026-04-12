@@ -24,6 +24,9 @@ namespace BetweenTheLines.Source.States
 
         private float dialogSpeed;
 
+        // Portraits
+        Portrait portrait;
+
         public LevelState()
         {
             // Set Level
@@ -37,6 +40,10 @@ namespace BetweenTheLines.Source.States
 
             // Set Dialog Speed
             dialogSpeed = defaultDialogSpeed;
+
+            // Portraits
+            portrait = new Portrait(0, 0);
+            portrait.Hide(); // Hide Portrait on Start
 
             // --- IGNORE ---
             /*
@@ -76,13 +83,25 @@ namespace BetweenTheLines.Source.States
                     // Dialog must be ordered from last to first, or else triggers will conflict!
 
                     // Intro 2
-                    if (dialogBox.dialog == Dialog.intro2) dialogBox.Hide(); // Hide
+                    if (dialogBox.dialog == Dialog.intro2)
+                    {
+                        dialogBox.Hide(); // Hide Dialog Box
+
+                        portrait.MoveLeftOffscreen(); // Hide Portrait
+                    }
 
                     // Intro 1
-                    if (dialogBox.dialog == Dialog.intro1) dialogBox.setDialog(Dialog.intro2); // Set to Intro 2
+                    if (dialogBox.dialog == Dialog.intro1)
+                    {
+                        dialogBox.setDialog(Dialog.intro2); // Set to Intro 2
+
+                        portrait.MoveToCenter(); // Move Portrait on-screen
+                    }
                 }
 
                 // Update Objects
+
+                portrait.Update(gameTime); // Portrait
 
                 // Dialog Box
                 dialogBox.Update(gameTime, dialogSpeed);
@@ -134,6 +153,9 @@ namespace BetweenTheLines.Source.States
             // Draw Objects
 
             cinematic.Draw(spriteBatch); // Cinematic Artwork
+
+            portrait.Draw(spriteBatch); // Portrait
+
             dialogBox.Draw(spriteBatch); // Dialog Box
         }
     }

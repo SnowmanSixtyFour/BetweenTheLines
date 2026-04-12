@@ -83,6 +83,7 @@ namespace BetweenTheLines.Source.States
 
         public override void OnUpdate(GameTime gameTime)
         {
+            // When Game is Unpaused
             if (!Global.paused)
             {
                 // If Credits are on-screen
@@ -109,6 +110,12 @@ namespace BetweenTheLines.Source.States
                 {
                     // --- State ---
                     cursorVisible = true;
+
+                    // --- Cursor ---
+
+                    // Make Translucent When Not Hovering over Back
+                    if (cursor.HoveringOver(backButton.bounds)) cursor.setTransparency(255);
+                    else cursor.setTransparency(128);
 
                     // --- Button Clicks ---
 

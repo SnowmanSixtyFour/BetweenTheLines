@@ -163,6 +163,12 @@ namespace BetweenTheLines.Source
             Global.intro1 = content.Load<Texture2D>("Assets/Images/Level/Intro/intro1");
             Global.intro2 = content.Load<Texture2D>("Assets/Images/Level/Intro/intro2");
 
+            // --- Portraits ---
+            
+            // Pickles
+            Dialog.picklesRegular = content.Load<Texture2D>("Assets/Images/Level/Portrait/picklesRegular");
+            Dialog.picklesThinking = content.Load<Texture2D>("Assets/Images/Level/Portrait/picklesThinking");
+
             // Audio
 
             // SFX
@@ -195,6 +201,13 @@ namespace BetweenTheLines.Source
     // Game Dialog
     internal class Dialog
     {
+        // Dialog Portraits
+
+        public static Texture2D
+            // --- Pickles ---
+            picklesRegular,
+            picklesThinking;
+        
         // NOTE: Lines of dialog are formatted like this:
         // Integer number Name | String Text
 

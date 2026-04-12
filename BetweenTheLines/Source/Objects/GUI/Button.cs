@@ -31,7 +31,7 @@ namespace BetweenTheLines.Source.Objects.GUI
             highlightedColor = Color.LightGoldenrodYellow;
 
         private bool highlighted = false;
-        public bool clicked = false;
+        public bool clicked { get; private set; }  = false;
 
         public Button(String text, Point position, float textSize = 1.0f)
         {

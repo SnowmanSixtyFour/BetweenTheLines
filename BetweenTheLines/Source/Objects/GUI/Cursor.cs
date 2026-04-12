@@ -121,6 +121,11 @@ namespace BetweenTheLines.Source.Objects.GUI
             size = newSize;
         }
 
+        public void setTransparency(byte opacity)
+        {
+            this.opacity = opacity;
+        }
+
         // Transitions
 
         public void FadeOut()
