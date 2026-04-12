@@ -30,10 +30,11 @@ namespace BetweenTheLines.Source.States
         public LevelState()
         {
             // Set Level
-            cursorVisible = true;
+            cursorVisible = false; // Cursor Hidden by Default
 
             // Set Objects
             cinematic = new StaticSprite(null, new Rectangle(0, 0, cam.Width, cam.Height), Color.White);
+            cinematic.SetTexture(Global.intro1); // Set to Intro 1 by Default
 
             dialogBox = new DialogBox();
             dialogBox.setDialog(Dialog.intro1);
@@ -61,12 +62,7 @@ namespace BetweenTheLines.Source.States
 
         public override void OnUpdate(GameTime gameTime)
         {
-            // Cinematic
-
-            if (dialogBox.dialog == Dialog.intro1) cinematic.SetTexture(Global.intro1); // Intro 1
-            if (dialogBox.dialog == Dialog.intro2) cinematic.SetTexture(Global.intro2); // Intro 2
-
-            // Dialog Box
+            // --- Story ---
 
             if (!Global.paused)
             {
@@ -76,6 +72,7 @@ namespace BetweenTheLines.Source.States
                     // Proceed Dialog
                     if (KeyPress(Keys.Enter) || LeftClicked()) dialogBox.Proceed();
                 }
+
                 // When Dialog is finished
                 else
                 {
@@ -85,17 +82,28 @@ namespace BetweenTheLines.Source.States
                     // Intro 2
                     if (dialogBox.dialog == Dialog.intro2)
                     {
-                        dialogBox.Hide(); // Hide Dialog Box
+                        // --- State ---
 
+                        cursorVisible = true; // Show Cursor
+
+                        // --- Objects ---
+
+                        // Dialog
+                        dialogBox.Hide(); // Hide Dialog Box
                         portrait.MoveLeftOffscreen(); // Hide Portrait
                     }
 
                     // Intro 1
                     if (dialogBox.dialog == Dialog.intro1)
                     {
-                        dialogBox.setDialog(Dialog.intro2); // Set to Intro 2
+                        // --- Objects ---
 
+                        // Dialog
+                        dialogBox.setDialog(Dialog.intro2); // Set to Intro 2
                         portrait.MoveToCenter(); // Move Portrait on-screen
+
+                        // Cinematic
+                        cinematic.SetTexture(Global.intro2); // Intro 2
                     }
                 }
 
