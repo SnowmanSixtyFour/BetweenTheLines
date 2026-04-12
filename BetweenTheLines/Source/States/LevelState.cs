@@ -29,22 +29,14 @@ namespace BetweenTheLines.Source.States
 
         public LevelState()
         {
-            // Set Level
-            cursorVisible = false; // Cursor Hidden by Default
-
             // Set Objects
             cinematic = new StaticSprite(null, new Rectangle(0, 0, cam.Width, cam.Height), Color.White);
-            cinematic.SetTexture(Global.intro1); // Set to Intro 1 by Default
 
             dialogBox = new DialogBox();
-            dialogBox.setDialog(Dialog.intro1);
 
-            // Set Dialog Speed
-            dialogSpeed = defaultDialogSpeed;
-
-            // Portraits
             portrait = new Portrait(0, 0);
-            portrait.Hide(); // Hide Portrait on Start
+
+            SetDefaultVariables();
 
             // --- IGNORE ---
             /*
@@ -58,6 +50,26 @@ namespace BetweenTheLines.Source.States
 
             debug = new Text(Global.arial, "", new Vector2(10, 10), Color.White, 1.0f, false);
             */
+        }
+
+        /// <summary>
+        /// Sets the properties of many objects in the level. This is to be called either at the start of the state, or during a restart, acting as the gameplay's "Default State".
+        /// </summary>
+        public void SetDefaultVariables()
+        {
+            // --- State ---
+            cursorVisible = false; // Cursor Hidden by Default
+
+            // --- Objects ---
+            cinematic.SetTexture(Global.intro1); // Set to Intro 1 by Default
+
+            // Set Dialog Speed
+            dialogSpeed = defaultDialogSpeed;
+
+            portrait.Hide(); // Hide Portrait on Start
+
+            // Set Dialog Text
+            dialogBox.setDialog(Dialog.intro1);
         }
 
         public override void OnUpdate(GameTime gameTime)
@@ -115,6 +127,22 @@ namespace BetweenTheLines.Source.States
                 dialogBox.Update(gameTime, dialogSpeed);
             }
 
+            // During Pause
+            else
+            {
+                // Check if R is Pressed (Return to Menu)
+                if (KeyPress(Keys.R))
+                {
+                    // Change Music
+                    StopSong();
+                    MediaPlayer.Play(OST.title); // Title
+
+                    // Switch State
+                    this.changeState = true;
+                    Global.currentState = Global.State.title;
+                }
+            }
+
             // --- IGNORE ---
             /*
             // Text
@@ -154,6 +182,14 @@ namespace BetweenTheLines.Source.States
                 giovanni.PlayAnimation("walk");
             }
             */
+        }
+
+        public override void ResetState()
+        {
+            // Reset Objects and Game to Default State
+            SetDefaultVariables();
+
+            base.ResetState();
         }
 
         public override void OnDraw(SpriteBatch spriteBatch)

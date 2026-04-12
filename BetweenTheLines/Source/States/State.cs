@@ -54,6 +54,11 @@ namespace BetweenTheLines.Source.States
         private Text pauseText, pauseTooltip;
         private int pauseTextPadding = 30;
 
+        // Pause Strings
+        private String
+            pauseTooltipMenu = "Press ESCAPE to resume focus.",
+            pauseTooltipGame = "Press ESCAPE to resume focus.\n\nR to exit to main menu.";
+
         // State Changed
         public bool changeState = false;
 
@@ -86,7 +91,7 @@ namespace BetweenTheLines.Source.States
 
             // Text
             pauseText = new Text(Global.arial, "Paused", new Vector2((cam.Width / 2), (cam.Height / 2) - pauseTextPadding), Color.White, 2.0f, true);
-            pauseTooltip = new Text(Global.arial, "Press ESCAPE to resume focus.", new Vector2((cam.Width / 2), (cam.Height / 2) + pauseTextPadding), Color.LightGray, 1.0f, true);
+            pauseTooltip = new Text(Global.arial, pauseTooltipMenu, new Vector2((cam.Width / 2), (cam.Height / 2) + pauseTextPadding), Color.LightGray, 1.0f, true);
         }
 
         /// <summary>
@@ -122,6 +127,20 @@ namespace BetweenTheLines.Source.States
                 if (KeyPress(Keys.Escape))
                 {
                     Global.paused = !Global.paused;
+
+                    // Toggle Pause Tooltip Depending on State
+
+                    // During Gameplay
+                    if (Global.currentState == Global.State.level)
+                    {
+                        this.pauseTooltip.setText(pauseTooltipGame);
+                    }
+
+                    // Elsewhere (Menus)
+                    else
+                    {
+                        this.pauseTooltip.setText(pauseTooltipMenu);
+                    }
                 }
 
                 // Mouse Visibility
