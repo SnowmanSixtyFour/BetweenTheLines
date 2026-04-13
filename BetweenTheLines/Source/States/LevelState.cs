@@ -61,15 +61,19 @@ namespace BetweenTheLines.Source.States
             cursorVisible = false; // Cursor Hidden by Default
 
             // --- Objects ---
+
+            // Cinematic BG
             cinematic.SetTexture(Global.intro1); // Set to Intro 1 by Default
-
-            // Set Dialog Speed
-            dialogSpeed = defaultDialogSpeed;
-
+            
+            // Portraits
             portrait.Hide(); // Hide Portrait on Start
 
-            // Set Dialog Text
-            dialogBox.setDialog(Dialog.intro1);
+            // Dialog Box
+            dialogBox.ResetText(); // Reset Text (IMPORTANT! To clear any last dialog before reset)
+            dialogBox.Show();
+
+            dialogBox.setDialog(Dialog.intro1); // Set to Intro 1
+            dialogSpeed = defaultDialogSpeed; // Reset Dialog Speed (Default)
         }
 
         public override void OnUpdate(GameTime gameTime)
@@ -100,7 +104,6 @@ namespace BetweenTheLines.Source.States
 
                         // --- Objects ---
 
-                        // Dialog
                         dialogBox.Hide(); // Hide Dialog Box
                         portrait.MoveLeftOffscreen(); // Hide Portrait
                     }

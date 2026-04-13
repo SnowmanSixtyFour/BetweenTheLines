@@ -29,7 +29,7 @@ namespace BetweenTheLines.Source.States
         // Graphics
         protected StaticSprite snowman64;
         protected int
-            logoWidth = 80, logoHeight = 8,
+            logoWidth = 81, logoHeight = 8,
             logoResize = 8,
             opacity = 0, fadeTime = 12;
 
@@ -49,10 +49,10 @@ namespace BetweenTheLines.Source.States
 
             // Set Logo
             snowman64 = new StaticSprite(Global.snowman64, new Rectangle(
-                ((cam.Width / 2) - (logoWidth * (logoResize / 2))),
-                ((cam.Height / 2) - (logoHeight * logoResize)),
-                (logoWidth * logoResize),
-                (logoHeight * logoResize)),
+                ((cam.Width / 2) - (logoWidth * (logoResize / 2))), // X
+                ((cam.Height / 2) - (logoHeight * logoResize)), // Y
+                (logoWidth * logoResize), // Width
+                (logoHeight * logoResize)), // Height
                 Color.White);
         }
 

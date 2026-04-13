@@ -41,7 +41,10 @@ namespace BetweenTheLines.Source.Objects.Level
         private int steps = 0; // Current Line of Dialog
         public bool
             endOfDialog = false,
-            visible = true;
+
+            // Show / Hide Bools
+            lowering = false,
+            heightening = false;
 
         // Colors
         private Color
@@ -61,48 +64,92 @@ namespace BetweenTheLines.Source.Objects.Level
 
         public void Update(GameTime gameTime, float dialogSpeed)
         {
-            // If Dialog is not finished
-            if (steps < dialog.Length)
+            // Only update Dialog Box if position is not changing
+            if (!lowering && !heightening)
             {
-                // Update Timer
-                timeElapsed += (float)gameTime.ElapsedGameTime.TotalSeconds;
-
-                // Set Name to Array Name
-                this.name.setText(names[dialog[steps].name]);
-
-                // Set Text to Current Line in Typewriter Text
-                if (!typewriterFinished)
+                // If Dialog is not finished
+                if (steps < dialog.Length)
                 {
-                    // When Timer Reaches Dialog Speed
-                    if (timeElapsed >= dialogSpeed)
+                    // Update Timer
+                    timeElapsed += (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+                    // Set Name to Array Name
+                    this.name.setText(names[dialog[steps].name]);
+
+                    // Set Text to Current Line in Typewriter Text
+                    if (!typewriterFinished)
                     {
-                        // Update Text to Match Current Character
-                        typewriterText = dialog[steps].text.Substring(0, currentChar);
-
-                        // Update Current Character of Dialog
-                        currentChar++;
-
-                        // Play Sound Effect
-                        Global.typewriter.Play();
-
-                        // Display Text
-                        this.text.setText(typewriterText);
-
-                        // Reset Timer
-                        timeElapsed = 0f;
-
-                        // When End of Dialog is Reached
-                        if (currentChar >= (dialog[steps].text.Length + 1))
+                        // When Timer Reaches Dialog Speed
+                        if (timeElapsed >= dialogSpeed)
                         {
-                            typewriterFinished = true;
+                            // Update Text to Match Current Character
+                            typewriterText = dialog[steps].text.Substring(0, currentChar);
+
+                            // Update Current Character of Dialog
+                            currentChar++;
+
+                            // Play Sound Effect
+                            Global.typewriter.Play();
+
+                            // Display Text
+                            this.text.setText(typewriterText);
+
+                            // Reset Timer
+                            timeElapsed = 0f;
+
+                            // When End of Dialog is Reached
+                            if (currentChar >= (dialog[steps].text.Length + 1))
+                            {
+                                typewriterFinished = true;
+                            }
                         }
                     }
                 }
+                // When End of Dialog Reached
+                else
+                {
+                    endOfDialog = true; // Set Bool to True
+                }
             }
-            // When End of Dialog Reached
-            else
+
+            // Lowering and Heightening - Position when Show(); / Hide(); is used.
+
+            // Hide
+            if (lowering)
             {
-                endOfDialog = true; // Set Bool to True
+                // Lower Box
+                if (box.GetDestRect().Y <= Global.windowHeight)
+                {
+                    // Heighten by specified amount
+                    box.SetDestRect(new Rectangle(boxRectangle.X, boxRectangle.Y += boxLowerAmount, boxRectangle.Width, boxRectangle.Height));
+                }
+
+                else
+                {
+                    // Set position when too far down
+                    box.SetDestRect(new Rectangle(boxRectangle.X, Global.windowHeight + 1, boxRectangle.Width, boxRectangle.Height));
+
+                    // End Lowering
+                    lowering = false;
+                }
+            }
+
+            // Show
+            if (heightening)
+            {
+                // Bring Box back up
+                if (box.GetDestRect().Y > (height * 2))
+                {
+                    // Lower by specified amount
+                    box.SetDestRect(new Rectangle(boxRectangle.X, boxRectangle.Y -= boxLowerAmount, boxRectangle.Width, boxRectangle.Height));
+                }
+                else
+                {
+                    box.SetDestRect(boxRectangle); // Reset Position if too high up
+
+                    // End Heightening
+                    heightening = false;
+                }
             }
         }
 
@@ -165,12 +212,10 @@ namespace BetweenTheLines.Source.Objects.Level
         public void Hide()
         {
             // Set Variables
-            this.visible = false;
+            lowering = true;
+            heightening = false;
 
-            // Lower Box
-            if (box.GetDestRect().Y <= Global.windowHeight) box.SetDestRect(new Rectangle(boxRectangle.X, boxRectangle.Y += boxLowerAmount, boxRectangle.Width, boxRectangle.Height));
-
-            // Hide all Text
+            // Hide all Text (with Colour)
             this.name.setColor(invisibleColor);
             this.text.setColor(invisibleColor);
         }
@@ -179,15 +224,21 @@ namespace BetweenTheLines.Source.Objects.Level
         public void Show()
         {
             // Set Variables
-            this.visible = true;
+            heightening = true;
+            lowering = false;
 
-            // Bring Box back up
-            if (box.GetDestRect().Y > boxRectangle.Y) box.SetDestRect(new Rectangle(boxRectangle.X, boxRectangle.Y -= boxLowerAmount, boxRectangle.Width, boxRectangle.Height));
-            else box.SetDestRect(boxRectangle); // Reset Position if too high up
-            
-            // Show all Text
+            // Show all Text (with Colour)
             this.name.setColor(nameColor);
             this.text.setColor(textColor);
+        }
+
+        /// <summary>
+        /// Reset all text values to be completely blank. Only to be used in State Resets and other similar situations.
+        /// </summary>
+        public void ResetText()
+        {
+            this.name.setText("");
+            this.text.setText("");
         }
     }
 }
