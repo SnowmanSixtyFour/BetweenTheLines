@@ -1,7 +1,11 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+
+# Build
 /BetweenTheLines/bin
 /BetweenTheLines/obj
+
+# Visual Studio
 .vs/
 
 # Do not include music for now, as the placeholder tracks are copyrighted.
