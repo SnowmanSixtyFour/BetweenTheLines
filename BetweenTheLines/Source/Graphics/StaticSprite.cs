@@ -10,11 +10,16 @@ namespace BetweenTheLines.Source.Graphics
 {
     internal class StaticSprite
     {
+        // Private Properties
         protected Texture2D texture;
         protected Rectangle destRect;
         protected Color color;
 
-        public StaticSprite(Texture2D texture, Rectangle rect, Color color)
+        // Tiled Properties
+        public bool tiled; // If sprite is tiled
+        public float offset; // Offset value for tiled scrolling
+
+        public StaticSprite(Texture2D texture, Rectangle rect, Color color, bool tiled = false)
         {
             // Error check
             if (texture == null) texture = Global.noImg;
@@ -23,11 +28,42 @@ namespace BetweenTheLines.Source.Graphics
             SetTexture(texture);
             SetDestRect(rect);
             SetColor(color);
+
+            // Set Tiled
+            this.tiled = tiled;
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(texture, destRect, color);
+            // If Sprite is Tiled
+            if (tiled)
+            {
+                // End Default SpriteBatch if Sprite is Tiled
+                spriteBatch.End();
+
+                // Draw with Sampler State set to Point Wrap
+                spriteBatch.Begin(samplerState: SamplerState.PointWrap);
+            }
+
+            // Draw Sprite
+            if (!tiled) spriteBatch.Draw(texture, destRect, color);
+
+            // Draw Tiled Sprite (With Offset)
+            else spriteBatch.Draw(texture, destRect, new Rectangle(new Point((int)offset, destRect.Y), destRect.Size), color);
+
+            // End Tiled SpriteBatch
+            if (tiled) spriteBatch.End();
+
+            // Restart Default SpriteBatch
+            if (tiled)
+            {
+                spriteBatch.Begin(SpriteSortMode.Deferred,
+                BlendState.AlphaBlend,
+                SamplerState.PointClamp,
+                DepthStencilState.None,
+                RasterizerState.CullNone
+                );
+            }
         }
 
         // --- Modifiers ---

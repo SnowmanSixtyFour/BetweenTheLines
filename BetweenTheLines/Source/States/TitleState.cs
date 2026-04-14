@@ -20,6 +20,12 @@ namespace BetweenTheLines.Source.States
         // Variables
 
         // Sprites
+        private StaticSprite BG;
+
+        // Sprite Scroll Speeds
+        private float
+            bgScrollSpeed = 20.0f; // BG Speed
+
         private StaticSprite logo;
         private Point logoSize = new Point(364, 214);
         private int logoPadding = 20;
@@ -46,13 +52,16 @@ namespace BetweenTheLines.Source.States
 
             // --- Graphics ---
 
+            // BG
+            BG = new StaticSprite(Global.titleBG, new Rectangle(0, 0, Global.windowWidth, Global.windowHeight), Color.White, true);
+
             // Logo
             logo = new StaticSprite(Global.logo, new Rectangle(new Point((cam.Width / 2) - (logoSize.X / 2), logoPadding), logoSize), Color.White);
 
             // Text
-            gameVersion = new Text(Global.arial, (Global.gameVersion), new Vector2(10, (cam.Height - 30)), Color.Black, 1.0f, false);
+            gameVersion = new Text(Global.arial, (Global.gameVersion), new Vector2(10, (cam.Height - 30)), Color.White, 1.0f, false);
 
-            gameCredits = new Text(Global.arial, "2026 Snowman64", new Vector2((cam.Width - 195), (cam.Height - 30)), Color.Black, 1.0f, false);
+            gameCredits = new Text(Global.arial, "2026 Snowman64", new Vector2((cam.Width - 195), (cam.Height - 30)), Color.White, 1.0f, false);
 
             // Buttons
             startButton = new Button("Start", new Point(xPadding / 2, cam.Height - yPadding));
@@ -65,6 +74,14 @@ namespace BetweenTheLines.Source.States
         {
             if (!Global.paused)
             {
+                // --- Scrolling Sprites ---
+
+                // Update Offsets by Speed
+                float bgOffset = bgScrollSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+                // Set Sprite Positions to Offset Values
+                BG.offset += bgOffset;
+
                 // --- Button Clicks ---
 
                 // Start
@@ -99,6 +116,7 @@ namespace BetweenTheLines.Source.States
             graphicsDevice.Clear(Global.titleColor);
 
             // Sprites
+            BG.Draw(spriteBatch);
             logo.Draw(spriteBatch);
             gameVersion.Draw(spriteBatch);
             gameCredits.Draw(spriteBatch);

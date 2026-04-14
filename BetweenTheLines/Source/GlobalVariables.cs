@@ -102,6 +102,7 @@ namespace BetweenTheLines.Source
 
             // --- Title ---
             logo,
+            titleBG,
 
             // --- Level ---
 
@@ -154,6 +155,7 @@ namespace BetweenTheLines.Source
             Global.snowman64 = content.Load<Texture2D>("Assets/Images/Intro/Snowman64");
 
             // --- Title ---
+            Global.titleBG = content.Load<Texture2D>("Assets/Images/Title/Diamonds");
             Global.logo = content.Load<Texture2D>("Assets/Images/Title/Logo");
 
             // --- Gameplay ---
