@@ -4,6 +4,8 @@
 # Build
 /BetweenTheLines/bin
 /BetweenTheLines/obj
+/BetweenTheLines/Content/bin
+/BetweenTheLines/Content/obj
 
 # Visual Studio
 .vs/
