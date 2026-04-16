@@ -41,7 +41,7 @@ namespace BetweenTheLines.Source.Objects.GUI
             // Set Checkbox
             this.sprite = new StaticSprite(Global.checkboxInactive, Rectangle.Empty, defaultColor);
             this.textSize = textSize;
-            this.text = new Text(Global.arial, text, Vector2.Zero, Color.Black, this.textSize, false);
+            this.text = new Text(Global.arial, text, Vector2.Zero, Color.White, this.textSize, false);
 
             SetPosition(position);
         }

@@ -21,6 +21,12 @@ namespace BetweenTheLines.Source.States
             previousFullscreen,
             previousCRT;
 
+        // Sprite Scroll Speeds
+        private float
+            bgScrollSpeed = -10.0f; // BG Speed
+        private StaticSprite
+            BG;
+
         // Text
         private Text
             optionsLabel;
@@ -49,8 +55,11 @@ namespace BetweenTheLines.Source.States
 
             // --- Set Objects ---
 
+            // BG
+            BG = new StaticSprite(Global.titleBG, new Rectangle(0, 0, Global.windowWidth, Global.windowHeight), Color.Gray, true);
+
             // Text
-            optionsLabel = new Text(Global.arial, "Options", new Vector2(cam.Width / 2, labelPadding), Color.Black, 1.5f, true);
+            optionsLabel = new Text(Global.arial, "Options", new Vector2(cam.Width / 2, labelPadding), Color.White, 1.5f, true);
 
             // Checkboxes
             music = new Checkbox(new Point(40, 60), "Music");
@@ -91,6 +100,14 @@ namespace BetweenTheLines.Source.States
         {
             if (!Global.paused)
             {
+                // --- Scrolling Sprites ---
+
+                // Update Offsets by Speed
+                float bgOffset = bgScrollSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+                // Set Sprite Positions to Offset Values
+                BG.offset += bgOffset;
+
                 // --- Interactive Options ---
 
                 if (music.clicked)
@@ -226,7 +243,8 @@ namespace BetweenTheLines.Source.States
         {
             graphicsDevice.Clear(Global.titleColor);
 
-            // Text
+            // Sprites
+            BG.Draw(spriteBatch);
             optionsLabel.Draw(spriteBatch);
 
             // Interactive Options
