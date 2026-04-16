@@ -36,7 +36,7 @@ namespace BetweenTheLines.Source.Objects
             this.X = location.X;
             this.Y = location.Y;
 
-            if (texture != null) this.defaultWidth = (size.X / 3);
+            if (texture != null) this.defaultWidth = sheetSize.X;
             else this.defaultWidth = size.X;
 
             this.defaultHeight = size.Y;
