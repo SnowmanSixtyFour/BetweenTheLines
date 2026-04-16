@@ -35,7 +35,7 @@ namespace BetweenTheLines.Source.States
         private int
             logoYStart = 700,
             creditsYStart = 900,
-            creditsYEnd = -200;
+            creditsYEnd = -230;
 
         private int amountToMove = 1;
 
@@ -46,6 +46,9 @@ namespace BetweenTheLines.Source.States
             Developed from April 7, 2026 - TBA
             Made for the Mystery Game Jam 2026 on itch.io.
             https://itch.io/jam/mystery-game-jam-2026
+            
+            Built on Z Engine.
+            https://github.com/Z-Engine/ZEngine
 
             Special Thanks:
             CRT Scanline Shaders (Public Domain) - Timothy Lottes
