@@ -36,11 +36,11 @@ namespace BetweenTheLines.Source.Objects.GUI
         public Button(String text, Point position, float textSize = 1.0f)
         {
             // Set Sprite
-            this.sprite = new StaticSprite(Global.button, Rectangle.Empty, defaultColor);
+            this.sprite = new StaticSprite(Assets.button, Rectangle.Empty, defaultColor);
 
             // Set Text
             this.textSize = textSize;
-            this.text = new Text(Global.arial, text, Vector2.Zero, Color.Black, this.textSize, false);
+            this.text = new Text(Assets.arial, text, Vector2.Zero, Color.Black, this.textSize, false);
 
             // Update Position
             SetPosition(position);

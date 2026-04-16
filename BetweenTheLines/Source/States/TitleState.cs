@@ -53,15 +53,15 @@ namespace BetweenTheLines.Source.States
             // --- Graphics ---
 
             // BG
-            BG = new StaticSprite(Global.titleBG, new Rectangle(0, 0, Global.windowWidth, Global.windowHeight), Color.White, true);
+            BG = new StaticSprite(Assets.titleBG, new Rectangle(0, 0, Global.windowWidth, Global.windowHeight), Color.White, true);
 
             // Logo
-            logo = new StaticSprite(Global.logo, new Rectangle(new Point((cam.Width / 2) - (logoSize.X / 2), logoPadding), logoSize), Color.White);
+            logo = new StaticSprite(Assets.logo, new Rectangle(new Point((cam.Width / 2) - (logoSize.X / 2), logoPadding), logoSize), Color.White);
 
             // Text
-            gameVersion = new Text(Global.arial, (Global.gameVersion), new Vector2(10, (cam.Height - 30)), Color.White, 1.0f, false);
+            gameVersion = new Text(Assets.arial, (Global.gameVersion), new Vector2(10, (cam.Height - 30)), Color.White, 1.0f, false);
 
-            gameCredits = new Text(Global.arial, "2026 Snowman64", new Vector2((cam.Width - 195), (cam.Height - 30)), Color.White, 1.0f, false);
+            gameCredits = new Text(Assets.arial, "2026 Snowman64", new Vector2((cam.Width - 195), (cam.Height - 30)), Color.White, 1.0f, false);
 
             // Buttons
             startButton = new Button("Start", new Point(xPadding / 2, cam.Height - yPadding));

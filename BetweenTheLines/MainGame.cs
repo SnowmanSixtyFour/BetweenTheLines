@@ -107,13 +107,13 @@ namespace BetweenTheLines
             game = new Main();
 
             // Set CRT Shader
-            Global.crt.Parameters["brightboost"].SetValue(0.92f);
+            Assets.crt.Parameters["brightboost"].SetValue(0.92f);
 
             var texSize = new Vector2(Global.windowWidth, Global.windowHeight);
-            Global.crt.Parameters["textureSize"]?.SetValue(texSize);
-            Global.crt.Parameters["videoSize"]?.SetValue(texSize);
+            Assets.crt.Parameters["textureSize"]?.SetValue(texSize);
+            Assets.crt.Parameters["videoSize"]?.SetValue(texSize);
             var outSize = new Vector2(MainGame.publicGraphics.PreferredBackBufferWidth, MainGame.publicGraphics.PreferredBackBufferHeight);
-            Global.crt.Parameters["outputSize"]?.SetValue(outSize);
+            Assets.crt.Parameters["outputSize"]?.SetValue(outSize);
 
             // Set Cam
             ChangeWindowSize(Global.windowWidth, Global.windowHeight);

@@ -90,8 +90,8 @@ namespace BetweenTheLines.Source.States
             pauseOverlay = new StaticSprite(null, new Rectangle(0, 0, cam.Width, cam.Height), new Color(0, 0, 0, 128));
 
             // Text
-            pauseText = new Text(Global.arial, "Paused", new Vector2((cam.Width / 2), (cam.Height / 2) - pauseTextPadding), Color.White, 2.0f, true);
-            pauseTooltip = new Text(Global.arial, pauseTooltipMenu, new Vector2((cam.Width / 2), (cam.Height / 2) + pauseTextPadding), Color.LightGray, 1.0f, true);
+            pauseText = new Text(Assets.arial, "Paused", new Vector2((cam.Width / 2), (cam.Height / 2) - pauseTextPadding), Color.White, 2.0f, true);
+            pauseTooltip = new Text(Assets.arial, pauseTooltipMenu, new Vector2((cam.Width / 2), (cam.Height / 2) + pauseTextPadding), Color.LightGray, 1.0f, true);
         }
 
         /// <summary>

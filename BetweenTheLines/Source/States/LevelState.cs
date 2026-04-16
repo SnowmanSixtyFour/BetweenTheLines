@@ -63,7 +63,7 @@ namespace BetweenTheLines.Source.States
             // --- Objects ---
 
             // Cinematic BG
-            cinematic.SetTexture(Global.intro1); // Set to Intro 1 by Default
+            cinematic.SetTexture(Assets.intro1); // Set to Intro 1 by Default
             
             // Portraits
             portrait.Hide(); // Hide Portrait on Start
@@ -118,7 +118,7 @@ namespace BetweenTheLines.Source.States
                         portrait.MoveToCenter(); // Move Portrait on-screen
 
                         // Cinematic
-                        cinematic.SetTexture(Global.intro2); // Intro 2
+                        cinematic.SetTexture(Assets.intro2); // Intro 2
                     }
                 }
 

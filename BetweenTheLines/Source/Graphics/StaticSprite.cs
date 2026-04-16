@@ -22,7 +22,7 @@ namespace BetweenTheLines.Source.Graphics
         public StaticSprite(Texture2D texture, Rectangle rect, Color color, bool tiled = false)
         {
             // Error check
-            if (texture == null) texture = Global.noImg;
+            if (texture == null) texture = Assets.noImg;
 
             // Initialize sprite
             SetTexture(texture);

@@ -58,8 +58,8 @@ namespace BetweenTheLines.Source.Objects.Level
             this.boxRectangle = new Rectangle(0, height * 2, Global.windowWidth, height);
             this.box = new StaticSprite(null, boxRectangle, boxColor);
 
-            this.name = new Text(Global.arial, "", new Vector2((box.GetDestRect().X + textPadding), (box.GetDestRect().Y + textPadding)), nameColor, 1.0f, false);
-            this.text = new Text(Global.arial, "", new Vector2((box.GetDestRect().X + textPadding), (box.GetDestRect().Y + 60)), textColor, 1.0f, false);
+            this.name = new Text(Assets.arial, "", new Vector2((box.GetDestRect().X + textPadding), (box.GetDestRect().Y + textPadding)), nameColor, 1.0f, false);
+            this.text = new Text(Assets.arial, "", new Vector2((box.GetDestRect().X + textPadding), (box.GetDestRect().Y + 60)), textColor, 1.0f, false);
         }
 
         public void Update(GameTime gameTime, float dialogSpeed)
@@ -89,7 +89,7 @@ namespace BetweenTheLines.Source.Objects.Level
                             currentChar++;
 
                             // Play Sound Effect
-                            Global.typewriter.Play();
+                            SFX.typewriter.Play();
 
                             // Display Text
                             this.text.setText(typewriterText);

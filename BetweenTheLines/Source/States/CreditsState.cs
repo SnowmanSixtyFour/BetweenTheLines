@@ -66,7 +66,7 @@ namespace BetweenTheLines.Source.States
             // --- Sprites ---
 
             // Game Logo
-            logo = new StaticSprite(Global.logo, new Rectangle(new Point((cam.Width / 2) - (logoSize.X / 2), logoYStart - logoSize.Y), logoSize), Color.White);
+            logo = new StaticSprite(Assets.logo, new Rectangle(new Point((cam.Width / 2) - (logoSize.X / 2), logoYStart - logoSize.Y), logoSize), Color.White);
 
             // --- Credits ---
 
@@ -74,7 +74,7 @@ namespace BetweenTheLines.Source.States
             creditsPosition = new Vector2(cam.Width / 2, creditsYStart);
 
             // Set Text
-            creditsText = new Text(Global.arial, creditsString, creditsPosition, Color.White, 1.0f, true);
+            creditsText = new Text(Assets.arial, creditsString, creditsPosition, Color.White, 1.0f, true);
 
             // Set Buttons
             backButton = new Button("Back", Point.Zero);

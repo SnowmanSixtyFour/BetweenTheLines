@@ -59,7 +59,7 @@ namespace BetweenTheLines.Source.Objects
                 SamplerState.PointClamp,
                 DepthStencilState.None,
                 RasterizerState.CullCounterClockwise,
-                effect: Global.crtFilter ? Global.crt : null);
+                effect: Global.crtFilter ? Assets.crt : null);
             spriteBatch.Draw(target, destRect, Color.White);
             spriteBatch.End();
         }

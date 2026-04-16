@@ -48,7 +48,7 @@ namespace BetweenTheLines.Source.States
             // --- Graphics ---
 
             // Set Logo
-            snowman64 = new StaticSprite(Global.snowman64, new Rectangle(
+            snowman64 = new StaticSprite(Assets.snowman64, new Rectangle(
                 ((cam.Width / 2) - (logoWidth * (logoResize / 2))), // X
                 ((cam.Height / 2) - (logoHeight * logoResize)), // Y
                 (logoWidth * logoResize), // Width

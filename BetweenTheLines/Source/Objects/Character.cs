@@ -21,8 +21,11 @@ namespace BetweenTheLines.Source.Objects
 
         // Animation variables
         Point sheetSize;
-        float elapsed = 0, delay = 200f;
-        int frame = 0, maxFrames;
+        protected float elapsed = 0;
+        public float animSpeed = 150f;
+        public int frame { get; private set; } = 0;
+        int maxFrames;
+        public bool flipped;
 
         public List<String> animation;
         protected List<int> startFrame, endFrame;
@@ -85,6 +88,8 @@ namespace BetweenTheLines.Source.Objects
             // Update
 
             // Sprite
+            sprite.flipped = this.flipped;
+
             sprite.SetDestRect(new Rectangle(
                 new Point(X, Y),
                 new Point(Width * resize, Height * resize)));
@@ -113,25 +118,8 @@ namespace BetweenTheLines.Source.Objects
 
         public void PlayAnimation(String name)
         {
-            int animNumber = -1;
-
-            // Set Animation Number
-
-            // While no current Animation selected
-            if (animNumber == -1)
-            {
-                // For All Animations
-                for (int i = 0; i < this.animation.Count; i++)
-                {
-                    // When User Input matches Animation Name
-                    if (name == this.animation[i])
-                    {
-                        animNumber = i;
-                    }
-                }
-            }
-
-            
+            // Select Animation
+            int animNumber = this.animation.IndexOf(name);
 
             // Play Selected Animation
             PlayAnimation(startFrame[animNumber], endFrame[animNumber]);
@@ -142,23 +130,20 @@ namespace BetweenTheLines.Source.Objects
         // Not to be publicly used because you only need the name to play an animation.
         private void PlayAnimation(int startFrame, int endFrame)
         {
+            // Make Sure Frame is Updated to Animation
+            if (frame < startFrame) frame = startFrame;
+
             // Update animation time using GameTime
             elapsed += (float)MainGame.gameTime.ElapsedGameTime.TotalMilliseconds;
 
-            if (elapsed >= delay)
+            if (elapsed >= animSpeed)
             {
-                // Go back to first frame
-                if (frame >= endFrame)
-                {
-                    frame = startFrame;
-                }
-                // Update frame
-                else
-                {
-                    frame++;
-                }
+                // Update Frame
+                frame++;
 
-                // Reset animation time
+                // If Animation Finished
+                if (frame > endFrame) frame = startFrame;
+
                 elapsed = 0;
             }
         }

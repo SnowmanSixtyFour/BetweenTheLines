@@ -11,11 +11,12 @@ namespace BetweenTheLines.Source.Graphics
     internal class Sprite : StaticSprite
     {
         protected Rectangle sourceRect;
+        public bool flipped;
 
         public Sprite(Texture2D texture, Rectangle destRect, Rectangle sourceRect, Color color) : base(texture, destRect, color)
         {
             // Error check
-            if (texture == null) texture = Global.noImg;
+            if (texture == null) texture = Assets.noImg;
 
             // Initialize sprite
             SetTexture(texture);
@@ -24,9 +25,11 @@ namespace BetweenTheLines.Source.Graphics
             SetColor(color);
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public new void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(GetTexture(), GetDestRect(), sourceRect, GetColor());
+            // Draw Sprite
+            if (!flipped) spriteBatch.Draw(GetTexture(), GetDestRect(), sourceRect, GetColor());
+            else spriteBatch.Draw(GetTexture(), GetDestRect(), sourceRect, GetColor(), 0.0f, Vector2.Zero, SpriteEffects.FlipHorizontally, 0.0f);
         }
 
         // Getters

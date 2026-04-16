@@ -39,9 +39,9 @@ namespace BetweenTheLines.Source.Objects.GUI
         public Checkbox(Point position, String text = "", float textSize = 1.0f)
         {
             // Set Checkbox
-            this.sprite = new StaticSprite(Global.checkboxInactive, Rectangle.Empty, defaultColor);
+            this.sprite = new StaticSprite(Assets.checkboxInactive, Rectangle.Empty, defaultColor);
             this.textSize = textSize;
-            this.text = new Text(Global.arial, text, Vector2.Zero, Color.White, this.textSize, false);
+            this.text = new Text(Assets.arial, text, Vector2.Zero, Color.White, this.textSize, false);
 
             SetPosition(position);
         }
@@ -83,8 +83,8 @@ namespace BetweenTheLines.Source.Objects.GUI
             // --- Checkbox Properties ---
 
             // Sprite
-            if (this.active) this.sprite.SetTexture(Global.checkboxActive);
-            else this.sprite.SetTexture(Global.checkboxInactive);
+            if (this.active) this.sprite.SetTexture(Assets.checkboxActive);
+            else this.sprite.SetTexture(Assets.checkboxInactive);
         }
 
         public void Draw(SpriteBatch spriteBatch)

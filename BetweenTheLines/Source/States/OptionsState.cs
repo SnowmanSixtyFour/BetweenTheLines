@@ -56,10 +56,10 @@ namespace BetweenTheLines.Source.States
             // --- Set Objects ---
 
             // BG
-            BG = new StaticSprite(Global.titleBG, new Rectangle(0, 0, Global.windowWidth, Global.windowHeight), Color.Gray, true);
+            BG = new StaticSprite(Assets.titleBG, new Rectangle(0, 0, Global.windowWidth, Global.windowHeight), Color.Gray, true);
 
             // Text
-            optionsLabel = new Text(Global.arial, "Options", new Vector2(cam.Width / 2, labelPadding), Color.White, 1.5f, true);
+            optionsLabel = new Text(Assets.arial, "Options", new Vector2(cam.Width / 2, labelPadding), Color.White, 1.5f, true);
 
             // Checkboxes
             music = new Checkbox(new Point(40, 60), "Music");

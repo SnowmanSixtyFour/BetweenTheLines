@@ -41,7 +41,7 @@ namespace BetweenTheLines.Source.Objects.GUI
             // Set Cursor
 
             setSize(size); // Size
-            sprite = new StaticSprite(Global.cursor, new Rectangle(new Point(X, Y), size), Color.White); // Sprite
+            sprite = new StaticSprite(Assets.cursor, new Rectangle(new Point(X, Y), size), Color.White); // Sprite
         }
 
         int previousX;
@@ -98,8 +98,8 @@ namespace BetweenTheLines.Source.Objects.GUI
                 }
             }
 
-            if (highlighted) sprite.SetTexture(Global.cursorHighlight);
-            else sprite.SetTexture(Global.cursor);
+            if (highlighted) sprite.SetTexture(Assets.cursorHighlight);
+            else sprite.SetTexture(Assets.cursor);
 
             highlighted = false;
         }

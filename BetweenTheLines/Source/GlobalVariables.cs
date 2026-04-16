@@ -84,6 +84,29 @@ namespace BetweenTheLines.Source
 
         // GUI Colors
         public static Color titleColor = Color.LightGray;
+    }
+
+    // Store Game Soundtrack in OST
+    internal class OST
+    {
+        public static Song
+            title,
+            intro,
+            intense;
+    }
+
+    // Sound Effects
+    internal class SFX
+    {
+        public static SoundEffect
+            // --- Dialog ---
+            typewriter;
+    }
+
+    // Game Assets
+    internal class Assets
+    {
+        // Set Assets
 
         // --- Sprites ---
 
@@ -111,62 +134,45 @@ namespace BetweenTheLines.Source
 
             giovanni;
 
-        // --- Audio ---
-
-        // Load Sound Effects
-        public static SoundEffect
-            // --- Dialog ---
-            typewriter;
-
+        // --- Fonts ---
         public static SpriteFont arial;
+
+        // --- Shaders ---
         public static Effect crt;
-    }
 
-    // Store Game Soundtrack in OST
-    internal class OST
-    {
-        public static Song
-            title,
-            intro,
-            intense;
-    }
-
-    // Game Assets
-    internal class Assets
-    {
         // Load Assets from Image Files
         public static void LoadContent(ContentManager content)
         {
             // Images
 
             // --- Utilities ---
-            Global.noImg = content.Load<Texture2D>("Assets/Images/Global/pixel");
+            Assets.noImg = content.Load<Texture2D>("Assets/Images/Global/pixel");
 
             // --- GUI ---
-            Global.cursor = content.Load<Texture2D>("Assets/Images/Global/Cursor");
-            Global.cursorHighlight = content.Load<Texture2D>("Assets/Images/Global/CursorHighlight");
+            Assets.cursor = content.Load<Texture2D>("Assets/Images/Global/Cursor");
+            Assets.cursorHighlight = content.Load<Texture2D>("Assets/Images/Global/CursorHighlight");
 
-            Global.button = content.Load<Texture2D>("Assets/Images/Global/Button");
+            Assets.button = content.Load<Texture2D>("Assets/Images/Global/Button");
 
-            Global.checkboxInactive = content.Load<Texture2D>("Assets/Images/Global/CheckboxInactive");
-            Global.checkboxActive = content.Load<Texture2D>("Assets/Images/Global/CheckboxActive");
+            Assets.checkboxInactive = content.Load<Texture2D>("Assets/Images/Global/CheckboxInactive");
+            Assets.checkboxActive = content.Load<Texture2D>("Assets/Images/Global/CheckboxActive");
 
             // --- Intro ---
-            Global.snowman64 = content.Load<Texture2D>("Assets/Images/Intro/Snowman64");
+            Assets.snowman64 = content.Load<Texture2D>("Assets/Images/Intro/Snowman64");
 
             // --- Title ---
-            Global.titleBG = content.Load<Texture2D>("Assets/Images/Title/Diamonds");
-            Global.logo = content.Load<Texture2D>("Assets/Images/Title/Logo");
+            Assets.titleBG = content.Load<Texture2D>("Assets/Images/Title/Diamonds");
+            Assets.logo = content.Load<Texture2D>("Assets/Images/Title/Logo");
 
             // --- Gameplay ---
-            Global.giovanni = content.Load<Texture2D>("Assets/Images/Level/Giovanni");
+            Assets.giovanni = content.Load<Texture2D>("Assets/Images/Level/Giovanni");
 
             // Intro
-            Global.intro1 = content.Load<Texture2D>("Assets/Images/Level/Intro/intro1");
-            Global.intro2 = content.Load<Texture2D>("Assets/Images/Level/Intro/intro2");
+            Assets.intro1 = content.Load<Texture2D>("Assets/Images/Level/Intro/intro1");
+            Assets.intro2 = content.Load<Texture2D>("Assets/Images/Level/Intro/intro2");
 
             // --- Portraits ---
-            
+
             // Pickles
             Dialog.picklesRegular = content.Load<Texture2D>("Assets/Images/Level/Portrait/picklesRegular");
             Dialog.picklesThinking = content.Load<Texture2D>("Assets/Images/Level/Portrait/picklesThinking");
@@ -174,7 +180,7 @@ namespace BetweenTheLines.Source
             // Audio
 
             // SFX
-            Global.typewriter = content.Load<SoundEffect>("Assets/Audio/SFX/typewriter");
+            SFX.typewriter = content.Load<SoundEffect>("Assets/Audio/SFX/typewriter");
 
             // NOTE: Music is ran in try and catch to prevent errors while copyrighted placeholder music is left out of the source code.
 
@@ -192,11 +198,11 @@ namespace BetweenTheLines.Source
 
             // Fonts
 
-            Global.arial = content.Load<SpriteFont>("Assets/Fonts/Arial");
+            Assets.arial = content.Load<SpriteFont>("Assets/Fonts/Arial");
 
             // Shaders
 
-            Global.crt = content.Load<Effect>("Assets/Shaders/CRTFilter");
+            Assets.crt = content.Load<Effect>("Assets/Shaders/CRTFilter");
         }
     }
     
