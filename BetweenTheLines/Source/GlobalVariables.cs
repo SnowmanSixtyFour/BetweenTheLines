@@ -121,7 +121,7 @@ namespace BetweenTheLines.Source
             checkboxInactive, checkboxActive,
 
             // --- Intro ---
-            snowman64,
+            snowman64, gameJamLogo,
 
             // --- Title ---
             logo,
@@ -159,6 +159,7 @@ namespace BetweenTheLines.Source
 
             // --- Intro ---
             Assets.snowman64 = content.Load<Texture2D>("Assets/Images/Intro/Snowman64");
+            Assets.gameJamLogo = content.Load<Texture2D>("Assets/Images/Intro/GameJam");
 
             // --- Title ---
             Assets.titleBG = content.Load<Texture2D>("Assets/Images/Title/Diamonds");

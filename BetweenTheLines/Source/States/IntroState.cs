@@ -31,7 +31,15 @@ namespace BetweenTheLines.Source.States
         protected int
             logoWidth = 81, logoHeight = 8,
             logoResize = 8,
-            opacity = 0, fadeTime = 12;
+            logoYOffset = 80;
+
+        protected StaticSprite gameJam;
+        protected int
+            jamWidth = 125, jamHeight = 72,
+            jamResize = 2,
+            jamYOffset = 140;
+
+        protected int opacity = 0, fadeTime = 12;
 
         public IntroState()
         {
@@ -47,19 +55,27 @@ namespace BetweenTheLines.Source.States
 
             // --- Graphics ---
 
-            // Set Logo
+            // Set Logos
             snowman64 = new StaticSprite(Assets.snowman64, new Rectangle(
                 ((cam.Width / 2) - (logoWidth * (logoResize / 2))), // X
-                ((cam.Height / 2) - (logoHeight * logoResize)), // Y
+                ((cam.Height / 2) - (logoHeight * logoResize) - logoYOffset), // Y
                 (logoWidth * logoResize), // Width
                 (logoHeight * logoResize)), // Height
+                Color.White);
+
+            gameJam = new StaticSprite(Assets.gameJamLogo, new Rectangle(
+                ((cam.Width / 2) - (jamWidth * (jamResize / 2))), // X
+                ((cam.Height / 2) - (jamHeight * jamResize) + jamYOffset), // Y
+                (jamWidth * jamResize), // Width
+                (jamHeight * jamResize)), // Height
                 Color.White);
         }
 
         public override void OnUpdate(GameTime gameTime)
         {
-            // Keep Logo Variables Update
+            // Keep Logo Variables Updated
             snowman64.SetColor(new Color(opacity, opacity, opacity, opacity));
+            gameJam.SetColor(new Color(opacity, opacity, opacity, opacity));
 
             // Run Timer for Scene
             if (introTime < timerEnd) introTime += increment;
@@ -97,6 +113,7 @@ namespace BetweenTheLines.Source.States
             graphicsDevice.Clear(Color.Black);
 
             snowman64.Draw(spriteBatch);
+            gameJam.Draw(spriteBatch);
         }
     }
 }
