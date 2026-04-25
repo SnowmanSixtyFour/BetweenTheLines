@@ -4,7 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
+using BetweenTheLines.Source.Graphics;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Audio;
 using BetweenTheLines.Source.Graphics;
 
 namespace BetweenTheLines.Source.Objects.GUI
@@ -86,6 +88,9 @@ namespace BetweenTheLines.Source.Objects.GUI
 
             // Highlight Cursor
             cursor.Highlight(this);
+
+            // Play Click SFX
+            if (this.clicked) SFX.button.Play();
 
             // Get Cursor Hover
             if (cursor.HoveringOver(this.bounds))

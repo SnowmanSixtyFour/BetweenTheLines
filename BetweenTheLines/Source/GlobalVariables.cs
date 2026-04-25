@@ -49,7 +49,8 @@ namespace BetweenTheLines.Source
 
         // Game
 
-        public static string gameVersion = "1.0.0"; // NOTE: Does this really matter in a Game Jam?
+        // Version (start with "v")
+        public static string gameVersion = "v1.0.0"; // NOTE: Does this really matter in a Game Jam?
 
         public static bool
             paused = false,
@@ -99,6 +100,9 @@ namespace BetweenTheLines.Source
     internal class SFX
     {
         public static SoundEffect
+            // --- GUI ---
+            button,
+
             // --- Dialog ---
             typewriter;
     }
@@ -116,7 +120,7 @@ namespace BetweenTheLines.Source
             noImg, crtVignette,
 
             // --- GUI ---
-            cursor, cursorHighlight,
+            cursor, cursorHighlight, cursorInspect,
             button,
             checkboxInactive, checkboxActive,
 
@@ -130,9 +134,11 @@ namespace BetweenTheLines.Source
             // --- Level ---
 
             // Intro
-            intro1, intro2,
+            intro1,
+            intro2, intro2a;
 
-            giovanni;
+            // Gameplay
+            // TBA
 
         // --- Fonts ---
         public static SpriteFont arial;
@@ -152,6 +158,7 @@ namespace BetweenTheLines.Source
             // --- GUI ---
             Assets.cursor = content.Load<Texture2D>("Assets/Images/Global/Cursor");
             Assets.cursorHighlight = content.Load<Texture2D>("Assets/Images/Global/CursorHighlight");
+            Assets.cursorInspect = content.Load<Texture2D>("Assets/Images/Global/CursorInspect");
 
             Assets.button = content.Load<Texture2D>("Assets/Images/Global/Button");
 
@@ -167,11 +174,12 @@ namespace BetweenTheLines.Source
             Assets.logo = content.Load<Texture2D>("Assets/Images/Title/Logo");
 
             // --- Gameplay ---
-            Assets.giovanni = content.Load<Texture2D>("Assets/Images/Level/Giovanni");
+            // TBA
 
             // Intro
             Assets.intro1 = content.Load<Texture2D>("Assets/Images/Level/Intro/intro1");
             Assets.intro2 = content.Load<Texture2D>("Assets/Images/Level/Intro/intro2");
+            Assets.intro2a = content.Load<Texture2D>("Assets/Images/Level/Intro/intro2door");
 
             // --- Portraits ---
 
@@ -182,6 +190,7 @@ namespace BetweenTheLines.Source
             // Audio
 
             // SFX
+            SFX.button = content.Load<SoundEffect>("Assets/Audio/SFX/button");
             SFX.typewriter = content.Load<SoundEffect>("Assets/Audio/SFX/typewriter");
 
             // NOTE: Music is ran in try and catch to prevent errors while copyrighted placeholder music is left out of the source code.

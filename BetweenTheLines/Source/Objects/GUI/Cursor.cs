@@ -27,7 +27,8 @@ namespace BetweenTheLines.Source.Objects.GUI
 
         // States
         protected bool
-            highlighted = false;
+            highlighted = false,
+            inspecting = false;
 
         // Functions
         protected bool
@@ -45,6 +46,16 @@ namespace BetweenTheLines.Source.Objects.GUI
         }
 
         int previousX;
+
+        // Cursor Inspection (Magnifying Glass)
+        public void Inspect()
+        {
+            // Disable other States
+            highlighted = false;
+
+            // Set Inspecting
+            inspecting = true;
+        }
 
         public void Update(GameTime gameTime)
         {
@@ -98,10 +109,20 @@ namespace BetweenTheLines.Source.Objects.GUI
                 }
             }
 
-            if (highlighted) sprite.SetTexture(Assets.cursorHighlight);
-            else sprite.SetTexture(Assets.cursor);
+            // Sprite Selection
 
+            // Regular State
+            sprite.SetTexture(Assets.cursor);
+
+            // Highlighted
+            if (highlighted) sprite.SetTexture(Assets.cursorHighlight);
+
+            // Inspecting
+            if (inspecting) sprite.SetTexture(Assets.cursorInspect);
+
+            // Disable State Afterwards
             highlighted = false;
+            inspecting = false;
         }
 
         public void ResetValues()

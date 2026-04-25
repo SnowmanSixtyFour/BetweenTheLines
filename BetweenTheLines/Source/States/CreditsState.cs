@@ -36,7 +36,7 @@ namespace BetweenTheLines.Source.States
             logoYStart = 700,
             creditsXPadding = 375,
             creditsYStart = 800,
-            creditsYEnd = -460;
+            creditsYEnd = -540;
 
         private int amountToMove = 1;
 
@@ -49,6 +49,7 @@ namespace BetweenTheLines.Source.States
             https://itch.io/jam/mystery-game-jam-2026
 
             Special Thanks
+
             CRT Scanline Shaders (Public Domain) - Timothy Lottes
 
             Copyright (c) 2026 Snowman64
@@ -57,6 +58,9 @@ namespace BetweenTheLines.Source.States
             https://www.gnu.org/licenses/gpl-3.0.html
 
             Freesound.org Sounds
+
+            Open button 2 - kickhat
+            https://freesound.org/people/kickhat/sounds/264447/
 
             Typewriter Button SLIDE 1A.wav - mincedbeats
             https://freesound.org/people/mincedbeats/sounds/433600/

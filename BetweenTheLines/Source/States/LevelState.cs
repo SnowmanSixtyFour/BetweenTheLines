@@ -15,6 +15,12 @@ namespace BetweenTheLines.Source.States
         // Objects
         private StaticSprite cinematic;
 
+        // Intro Objects
+        private StaticSprite cinematicDoorTrigger;
+        private int
+            doorWidth = 60, doorHeight = 80,
+            doorPaddingX = 40, doorPaddingY = 40;
+
         private DialogBox dialogBox;
 
         // Dialog Speed
@@ -31,6 +37,8 @@ namespace BetweenTheLines.Source.States
         {
             // Set Objects
             cinematic = new StaticSprite(null, new Rectangle(0, 0, cam.Width, cam.Height), Color.White);
+
+            cinematicDoorTrigger = new StaticSprite(null, new Rectangle(new Point((cam.Width / 2) - (doorWidth / 2) + doorPaddingX, (cam.Height - doorHeight) - doorPaddingY), new Point(doorWidth, doorHeight)), Color.Transparent);
 
             dialogBox = new DialogBox();
 
@@ -106,6 +114,37 @@ namespace BetweenTheLines.Source.States
 
                         dialogBox.Hide(); // Hide Dialog Box
                         portrait.MoveLeftOffscreen(); // Hide Portrait
+
+                        // Hovering over Door
+                        if (cursor.HoveringOver(cinematicDoorTrigger.GetDestRect()))
+                        {
+                            // Cursor
+                            cursor.Inspect();
+
+                            // Cinematic
+                            cinematic.SetTexture(Assets.intro2a); // Change to Intro 2A (Hover)
+                        }
+                        
+                        // Not Hovering over Door
+                        else
+                        {
+                            // Cinematic
+                            cinematic.SetTexture(Assets.intro2); // Change to Intro 2 (No Hover)
+                        }
+
+                        // Clicking Door
+                        if (cursor.HoveringOver(cinematicDoorTrigger.GetDestRect()) && LeftClicked())
+                        {
+                            // WIP - Changes to title, FIX THIS
+
+                            // Change Music
+                            StopSong();
+                            MediaPlayer.Play(OST.title);
+
+                            // Switch State
+                            this.changeState = true;
+                            Global.currentState = Global.State.title;
+                        }
                     }
 
                     // Intro 1
@@ -200,6 +239,8 @@ namespace BetweenTheLines.Source.States
             // Draw Objects
 
             cinematic.Draw(spriteBatch); // Cinematic Artwork
+
+            cinematicDoorTrigger.Draw(spriteBatch); // Door Trigger (Invisible)
 
             portrait.Draw(spriteBatch); // Portrait
 
