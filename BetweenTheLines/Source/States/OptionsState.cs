@@ -73,7 +73,7 @@ namespace BetweenTheLines.Source.States
             // --- Set Buttons ---
 
             // Save Changes
-            backSave = new Button("Save and Exit", Point.Zero, 0.77f);
+            backSave = new Button("Save and Exit", Point.Zero, 0.765f);
             backSave.SetPosition(new Point(
                 backButtonPadding, // X
                 (cam.Height - backSave.Height) - backButtonPadding) // Y

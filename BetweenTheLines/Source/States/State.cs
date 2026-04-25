@@ -65,6 +65,9 @@ namespace BetweenTheLines.Source.States
         // Audio
         public bool musicLoop = true;
 
+        // CRT Filter
+        private StaticSprite crtVignette;
+
         public State()
         {
             // --- Set State ---
@@ -91,7 +94,10 @@ namespace BetweenTheLines.Source.States
 
             // Text
             pauseText = new Text(Assets.arial, "Paused", new Vector2((cam.Width / 2), (cam.Height / 2) - pauseTextPadding), Color.White, 2.0f, true);
-            pauseTooltip = new Text(Assets.arial, pauseTooltipMenu, new Vector2((cam.Width / 2), (cam.Height / 2) + pauseTextPadding), Color.LightGray, 1.0f, true);
+            pauseTooltip = new Text(Assets.arial, "", new Vector2((cam.Width / 2) - 160, (cam.Height / 2) + pauseTextPadding), Color.White, 1.0f, false);
+
+            // CRT Filter
+            crtVignette = new StaticSprite(Assets.crtVignette, new Rectangle(0, 0, cam.Width, cam.Height), Color.White);
         }
 
         /// <summary>
@@ -268,6 +274,13 @@ namespace BetweenTheLines.Source.States
                     pauseTooltip.Draw(spriteBatch);
                 }
             }
+
+            // CRT Filter
+            if (Global.crtFilter)
+            {
+                // Vignette
+                crtVignette.Draw(spriteBatch);
+            }
         }
 
         /// <summary>
@@ -283,10 +296,13 @@ namespace BetweenTheLines.Source.States
         /// </summary>
         public virtual void ResetState()
         {
+            // State Properties
+            cursor.ResetValues(); // Reset Cursor Position and Size
+
             // Unpause State
             if (Global.active && Global.paused) Global.paused = false;
 
-            // Reset Mouse Position to Center of Screen
+            // Set Cursor Position to Center of Screen
             cursor.X = (screenWidth / 2);    // X
             cursor.Y = (screenHeight / 2);   // Y
         }

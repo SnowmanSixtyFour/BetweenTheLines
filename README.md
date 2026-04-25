@@ -17,4 +17,6 @@ TBA
 ### Special Thanks
 Timothy Lottes - [CRT Filter (Public Domain)](https://github.com/libretro/glsl-shaders/blob/master/crt/shaders/crt-lottes.glsl)
 # Copyright
-Copyright (c) 2026 Snowman64, under the [GNU General Public License v3.0](https://github.com/SnowmanSixtyFour/BetweenTheLines/blob/main/LICENSE).
+Copyright (c) 2026 Snowman64, under the [GNU General Public License v3.0](https://github.com/SnowmanSixtyFour/BetweenTheLines/blob/game-jam/LICENSE).
+
+All Freesound.org sounds used are licensed under the [Creative Commons 0 License](https://creativecommons.org/publicdomain/zero/1.0/).

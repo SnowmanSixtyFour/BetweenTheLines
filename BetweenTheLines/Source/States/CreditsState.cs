@@ -34,29 +34,36 @@ namespace BetweenTheLines.Source.States
         private Vector2 creditsPosition;
         private int
             logoYStart = 700,
-            creditsYStart = 900,
-            creditsYEnd = -230;
+            creditsXPadding = 375,
+            creditsYStart = 800,
+            creditsYEnd = -460;
 
         private int amountToMove = 1;
 
-        // String
+        // String - Try to keep credits in-bounds of about here -> ||
         private String creditsString = """
             Created by Snowman64
 
             Developed from April 7, 2026 - TBA
             Made for the Mystery Game Jam 2026 on itch.io.
             https://itch.io/jam/mystery-game-jam-2026
-            
-            Built on Z Engine.
-            https://github.com/Z-Engine/ZEngine
 
-            Special Thanks:
+            Special Thanks
             CRT Scanline Shaders (Public Domain) - Timothy Lottes
+
+            Copyright (c) 2026 Snowman64
+
+            Licensed under the GNU General Public License v3.0.
+            https://www.gnu.org/licenses/gpl-3.0.html
 
             Freesound.org Sounds
 
             Typewriter Button SLIDE 1A.wav - mincedbeats
             https://freesound.org/people/mincedbeats/sounds/433600/
+
+            All Freesound.org sounds used are licensed
+            under the Creative Commons 0 License.
+            https://creativecommons.org/publicdomain/zero/1.0/
             """;
 
         public CreditsState()
@@ -71,10 +78,10 @@ namespace BetweenTheLines.Source.States
             // --- Credits ---
 
             // Position
-            creditsPosition = new Vector2(cam.Width / 2, creditsYStart);
+            creditsPosition = new Vector2(cam.Width / 2 - creditsXPadding, creditsYStart);
 
             // Set Text
-            creditsText = new Text(Assets.arial, creditsString, creditsPosition, Color.White, 1.0f, true);
+            creditsText = new Text(Assets.arial, creditsString, creditsPosition, Color.White, 1.0f, false);
 
             // Set Buttons
             backButton = new Button("Back", Point.Zero);

@@ -113,7 +113,7 @@ namespace BetweenTheLines.Source
         // Load Textures
         public static Texture2D
             // --- Global ---
-            noImg,
+            noImg, crtVignette,
 
             // --- GUI ---
             cursor, cursorHighlight,
@@ -147,6 +147,7 @@ namespace BetweenTheLines.Source
 
             // --- Utilities ---
             Assets.noImg = content.Load<Texture2D>("Assets/Images/Global/pixel");
+            Assets.crtVignette = content.Load<Texture2D>("Assets/Images/Global/CRTVignette");
 
             // --- GUI ---
             Assets.cursor = content.Load<Texture2D>("Assets/Images/Global/Cursor");
