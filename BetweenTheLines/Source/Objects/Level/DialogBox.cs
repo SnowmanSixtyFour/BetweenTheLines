@@ -85,8 +85,16 @@ namespace BetweenTheLines.Source.Objects.Level
                     // Update Timer
                     timeElapsed += (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-                    // Set Name to Array Name
-                    this.name.setText(names[dialog[steps].name]);
+                    // Set Name to Blank if -1 or Lower
+                    if (dialog[steps].name <= -1)
+                    {
+                        this.name.setText("");
+                    }
+                    else
+                    {
+                        // Set Name to Array Name
+                        this.name.setText(names[dialog[steps].name]);
+                    }
 
                     // Set Text to Current Line in Typewriter Text
                     if (!typewriterFinished)

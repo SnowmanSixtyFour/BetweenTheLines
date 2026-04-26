@@ -96,6 +96,23 @@ namespace BetweenTheLines.Source.States
                         }
                     }
 
+                    // Intro 2a
+                    if (dialogBox.dialog == Dialog.intro2a)
+                    {
+                        // State Properties
+                        cursorVisible = false; // Hide Cursor
+                    }
+
+                    // Intro 2
+                    if (dialogBox.dialog == Dialog.intro2)
+                    {
+                        // Line 3
+                        if (dialogBox.currentLine == 3)
+                        {
+                            portrait.MoveLeftOffscreen(); // Hide Portrait
+                        }
+                    }
+
                     // --- Game Progression ---
 
                     // Proceed Dialog
@@ -133,7 +150,6 @@ namespace BetweenTheLines.Source.States
                         // --- Objects ---
 
                         dialogBox.Hide(); // Hide Dialog Box
-                        portrait.MoveLeftOffscreen(); // Hide Portrait
 
                         // Hovering over Door
                         if (cursor.HoveringOver(cinematicDoorTrigger.GetDestRect()))

@@ -270,7 +270,10 @@ namespace BetweenTheLines.Source
         public static DialogString[] intro2 = {
             Line(1, "Well, here I am."),
             Line(1, "This place's address was at the bottom of the letter."),
-            Line(1, "Let's hope this wasn't a waste of my time.")
+            Line(1, "Let's hope this wasn't a waste of my time."),
+            Line(-1, "In this game, you'll have to take full advantage of your surroundings."),
+            Line(-1, "That means using the mouse to interact with objects\nthat are full of mystery, or might contain clues."),
+            Line(-1, "Go on, try moving your mouse to interact with the door!")
         };
 
         public static DialogString[] intro2a = {
