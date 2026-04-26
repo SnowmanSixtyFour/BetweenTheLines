@@ -135,10 +135,10 @@ namespace BetweenTheLines.Source
 
             // Intro
             intro1,
-            intro2, intro2a;
+            intro2, intro2a,
 
             // Gameplay
-            // TBA
+            foyer;
 
         // --- Fonts ---
         public static SpriteFont arial;
@@ -180,6 +180,9 @@ namespace BetweenTheLines.Source
             Assets.intro1 = content.Load<Texture2D>("Assets/Images/Level/Intro/intro1");
             Assets.intro2 = content.Load<Texture2D>("Assets/Images/Level/Intro/intro2");
             Assets.intro2a = content.Load<Texture2D>("Assets/Images/Level/Intro/intro2door");
+
+            // House
+            Assets.foyer = content.Load<Texture2D>("Assets/Images/Level/House/foyer");
 
             // --- Portraits ---
 
@@ -228,6 +231,12 @@ namespace BetweenTheLines.Source
     // Game Dialog
     internal class Dialog
     {
+        // Character IDs
+        internal static readonly byte
+            pickles = 0,
+            faun = 1,
+            otto = 2;
+
         // Dialog Portraits
 
         public static Texture2D
@@ -252,7 +261,7 @@ namespace BetweenTheLines.Source
             Line(1, "In my line of work... I make a decent amount of money."),
             Line(1, "But this?..."),
             Line(1, "I'm gonna get to the bottom of this."),
-            Line(1, "Besides... Who would fall for a scheme like this?")
+            Line(1, "Besides... Who would fall for a scheme like this?\nI've never seen something so outrageous.")
         };
 
         public static DialogString[] intro2 = {
@@ -265,6 +274,21 @@ namespace BetweenTheLines.Source
             Line(1, "Huh... That's weird."),
             Line(1, "The door's unlocked."),
             Line(1, "I guess I'll just go in.")
+        };
+
+        public static DialogString[] prelude1 = {
+            Line(1, "Hello?"),
+            Line(0, "Um... Hi..."),
+            Line(1, "Huh?"),
+            Line(0, "So you... got the same letter as us."),
+            Line(1, "Yeah. I'm guessing I'm not the only one, then."),
+            Line(0, "B-before we go, I should probably introduce myself..."),
+            Line(2, "I'm Faun. I got here first. I-It's nice to meet you..."),
+            Line(1, "The name's Pickles. Detective Pickles.\nI'm here on behalf of my work investigating this..."),
+            Line(2, "...Weirdly obvious scam?"),
+            Line(1, "Yeah. Any info about that?"),
+            Line(2, "Come with me... the others are waiting.\nI'll explain everything in the living room."),
+            Line(1, "The others... Alright.")
         };
 
         // Create Dialog String

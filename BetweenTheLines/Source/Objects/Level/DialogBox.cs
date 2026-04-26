@@ -33,7 +33,7 @@ namespace BetweenTheLines.Source.Objects.Level
         // Names
         private String[] names = {
             "???",
-            "Detective Pickles",
+            "Pickles",
             "Faun",
             "Otto"
         };
@@ -47,6 +47,7 @@ namespace BetweenTheLines.Source.Objects.Level
             // Show / Hide Bools
             lowering = false,
             heightening = false;
+        public int currentLine = 0;
 
         // Colors
         private Color
@@ -66,6 +67,9 @@ namespace BetweenTheLines.Source.Objects.Level
 
         public void Update(GameTime gameTime, float dialogSpeed)
         {
+            // Update Current Line
+            currentLine = steps;
+
             // Only update Dialog Box if position is not changing
             if (!lowering && !heightening)
             {

@@ -45,19 +45,6 @@ namespace BetweenTheLines.Source.States
             portrait = new Portrait(0, 0);
 
             SetDefaultVariables();
-
-            // --- IGNORE ---
-            /*
-            // Test Character
-            giovanni = new Character(Global.giovanni, new Point(10, 200), new Point(48, 29), new Point(16, 29), Color.White);
-            giovanni.SetSize(2);
-
-            // Test Create Animations
-            giovanni.CreateAnimation("idle", 0, 0);
-            giovanni.CreateAnimation("walk", 1, 2);
-
-            debug = new Text(Global.arial, "", new Vector2(10, 10), Color.White, 1.0f, false);
-            */
         }
 
         /// <summary>
@@ -75,6 +62,7 @@ namespace BetweenTheLines.Source.States
             
             // Portraits
             portrait.Hide(); // Hide Portrait on Start
+            portrait.SetState(Dialog.pickles, Portrait.State.regular); // Set to Pickles
 
             // Dialog Box
             dialogBox.ResetText(); // Reset Text (IMPORTANT! To clear any last dialog before reset)
@@ -93,6 +81,23 @@ namespace BetweenTheLines.Source.States
                 // If Dialog is not finished
                 if (!dialogBox.endOfDialog)
                 {
+                    // --- Dialog Events ---
+
+                    // Prelude 1
+                    if (dialogBox.dialog == Dialog.prelude1)
+                    {
+                        // Line 1
+                        if (dialogBox.currentLine == 1)
+                        {
+                            // Set Portrait to Faun
+                            portrait.SetState(Dialog.faun, Portrait.State.regular);
+
+                            portrait.MoveToCenter();
+                        }
+                    }
+
+                    // --- Game Progression ---
+
                     // Proceed Dialog
                     if (KeyPress(Keys.Enter) || LeftClicked()) dialogBox.Proceed();
                 }
@@ -103,9 +108,19 @@ namespace BetweenTheLines.Source.States
                     // NOTE: Functions trigger after chosen dialog is finished.
                     // Dialog must be ordered from last to first, or else triggers will conflict!
 
+                    // Prelude 1
+                    if (dialogBox.dialog == Dialog.prelude1)
+                    {
+                    }
+
                     // Intro 2a
                     if (dialogBox.dialog == Dialog.intro2a)
                     {
+                        // Dialog
+                        dialogBox.setDialog(Dialog.prelude1); // Set to Prelude 1
+
+                        // Cinematic
+                        cinematic.SetTexture(Assets.foyer); // Change to Foyer
                     }
 
                     // Intro 2
@@ -183,46 +198,6 @@ namespace BetweenTheLines.Source.States
                     Global.currentState = Global.State.title;
                 }
             }
-
-            // --- IGNORE ---
-            /*
-            // Text
-            debug.setText("X: " + giovanni.X
-                + "\nY: " + giovanni.Y
-                + "\nWidth: " + giovanni.Width
-                + "\nHeight: " + giovanni.Height);
-
-            // Char Movement
-            if (KeyDown(Keys.A))
-            {
-                giovanni.X -= 2;
-            }
-            if (KeyDown(Keys.D))
-            {
-                giovanni.X += 2;
-            }
-            if (KeyDown(Keys.W))
-            {
-                giovanni.Y -= 2;
-            }
-            if (KeyDown(Keys.S))
-            {
-                giovanni.Y += 2;
-            }
-
-            // Char Animations
-            if (!KeyDown(Keys.A) // Idle
-                && !KeyDown(Keys.D)
-                && !KeyDown(Keys.W)
-                && !KeyDown(Keys.S))
-            {
-                giovanni.PlayAnimation("idle");
-            }
-            else // Walking
-            {
-                giovanni.PlayAnimation("walk");
-            }
-            */
         }
 
         public override void ResetState()

@@ -14,15 +14,17 @@ namespace BetweenTheLines.Source.Objects.Level
         public StaticSprite sprite { get; private set; }
         private int character;
 
-        private enum State
+        public enum State
         {
             regular,
-            thinking
+            thinking,
+            worried,
+            angry
         }
 
         private Point size = new Point(300, 480);
 
-        private State portraitState = State.regular;
+        public State portraitState = State.regular;
 
         private int
             positionX,
@@ -55,7 +57,7 @@ namespace BetweenTheLines.Source.Objects.Level
 
             // --- State ---
 
-            SetState(state);
+            SetState(state, this.portraitState);
         }
 
         public void Update(GameTime gameTime)
@@ -115,7 +117,7 @@ namespace BetweenTheLines.Source.Objects.Level
                     this.sprite.SetX((0 - size.X));
 
                     // End Event
-                    moveToLeftOffscreen = false;
+                    // moveToLeftOffscreen = false;
                 }
             }
 
@@ -134,7 +136,7 @@ namespace BetweenTheLines.Source.Objects.Level
                     this.sprite.SetX((0 - size.X));
 
                     // End Event
-                    moveToRightOffscreen = false;
+                    // moveToRightOffscreen = false;
                 }
             }
         }
@@ -146,17 +148,40 @@ namespace BetweenTheLines.Source.Objects.Level
 
         // Setters
 
-        public void SetState(byte state)
+        public void SetState(byte state, State newPortraitState)
         {
-            // Set State
-            portraitState = (State)state;
+            // Set Properties
+            this.character = state;
+            portraitState = newPortraitState;
 
             // Pickles
-            if (character == 0)
+            if (state == 0)
             {
+                // Regular
                 if (portraitState == State.regular) this.sprite.SetTexture(Dialog.picklesRegular);
 
+                // Thinking
                 if (portraitState == State.thinking) this.sprite.SetTexture(Dialog.picklesThinking);
+            }
+
+            // Faun
+            else if (state == 1)
+            {
+                // Regular
+                if (portraitState == State.regular) this.sprite.SetTexture(Dialog.faunRegular);
+
+                // Worried
+                if (portraitState == State.worried) this.sprite.SetTexture(Dialog.faunWorried);
+            }
+
+            // Otto
+            else if (state == 2)
+            {
+                // Regular
+                if (portraitState == State.regular) this.sprite.SetTexture(Dialog.ottoRegular);
+
+                // Angry
+                if (portraitState == State.angry) this.sprite.SetTexture(Dialog.ottoAngry);
             }
         }
 
@@ -174,12 +199,26 @@ namespace BetweenTheLines.Source.Objects.Level
 
         public void MoveToCenter()
         {
-            this.fromRightToCenter = true;
+            Hide(); // Reset Position to Right Edge of Screen
+            this.fromRightToCenter = true; // Enable Move to Center, from Left Edge of Screen
         }
 
         public void MoveLeftOffscreen()
         {
+            // Enable Move Left Event
             this.moveToLeftOffscreen = true;
+
+            // Disable other Move Events
+            this.moveToRightOffscreen = false;
+        }
+
+        public void MoveRightOffscreen()
+        {
+            // Enable Move Right Event
+            this.moveToRightOffscreen = true;
+
+            // Disable other Move Events
+            this.moveToLeftOffscreen = false;
         }
     }
 }
