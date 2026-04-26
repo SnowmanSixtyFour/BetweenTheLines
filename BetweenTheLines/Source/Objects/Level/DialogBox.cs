@@ -23,7 +23,10 @@ namespace BetweenTheLines.Source.Objects.Level
         // Text
         private Text
             text, name;
-        private int textPadding = 20;
+        private int
+            textPadding = 30,
+            xOffset = 25, // Text Indent
+            yOffset = 70; // Text Vertical Offset
 
         private String typewriterText = "";
         private bool typewriterFinished = false;
@@ -49,9 +52,12 @@ namespace BetweenTheLines.Source.Objects.Level
             heightening = false;
         public int currentLine = 0;
 
+        // Box Transparency
+        private float transparency = 0.85f;
+
         // Colors
         private Color
-            boxColor = new Color(32, 32, 32, 192),
+            boxColor = Color.Gray,
             textColor = Color.White,
             nameColor = Color.LightYellow,
             invisibleColor = new Color(0, 0, 0, 0);
@@ -59,10 +65,10 @@ namespace BetweenTheLines.Source.Objects.Level
         public DialogBox()
         {
             this.boxRectangle = new Rectangle(0, height * 2, Global.windowWidth, height);
-            this.box = new StaticSprite(null, boxRectangle, boxColor);
+            this.box = new StaticSprite(Assets.dialogBox, boxRectangle, (boxColor * transparency));
 
             this.name = new Text(Assets.arial, "", new Vector2((box.GetDestRect().X + textPadding), (box.GetDestRect().Y + textPadding)), nameColor, 1.0f, false);
-            this.text = new Text(Assets.arial, "", new Vector2((box.GetDestRect().X + textPadding), (box.GetDestRect().Y + 60)), textColor, 1.0f, false);
+            this.text = new Text(Assets.arial, "", new Vector2((box.GetDestRect().X + textPadding + xOffset), (box.GetDestRect().Y + yOffset)), textColor, 1.0f, false);
         }
 
         public void Update(GameTime gameTime, float dialogSpeed)

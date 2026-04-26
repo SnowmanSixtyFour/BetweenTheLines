@@ -50,7 +50,7 @@ namespace BetweenTheLines.Source
         // Game
 
         // Version (start with "v")
-        public static string gameVersion = "v1.0.0"; // NOTE: Does this really matter in a Game Jam?
+        public static string gameVersion = "Mystery Game Jam 2026 Edition"; // NOTE: Version does not have a real number for game jam release!
 
         public static bool
             paused = false,
@@ -121,6 +121,7 @@ namespace BetweenTheLines.Source
 
             // --- GUI ---
             cursor, cursorHighlight, cursorInspect,
+            dialogBox,
             button,
             checkboxInactive, checkboxActive,
 
@@ -159,6 +160,8 @@ namespace BetweenTheLines.Source
             Assets.cursor = content.Load<Texture2D>("Assets/Images/Global/Cursor");
             Assets.cursorHighlight = content.Load<Texture2D>("Assets/Images/Global/CursorHighlight");
             Assets.cursorInspect = content.Load<Texture2D>("Assets/Images/Global/CursorInspect");
+
+            Assets.dialogBox = content.Load<Texture2D>("Assets/Images/Global/DialogBox");
 
             Assets.button = content.Load<Texture2D>("Assets/Images/Global/Button");
 

@@ -28,11 +28,16 @@ namespace BetweenTheLines.Source.States
         private int backButtonPadding = 20;
 
         // Text
-        private Text creditsText; // Credits
+        private Text
+            versionNum, // Version Number under Logo
+            creditsText; // Credits
         
         // Position
         private Vector2 creditsPosition;
         private int
+            verNumOffset = 25, // Version Number Vertical Offset from Logo
+
+            // Y Positions
             logoYStart = 700,
             creditsXPadding = 375,
             creditsYStart = 800,
@@ -78,6 +83,7 @@ namespace BetweenTheLines.Source.States
 
             // Game Logo
             logo = new StaticSprite(Assets.logo, new Rectangle(new Point((cam.Width / 2) - (logoSize.X / 2), logoYStart - logoSize.Y), logoSize), Color.White);
+            versionNum = new Text(Assets.arial, Global.gameVersion, new Vector2(logo.GetDestRect().Center.X, logo.GetDestRect().Bottom + verNumOffset), Color.White, 1.0f, true);
 
             // --- Credits ---
 
@@ -107,7 +113,8 @@ namespace BetweenTheLines.Source.States
                     logo.SetDestRect(new Rectangle(logo.GetDestRect().X, logo.GetDestRect().Y - amountToMove, logo.GetDestRect().Width, logo.GetDestRect().Height));
                     creditsPosition.Y -= amountToMove;
 
-                    // Keep Credits Updated
+                    // Keep Text Updated
+                    versionNum.setPosition(new Vector2(logo.GetDestRect().Center.X, logo.GetDestRect().Bottom + verNumOffset));
                     creditsText.setPosition(creditsPosition);
                 }
 
@@ -168,6 +175,8 @@ namespace BetweenTheLines.Source.States
                 logo.GetDestRect().Width,
                 logo.GetDestRect().Height));
 
+            versionNum.setPosition(new Vector2(logo.GetDestRect().Center.X, logo.GetDestRect().Bottom + verNumOffset)); // Version Number
+
             creditsPosition.Y = creditsYStart; // Credits
 
             base.ResetState();
@@ -191,6 +200,7 @@ namespace BetweenTheLines.Source.States
             logo.Draw(spriteBatch);
 
             // Text
+            versionNum.Draw(spriteBatch);
             creditsText.Draw(spriteBatch);
 
             // Buttons

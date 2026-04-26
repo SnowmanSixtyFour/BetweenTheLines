@@ -1,4 +1,4 @@
-﻿// An example of using the State class, to create a level
+﻿// The Main State of the Gameplay Loop
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
