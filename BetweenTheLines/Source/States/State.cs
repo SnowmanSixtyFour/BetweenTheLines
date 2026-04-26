@@ -200,6 +200,12 @@ namespace BetweenTheLines.Source.States
             // If Game is not Paused
             if (!Global.paused)
             {
+                // Fix Cursor Size
+                if (cursor.Bounds.Width != Global.cursorSize.X || cursor.Bounds.Height != Global.cursorSize.Y)
+                {
+                    cursor.ResetSize();
+                }
+
                 if (Global.active) // If Window is Open
                 {
                     // On Mouse Move

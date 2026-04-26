@@ -103,6 +103,11 @@ namespace BetweenTheLines.Source.States
                     // NOTE: Functions trigger after chosen dialog is finished.
                     // Dialog must be ordered from last to first, or else triggers will conflict!
 
+                    // Intro 2a
+                    if (dialogBox.dialog == Dialog.intro2a)
+                    {
+                    }
+
                     // Intro 2
                     if (dialogBox.dialog == Dialog.intro2)
                     {
@@ -135,15 +140,9 @@ namespace BetweenTheLines.Source.States
                         // Clicking Door
                         if (cursor.HoveringOver(cinematicDoorTrigger.GetDestRect()) && LeftClicked())
                         {
-                            // WIP - Changes to title, FIX THIS
-
-                            // Change Music
-                            StopSong();
-                            MediaPlayer.Play(OST.title);
-
-                            // Switch State
-                            this.changeState = true;
-                            Global.currentState = Global.State.title;
+                            // Dialog
+                            dialogBox.setDialog(Dialog.intro2a); // Set to Intro 2a
+                            dialogBox.Show(); // Show Dialog Box
                         }
                     }
 

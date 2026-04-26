@@ -187,6 +187,14 @@ namespace BetweenTheLines.Source
             Dialog.picklesRegular = content.Load<Texture2D>("Assets/Images/Level/Portrait/picklesRegular");
             Dialog.picklesThinking = content.Load<Texture2D>("Assets/Images/Level/Portrait/picklesThinking");
 
+            // Faun
+            Dialog.faunRegular = content.Load<Texture2D>("Assets/Images/Level/Portrait/faunRegular");
+            Dialog.faunWorried = content.Load<Texture2D>("Assets/Images/Level/Portrait/faunWorried");
+
+            // Otto
+            Dialog.ottoRegular = content.Load<Texture2D>("Assets/Images/Level/Portrait/ottoRegular");
+            Dialog.ottoAngry = content.Load<Texture2D>("Assets/Images/Level/Portrait/ottoAngry");
+
             // Audio
 
             // SFX
@@ -224,8 +232,13 @@ namespace BetweenTheLines.Source
 
         public static Texture2D
             // --- Pickles ---
-            picklesRegular,
-            picklesThinking;
+            picklesRegular, picklesThinking,
+
+            // --- Faun ---
+            faunRegular, faunWorried,
+
+            // --- Otto ---
+            ottoRegular, ottoAngry;
         
         // NOTE: Lines of dialog are formatted like this:
         // Integer number Name | String Text
@@ -246,6 +259,12 @@ namespace BetweenTheLines.Source
             Line(1, "Well, here I am."),
             Line(1, "This place's address was at the bottom of the letter."),
             Line(1, "Let's hope this wasn't a waste of my time.")
+        };
+
+        public static DialogString[] intro2a = {
+            Line(1, "Huh... That's weird."),
+            Line(1, "The door's unlocked."),
+            Line(1, "I guess I'll just go in.")
         };
 
         // Create Dialog String

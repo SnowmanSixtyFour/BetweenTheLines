@@ -33,7 +33,9 @@ namespace BetweenTheLines.Source.Objects.Level
         // Names
         private String[] names = {
             "???",
-            "Detective Pickles"
+            "Detective Pickles",
+            "Faun",
+            "Otto"
         };
 
         // Dialog
@@ -147,6 +149,11 @@ namespace BetweenTheLines.Source.Objects.Level
                 {
                     box.SetDestRect(boxRectangle); // Reset Position if too high up
 
+                    // Show all Text (with Colour)
+                    ResetText();
+                    this.name.setColor(nameColor);
+                    this.text.setColor(textColor);
+
                     // End Heightening
                     heightening = false;
                 }
@@ -226,10 +233,6 @@ namespace BetweenTheLines.Source.Objects.Level
             // Set Variables
             heightening = true;
             lowering = false;
-
-            // Show all Text (with Colour)
-            this.name.setColor(nameColor);
-            this.text.setColor(textColor);
         }
 
         /// <summary>
