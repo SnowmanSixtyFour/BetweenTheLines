@@ -80,6 +80,9 @@ namespace BetweenTheLines.Source.Objects.GUI
                 this.highlighted = false;
             }
 
+            // Play Click SFX
+            if (this.clicked) SFX.button.Play();
+
             // --- Checkbox Properties ---
 
             // Sprite
