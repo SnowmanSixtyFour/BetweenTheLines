@@ -223,6 +223,8 @@ namespace BetweenTheLines.Source.Objects.Level
             {
                 ResetTypewriter();
                 steps++;
+
+                SFX.button.Play(); // Play Click Sound
             }
             // Skip Dialog
             else

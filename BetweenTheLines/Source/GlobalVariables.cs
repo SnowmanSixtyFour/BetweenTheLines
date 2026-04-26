@@ -121,7 +121,7 @@ namespace BetweenTheLines.Source
 
             // --- GUI ---
             cursor, cursorHighlight, cursorInspect,
-            dialogBox,
+            dialogBox, overlay, clock,
             button,
             checkboxInactive, checkboxActive,
 
@@ -162,6 +162,8 @@ namespace BetweenTheLines.Source
             Assets.cursorInspect = content.Load<Texture2D>("Assets/Images/Global/CursorInspect");
 
             Assets.dialogBox = content.Load<Texture2D>("Assets/Images/Global/DialogBox");
+            Assets.overlay = content.Load<Texture2D>("Assets/Images/Global/OverlayTimeCorner");
+            Assets.clock = content.Load<Texture2D>("Assets/Images/Global/Clock");
 
             Assets.button = content.Load<Texture2D>("Assets/Images/Global/Button");
 

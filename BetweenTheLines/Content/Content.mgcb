@@ -87,6 +87,18 @@
 /processorParam:TextureFormat=Color
 /build:Assets/Images/Global/CheckboxInactive.png
 
+#begin Assets/Images/Global/Clock.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Assets/Images/Global/Clock.png
+
 #begin Assets/Images/Global/CRTVignette.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -146,6 +158,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Assets/Images/Global/DialogBox.png
+
+#begin Assets/Images/Global/OverlayTimeCorner.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Assets/Images/Global/OverlayTimeCorner.png
 
 #begin Assets/Images/Global/pixel.png
 /importer:TextureImporter

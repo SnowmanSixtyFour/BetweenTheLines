@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework.Media;
 using BetweenTheLines.Source.Graphics;
 using BetweenTheLines.Source.Objects;
 using BetweenTheLines.Source.Objects.Level;
+using BetweenTheLines.Source.Objects.GUI;
 
 namespace BetweenTheLines.Source.States
 {
@@ -14,6 +15,7 @@ namespace BetweenTheLines.Source.States
     {
         // Objects
         private StaticSprite cinematic;
+        private Overlay overlay;
 
         // Intro Objects
         private StaticSprite cinematicDoorTrigger;
@@ -37,6 +39,9 @@ namespace BetweenTheLines.Source.States
         {
             // Set Objects
             cinematic = new StaticSprite(null, new Rectangle(0, 0, cam.Width, cam.Height), Color.White);
+
+            overlay = new Overlay();
+            overlay.cam = cam; // Set Camera for Overlay
 
             cinematicDoorTrigger = new StaticSprite(null, new Rectangle(new Point((cam.Width / 2) - (doorWidth / 2) + doorPaddingX, (cam.Height - doorHeight) - doorPaddingY), new Point(doorWidth, doorHeight)), Color.Transparent);
 
@@ -96,13 +101,6 @@ namespace BetweenTheLines.Source.States
                         }
                     }
 
-                    // Intro 2a
-                    if (dialogBox.dialog == Dialog.intro2a)
-                    {
-                        // State Properties
-                        cursorVisible = false; // Hide Cursor
-                    }
-
                     // Intro 2
                     if (dialogBox.dialog == Dialog.intro2)
                     {
@@ -124,6 +122,8 @@ namespace BetweenTheLines.Source.States
                 {
                     // NOTE: Functions trigger after chosen dialog is finished.
                     // Dialog must be ordered from last to first, or else triggers will conflict!
+
+                    // --- Dialog End Events ---
 
                     // Prelude 1
                     if (dialogBox.dialog == Dialog.prelude1)
@@ -174,6 +174,9 @@ namespace BetweenTheLines.Source.States
                             // Dialog
                             dialogBox.setDialog(Dialog.intro2a); // Set to Intro 2a
                             dialogBox.Show(); // Show Dialog Box
+
+                            cursorVisible = false; // Hide Cursor
+                            SFX.button.Play(); // Play Click Sound
                         }
                     }
 
@@ -193,10 +196,9 @@ namespace BetweenTheLines.Source.States
 
                 // Update Objects
 
-                portrait.Update(gameTime); // Portrait
-
-                // Dialog Box
+                portrait.Update(gameTime);
                 dialogBox.Update(gameTime, dialogSpeed);
+                overlay.Update(gameTime);
             }
 
             // During Pause
@@ -228,13 +230,19 @@ namespace BetweenTheLines.Source.States
         {
             // Draw Objects
 
+            // --- Scene ---
+
             cinematic.Draw(spriteBatch); // Cinematic Artwork
 
             cinematicDoorTrigger.Draw(spriteBatch); // Door Trigger (Invisible)
 
+            // --- Overlay ---
+
             portrait.Draw(spriteBatch); // Portrait
 
             dialogBox.Draw(spriteBatch); // Dialog Box
+
+            overlay.Draw(spriteBatch); // Overlay
         }
     }
 }
