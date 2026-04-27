@@ -91,15 +91,30 @@ namespace BetweenTheLines.Source.States
                 {
                     // --- Dialog Events ---
 
+                    // Chapter 1 Part 1
+                    if (dialogBox.dialog == Dialog.chapter1part1)
+                    {
+                        // Dialog Portraits
+                        if (dialogBox.currentLine == 0) portrait.SetState(Dialog.otto, Portrait.State.regular);
+                        if (dialogBox.currentLine == 2) portrait.SetState(Dialog.otto, Portrait.State.angry);
+                        if (dialogBox.currentLine == 5) portrait.SetState(Dialog.otto, Portrait.State.regular);
+                        if (dialogBox.currentLine == 7) portrait.SetState(Dialog.otto, Portrait.State.angry);
+                        if (dialogBox.currentLine == 8) portrait.SetState(Dialog.faun, Portrait.State.worried);
+                        if (dialogBox.currentLine == 9) portrait.SetState(Dialog.otto, Portrait.State.regular);
+                        if (dialogBox.currentLine == 10) portrait.SetState(Dialog.faun, Portrait.State.worried);
+                        if (dialogBox.currentLine == 11) portrait.SetState(Dialog.otto, Portrait.State.regular);
+                    }
+
                     // Prelude 1
                     if (dialogBox.dialog == Dialog.preludeEnd)
                     {
                         // Line 1
                         if (dialogBox.currentLine == 1)
                         {
-                            // Set Portrait to Faun
+                            // Dialog Portraits
                             portrait.SetState(Dialog.faun, Portrait.State.regular);
 
+                            // Portrait Position
                             portrait.MoveToCenter();
                         }
                     }

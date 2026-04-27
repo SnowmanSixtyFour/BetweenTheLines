@@ -1,16 +1,17 @@
-﻿using System;
+﻿using BetweenTheLines.Source.Objects.Level;
+using BetweenTheLines.Source.States;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Media;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
-using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Media;
-using BetweenTheLines.Source.Objects.Level;
 
 namespace BetweenTheLines.Source
 {
@@ -302,6 +303,18 @@ namespace BetweenTheLines.Source
         };
 
         public static DialogString[] chapter1part1 = {
+            Line(0, "'The hell? Who's this tail licker?"),
+            Line(1, "Pickles. Detective P-"),
+            Line(0, "Yeah yeah, whatever. You here for the money?"),
+            Line(1, "...Yes. I'm here to uncover the true meaning behind\nthe letter I received in the mail."),
+            Line(1, "This guy's got some nerve...", 1),
+            Line(0, "Look pal, the dough ain't here. Whole thing's a scam."),
+            Line(1, "I figured so. Do you know more about the situation?"),
+            Line(0, "'The hell do you think I'm gonna tell you that for?\nYou tryna take the money from me?"),
+            Line(2, "O-Otto... He's just as confused as the rest of us... So..."),
+            Line(3, "... *sigh* Fine. You're lucky the li'l lady is here.\nOtherwise I woulda-"),
+            Line(2, "Otto...!"),
+            Line(3, "Oh, nevermind...")
         };
 
         // Create Dialog String
