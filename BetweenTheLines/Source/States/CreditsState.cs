@@ -41,7 +41,7 @@ namespace BetweenTheLines.Source.States
             logoYStart = 700,
             creditsXPadding = 375,
             creditsYStart = 800,
-            creditsYEnd = -540;
+            creditsYEnd = -760;
 
         private int amountToMove = 1;
 
@@ -53,14 +53,20 @@ namespace BetweenTheLines.Source.States
             Made for the Mystery Game Jam 2026 on itch.io.
             https://itch.io/jam/mystery-game-jam-2026
 
+
+
             Special Thanks
 
             CRT Scanline Shaders (Public Domain) - Timothy Lottes
+
+
 
             Copyright (c) 2026 Snowman64
 
             Licensed under the GNU General Public License v3.0.
             https://www.gnu.org/licenses/gpl-3.0.html
+
+
 
             Freesound.org Sounds
 

@@ -90,7 +90,7 @@ namespace BetweenTheLines.Source.States
             // Pause Overlay
 
             // Background
-            pauseOverlay = new StaticSprite(null, new Rectangle(0, 0, cam.Width, cam.Height), new Color(0, 0, 0, 128));
+            pauseOverlay = new StaticSprite(Assets.pauseOverlay, new Rectangle(0, 0, cam.Width, cam.Height), (Color.White * 0.75f));
 
             // Text
             pauseText = new Text(Assets.arial, "Paused", new Vector2((cam.Width / 2), (cam.Height / 2) - pauseTextPadding), Color.White, 2.0f, true);
