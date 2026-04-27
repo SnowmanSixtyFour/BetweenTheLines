@@ -148,7 +148,7 @@ namespace BetweenTheLines.Source
             intro2, intro2a,
 
             // Gameplay
-            foyer, livingRoom;
+            foyer, livingRoom, mainHall, bathroom, kitchen, closet;
 
         // --- Fonts ---
         public static SpriteFont arial;
@@ -196,8 +196,12 @@ namespace BetweenTheLines.Source
             Assets.intro2a = content.Load<Texture2D>("Assets/Images/Level/Intro/intro2door");
 
             // House
-            Assets.foyer = content.Load<Texture2D>("Assets/Images/Level/House/foyer");
-            Assets.livingRoom = content.Load<Texture2D>("Assets/Images/Level/House/livingRoom");
+            Assets.foyer = content.Load<Texture2D>("Assets/Images/Level/House/Foyer");
+            Assets.livingRoom = content.Load<Texture2D>("Assets/Images/Level/House/LivingRoom");
+            Assets.mainHall = content.Load<Texture2D>("Assets/Images/Level/House/MainHall");
+            Assets.bathroom = content.Load<Texture2D>("Assets/Images/Level/House/Bathroom");
+            Assets.kitchen = content.Load<Texture2D>("Assets/Images/Level/House/Kitchen");
+            Assets.closet = content.Load<Texture2D>("Assets/Images/Level/House/Closet");
 
             // Map
             Assets.map = content.Load<Texture2D>("Assets/Images/Level/House/Map/MapDefault");
@@ -315,11 +319,11 @@ namespace BetweenTheLines.Source
             intro2a = new DialogString[]{
                 Line(1, "Huh... That's weird."),
                 Line(1, "The door's unlocked."),
-                Line(1, "I guess I'll just go in.")
+                Line(1, "I guess I'll just have to head inside.\nI'll be sure to keep my guard up...")
             };
 
             preludeEnd = new DialogString[]{
-                Line(1, "Hello?"),
+                Line(1, "Anyone home?"),
                 Line(0, "Um... Hi..."),
                 Line(1, "Huh?"),
                 Line(0, "So you... got the same letter as us."),

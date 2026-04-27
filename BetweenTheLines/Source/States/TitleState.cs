@@ -33,7 +33,10 @@ namespace BetweenTheLines.Source.States
         // Text
         private Text
             gameVersion,
-            gameCredits;
+            gameCredits,
+            chapter;
+        private int
+            chapterOffsetY = 35;
 
         // Buttons
         private Button
@@ -63,11 +66,16 @@ namespace BetweenTheLines.Source.States
 
             gameCredits = new Text(Assets.arial, "(c) 2026 Snowman64", new Vector2((cam.Width - 230), (cam.Height - 30)), Color.White, 1.0f, false);
 
+            chapter = new Text(Assets.arial, "Chapter 1", Vector2.Zero, Color.White, 1.0f, false);
+
             // Buttons
             startButton = new Button("Start", new Point(xPadding / 2, cam.Height - yPadding));
             optionsButton = new Button("Options", new Point(xPadding + 80, cam.Height - yPadding));
             creditsButton = new Button("Credits", new Point(cam.Width - (xPadding * 2) + 20, cam.Height - yPadding));
             exitButton = new Button("Quit", new Point(cam.Width - xPadding, cam.Height - yPadding));
+
+            // Set Position of Objects that have not already been set
+            chapter.setPosition(new Vector2((startButton.X + chapter.getText().Length), startButton.Y - chapterOffsetY));
         }
 
         public override void OnUpdate(GameTime gameTime)
@@ -120,6 +128,7 @@ namespace BetweenTheLines.Source.States
             logo.Draw(spriteBatch);
             gameVersion.Draw(spriteBatch);
             gameCredits.Draw(spriteBatch);
+            if (cursor.HoveringOver(startButton.bounds)) chapter.Draw(spriteBatch);
 
             // Buttons
             startButton.Draw(spriteBatch);

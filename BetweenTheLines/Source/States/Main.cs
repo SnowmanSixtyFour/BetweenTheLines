@@ -17,7 +17,7 @@ namespace BetweenTheLines.Source.States
         private IntroState intro;
         private TitleState title;
         private OptionsState options;
-        private LevelState level;
+        private StoryState level;
         private CreditsState credits;
 
         public Main()
@@ -30,7 +30,7 @@ namespace BetweenTheLines.Source.States
             intro = new IntroState(); // Intro
             title = new TitleState(); // Title
             options = new OptionsState(); // Options
-            level = new LevelState(); // Level
+            level = new StoryState(); // Level
             credits = new CreditsState(); // Credits
         }
 

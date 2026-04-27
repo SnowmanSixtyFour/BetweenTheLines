@@ -225,7 +225,7 @@
 /processorParam:TextureFormat=Color
 /build:Assets/Images/Intro/Snowman64.png
 
-#begin Assets/Images/Level/House/foyer.png
+#begin Assets/Images/Level/House/Bathroom.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -235,9 +235,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Assets/Images/Level/House/foyer.png
+/build:Assets/Images/Level/House/Bathroom.png
 
-#begin Assets/Images/Level/House/livingRoom.png
+#begin Assets/Images/Level/House/Closet.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -247,7 +247,55 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Assets/Images/Level/House/livingRoom.png
+/build:Assets/Images/Level/House/Closet.png
+
+#begin Assets/Images/Level/House/Foyer.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Assets/Images/Level/House/Foyer.png
+
+#begin Assets/Images/Level/House/Kitchen.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Assets/Images/Level/House/Kitchen.png
+
+#begin Assets/Images/Level/House/LivingRoom.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Assets/Images/Level/House/LivingRoom.png
+
+#begin Assets/Images/Level/House/MainHall.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Assets/Images/Level/House/MainHall.png
 
 #begin Assets/Images/Level/House/Map/MapBathroom.png
 /importer:TextureImporter

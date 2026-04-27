@@ -25,8 +25,12 @@
     <File>C:/Users/CJMT/Documents/GitHub/BetweenTheLines/BetweenTheLines/Content/Assets/Images/Global/pixel.png</File>
     <File>C:/Users/CJMT/Documents/GitHub/BetweenTheLines/BetweenTheLines/Content/Assets/Images/Intro/GameJam.png</File>
     <File>C:/Users/CJMT/Documents/GitHub/BetweenTheLines/BetweenTheLines/Content/Assets/Images/Intro/Snowman64.png</File>
-    <File>C:/Users/CJMT/Documents/GitHub/BetweenTheLines/BetweenTheLines/Content/Assets/Images/Level/House/foyer.png</File>
-    <File>C:/Users/CJMT/Documents/GitHub/BetweenTheLines/BetweenTheLines/Content/Assets/Images/Level/House/livingRoom.png</File>
+    <File>C:/Users/CJMT/Documents/GitHub/BetweenTheLines/BetweenTheLines/Content/Assets/Images/Level/House/Bathroom.png</File>
+    <File>C:/Users/CJMT/Documents/GitHub/BetweenTheLines/BetweenTheLines/Content/Assets/Images/Level/House/Closet.png</File>
+    <File>C:/Users/CJMT/Documents/GitHub/BetweenTheLines/BetweenTheLines/Content/Assets/Images/Level/House/Foyer.png</File>
+    <File>C:/Users/CJMT/Documents/GitHub/BetweenTheLines/BetweenTheLines/Content/Assets/Images/Level/House/Kitchen.png</File>
+    <File>C:/Users/CJMT/Documents/GitHub/BetweenTheLines/BetweenTheLines/Content/Assets/Images/Level/House/LivingRoom.png</File>
+    <File>C:/Users/CJMT/Documents/GitHub/BetweenTheLines/BetweenTheLines/Content/Assets/Images/Level/House/MainHall.png</File>
     <File>C:/Users/CJMT/Documents/GitHub/BetweenTheLines/BetweenTheLines/Content/Assets/Images/Level/House/Map/MapBathroom.png</File>
     <File>C:/Users/CJMT/Documents/GitHub/BetweenTheLines/BetweenTheLines/Content/Assets/Images/Level/House/Map/MapCloset.png</File>
     <File>C:/Users/CJMT/Documents/GitHub/BetweenTheLines/BetweenTheLines/Content/Assets/Images/Level/House/Map/MapDefault.png</File>
@@ -65,6 +69,10 @@
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File>Assets/Images/Global/CursorInspect</File>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

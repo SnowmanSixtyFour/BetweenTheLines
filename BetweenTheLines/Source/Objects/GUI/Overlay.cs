@@ -26,7 +26,7 @@ namespace BetweenTheLines.Source.Objects.GUI
             // Map
             map;
         private Point
-            mapOffset = new Point(15, 15),
+            mapOffset = new Point(15, 10),
             mapSize = new Point(256, 172);
         private float mapTransparency = 0.9f;
 
@@ -44,7 +44,8 @@ namespace BetweenTheLines.Source.Objects.GUI
         public Text
             room;
         private int
-            roomOffsetX = 50, roomOffsetY = 20;
+            roomOffsetX = 50, roomOffsetY = 25;
+        private StoryState.Room currentRoom; // Current Room from Chapter (to call anywhere)
 
         // Properties
         private float overlayTransparency = 0.85f;
@@ -66,7 +67,7 @@ namespace BetweenTheLines.Source.Objects.GUI
             room = new Text(Assets.arial, "", new Vector2(chapter.getPosition().X - roomOffsetX, chapter.getPosition().Y + roomOffsetY), Color.White, 0.65f, false);
         }
 
-        public void Update(GameTime gameTime, LevelState level)
+        public void Update(GameTime gameTime, StoryState level)
         {
             // --- Update Overlay ---
 
@@ -78,45 +79,48 @@ namespace BetweenTheLines.Source.Objects.GUI
 
             // --- Update Map ---
 
+            // Set Current Room Variable
+            if (this.currentRoom != level.currentRoom) this.currentRoom = level.currentRoom;
+
             // Position and Size
             map.SetDestRect(new Rectangle((cam.Width - mapSize.X) - mapOffset.X, mapOffset.Y, mapSize.X, mapSize.Y));
 
             // Current Room
-            if (level.currentRoom == LevelState.Room.foyer)
+            if (level.currentRoom == StoryState.Room.foyer)
             {
                 map.SetTexture(Assets.mapFoyer);
 
                 room.setText("     FOYER");
             }
-            else if (level.currentRoom == LevelState.Room.livingRoom)
+            else if (level.currentRoom == StoryState.Room.livingRoom)
             {
                 map.SetTexture(Assets.mapLivingRoom);
 
                 room.setText("LIVING ROOM");
             }
-            else if (level.currentRoom == LevelState.Room.mainHall)
+            else if (level.currentRoom == StoryState.Room.mainHall)
             {
                 map.SetTexture(Assets.mapMainHall);
 
                 room.setText(" MAIN HALL");
             }
-            else if (level.currentRoom == LevelState.Room.bathroom)
+            else if (level.currentRoom == StoryState.Room.bathroom)
             {
                 map.SetTexture(Assets.mapBathroom);
 
                 room.setText("BATHROOM");
             }
-            else if (level.currentRoom == LevelState.Room.kitchen)
+            else if (level.currentRoom == StoryState.Room.kitchen)
             {
                 map.SetTexture(Assets.mapKitchen);
 
                 room.setText("  KITCHEN");
             }
-            else if (level.currentRoom == LevelState.Room.closet)
+            else if (level.currentRoom == StoryState.Room.closet)
             {
                 map.SetTexture(Assets.mapCloset);
 
-                room.setText("   CLOSET");
+                room.setText("    CLOSET");
             }
             else
             {
@@ -136,7 +140,9 @@ namespace BetweenTheLines.Source.Objects.GUI
 
             chapter.Draw(spriteBatch);
 
-            map.Draw(spriteBatch);
+            // Draw Map if not Outside
+            if (currentRoom != StoryState.Room.outside) map.Draw(spriteBatch);
+
             room.Draw(spriteBatch);
         }
     }
