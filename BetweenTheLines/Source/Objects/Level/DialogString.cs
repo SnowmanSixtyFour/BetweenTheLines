@@ -13,11 +13,13 @@ namespace BetweenTheLines.Source.Objects.Level
     {
         public int name {  get; set; }
         public string text { get; set; }
+        public int textColor { get; set; }
 
-        public DialogString(int name, string text)
+        public DialogString(int name, string text, int textColor = 0)
         {
             this.name = name;
             this.text = text;
+            this.textColor = textColor;
         }
     }
 }

@@ -260,23 +260,23 @@ namespace BetweenTheLines.Source
         // Intro
 
         public static DialogString[] intro1 = {
-            Line(0, "Last night, I got this letter..."),
-            Line(0, "It said \"Congratulations! You have won $1 000 000 dollars!\""),
-            Line(0, "...Yeah, as if."),
-            Line(1, "My name is Pickles. I'm a renowned detective."),
-            Line(1, "In my line of work... I make a decent amount of money."),
-            Line(1, "But this?..."),
-            Line(1, "I'm gonna get to the bottom of this."),
-            Line(1, "Besides... Who would fall for a scheme like this?\nI've never seen something so outrageous.")
+            Line(0, "Last night, I got this letter...", 1),
+            Line(0, "It said \"Congratulations! You have won $1 000 000 dollars!\"", 1),
+            Line(0, "...Yeah, as if.", 1),
+            Line(1, "My name is Pickles. I'm a renowned detective.", 1),
+            Line(1, "In my line of work... I make a decent amount of money.", 1),
+            Line(1, "But this?...", 1),
+            Line(1, "I'm gonna get to the bottom of this.", 1),
+            Line(1, "Besides... Who would fall for a scheme like this?\nI've never seen something so outrageous.", 1)
         };
 
         public static DialogString[] intro2 = {
             Line(1, "Well, here I am."),
-            Line(1, "This place's address was at the bottom of the letter."),
+            Line(1, "This place's address was at the bottom of the letter.", 1),
             Line(1, "Let's hope this wasn't a waste of my time."),
-            Line(-1, "In this game, you'll have to take full advantage of your surroundings."),
-            Line(-1, "That means using the mouse to interact with objects\nthat are full of mystery, or might contain clues."),
-            Line(-1, "Go on, try moving your mouse to interact with the door!")
+            Line(-1, "In this game, you'll have to take full advantage of your surroundings.", 2),
+            Line(-1, "That means using the mouse to interact with objects\nthat are full of mystery, or might contain clues.", 2),
+            Line(-1, "Go on, try moving your mouse to interact with the door!", 2)
         };
 
         public static DialogString[] intro2a = {
@@ -297,16 +297,17 @@ namespace BetweenTheLines.Source
             Line(2, "...Weirdly obvious scam?"),
             Line(1, "Yeah. Any info about that?"),
             Line(2, "Come with me... the others are waiting.\nI'll explain everything in the living room."),
-            Line(1, "The others... Alright.")
+            Line(1, "The others...", 1),
+            Line(1, "Alright.")
         };
 
         public static DialogString[] chapter1part1 = {
         };
 
         // Create Dialog String
-        public static DialogString Line(int name, string text)
+        public static DialogString Line(int name, string text, int textColor = 0)
         {
-            return new DialogString(name, text);
+            return new DialogString(name, text, textColor);
         }
     }
 }

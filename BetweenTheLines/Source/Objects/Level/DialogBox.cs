@@ -57,9 +57,20 @@ namespace BetweenTheLines.Source.Objects.Level
 
         // Colors
         private Color
+            // Box
             boxColor = Color.Gray,
+
+            // Text
             textColor = Color.White,
+
+            textDefaultColor = Color.White,
+            textThoughtColor = Color.LightBlue,
+            textTooltipColor = Color.LightGreen,
+            
+            // Name
             nameColor = Color.LightYellow,
+            
+            // Other
             invisibleColor = new Color(0, 0, 0, 0);
 
         public DialogBox()
@@ -73,6 +84,8 @@ namespace BetweenTheLines.Source.Objects.Level
 
         public void Update(GameTime gameTime, float dialogSpeed)
         {
+            // --- Dialog Text ---
+
             // Update Current Line
             currentLine = steps;
 
@@ -123,6 +136,30 @@ namespace BetweenTheLines.Source.Objects.Level
                                 typewriterFinished = true;
                             }
                         }
+
+                        // --- Set Text Colour ---
+
+                        if (dialog[steps].textColor != 0)
+                        {
+                            // Thought Text (1)
+                            if (dialog[steps].textColor == 1)
+                            {
+                                this.textColor = textThoughtColor;
+                            }
+                            // Tooltip Text (2)
+                            if (dialog[steps].textColor == 2)
+                            {
+                                this.textColor = textTooltipColor;
+                            }
+                        }
+                        // Default Text
+                        else
+                        {
+                            this.textColor = textDefaultColor;
+                        }
+
+                        // Set Color
+                        this.text.setColor(textColor);
                     }
                 }
                 // When End of Dialog Reached

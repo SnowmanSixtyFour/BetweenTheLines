@@ -89,8 +89,15 @@ namespace BetweenTheLines.Source.Objects.GUI
             // Highlight Cursor
             cursor.Highlight(this);
 
-            // Play Click SFX
-            if (this.clicked) SFX.button.Play();
+            // When Clicked
+            if (this.clicked)
+            {
+                // Play Click SFX
+                SFX.button.Play();
+
+                // End Click Event
+                this.clicked = false;
+            }
 
             // Get Cursor Hover
             if (cursor.HoveringOver(this.bounds))
