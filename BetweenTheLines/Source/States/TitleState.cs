@@ -133,8 +133,7 @@ namespace BetweenTheLines.Source.States
         public void GoToLevel()
         {
             // Change Music
-            StopSong();
-            MediaPlayer.Play(OST.intro); // Intro Music
+            ChangeSong(OST.intro);
 
             // Switch State
             this.changeState = true;

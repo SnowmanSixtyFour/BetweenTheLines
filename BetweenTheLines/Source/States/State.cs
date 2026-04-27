@@ -105,10 +105,12 @@ namespace BetweenTheLines.Source.States
         /// </summary>
         public void StopSong()
         {
-            if (MediaPlayer.State == MediaState.Playing)
-            {
-                MediaPlayer.Stop();
-            }
+            MediaPlayer.Stop();
+        }
+
+        public void ChangeSong(Song music)
+        {
+            MediaPlayer.Play(music);
         }
 
         public void Update(GameTime gameTime)

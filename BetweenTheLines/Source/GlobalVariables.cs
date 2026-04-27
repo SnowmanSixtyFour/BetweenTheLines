@@ -285,7 +285,7 @@ namespace BetweenTheLines.Source
             Line(1, "I guess I'll just go in.")
         };
 
-        public static DialogString[] prelude1 = {
+        public static DialogString[] preludeEnd = {
             Line(1, "Hello?"),
             Line(0, "Um... Hi..."),
             Line(1, "Huh?"),
@@ -298,6 +298,9 @@ namespace BetweenTheLines.Source
             Line(1, "Yeah. Any info about that?"),
             Line(2, "Come with me... the others are waiting.\nI'll explain everything in the living room."),
             Line(1, "The others... Alright.")
+        };
+
+        public static DialogString[] chapter1part1 = {
         };
 
         // Create Dialog String

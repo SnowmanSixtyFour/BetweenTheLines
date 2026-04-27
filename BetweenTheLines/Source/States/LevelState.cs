@@ -92,7 +92,7 @@ namespace BetweenTheLines.Source.States
                     // --- Dialog Events ---
 
                     // Prelude 1
-                    if (dialogBox.dialog == Dialog.prelude1)
+                    if (dialogBox.dialog == Dialog.preludeEnd)
                     {
                         // Line 1
                         if (dialogBox.currentLine == 1)
@@ -128,18 +128,33 @@ namespace BetweenTheLines.Source.States
 
                     // --- Dialog End Events ---
 
-                    // Prelude 1
-                    if (dialogBox.dialog == Dialog.prelude1)
+                    // CHAPTER 1
+
+                    // Part 1
+                    if (dialogBox.dialog == Dialog.chapter1part1)
                     {
+                    }
+
+                    // PRELUDE
+
+                    // Prelude End
+                    if (dialogBox.dialog == Dialog.preludeEnd)
+                    {
+                        // Dialog
+                        dialogBox.setDialog(Dialog.chapter1part1); // Set to Chapter 1
+
                         // Set Overlay to Display Chapter 1
                         overlay.chapter.setText("CHAPTER 1");
+
+                        // Change Music
+                        ChangeSong(OST.intense);
                     }
 
                     // Intro 2a
                     if (dialogBox.dialog == Dialog.intro2a)
                     {
                         // Dialog
-                        dialogBox.setDialog(Dialog.prelude1); // Set to Prelude 1
+                        dialogBox.setDialog(Dialog.preludeEnd); // Set to Prelude End
 
                         // Cinematic
                         cinematic.SetTexture(Assets.foyer); // Change to Foyer
@@ -212,9 +227,7 @@ namespace BetweenTheLines.Source.States
                 // Check if R is Pressed (Return to Menu)
                 if (KeyPress(Keys.R))
                 {
-                    // Change Music
-                    StopSong();
-                    MediaPlayer.Play(OST.title); // Title
+                    ChangeSong(OST.title);
 
                     // Switch State
                     this.changeState = true;
