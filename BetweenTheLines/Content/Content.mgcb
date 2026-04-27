@@ -219,6 +219,18 @@
 /processorParam:TextureFormat=Color
 /build:Assets/Images/Level/House/foyer.png
 
+#begin Assets/Images/Level/House/livingRoom.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Assets/Images/Level/House/livingRoom.png
+
 #begin Assets/Images/Level/Intro/intro1.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -254,6 +266,30 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Assets/Images/Level/Intro/intro2door.png
+
+#begin Assets/Images/Level/Portrait/angelRegular.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Assets/Images/Level/Portrait/angelRegular.png
+
+#begin Assets/Images/Level/Portrait/angelThinking.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Assets/Images/Level/Portrait/angelThinking.png
 
 #begin Assets/Images/Level/Portrait/faunRegular.png
 /importer:TextureImporter

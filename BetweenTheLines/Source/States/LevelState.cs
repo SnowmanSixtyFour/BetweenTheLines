@@ -94,7 +94,6 @@ namespace BetweenTheLines.Source.States
                     // Chapter 1 Part 1
                     if (dialogBox.dialog == Dialog.chapter1part1)
                     {
-                        // Dialog Portraits
                         if (dialogBox.currentLine == 0) portrait.SetState(Dialog.otto, Portrait.State.regular);
                         if (dialogBox.currentLine == 2) portrait.SetState(Dialog.otto, Portrait.State.angry);
                         if (dialogBox.currentLine == 5) portrait.SetState(Dialog.otto, Portrait.State.regular);
@@ -103,6 +102,14 @@ namespace BetweenTheLines.Source.States
                         if (dialogBox.currentLine == 9) portrait.SetState(Dialog.otto, Portrait.State.regular);
                         if (dialogBox.currentLine == 10) portrait.SetState(Dialog.faun, Portrait.State.worried);
                         if (dialogBox.currentLine == 11) portrait.SetState(Dialog.otto, Portrait.State.regular);
+                        if (dialogBox.currentLine == 14) portrait.SetState(Dialog.angel, Portrait.State.regular);
+                        if (dialogBox.currentLine == 16) portrait.SetState(Dialog.angel, Portrait.State.thinking);
+                        if (dialogBox.currentLine == 17) portrait.SetState(Dialog.angel, Portrait.State.regular);
+                        if (dialogBox.currentLine == 18) portrait.SetState(Dialog.faun, Portrait.State.regular);
+                        if (dialogBox.currentLine == 19) portrait.SetState(Dialog.otto, Portrait.State.regular);
+                        if (dialogBox.currentLine == 22) portrait.SetState(Dialog.faun, Portrait.State.worried);
+                        if (dialogBox.currentLine == 23) StopSong();
+                        if (dialogBox.currentLine == 24) ChangeSong(OST.intense);
                     }
 
                     // Prelude 1
@@ -161,8 +168,11 @@ namespace BetweenTheLines.Source.States
                         // Set Overlay to Display Chapter 1
                         overlay.chapter.setText("CHAPTER 1");
 
+                        // Cinematic
+                        cinematic.SetTexture(Assets.livingRoom); // Change to Foyer
+
                         // Change Music
-                        ChangeSong(OST.intense);
+                        ChangeSong(OST.title);
                     }
 
                     // Intro 2a

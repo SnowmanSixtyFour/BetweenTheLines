@@ -38,7 +38,8 @@ namespace BetweenTheLines.Source.Objects.Level
             "???",
             "Pickles",
             "Faun",
-            "Otto"
+            "Otto",
+            "Angel"
         };
 
         // Dialog

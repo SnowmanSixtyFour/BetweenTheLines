@@ -140,7 +140,7 @@ namespace BetweenTheLines.Source
             intro2, intro2a,
 
             // Gameplay
-            foyer;
+            foyer, livingRoom;
 
         // --- Fonts ---
         public static SpriteFont arial;
@@ -189,6 +189,7 @@ namespace BetweenTheLines.Source
 
             // House
             Assets.foyer = content.Load<Texture2D>("Assets/Images/Level/House/foyer");
+            Assets.livingRoom = content.Load<Texture2D>("Assets/Images/Level/House/livingRoom");
 
             // --- Portraits ---
 
@@ -203,6 +204,10 @@ namespace BetweenTheLines.Source
             // Otto
             Dialog.ottoRegular = content.Load<Texture2D>("Assets/Images/Level/Portrait/ottoRegular");
             Dialog.ottoAngry = content.Load<Texture2D>("Assets/Images/Level/Portrait/ottoAngry");
+
+            // Angel
+            Dialog.angelRegular = content.Load<Texture2D>("Assets/Images/Level/Portrait/angelRegular");
+            Dialog.angelThinking = content.Load<Texture2D>("Assets/Images/Level/Portrait/angelThinking");
 
             // Audio
 
@@ -241,7 +246,8 @@ namespace BetweenTheLines.Source
         internal static readonly byte
             pickles = 0,
             faun = 1,
-            otto = 2;
+            otto = 2,
+            angel = 3;
 
         // Dialog Portraits
 
@@ -253,8 +259,11 @@ namespace BetweenTheLines.Source
             faunRegular, faunWorried,
 
             // --- Otto ---
-            ottoRegular, ottoAngry;
-        
+            ottoRegular, ottoAngry,
+
+            // --- Angel ---
+            angelRegular, angelThinking;
+
         // NOTE: Lines of dialog are formatted like this:
         // Integer number Name | String Text
 
@@ -314,7 +323,24 @@ namespace BetweenTheLines.Source
             Line(2, "O-Otto... He's just as confused as the rest of us... So..."),
             Line(3, "... *sigh* Fine. You're lucky the li'l lady is here.\nOtherwise I woulda-"),
             Line(2, "Otto...!"),
-            Line(3, "Oh, nevermind...")
+            Line(3, "Oh, nevermind..."),
+            Line(1, "First, I'd like to know why the door was left unlocked."),
+            Line(1, "It seems... hazardous to leave this seemingly abandoned house just...\nunlocked. For anyone to come inside."),
+            Line(0, "Well, we all thought that it would be a good idea\nto leave the door as we found it."),
+            Line(1, "Ah, I see. And you are?"),
+            Line(4, "Angel. I may be past my prime, but back in my day...\nI was quite the lady."),
+            Line(1, "Despite the overlooming feeling of confusion, dread,\nand mystery...", 1),
+            Line(1, "I felt as though we were all becoming closer.", 1),
+            Line(1, "There was a cheerful feeling to the room's atmosphere.", 1),
+            Line(1, "It's nice to meet you, Angel. Faun, Otto..."),
+            Line(1, "Are you the only people here?"),
+            Line(2, "N-No... This house..."),
+            Line(2, "Has a host."),
+            Line(1, "A host?", 1),
+            Line(1, "What... does she mean by that?", 1),
+            Line(1, "What do you mean, host?"),
+            Line(1, "The room went silent.", 1),
+            Line(1, "And just like that... That cheerfulness was gone.", 1),
         };
 
         // Create Dialog String

@@ -183,6 +183,16 @@ namespace BetweenTheLines.Source.Objects.Level
                 // Angry
                 if (portraitState == State.angry) this.sprite.SetTexture(Dialog.ottoAngry);
             }
+
+            // Angel
+            else if (state == 3)
+            {
+                // Regular
+                if (portraitState == State.regular) this.sprite.SetTexture(Dialog.angelRegular);
+
+                // Thinking
+                if (portraitState == State.thinking) this.sprite.SetTexture(Dialog.angelThinking);
+            }
         }
 
         // Unique Behaviours
