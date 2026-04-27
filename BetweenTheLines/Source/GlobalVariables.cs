@@ -108,7 +108,7 @@ namespace BetweenTheLines.Source
             button,
 
             // --- Dialog ---
-            typewriter;
+            typewriter, dialogContinue;
     }
 
     // Game Assets
@@ -129,6 +129,10 @@ namespace BetweenTheLines.Source
             dialogBox, overlay, clock,
             button,
             checkboxInactive, checkboxActive,
+
+            // Map
+            map,
+            mapFoyer, mapLivingRoom, mapMainHall, mapBathroom, mapKitchen, mapCloset,
 
             // --- Intro ---
             snowman64, gameJamLogo,
@@ -185,7 +189,6 @@ namespace BetweenTheLines.Source
             Assets.logo = content.Load<Texture2D>("Assets/Images/Title/Logo");
 
             // --- Gameplay ---
-            // TBA
 
             // Intro
             Assets.intro1 = content.Load<Texture2D>("Assets/Images/Level/Intro/intro1");
@@ -195,6 +198,15 @@ namespace BetweenTheLines.Source
             // House
             Assets.foyer = content.Load<Texture2D>("Assets/Images/Level/House/foyer");
             Assets.livingRoom = content.Load<Texture2D>("Assets/Images/Level/House/livingRoom");
+
+            // Map
+            Assets.map = content.Load<Texture2D>("Assets/Images/Level/House/Map/MapDefault");
+            Assets.mapFoyer = content.Load<Texture2D>("Assets/Images/Level/House/Map/MapFoyer");
+            Assets.mapLivingRoom = content.Load<Texture2D>("Assets/Images/Level/House/Map/MapLivingRoom");
+            Assets.mapMainHall = content.Load<Texture2D>("Assets/Images/Level/House/Map/MapMainHall");
+            Assets.mapBathroom = content.Load<Texture2D>("Assets/Images/Level/House/Map/MapBathroom");
+            Assets.mapKitchen = content.Load<Texture2D>("Assets/Images/Level/House/Map/MapKitchen");
+            Assets.mapCloset = content.Load<Texture2D>("Assets/Images/Level/House/Map/MapCloset");
 
             // --- Portraits ---
 
@@ -219,6 +231,7 @@ namespace BetweenTheLines.Source
             // SFX
             SFX.button = content.Load<SoundEffect>("Assets/Audio/SFX/button");
             SFX.typewriter = content.Load<SoundEffect>("Assets/Audio/SFX/typewriter");
+            SFX.dialogContinue = content.Load<SoundEffect>("Assets/Audio/SFX/dialogContinue");
 
             // NOTE: Music is ran in try and catch to prevent errors while copyrighted placeholder music is left out of the source code.
 
@@ -355,7 +368,8 @@ namespace BetweenTheLines.Source
                 Line(2, "Detective, I-I can show you around, if... if it's not too much trouble..."),
                 Line(1, "Sure. That would be nice."),
                 Line(-1, "Faun wants to show you around? How kind of her!", 2),
-                Line(-1, "This is where the game really opens up.\nExplore the world- *ahem* house... to your heart's content.", 2)
+                Line(-1, "This is where the game really opens up.\nExplore the world- *ahem* house... to your heart's content.", 2),
+                Line(-1, "Keep an eye on the map in the top right corner.\nIt'll help you keep track of where you are.", 2)
             };
         }
 

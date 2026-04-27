@@ -36,6 +36,19 @@ namespace BetweenTheLines.Source.States
         // Portraits
         Portrait portrait;
 
+        // Map
+        public enum Room
+        {
+            none,
+            foyer,
+            livingRoom,
+            mainHall,
+            bathroom,
+            kitchen,
+            closet
+        }
+        public Room currentRoom = Room.none;
+
         public LevelState()
         {
             // Set Objects
@@ -169,6 +182,7 @@ namespace BetweenTheLines.Source.States
                     // Part 1
                     if (dialogBox.dialog == Dialog.chapter1part1)
                     {
+                        dialogBox.Hide(); // Hide Dialog Box
                     }
 
                     // PRELUDE
@@ -183,7 +197,9 @@ namespace BetweenTheLines.Source.States
                         overlay.chapter.setText("CHAPTER 1");
 
                         // Cinematic
-                        cinematic.SetTexture(Assets.livingRoom); // Change to Foyer
+                        cinematic.SetTexture(Assets.livingRoom); // Change to Living Room
+
+                        currentRoom = Room.livingRoom; // Set Current Room to Living Room
 
                         // Change Music
                         ChangeSong(OST.title);
@@ -197,6 +213,8 @@ namespace BetweenTheLines.Source.States
 
                         // Cinematic
                         cinematic.SetTexture(Assets.foyer); // Change to Foyer
+
+                        currentRoom = Room.foyer; // Set Current Room to Foyer
                     }
 
                     // Intro 2
@@ -257,7 +275,7 @@ namespace BetweenTheLines.Source.States
 
                 portrait.Update(gameTime);
                 dialogBox.Update(gameTime, dialogSpeed);
-                overlay.Update(gameTime);
+                overlay.Update(gameTime, this);
             }
 
             // During Pause

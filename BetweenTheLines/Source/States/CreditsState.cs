@@ -41,7 +41,7 @@ namespace BetweenTheLines.Source.States
             logoYStart = 700,
             creditsXPadding = 375,
             creditsYStart = 800,
-            creditsYEnd = -760;
+            creditsYEnd = -850;
 
         private int amountToMove = 1;
 
@@ -75,6 +75,9 @@ namespace BetweenTheLines.Source.States
 
             Typewriter Button SLIDE 1A.wav - mincedbeats
             https://freesound.org/people/mincedbeats/sounds/433600/
+
+            paper5.wav - florian_reinke
+            https://freesound.org/people/florian_reinke/sounds/63514/
 
             All Freesound.org sounds used are licensed
             under the Creative Commons 0 License.
