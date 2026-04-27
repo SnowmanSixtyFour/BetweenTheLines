@@ -260,9 +260,10 @@ namespace BetweenTheLines.Source
         // Intro
 
         public static DialogString[] intro1 = {
-            Line(1, "Last night, I got this letter..."),
-            Line(1, "It said \"Congratulations! You have won $1 000 000 dollars!\""),
-            Line(1, "...Yeah, as if."),
+            Line(0, "Last night, I got this letter..."),
+            Line(0, "It said \"Congratulations! You have won $1 000 000 dollars!\""),
+            Line(0, "...Yeah, as if."),
+            Line(1, "My name is Pickles. I'm a renowned detective."),
             Line(1, "In my line of work... I make a decent amount of money."),
             Line(1, "But this?..."),
             Line(1, "I'm gonna get to the bottom of this."),

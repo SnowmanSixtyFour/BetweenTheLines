@@ -75,6 +75,9 @@ namespace BetweenTheLines.Source.States
 
             dialogBox.setDialog(Dialog.intro1); // Set to Intro 1
             dialogSpeed = defaultDialogSpeed; // Reset Dialog Speed (Default)
+
+            // Overlay
+            overlay.chapter.setText(" PRELUDE"); // Set Chapter Text
         }
 
         public override void OnUpdate(GameTime gameTime)
@@ -128,6 +131,8 @@ namespace BetweenTheLines.Source.States
                     // Prelude 1
                     if (dialogBox.dialog == Dialog.prelude1)
                     {
+                        // Set Overlay to Display Chapter 1
+                        overlay.chapter.setText("CHAPTER 1");
                     }
 
                     // Intro 2a
