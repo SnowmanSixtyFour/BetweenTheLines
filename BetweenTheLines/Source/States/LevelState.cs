@@ -110,6 +110,11 @@ namespace BetweenTheLines.Source.States
                         if (dialogBox.currentLine == 22) portrait.SetState(Dialog.faun, Portrait.State.worried);
                         if (dialogBox.currentLine == 23) StopSong();
                         if (dialogBox.currentLine == 24) ChangeSong(OST.intense);
+                        if (dialogBox.currentLine == 29)
+                        {
+                            portrait.SetState(Dialog.faun, Portrait.State.regular);
+                            ChangeSong(OST.intro);
+                        }
                     }
 
                     // Prelude 1

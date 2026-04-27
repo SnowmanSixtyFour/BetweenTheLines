@@ -341,6 +341,10 @@ namespace BetweenTheLines.Source
             Line(1, "What do you mean, host?"),
             Line(1, "The room went silent.", 1),
             Line(1, "And just like that... That cheerfulness was gone.", 1),
+            Line(2, "Detective, I-I can show you around, if... if it's not too much trouble..."),
+            Line(1, "Sure. That would be nice."),
+            Line(-1, "Faun wants to show you around? How kind of her!", 2),
+            Line(-1, "This is where the game really opens up.\nExplore the world- *ahem* house... to your heart's content.", 2)
         };
 
         // Create Dialog String
