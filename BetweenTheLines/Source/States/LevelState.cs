@@ -1,13 +1,14 @@
 ﻿// The Main State of the Gameplay Loop
 
+using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using BetweenTheLines.Source.Graphics;
 using BetweenTheLines.Source.Objects;
-using BetweenTheLines.Source.Objects.Level;
 using BetweenTheLines.Source.Objects.GUI;
+using BetweenTheLines.Source.Objects.Level;
 
 namespace BetweenTheLines.Source.States
 {
@@ -59,6 +60,14 @@ namespace BetweenTheLines.Source.States
         {
             // --- State ---
             cursorVisible = false; // Cursor Hidden by Default
+
+            // --- Game Variables ---
+
+            // Set Time Faun Arrived
+            Global.faunArrivedTime = (DateTime.Now.Hour + ":" + (DateTime.Now.Minute - 10));
+
+            // Load Dialog after Variables Set
+            Dialog.LoadDialog();
 
             // --- Objects ---
 

@@ -59,6 +59,9 @@ namespace BetweenTheLines.Source
 
             musicEnabled = true, musicToggled = false;
 
+        // Gameplay Variables
+        public static string faunArrivedTime;
+
         // State
         public enum State
         {
@@ -240,7 +243,7 @@ namespace BetweenTheLines.Source
             Assets.crt = content.Load<Effect>("Assets/Shaders/CRTFilter");
         }
     }
-    
+
     // Game Dialog
     internal class Dialog
     {
@@ -266,88 +269,95 @@ namespace BetweenTheLines.Source
             // --- Angel ---
             angelRegular, angelThinking;
 
-        // NOTE: Lines of dialog are formatted like this:
-        // Integer number Name | String Text
+        public static DialogString[]
+            intro1, intro2, intro2a, preludeEnd, chapter1part1;
 
-        // Intro
+        public static void LoadDialog()
+        {
+            // NOTE: Lines of dialog are formatted like this:
+            // Integer number Name | String Text
 
-        public static DialogString[] intro1 = {
-            Line(0, "Last night, I got this letter...", 1),
-            Line(0, "It said \"Congratulations! You have won $1 000 000 dollars!\"", 1),
-            Line(0, "...Yeah, as if.", 1),
-            Line(1, "My name is Pickles. I'm a renowned detective.", 1),
-            Line(1, "In my line of work... I make a decent amount of money.", 1),
-            Line(1, "But this?...", 1),
-            Line(1, "I'm gonna get to the bottom of this.", 1),
-            Line(1, "Besides... Who would fall for a scheme like this?\nI've never seen something so outrageous.", 1)
-        };
+            // Intro
 
-        public static DialogString[] intro2 = {
-            Line(1, "Well, here I am."),
-            Line(1, "This place's address was at the bottom of the letter.", 1),
-            Line(1, "Let's hope this wasn't a waste of my time."),
-            Line(-1, "In this game, you'll have to take full advantage of your surroundings.", 2),
-            Line(-1, "That means using the mouse to interact with objects\nthat are full of mystery, or might contain clues.", 2),
-            Line(-1, "Go on, try moving your mouse to interact with the door!", 2)
-        };
+            intro1 = new DialogString[]{
+                Line(0, "Last night, I got this letter...", 1),
+                Line(0, "It said \"Congratulations! You have won $1 000 000 dollars!\"", 1),
+                Line(0, "...Yeah, as if.", 1),
+                Line(1, "My name is Pickles. I'm a renowned detective.", 1),
+                Line(1, "In my line of work... I make a decent amount of money.", 1),
+                Line(1, "But this?...", 1),
+                Line(1, "I'm gonna get to the bottom of this.", 1),
+                Line(1, "Besides... Who would fall for a scheme like this?\nI've never seen something so outrageous.", 1)
+            };
 
-        public static DialogString[] intro2a = {
-            Line(1, "Huh... That's weird."),
-            Line(1, "The door's unlocked."),
-            Line(1, "I guess I'll just go in.")
-        };
+            intro2 = new DialogString[]{
+                Line(1, "Well, here I am."),
+                Line(1, "This place's address was at the bottom of the letter.", 1),
+                Line(1, "Let's hope this wasn't a waste of my time."),
+                Line(-1, "In this game, you'll have to take full advantage of your surroundings.", 2),
+                Line(-1, "That means using the mouse to interact with objects\nthat are full of mystery, or might contain clues.", 2),
+                Line(-1, "Go on, try moving your mouse to interact with the door!", 2)
+            };
 
-        public static DialogString[] preludeEnd = {
-            Line(1, "Hello?"),
-            Line(0, "Um... Hi..."),
-            Line(1, "Huh?"),
-            Line(0, "So you... got the same letter as us."),
-            Line(1, "Yeah. I'm guessing I'm not the only one, then."),
-            Line(0, "B-before we go, I should probably introduce myself..."),
-            Line(2, "I'm Faun. I got here first. I-It's nice to meet you..."),
-            Line(1, "The name's Pickles. Detective Pickles.\nI'm here on behalf of my work investigating this..."),
-            Line(2, "...Weirdly obvious scam?"),
-            Line(1, "Yeah. Any info about that?"),
-            Line(2, "Come with me... the others are waiting.\nI'll explain everything in the living room."),
-            Line(1, "The others...", 1),
-            Line(1, "Alright.")
-        };
+            intro2a = new DialogString[]{
+                Line(1, "Huh... That's weird."),
+                Line(1, "The door's unlocked."),
+                Line(1, "I guess I'll just go in.")
+            };
 
-        public static DialogString[] chapter1part1 = {
-            Line(0, "'The hell? Who's this tail licker?"),
-            Line(1, "Pickles. Detective P-"),
-            Line(0, "Yeah yeah, whatever. You here for the money?"),
-            Line(1, "...Yes. I'm here to uncover the true meaning behind\nthe letter I received in the mail."),
-            Line(1, "This guy's got some nerve...", 1),
-            Line(0, "Look pal, the dough ain't here. Whole thing's a scam."),
-            Line(1, "I figured so. Do you know more about the situation?"),
-            Line(0, "'The hell do you think I'm gonna tell you that for?\nYou tryna take the money from me?"),
-            Line(2, "O-Otto... He's just as confused as the rest of us... So..."),
-            Line(3, "... *sigh* Fine. You're lucky the li'l lady is here.\nOtherwise I woulda-"),
-            Line(2, "Otto...!"),
-            Line(3, "Oh, nevermind..."),
-            Line(1, "First, I'd like to know why the door was left unlocked."),
-            Line(1, "It seems... hazardous to leave this seemingly abandoned house just...\nunlocked. For anyone to come inside."),
-            Line(0, "Well, we all thought that it would be a good idea\nto leave the door as we found it."),
-            Line(1, "Ah, I see. And you are?"),
-            Line(4, "Angel. I may be past my prime, but back in my day...\nI was quite the lady."),
-            Line(1, "Despite the overlooming feeling of confusion, dread,\nand mystery...", 1),
-            Line(1, "I felt as though we were all becoming closer.", 1),
-            Line(1, "There was a cheerful feeling to the room's atmosphere.", 1),
-            Line(1, "It's nice to meet you, Angel. Faun, Otto..."),
-            Line(1, "Are you the only people here?"),
-            Line(2, "N-No... This house..."),
-            Line(2, "Has a host."),
-            Line(1, "A host?", 1),
-            Line(1, "What... does she mean by that?", 1),
-            Line(1, "What do you mean, host?"),
-            Line(1, "The room went silent.", 1),
-            Line(1, "And just like that... That cheerfulness was gone.", 1),
-            Line(2, "Detective, I-I can show you around, if... if it's not too much trouble..."),
-            Line(1, "Sure. That would be nice."),
-            Line(-1, "Faun wants to show you around? How kind of her!", 2),
-            Line(-1, "This is where the game really opens up.\nExplore the world- *ahem* house... to your heart's content.", 2)
-        };
+            preludeEnd = new DialogString[]{
+                Line(1, "Hello?"),
+                Line(0, "Um... Hi..."),
+                Line(1, "Huh?"),
+                Line(0, "So you... got the same letter as us."),
+                Line(1, "Yeah. I'm guessing I'm not the only one, then."),
+                Line(0, "B-before we go, I should probably introduce myself..."),
+                Line(2, "I'm Faun. I got here first. I-It's nice to meet you..."),
+                Line(1, "The name's Pickles. Detective Pickles.\nI'm here on behalf of my work investigating this..."),
+                Line(2, "...Weirdly obvious scam?"),
+                Line(1, "Yeah. Any info about that?"),
+                Line(2, "W-well, I got here at about " + Global.faunArrivedTime + ".."),
+                Line(2, "Come with me... the others are waiting.\nI'll explain everything in the living room."),
+                Line(1, "The others...", 1),
+                Line(1, "Alright.")
+            };
+
+            chapter1part1 = new DialogString[]{
+                Line(0, "'The hell? Who's this tail licker?"),
+                Line(1, "Pickles. Detective P-"),
+                Line(0, "Yeah yeah, whatever. You here for the money?"),
+                Line(1, "...Yes. I'm here to uncover the true meaning behind\nthe letter I received in the mail."),
+                Line(1, "This guy's got some nerve...", 1),
+                Line(0, "Look pal, the dough ain't here. Whole thing's a scam."),
+                Line(1, "I figured so. Do you know more about the situation?"),
+                Line(0, "'The hell do you think I'm gonna tell you that for?\nYou tryna take the money from me?"),
+                Line(2, "O-Otto... He's just as confused as the rest of us... So..."),
+                Line(3, "... *sigh* Fine. You're lucky the li'l lady is here.\nOtherwise I woulda-"),
+                Line(2, "Otto...!"),
+                Line(3, "Oh, nevermind..."),
+                Line(1, "First, I'd like to know why the door was left unlocked."),
+                Line(1, "It seems... hazardous to leave this seemingly abandoned house just...\nunlocked. For anyone to come inside."),
+                Line(0, "Well, we all thought that it would be a good idea\nto leave the door as we found it."),
+                Line(1, "Ah, I see. And you are?"),
+                Line(4, "Angel. I may be past my prime, but back in my day...\nI was quite the lady."),
+                Line(1, "Despite the overlooming feeling of confusion, dread,\nand mystery...", 1),
+                Line(1, "I felt as though we were all becoming closer.", 1),
+                Line(1, "There was a cheerful feeling to the room's atmosphere.", 1),
+                Line(1, "It's nice to meet you, Angel. Faun, Otto..."),
+                Line(1, "Are you the only people here?"),
+                Line(2, "N-No... This house..."),
+                Line(2, "Has a host."),
+                Line(1, "A host?", 1),
+                Line(1, "What... does she mean by that?", 1),
+                Line(1, "What do you mean, host?"),
+                Line(1, "The room went silent.", 1),
+                Line(1, "And just like that... That cheerfulness was gone.", 1),
+                Line(2, "Detective, I-I can show you around, if... if it's not too much trouble..."),
+                Line(1, "Sure. That would be nice."),
+                Line(-1, "Faun wants to show you around? How kind of her!", 2),
+                Line(-1, "This is where the game really opens up.\nExplore the world- *ahem* house... to your heart's content.", 2)
+            };
+        }
 
         // Create Dialog String
         public static DialogString Line(int name, string text, int textColor = 0)
