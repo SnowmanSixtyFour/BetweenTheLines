@@ -43,6 +43,12 @@
 /processorParam:Quality=Best
 /build:Assets/Audio/SFX/dialogContinue.wav
 
+#begin Assets/Audio/SFX/footsteps.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Assets/Audio/SFX/footsteps.wav
+
 #begin Assets/Audio/SFX/typewriter.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor

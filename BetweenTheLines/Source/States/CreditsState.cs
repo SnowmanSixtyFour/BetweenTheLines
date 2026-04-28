@@ -79,6 +79,9 @@ namespace BetweenTheLines.Source.States
             paper5.wav - florian_reinke
             https://freesound.org/people/florian_reinke/sounds/63514/
 
+            footsteps.wav - TampaJoey
+            https://freesound.org/people/TampaJoey/sounds/588501/
+
             All Freesound.org sounds used are licensed
             under the Creative Commons 0 License.
             https://creativecommons.org/publicdomain/zero/1.0/

@@ -126,7 +126,7 @@ namespace BetweenTheLines.Source.Objects.GUI
             {
                 map.SetTexture(Assets.map);
 
-                room.setText("   OUTSIDE");
+                room.setText("       ???");
             }
         }
 
@@ -141,7 +141,7 @@ namespace BetweenTheLines.Source.Objects.GUI
             chapter.Draw(spriteBatch);
 
             // Draw Map if not Outside
-            if (currentRoom != StoryState.Room.outside) map.Draw(spriteBatch);
+            if (currentRoom != StoryState.Room.unknown) map.Draw(spriteBatch);
 
             room.Draw(spriteBatch);
         }

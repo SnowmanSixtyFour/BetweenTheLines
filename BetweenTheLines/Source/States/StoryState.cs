@@ -40,7 +40,7 @@ namespace BetweenTheLines.Source.States
 
         public enum Room
         {
-            outside,
+            unknown,
             foyer,
             livingRoom,
             mainHall,
@@ -48,7 +48,7 @@ namespace BetweenTheLines.Source.States
             kitchen,
             closet
         }
-        public Room currentRoom = Room.outside;
+        public Room currentRoom = Room.unknown;
 
         // Map Exploration
         private bool exploring = false;
@@ -73,6 +73,9 @@ namespace BetweenTheLines.Source.States
             // Closet
             closetToMainHall;
 
+        // Trigger Color
+        private Color triggerColor = Color.Transparent;
+
         public StoryState()
         {
             // --- Set Objects ---
@@ -94,7 +97,21 @@ namespace BetweenTheLines.Source.States
 
             // --- Set Map Triggers ---
 
-            foyerToLivingRoom = new StaticSprite(null, new Rectangle(700, 145, 122, 230), Color.Red);
+            foyerToLivingRoom = new StaticSprite(null, new Rectangle(700, 145, 122, 270), triggerColor);
+
+            livingRoomToFoyer = new StaticSprite(null, new Rectangle(30, 145, 122, 270), triggerColor);
+            livingRoomToMainHall = new StaticSprite(null, new Rectangle(433, 110, 157, 209), triggerColor);
+
+            mainHallToLivingRoom = new StaticSprite(null, new Rectangle(0, 186, 132, 294), triggerColor);
+            mainHallToBathroom = new StaticSprite(null, new Rectangle(715, 235, 127, 245), triggerColor);
+            mainHallToKitchen = new StaticSprite(null, new Rectangle(526, 111, 108, 250), triggerColor);
+            mainHallToCloset = new StaticSprite(null, new Rectangle(273, 56, 72, 259), triggerColor);
+
+            bathroomToMainHall = new StaticSprite(null, new Rectangle(30, 145, 122, 270), triggerColor);
+
+            kitchenToMainHall = new StaticSprite(null, new Rectangle(30, 145, 122, 270), triggerColor);
+            
+            closetToMainHall = new StaticSprite(null, new Rectangle(620, 155, 122, 270), triggerColor);
         }
 
         /// <summary>
@@ -107,8 +124,9 @@ namespace BetweenTheLines.Source.States
 
             // --- Game Variables ---
 
-            // Set Time Faun Arrived
-            Global.faunArrivedTime = (DateTime.Now.Hour + ":" + (DateTime.Now.Minute - 10));
+            // Set Real Time Variables
+            Global.picklesArrivedTime = DateTime.Now.ToShortTimeString(); // Pickles Arrived upon Chapter 1 Start
+            Global.faunArrivedTime = DateTime.Now.AddMinutes(-10).ToShortTimeString(); // Faun Arrived 10 Minutes Earlier than Pickles
 
             // Load Dialog after Variables Set
             Dialog.LoadDialog();
@@ -133,17 +151,17 @@ namespace BetweenTheLines.Source.States
             overlay.chapter.setText("    INTRO"); // Set Chapter Text
 
             // Map
-            currentRoom = Room.outside; // Set Current Room to Outside
+            currentRoom = Room.unknown; // Set Current Room to Outside
         }
 
         public override void OnUpdate(GameTime gameTime)
         {
-            // --- Story ---
+            // --- Graphics ---
 
-            if (!Global.paused)
+            // Map Exploration - Change room depending on trigger clicked
+            if (exploring)
             {
-                // Map Exploration
-                if (exploring)
+                if (currentRoom != Room.mainHall)
                 {
                     // Foyer
                     if (currentRoom == Room.foyer)
@@ -152,7 +170,11 @@ namespace BetweenTheLines.Source.States
                         if (cursor.HoveringOver(foyerToLivingRoom.GetDestRect()) && LeftClicked())
                         {
                             currentRoom = Room.livingRoom;
+                            SFX.footsteps.Play();
                         }
+
+                        // Inspect
+                        if (cursor.HoveringOver(foyerToLivingRoom.GetDestRect())) cursor.Inspect();
                     }
 
                     // Living Room
@@ -162,41 +184,19 @@ namespace BetweenTheLines.Source.States
                         if (cursor.HoveringOver(livingRoomToFoyer.GetDestRect()) && LeftClicked())
                         {
                             currentRoom = Room.foyer;
+                            SFX.footsteps.Play();
                         }
 
                         // Go to Main Hall
                         if (cursor.HoveringOver(livingRoomToMainHall.GetDestRect()) && LeftClicked())
                         {
                             currentRoom = Room.mainHall;
-                        }
-                    }
-
-                    // Main Hall
-                    if (currentRoom == Room.mainHall)
-                    {
-                        // Go to Living Room
-                        if (cursor.HoveringOver(mainHallToLivingRoom.GetDestRect()) && LeftClicked())
-                        {
-                            currentRoom = Room.livingRoom;
+                            SFX.footsteps.Play();
                         }
 
-                        // Go to Bathroom
-                        if (cursor.HoveringOver(mainHallToBathroom.GetDestRect()) && LeftClicked())
-                        {
-                            currentRoom = Room.bathroom;
-                        }
-
-                        // Go to Kitchen
-                        if (cursor.HoveringOver(mainHallToKitchen.GetDestRect()) && LeftClicked())
-                        {
-                            currentRoom = Room.kitchen;
-                        }
-
-                        // Go to Closet
-                        if (cursor.HoveringOver(mainHallToCloset.GetDestRect()) && LeftClicked())
-                        {
-                            currentRoom = Room.closet;
-                        }
+                        // Inspect
+                        if (cursor.HoveringOver(livingRoomToFoyer.GetDestRect())) cursor.Inspect();
+                        if (cursor.HoveringOver(livingRoomToMainHall.GetDestRect())) cursor.Inspect();
                     }
 
                     // Bathroom
@@ -206,7 +206,11 @@ namespace BetweenTheLines.Source.States
                         if (cursor.HoveringOver(bathroomToMainHall.GetDestRect()) && LeftClicked())
                         {
                             currentRoom = Room.mainHall;
+                            SFX.footsteps.Play();
                         }
+
+                        // Inspect
+                        if (cursor.HoveringOver(bathroomToMainHall.GetDestRect())) cursor.Inspect();
                     }
 
                     // Kitchen
@@ -216,7 +220,11 @@ namespace BetweenTheLines.Source.States
                         if (cursor.HoveringOver(kitchenToMainHall.GetDestRect()) && LeftClicked())
                         {
                             currentRoom = Room.mainHall;
+                            SFX.footsteps.Play();
                         }
+
+                        // Inspect
+                        if (cursor.HoveringOver(kitchenToMainHall.GetDestRect())) cursor.Inspect();
                     }
 
                     // Closet
@@ -226,10 +234,79 @@ namespace BetweenTheLines.Source.States
                         if (cursor.HoveringOver(closetToMainHall.GetDestRect()) && LeftClicked())
                         {
                             currentRoom = Room.mainHall;
+                            SFX.footsteps.Play();
                         }
+
+                        // Inspect
+                        if (cursor.HoveringOver(closetToMainHall.GetDestRect())) cursor.Inspect();
                     }
                 }
 
+                // Main Hall
+                else
+                {
+                    // Go to Living Room
+                    if (cursor.HoveringOver(mainHallToLivingRoom.GetDestRect()) && LeftClicked())
+                    {
+                        currentRoom = Room.livingRoom;
+                        SFX.footsteps.Play();
+                    }
+
+                    // Go to Bathroom
+                    if (cursor.HoveringOver(mainHallToBathroom.GetDestRect()) && LeftClicked())
+                    {
+                        currentRoom = Room.bathroom;
+                        SFX.footsteps.Play();
+                    }
+
+                    // Go to Kitchen
+                    if (cursor.HoveringOver(mainHallToKitchen.GetDestRect()) && LeftClicked())
+                    {
+                        currentRoom = Room.kitchen;
+                        SFX.footsteps.Play();
+                    }
+
+                    // Go to Closet
+                    if (cursor.HoveringOver(mainHallToCloset.GetDestRect()) && LeftClicked())
+                    {
+                        currentRoom = Room.closet;
+                        SFX.footsteps.Play();
+                    }
+
+                    // Inspect
+                    if (cursor.HoveringOver(mainHallToLivingRoom.GetDestRect())) cursor.Inspect();
+                    if (cursor.HoveringOver(mainHallToBathroom.GetDestRect())) cursor.Inspect();
+                    if (cursor.HoveringOver(mainHallToKitchen.GetDestRect())) cursor.Inspect();
+                    if (cursor.HoveringOver(mainHallToCloset.GetDestRect())) cursor.Inspect();
+                }
+            }
+
+            // Update Cinematic to Match Relevant Room
+            if (dialogBox.endOfDialog)
+            {
+                // Foyer
+                if (currentRoom == Room.foyer) cinematic.SetTexture(Assets.foyer);
+
+                // Living Room
+                if (currentRoom == Room.livingRoom) cinematic.SetTexture(Assets.livingRoom);
+
+                // Main Hall
+                if (currentRoom == Room.mainHall) cinematic.SetTexture(Assets.mainHall);
+
+                // Bathroom
+                if (currentRoom == Room.bathroom) cinematic.SetTexture(Assets.bathroom);
+
+                // Kitchen
+                if (currentRoom == Room.kitchen) cinematic.SetTexture(Assets.kitchen);
+
+                // Closet
+                if (currentRoom == Room.closet) cinematic.SetTexture(Assets.closet);
+            }
+
+            // --- Story ---
+
+            if (!Global.paused)
+            {
                 // If Dialog is not finished
                 if (!dialogBox.endOfDialog)
                 {
@@ -313,6 +390,7 @@ namespace BetweenTheLines.Source.States
 
                         // Begin Exploration of Map
                         exploring = true;
+                        if (currentRoom == Room.unknown) currentRoom = Room.livingRoom;
                     }
 
                     // PRELUDE
@@ -327,9 +405,10 @@ namespace BetweenTheLines.Source.States
                         overlay.chapter.setText("CHAPTER 1");
 
                         // Cinematic
-                        cinematic.SetTexture(Assets.livingRoom); // Change to Living Room
+                        cinematic.SetTexture(Assets.livingRoom); // Living Room
 
-                        currentRoom = Room.livingRoom; // Set Current Room to Living Room
+                        // SFX
+                        SFX.footsteps.Play();
 
                         // Change Music
                         ChangeSong(OST.title);
@@ -342,9 +421,10 @@ namespace BetweenTheLines.Source.States
                         dialogBox.setDialog(Dialog.preludeEnd); // Set to Prelude End
 
                         // Cinematic
-                        cinematic.SetTexture(Assets.foyer); // Change to Foyer
+                        cinematic.SetTexture(Assets.foyer); // Foyer
 
-                        currentRoom = Room.foyer; // Set Current Room to Foyer
+                        // Play Footsteps SFX
+                        SFX.footsteps.Play();
                     }
 
                     // Intro 2
@@ -401,7 +481,7 @@ namespace BetweenTheLines.Source.States
                     }
                 }
 
-                // Update Objects
+                // --- Update Objects ---
 
                 portrait.Update(gameTime);
                 dialogBox.Update(gameTime, dialogSpeed);

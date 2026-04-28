@@ -60,7 +60,9 @@ namespace BetweenTheLines.Source
             musicEnabled = true, musicToggled = false;
 
         // Gameplay Variables
-        public static string faunArrivedTime;
+        public static string
+            picklesArrivedTime, // Time Pickles Arrived at House
+            faunArrivedTime; // Time Faun Arrived at House
 
         // State
         public enum State
@@ -108,7 +110,10 @@ namespace BetweenTheLines.Source
             button,
 
             // --- Dialog ---
-            typewriter, dialogContinue;
+            typewriter, dialogContinue,
+
+            // --- Actions ---
+            footsteps;
     }
 
     // Game Assets
@@ -237,6 +242,8 @@ namespace BetweenTheLines.Source
             SFX.typewriter = content.Load<SoundEffect>("Assets/Audio/SFX/typewriter");
             SFX.dialogContinue = content.Load<SoundEffect>("Assets/Audio/SFX/dialogContinue");
 
+            SFX.footsteps = content.Load<SoundEffect>("Assets/Audio/SFX/footsteps");
+
             // NOTE: Music is ran in try and catch to prevent errors while copyrighted placeholder music is left out of the source code.
 
             // Music
@@ -334,6 +341,7 @@ namespace BetweenTheLines.Source
                 Line(2, "...Weirdly obvious scam?"),
                 Line(1, "Yeah. Any info about that?"),
                 Line(2, "W-well, I got here at about " + Global.faunArrivedTime + ".."),
+                Line(1, "Since I arrived at " + Global.picklesArrivedTime + ", that would mean you got here\n10 minutes before me."),
                 Line(2, "Come with me... the others are waiting.\nI'll explain everything in the living room."),
                 Line(1, "The others...", 1),
                 Line(1, "Alright.")
