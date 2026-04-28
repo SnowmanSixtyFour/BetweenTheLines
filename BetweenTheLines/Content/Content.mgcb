@@ -471,6 +471,18 @@
 /processorParam:TextureFormat=Color
 /build:Assets/Images/Level/Portrait/faunWorried.png
 
+#begin Assets/Images/Level/Portrait/micahRegular.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Assets/Images/Level/Portrait/micahRegular.png
+
 #begin Assets/Images/Level/Portrait/ottoAngry.png
 /importer:TextureImporter
 /processor:TextureProcessor

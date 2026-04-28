@@ -235,6 +235,9 @@ namespace BetweenTheLines.Source
             Dialog.angelRegular = content.Load<Texture2D>("Assets/Images/Level/Portrait/angelRegular");
             Dialog.angelThinking = content.Load<Texture2D>("Assets/Images/Level/Portrait/angelThinking");
 
+            // Micah
+            Dialog.micahRegular = content.Load<Texture2D>("Assets/Images/Level/Portrait/micahRegular");
+
             // Audio
 
             // SFX
@@ -271,12 +274,13 @@ namespace BetweenTheLines.Source
     // Game Dialog
     internal class Dialog
     {
-        // Character IDs
+        // Portrait IDs
         internal static readonly byte
-            pickles = 0,
-            faun = 1,
-            otto = 2,
-            angel = 3;
+            pickles = 1,
+            faun = 2,
+            otto = 3,
+            angel = 4,
+            micah = 5;
 
         // Dialog Portraits
 
@@ -291,10 +295,21 @@ namespace BetweenTheLines.Source
             ottoRegular, ottoAngry,
 
             // --- Angel ---
-            angelRegular, angelThinking;
+            angelRegular, angelThinking,
+
+            // --- Micah ---
+            micahRegular;
 
         public static DialogString[]
-            intro1, intro2, intro2a, preludeEnd, chapter1part1;
+            // Intro
+            intro1,
+            intro2, intro2a, // Tutorial
+            preludeEnd,
+            
+            // Chapter 1
+            chapter1part1,
+            chapter1bathroom, chapter1kitchen, chapter1closet, // Exploration
+            chapter1part2;
 
         public static void LoadDialog()
         {
@@ -385,6 +400,34 @@ namespace BetweenTheLines.Source
                 Line(-1, "Faun wants to show you around? How kind of her!", 2),
                 Line(-1, "This is where the game really opens up.\nExplore the world- *ahem* house... to your heart's content.", 2),
                 Line(-1, "Keep an eye on the map in the top right corner.\nIt'll help you keep track of where you are.", 2)
+            };
+
+            chapter1bathroom = new DialogString[]{
+            };
+
+            chapter1kitchen = new DialogString[]{
+            };
+
+            chapter1closet = new DialogString[]{
+                Line(0, "Mmm... What time is it...?"),
+                Line(2, "M-Micah, you know you shouldn't be sleeping in the closet..."),
+                Line(5, "Oh d-d-dear! My apologies...!"),
+                Line(1, "It's fine. I'm still getting adjusted, so-"),
+                Line(5, "Cortisol levels rising. Begin the diaphragmatic process."),
+                Line(1, "...Huh?"),
+                Line(1, "I didn't catch a word of what she said.", 1),
+                Line(5, "O-oh, sorry, I didn't explain properly, did I?"),
+                Line(5, "In case you didn't know, diaphragmatic breathing exercises\ncan help you relax."),
+                Line(1, "I, uh..."),
+                Line(2, "M-Micah! He has no idea what you're talking about..."),
+                Line(5, "WHAT?! Ohmygoodness I am SO sorry!"),
+                Line(1, "Really, it's fine..."),
+                Line(5, "No! It's not fine!"),
+                Line(5, "Allow me to start from the top. *ahem*"),
+                Line(1, "The sooner I get out of this closet, the better.", 1)
+            };
+
+            chapter1part2 = new DialogString[]{
             };
         }
 

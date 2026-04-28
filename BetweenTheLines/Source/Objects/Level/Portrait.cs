@@ -155,7 +155,7 @@ namespace BetweenTheLines.Source.Objects.Level
             portraitState = newPortraitState;
 
             // Pickles
-            if (state == 0)
+            if (state == Dialog.pickles)
             {
                 // Regular
                 if (portraitState == State.regular) this.sprite.SetTexture(Dialog.picklesRegular);
@@ -165,7 +165,7 @@ namespace BetweenTheLines.Source.Objects.Level
             }
 
             // Faun
-            else if (state == 1)
+            else if (state == Dialog.faun)
             {
                 // Regular
                 if (portraitState == State.regular) this.sprite.SetTexture(Dialog.faunRegular);
@@ -175,7 +175,7 @@ namespace BetweenTheLines.Source.Objects.Level
             }
 
             // Otto
-            else if (state == 2)
+            else if (state == Dialog.otto)
             {
                 // Regular
                 if (portraitState == State.regular) this.sprite.SetTexture(Dialog.ottoRegular);
@@ -185,13 +185,20 @@ namespace BetweenTheLines.Source.Objects.Level
             }
 
             // Angel
-            else if (state == 3)
+            else if (state == Dialog.angel)
             {
                 // Regular
                 if (portraitState == State.regular) this.sprite.SetTexture(Dialog.angelRegular);
 
                 // Thinking
                 if (portraitState == State.thinking) this.sprite.SetTexture(Dialog.angelThinking);
+            }
+
+            // Micah
+            else if (state == Dialog.micah)
+            {
+                // Regular
+                if (portraitState == State.regular) this.sprite.SetTexture(Dialog.micahRegular);
             }
         }
 

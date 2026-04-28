@@ -39,7 +39,8 @@ namespace BetweenTheLines.Source.Objects.Level
             "Pickles",
             "Faun",
             "Otto",
-            "Angel"
+            "Angel",
+            "Micah"
         };
 
         // Dialog
@@ -247,6 +248,7 @@ namespace BetweenTheLines.Source.Objects.Level
             ResetTypewriter();
 
             this.steps = 0; // Reset Steps
+            this.currentLine = 0; // Reset Current Line
 
             this.endOfDialog = false; // Set Bool to False
 
