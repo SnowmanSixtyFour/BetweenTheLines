@@ -19,6 +19,8 @@ Explore a point-and-click world inspired by visual novels games such as the Dang
 ### Special Thanks
 Timothy Lottes - [CRT Filter (Public Domain)](https://github.com/libretro/glsl-shaders/blob/master/crt/shaders/crt-lottes.glsl)
 
+#### Full credits can be found in-game, or in [Credits.cs](https://github.com/SnowmanSixtyFour/BetweenTheLines/blob/game-jam/BetweenTheLines/Source/States/CreditsState.cs).
+
 <img style="display: block;" src="img/banner_copyright.png">
 
 Copyright (c) 2026 Snowman64, under the [GNU General Public License v3.0](https://www.gnu.org/licenses/gpl-3.0.en.html).
