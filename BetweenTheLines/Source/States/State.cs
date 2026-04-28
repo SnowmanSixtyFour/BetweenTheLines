@@ -108,6 +108,10 @@ namespace BetweenTheLines.Source.States
             MediaPlayer.Stop();
         }
 
+        /// <summary>
+        /// Start playing a specific song in MediaPlayer.
+        /// </summary>
+        /// <param name="music">The Song variable to play.</param>
         public void ChangeSong(Song music)
         {
             MediaPlayer.Play(music);
