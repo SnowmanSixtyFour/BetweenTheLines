@@ -341,8 +341,7 @@ namespace BetweenTheLines.Source.States
                     // Prelude 1
                     if (dialogBox.dialog == Dialog.preludeEnd)
                     {
-                        // Line 1
-                        if (dialogBox.currentLine == 1)
+                        if (dialogBox.currentLine == 3)
                         {
                             // Dialog Portraits
                             portrait.SetState(Dialog.faun, Portrait.State.regular);
@@ -355,7 +354,6 @@ namespace BetweenTheLines.Source.States
                     // Intro 2
                     if (dialogBox.dialog == Dialog.intro2)
                     {
-                        // Line 3
                         if (dialogBox.currentLine == 3)
                         {
                             portrait.MoveLeftOffscreen(); // Hide Portrait

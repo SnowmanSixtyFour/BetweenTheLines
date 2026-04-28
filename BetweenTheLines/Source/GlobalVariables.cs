@@ -330,6 +330,9 @@ namespace BetweenTheLines.Source
             };
 
             preludeEnd = new DialogString[]{
+                Line(1, "When I stepped foot inside... The house didn't look unkept.", 1),
+                Line(1, "Despite it's shoddy look from outside...\nIt was as though someone really was waiting for me to arrive.", 1),
+                Line(1, "Without hesitation, I called out into the large foyer,\nand waited for a response.", 1),
                 Line(1, "Anyone home?"),
                 Line(0, "Um... Hi..."),
                 Line(1, "Huh?"),
