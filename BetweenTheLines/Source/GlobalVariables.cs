@@ -449,6 +449,15 @@ namespace BetweenTheLines.Source
             };
 
             chapter1part2 = new DialogString[]{
+                Line(0, "I'm glad to see you all get acquainted with one another!"),
+                Line(1, "That voice...", 1),
+                Line(2, "That's-!"),
+                Line(0, "Meeee!"),
+                Line(1, "Who the hell..."),
+                Line(3, "You again?! I thought I told you to scram for good, ya douche!"),
+                Line(0, "Ah, but I just couldn't help myself...!\nI was getting jealous of all your smiles! Your joy!"),
+                Line(1, "Are you the host here..?"),
+                Line(0, "But of course I am!")
             };
         }
 

@@ -45,7 +45,7 @@ namespace BetweenTheLines.Source.States
             logoYStart = 700,
             creditsXPadding = 375,
             creditsYStart = 800,
-            creditsYEnd = -1550, // Credits End (Go back to Title)
+            creditsYEnd = -1600, // Credits End (Go back to Title)
 
             // Cat Positions
             picklesAngelPos = 1650, // Pickles and Angel Y Positions
@@ -119,7 +119,7 @@ namespace BetweenTheLines.Source.States
 
             pickles = new Text(Assets.arial, "           Pickles", Vector2.Zero, Color.White, 1.0f, false);
             angel = new Text(Assets.arial, "              Angel", Vector2.Zero, Color.White, 1.0f, false);
-            smokey = new Text(Assets.arial, "  Dedicated to Smokey", Vector2.Zero, Color.White, 1.0f, false);
+            smokey = new Text(Assets.arial, "  Dedicated to Smokey\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n         2014-2026", Vector2.Zero, Color.White, 1.0f, false);
 
             // Cats
             picklesIrl = new StaticSprite(Assets.picklesIrl, Rectangle.Empty, Color.White);
