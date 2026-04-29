@@ -19,7 +19,9 @@ namespace BetweenTheLines.Source.Objects.Level
             regular,
             thinking,
             worried,
-            angry
+            angry,
+            excited,
+            creepy
         }
 
         private Point size = new Point(300, 480);
@@ -199,6 +201,19 @@ namespace BetweenTheLines.Source.Objects.Level
             {
                 // Regular
                 if (portraitState == State.regular) this.sprite.SetTexture(Dialog.micahRegular);
+            }
+
+            // Smokey
+            else if (state == Dialog.smokey)
+            {
+                // Regular
+                if (portraitState == State.regular) this.sprite.SetTexture(Dialog.smokeyRegular);
+
+                // Excited
+                if (portraitState == State.excited) this.sprite.SetTexture(Dialog.smokeyExcited);
+
+                // Creepy
+                if (portraitState == State.creepy) this.sprite.SetTexture(Dialog.smokeyCreepy);
             }
         }
 

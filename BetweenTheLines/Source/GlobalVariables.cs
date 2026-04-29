@@ -238,6 +238,11 @@ namespace BetweenTheLines.Source
             // Micah
             Dialog.micahRegular = content.Load<Texture2D>("Assets/Images/Level/Portrait/micahRegular");
 
+            // Smokey
+            Dialog.smokeyRegular = content.Load<Texture2D>("Assets/Images/Level/Portrait/smokeyRegular");
+            Dialog.smokeyExcited = content.Load<Texture2D>("Assets/Images/Level/Portrait/smokeyExcited");
+            Dialog.smokeyCreepy = content.Load<Texture2D>("Assets/Images/Level/Portrait/smokeyCreepy");
+
             // Audio
 
             // SFX
@@ -280,7 +285,8 @@ namespace BetweenTheLines.Source
             faun = 2,
             otto = 3,
             angel = 4,
-            micah = 5;
+            micah = 5,
+            smokey = 6;
 
         // Dialog Portraits
 
@@ -298,7 +304,10 @@ namespace BetweenTheLines.Source
             angelRegular, angelThinking,
 
             // --- Micah ---
-            micahRegular;
+            micahRegular,
+
+            // --- Smokey ---
+            smokeyRegular, smokeyExcited, smokeyCreepy;
 
         public static DialogString[]
             // Intro

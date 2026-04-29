@@ -531,6 +531,42 @@
 /processorParam:TextureFormat=Color
 /build:Assets/Images/Level/Portrait/picklesThinking.png
 
+#begin Assets/Images/Level/Portrait/smokeyCreepy.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Assets/Images/Level/Portrait/smokeyCreepy.png
+
+#begin Assets/Images/Level/Portrait/smokeyExcited.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Assets/Images/Level/Portrait/smokeyExcited.png
+
+#begin Assets/Images/Level/Portrait/smokeyRegular.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Assets/Images/Level/Portrait/smokeyRegular.png
+
 #begin Assets/Images/Title/Diamonds.png
 /importer:TextureImporter
 /processor:TextureProcessor
