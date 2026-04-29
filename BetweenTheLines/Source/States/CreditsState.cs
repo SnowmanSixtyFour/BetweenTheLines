@@ -23,6 +23,9 @@ namespace BetweenTheLines.Source.States
         private StaticSprite logo;
         private Point logoSize = new Point(364, 214);
 
+        private StaticSprite
+            picklesIrl, angelIrl, smokeyIrl;
+
         // Buttons
         private Button backButton; // Back
         private int backButtonPadding = 20;
@@ -30,7 +33,8 @@ namespace BetweenTheLines.Source.States
         // Text
         private Text
             versionNum, // Version Number under Logo
-            creditsText; // Credits
+            creditsText, // Credits
+            pickles, angel, smokey; // Cats
         
         // Position
         private Vector2 creditsPosition;
@@ -41,7 +45,15 @@ namespace BetweenTheLines.Source.States
             logoYStart = 700,
             creditsXPadding = 375,
             creditsYStart = 800,
-            creditsYEnd = -850;
+            creditsYEnd = -1550, // Credits End (Go back to Title)
+
+            // Cat Positions
+            picklesAngelPos = 1650, // Pickles and Angel Y Positions
+            angelOffset = 350, // Angel X Offset
+            smokeyPosX = 160, smokeyPosY = 2000, // Smokey Position
+
+            catPicOffset = 50; // Picture Y Offset
+        private Point catPicSize = new Point(250, 250); // Picture Size
 
         private int amountToMove = 1;
 
@@ -105,6 +117,15 @@ namespace BetweenTheLines.Source.States
             // Set Text
             creditsText = new Text(Assets.arial, creditsString, creditsPosition, Color.White, 1.0f, false);
 
+            pickles = new Text(Assets.arial, "           Pickles", new Vector2(creditsPosition.X, picklesAngelPos), Color.White, 1.0f, false);
+            angel = new Text(Assets.arial, "              Angel", new Vector2(creditsPosition.X + angelOffset, picklesAngelPos), Color.White, 1.0f, false);
+            smokey = new Text(Assets.arial, "  Dedicated to Smokey", new Vector2(creditsPosition.X + smokeyPosX, smokeyPosY), Color.White, 1.0f, false);
+
+            // Cats
+            picklesIrl = new StaticSprite(Assets.picklesIrl, new Rectangle((int)creditsPosition.X, picklesAngelPos + catPicOffset, catPicSize.X, catPicSize.Y), Color.White);
+            angelIrl = new StaticSprite(Assets.angelIrl, new Rectangle((int)creditsPosition.X + angelOffset, picklesAngelPos + catPicOffset, catPicSize.X, catPicSize.Y), Color.White);
+            smokeyIrl = new StaticSprite(Assets.smokeyIrl, new Rectangle((int)creditsPosition.X + smokeyPosX, smokeyPosY + catPicOffset, catPicSize.X, catPicSize.Y), Color.White);
+
             // Set Buttons
             backButton = new Button("Back", Point.Zero);
             backButton.SetPosition(new Point(
@@ -124,6 +145,15 @@ namespace BetweenTheLines.Source.States
                     // Move Y Position Up
                     logo.SetDestRect(new Rectangle(logo.GetDestRect().X, logo.GetDestRect().Y - amountToMove, logo.GetDestRect().Width, logo.GetDestRect().Height));
                     creditsPosition.Y -= amountToMove;
+
+                    pickles.setPosition(new Vector2(pickles.getPosition().X, pickles.getPosition().Y - amountToMove));
+                    picklesIrl.SetY(picklesIrl.GetY() - amountToMove);
+
+                    angel.setPosition(new Vector2(angel.getPosition().X, angel.getPosition().Y - amountToMove));
+                    angelIrl.SetY(angelIrl.GetY() - amountToMove);
+
+                    smokey.setPosition(new Vector2(smokey.getPosition().X, smokey.getPosition().Y - amountToMove));
+                    smokeyIrl.SetY(smokeyIrl.GetY() - amountToMove);
 
                     // Keep Text Updated
                     versionNum.setPosition(new Vector2(logo.GetDestRect().Center.X, logo.GetDestRect().Bottom + verNumOffset));
@@ -211,9 +241,17 @@ namespace BetweenTheLines.Source.States
             // Sprites
             logo.Draw(spriteBatch);
 
+            picklesIrl.Draw(spriteBatch);
+            angelIrl.Draw(spriteBatch);
+            smokeyIrl.Draw(spriteBatch);
+
             // Text
             versionNum.Draw(spriteBatch);
             creditsText.Draw(spriteBatch);
+
+            pickles.Draw(spriteBatch);
+            angel.Draw(spriteBatch);
+            smokey.Draw(spriteBatch);
 
             // Buttons
             if (Global.viewingCreditsFromTitle) backButton.Draw(spriteBatch);

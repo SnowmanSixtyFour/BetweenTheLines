@@ -153,7 +153,12 @@ namespace BetweenTheLines.Source
             intro2, intro2a,
 
             // Gameplay
-            foyer, livingRoom, mainHall, bathroom, kitchen, closet;
+            foyer, livingRoom, mainHall, bathroom, kitchen, closet,
+
+            // --- Credits ---
+
+            // Cats
+            picklesIrl, angelIrl, smokeyIrl;
 
         // --- Fonts ---
         public static SpriteFont arial;
@@ -242,6 +247,13 @@ namespace BetweenTheLines.Source
             Dialog.smokeyRegular = content.Load<Texture2D>("Assets/Images/Level/Portrait/smokeyRegular");
             Dialog.smokeyExcited = content.Load<Texture2D>("Assets/Images/Level/Portrait/smokeyExcited");
             Dialog.smokeyCreepy = content.Load<Texture2D>("Assets/Images/Level/Portrait/smokeyCreepy");
+
+            // --- Credits ---
+
+            // Cats
+            Assets.picklesIrl = content.Load<Texture2D>("Assets/Images/Credits/picklesIrl");
+            Assets.angelIrl = content.Load<Texture2D>("Assets/Images/Credits/angelIrl");
+            Assets.smokeyIrl = content.Load<Texture2D>("Assets/Images/Credits/smokeyIrl");
 
             // Audio
 
