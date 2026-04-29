@@ -117,14 +117,14 @@ namespace BetweenTheLines.Source.States
             // Set Text
             creditsText = new Text(Assets.arial, creditsString, creditsPosition, Color.White, 1.0f, false);
 
-            pickles = new Text(Assets.arial, "           Pickles", new Vector2(creditsPosition.X, picklesAngelPos), Color.White, 1.0f, false);
-            angel = new Text(Assets.arial, "              Angel", new Vector2(creditsPosition.X + angelOffset, picklesAngelPos), Color.White, 1.0f, false);
-            smokey = new Text(Assets.arial, "  Dedicated to Smokey", new Vector2(creditsPosition.X + smokeyPosX, smokeyPosY), Color.White, 1.0f, false);
+            pickles = new Text(Assets.arial, "           Pickles", Vector2.Zero, Color.White, 1.0f, false);
+            angel = new Text(Assets.arial, "              Angel", Vector2.Zero, Color.White, 1.0f, false);
+            smokey = new Text(Assets.arial, "  Dedicated to Smokey", Vector2.Zero, Color.White, 1.0f, false);
 
             // Cats
-            picklesIrl = new StaticSprite(Assets.picklesIrl, new Rectangle((int)creditsPosition.X, picklesAngelPos + catPicOffset, catPicSize.X, catPicSize.Y), Color.White);
-            angelIrl = new StaticSprite(Assets.angelIrl, new Rectangle((int)creditsPosition.X + angelOffset, picklesAngelPos + catPicOffset, catPicSize.X, catPicSize.Y), Color.White);
-            smokeyIrl = new StaticSprite(Assets.smokeyIrl, new Rectangle((int)creditsPosition.X + smokeyPosX, smokeyPosY + catPicOffset, catPicSize.X, catPicSize.Y), Color.White);
+            picklesIrl = new StaticSprite(Assets.picklesIrl, Rectangle.Empty, Color.White);
+            angelIrl = new StaticSprite(Assets.angelIrl, Rectangle.Empty, Color.White);
+            smokeyIrl = new StaticSprite(Assets.smokeyIrl, Rectangle.Empty, Color.White);
 
             // Set Buttons
             backButton = new Button("Back", Point.Zero);
@@ -132,6 +132,9 @@ namespace BetweenTheLines.Source.States
                 (cam.Width - backButton.Width) - backButtonPadding, // X
                 (cam.Height - backButton.Height) - backButtonPadding) // Y
                 );
+
+            // Set Object Positions
+            ResetState();
         }
 
         public override void OnUpdate(GameTime gameTime)
@@ -220,6 +223,16 @@ namespace BetweenTheLines.Source.States
             versionNum.setPosition(new Vector2(logo.GetDestRect().Center.X, logo.GetDestRect().Bottom + verNumOffset)); // Version Number
 
             creditsPosition.Y = creditsYStart; // Credits
+
+            // Cats
+            pickles.setPosition(new Vector2(creditsPosition.X, picklesAngelPos));
+            angel.setPosition(new Vector2(creditsPosition.X + angelOffset, picklesAngelPos));
+            smokey.setPosition(new Vector2(creditsPosition.X + smokeyPosX, smokeyPosY));
+
+            // Cats
+            picklesIrl.SetDestRect(new Rectangle((int)creditsPosition.X, picklesAngelPos + catPicOffset, catPicSize.X, catPicSize.Y));
+            angelIrl.SetDestRect(new Rectangle((int)creditsPosition.X + angelOffset, picklesAngelPos + catPicOffset, catPicSize.X, catPicSize.Y));
+            smokeyIrl.SetDestRect(new Rectangle((int)creditsPosition.X + smokeyPosX, smokeyPosY + catPicOffset, catPicSize.X, catPicSize.Y));
 
             base.ResetState();
         }
