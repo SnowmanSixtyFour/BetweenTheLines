@@ -101,7 +101,8 @@ namespace BetweenTheLines.Source
         public static Song
             title,
             intro,
-            intense;
+            intense,
+            trial;
     }
 
     // Sound Effects
@@ -279,6 +280,7 @@ namespace BetweenTheLines.Source
             OST.title = content.Load<Song>("Assets/Audio/Music/Title");
             OST.intro = content.Load<Song>("Assets/Audio/Music/Intro");
             OST.intense = content.Load<Song>("Assets/Audio/Music/Intense");
+            OST.trial = content.Load<Song>("Assets/Audio/Music/Trial");
 
             // Fonts
 

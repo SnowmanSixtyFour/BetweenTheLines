@@ -31,6 +31,12 @@
 /processorParam:Quality=Best
 /build:Assets/Audio/Music/Title.mp3
 
+#begin Assets/Audio/Music/Trial.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Assets/Audio/Music/Trial.mp3
+
 #begin Assets/Audio/SFX/button.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor

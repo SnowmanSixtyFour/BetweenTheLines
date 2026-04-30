@@ -69,8 +69,8 @@ namespace BetweenTheLines.Source.States
 
             Development Team
 
-            Snowman64 - Programmer
-            TBA - Artist
+            Snowman64 - Programmer, Writer, Composer
+            River347 - Composer
 
 
 
