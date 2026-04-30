@@ -736,7 +736,7 @@ namespace BetweenTheLines.Source.States
 
             dialogBox.Draw(spriteBatch); // Dialog Box
 
-            overlay.Draw(spriteBatch); // Overlay
+            if (!dialogCinematicVisible) overlay.Draw(spriteBatch); // Overlay
         }
     }
 }
