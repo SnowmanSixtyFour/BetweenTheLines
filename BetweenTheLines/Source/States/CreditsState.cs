@@ -129,7 +129,7 @@ namespace BetweenTheLines.Source.States
 
             pickles = new Text(Assets.arial, "           Pickles", Vector2.Zero, Color.White, 1.0f, false);
             angel = new Text(Assets.arial, "              Angel", Vector2.Zero, Color.White, 1.0f, false);
-            smokey = new Text(Assets.arial, "  Dedicated to Smokey\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n         2013-2026", Vector2.Zero, Color.White, 1.0f, false); // This string is lazy but it gets the job done
+            smokey = new Text(Assets.arial, "  Dedicated to Smokey\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n         2013-2026", Vector2.Zero, Color.White, 1.0f, false);
 
             // Cats
             picklesIrl = new StaticSprite(Assets.picklesIrl, Rectangle.Empty, Color.White);

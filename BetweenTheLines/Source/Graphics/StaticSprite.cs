@@ -111,11 +111,11 @@ namespace BetweenTheLines.Source.Graphics
 
         public void SetTexture(Texture2D newTexture)
         {
-            // Set Texture
-            if (newTexture != null) this.texture = newTexture;
-
             // If Texture is Null
-            else texture = Assets.noImg;
+            if (newTexture == null) texture = Assets.noImg;
+
+            // Set Texture
+            else this.texture = newTexture;
         }
 
         public void SetDestRect(Rectangle newRect)

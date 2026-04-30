@@ -103,10 +103,7 @@ namespace BetweenTheLines.Source.States
             dialogBox = new DialogBox();
             portrait = new Portrait(0, 0);
 
-            // Set Default Properties of State
-            SetDefaultVariables();
-
-            // --- Set Map Triggers ---
+            // Map Triggers
 
             foyerToLivingRoom = new StaticSprite(null, new Rectangle(700, 145, 122, 270), triggerColor);
 
@@ -123,6 +120,9 @@ namespace BetweenTheLines.Source.States
             kitchenToMainHall = new StaticSprite(null, new Rectangle(30, 145, 122, 270), triggerColor);
             
             closetToMainHall = new StaticSprite(null, new Rectangle(620, 155, 122, 270), triggerColor);
+
+            // Set Default Properties of State
+            SetDefaultVariables();
         }
 
         /// <summary>
