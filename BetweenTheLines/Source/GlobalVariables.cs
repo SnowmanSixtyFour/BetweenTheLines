@@ -470,7 +470,7 @@ namespace BetweenTheLines.Source
                 Line(faun, "M-Micah, you know you shouldn't be sleeping in the closet..."),
                 Line(micah, "Oh d-d-dear! My apologies...!"),
                 Line(pickles, "It's fine. I'm still getting adjusted, so-"),
-                Line(micah, "Cortisol levels rising. Begin the diaphragmatic process."),
+                Line(micah, "Your cortisol levels are rising. Begin the diaphragmatic process."),
                 Line(pickles, "...Huh?"),
                 Line(pickles, "I didn't catch a word of what she said.", innerThought),
                 Line(micah, "O-oh, sorry, I didn't explain properly, did I?"),

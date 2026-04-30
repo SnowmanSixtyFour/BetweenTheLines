@@ -9,6 +9,7 @@ using BetweenTheLines.Source.Graphics;
 using BetweenTheLines.Source.Objects;
 using BetweenTheLines.Source.Objects.GUI;
 using BetweenTheLines.Source.Objects.Level;
+using Microsoft.Xna.Framework.Audio;
 
 namespace BetweenTheLines.Source.States
 {
@@ -174,6 +175,65 @@ namespace BetweenTheLines.Source.States
                 // Map Exploration - Change room depending on trigger clicked
                 if (exploring)
                 {
+                    if (dialogBox.endOfDialog)
+                    {
+                        // --- Chapter 1 Part 2 Dialog ---
+
+                        // Living Room Dialog
+                        if (currentRoom == Room.livingRoom)
+                        {
+                            // Check if Conditions are Met
+                            if (dialogBox.dialog != Dialog.chapter1part2
+                            && seenBathroom && seenKitchen && seenCloset)
+                            {
+                                StopExploring(Dialog.chapter1part2);
+                            }
+                        }
+
+                        // --- Chapter 1 Part 1 Dialog ---
+
+                        // Closet Dialog
+                        if (currentRoom == Room.closet && !seenCloset)
+                        {
+                            seenCloset = true;
+                            StopExploring(Dialog.chapter1closet);
+                        }
+
+                        // Kitchen Dialog
+                        if (currentRoom == Room.kitchen && !seenKitchen)
+                        {
+                            seenKitchen = true;
+                            StopExploring(Dialog.chapter1kitchen);
+                        }
+
+                        // Bathroom Dialog
+                        if (currentRoom == Room.bathroom && !seenBathroom)
+                        {
+                            seenBathroom = true;
+                            StopExploring(Dialog.chapter1bathroom);
+                        }
+
+                        // --- Update Cinematic to Match Relevant Room ---
+
+                        // Foyer
+                        if (currentRoom == Room.foyer) cinematic.SetTexture(Assets.foyer);
+
+                        // Living Room
+                        if (currentRoom == Room.livingRoom) cinematic.SetTexture(Assets.livingRoom);
+
+                        // Main Hall
+                        if (currentRoom == Room.mainHall) cinematic.SetTexture(Assets.mainHall);
+
+                        // Bathroom
+                        if (currentRoom == Room.bathroom) cinematic.SetTexture(Assets.bathroom);
+
+                        // Kitchen
+                        if (currentRoom == Room.kitchen) cinematic.SetTexture(Assets.kitchen);
+
+                        // Closet
+                        if (currentRoom == Room.closet) cinematic.SetTexture(Assets.closet);
+                    }
+
                     // Room Movement Events
 
                     if (currentRoom != Room.mainHall)
@@ -265,10 +325,6 @@ namespace BetweenTheLines.Source.States
                         {
                             currentRoom = Room.livingRoom;
                             SFX.footsteps.Play();
-
-                            // Chapter 1 Part 2 Dialog
-                            if (dialogBox.dialog != Dialog.chapter1part2
-                                && seenBathroom && seenKitchen && seenCloset) StopExploring(Dialog.chapter1part2);
                         }
 
                         // Go to Bathroom
@@ -298,53 +354,6 @@ namespace BetweenTheLines.Source.States
                         if (cursor.HoveringOver(mainHallToKitchen.GetDestRect())) cursor.Inspect();
                         if (cursor.HoveringOver(mainHallToCloset.GetDestRect())) cursor.Inspect();
                     }
-                }
-
-                // On Left Click
-                if (LeftClicked())
-                {
-                    // --- Chapter 1 Part 1 Dialog ---
-
-                    // Closet Dialog
-                    if (currentRoom == Room.closet && !seenCloset)
-                    {
-                        seenCloset = true;
-                        StopExploring(Dialog.chapter1closet);
-                    }
-
-                    // Kitchen Dialog
-                    if (currentRoom == Room.kitchen && !seenKitchen)
-                    {
-                        seenKitchen = true;
-                        StopExploring(Dialog.chapter1kitchen);
-                    }
-
-                    // Bathroom Dialog
-                    if (currentRoom == Room.bathroom && !seenBathroom)
-                    {
-                        seenBathroom = true;
-                        StopExploring(Dialog.chapter1bathroom);
-                    }
-
-                    // --- Update Cinematic to Match Relevant Room ---
-
-                    // Foyer
-                    if (currentRoom == Room.foyer) cinematic.SetTexture(Assets.foyer);
-
-                    // Living Room
-                    if (currentRoom == Room.livingRoom) cinematic.SetTexture(Assets.livingRoom);
-
-                    // Main Hall
-                    if (currentRoom == Room.mainHall) cinematic.SetTexture(Assets.mainHall);
-
-                    // Bathroom
-                    if (currentRoom == Room.bathroom) cinematic.SetTexture(Assets.bathroom);
-
-                    // Kitchen
-                    if (currentRoom == Room.kitchen) cinematic.SetTexture(Assets.kitchen);
-
-                    // Closet
-                    if (currentRoom == Room.closet) cinematic.SetTexture(Assets.closet);
                 }
             }
 
