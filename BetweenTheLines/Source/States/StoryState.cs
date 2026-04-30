@@ -164,6 +164,12 @@ namespace BetweenTheLines.Source.States
 
             // Map
             currentRoom = Room.unknown; // Set Current Room to Outside
+
+            // Exploration
+            dialogCinematicVisible = false;
+            seenBathroom = false;
+            seenKitchen = false;
+            seenCloset = false;
         }
 
         public override void OnUpdate(GameTime gameTime)
