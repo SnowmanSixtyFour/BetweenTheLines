@@ -45,12 +45,12 @@ namespace BetweenTheLines.Source.States
             logoYStart = 700,
             creditsXPadding = 375,
             creditsYStart = 800,
-            creditsYEnd = -1600, // Credits End (Go back to Title)
+            creditsYEnd = -1750, // Credits End (Go back to Title)
 
             // Cat Positions
-            picklesAngelPos = 1650, // Pickles and Angel Y Positions
-            angelOffset = 350, // Angel X Offset
-            smokeyPosX = 160, smokeyPosY = 2000, // Smokey Position
+            picklesAngelPos = 1800, // Pickles and Angel Y Positions
+            angelOffset = 400, // Angel X Offset
+            smokeyPosX = 160, smokeyPosY = 2150, // Smokey Position
 
             catPicOffset = 50; // Picture Y Offset
         private Point catPicSize = new Point(250, 250); // Picture Size
@@ -64,6 +64,13 @@ namespace BetweenTheLines.Source.States
             Developed from April 7, 2026 - TBA
             Made for the Mystery Game Jam 2026 on itch.io.
             https://itch.io/jam/mystery-game-jam-2026
+
+
+
+            Development Team
+
+            Snowman64 - Programmer
+            TBA - Artist
 
 
 
@@ -119,7 +126,7 @@ namespace BetweenTheLines.Source.States
 
             pickles = new Text(Assets.arial, "           Pickles", Vector2.Zero, Color.White, 1.0f, false);
             angel = new Text(Assets.arial, "              Angel", Vector2.Zero, Color.White, 1.0f, false);
-            smokey = new Text(Assets.arial, "  Dedicated to Smokey\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n         2014-2026", Vector2.Zero, Color.White, 1.0f, false);
+            smokey = new Text(Assets.arial, "  Dedicated to Smokey\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n         2013-2026", Vector2.Zero, Color.White, 1.0f, false); // This string is lazy but it gets the job done
 
             // Cats
             picklesIrl = new StaticSprite(Assets.picklesIrl, Rectangle.Empty, Color.White);
