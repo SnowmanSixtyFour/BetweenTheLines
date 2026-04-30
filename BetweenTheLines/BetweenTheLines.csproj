@@ -11,17 +11,28 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
     <SupportedOSPlatformVersion>7.0</SupportedOSPlatformVersion>
     <Title>Between the Lines</Title>
-    <PackageProjectUrl></PackageProjectUrl>
+    <PackageProjectUrl>https://snowman64.itch.io/between-the-lines</PackageProjectUrl>
     <RepositoryUrl>https://github.com/SnowmanSixtyFour/BetweenTheLines</RepositoryUrl>
-    <PackageTags>include="csharp, monogame, indie-game"</PackageTags>
-    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageTags>include="monogame, indie-game, mystery"</PackageTags>
+    <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
     <IncludeSymbols>False</IncludeSymbols>
-    <FileVersion>1.0.0</FileVersion>
+    <FileVersion>Mystery Game Jam 2026 Edition</FileVersion>
+    <Copyright>Snowman64, GNU General Public License v3.0</Copyright>
+    <Description>Between the Lines is a murder mystery game, made for Mystery Game Jam 2026.</Description>
+    <PackageIcon>icon.png</PackageIcon>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <AnalysisLevel>latest-recommended</AnalysisLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <Optimize>False</Optimize>
   </PropertyGroup>
   <ItemGroup>
     <None Remove="Icon.ico" />
     <None Remove="Icon.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Icon.ico" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Icon.ico">
@@ -32,7 +43,15 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\LICENSE">
+    <None Include="..\img\icon.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="..\LICENSE.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="..\README.md">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
