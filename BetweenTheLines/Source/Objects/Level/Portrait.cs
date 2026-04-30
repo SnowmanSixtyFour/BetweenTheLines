@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using BetweenTheLines.Source.Graphics;
+using System.Diagnostics;
 
 namespace BetweenTheLines.Source.Objects.Level
 {
@@ -156,64 +157,72 @@ namespace BetweenTheLines.Source.Objects.Level
             this.character = state;
             portraitState = newPortraitState;
 
-            // Pickles
-            if (state == Dialog.pickles)
+            try
             {
-                // Regular
-                if (portraitState == State.regular) this.sprite.SetTexture(Dialog.picklesRegular);
+                // Pickles
+                if (state == Dialog.pickles)
+                {
+                    // Regular
+                    if (portraitState == State.regular) this.sprite.SetTexture(Dialog.picklesRegular);
 
-                // Thinking
-                if (portraitState == State.thinking) this.sprite.SetTexture(Dialog.picklesThinking);
+                    // Thinking
+                    if (portraitState == State.thinking) this.sprite.SetTexture(Dialog.picklesThinking);
+                }
+
+                // Faun
+                else if (state == Dialog.faun)
+                {
+                    // Regular
+                    if (portraitState == State.regular) this.sprite.SetTexture(Dialog.faunRegular);
+
+                    // Worried
+                    if (portraitState == State.worried) this.sprite.SetTexture(Dialog.faunWorried);
+                }
+
+                // Otto
+                else if (state == Dialog.otto)
+                {
+                    // Regular
+                    if (portraitState == State.regular) this.sprite.SetTexture(Dialog.ottoRegular);
+
+                    // Angry
+                    if (portraitState == State.angry) this.sprite.SetTexture(Dialog.ottoAngry);
+                }
+
+                // Angel
+                else if (state == Dialog.angel)
+                {
+                    // Regular
+                    if (portraitState == State.regular) this.sprite.SetTexture(Dialog.angelRegular);
+
+                    // Thinking
+                    if (portraitState == State.thinking) this.sprite.SetTexture(Dialog.angelThinking);
+                }
+
+                // Micah
+                else if (state == Dialog.micah)
+                {
+                    // Regular
+                    if (portraitState == State.regular) this.sprite.SetTexture(Dialog.micahRegular);
+                }
+
+                // Smokey
+                else if (state == Dialog.smokey)
+                {
+                    // Regular
+                    if (portraitState == State.regular) this.sprite.SetTexture(Dialog.smokeyRegular);
+
+                    // Excited
+                    if (portraitState == State.excited) this.sprite.SetTexture(Dialog.smokeyExcited);
+
+                    // Creepy
+                    if (portraitState == State.creepy) this.sprite.SetTexture(Dialog.smokeyCreepy);
+                }
             }
-
-            // Faun
-            else if (state == Dialog.faun)
+            // If Portrait does not exist
+            catch
             {
-                // Regular
-                if (portraitState == State.regular) this.sprite.SetTexture(Dialog.faunRegular);
-
-                // Worried
-                if (portraitState == State.worried) this.sprite.SetTexture(Dialog.faunWorried);
-            }
-
-            // Otto
-            else if (state == Dialog.otto)
-            {
-                // Regular
-                if (portraitState == State.regular) this.sprite.SetTexture(Dialog.ottoRegular);
-
-                // Angry
-                if (portraitState == State.angry) this.sprite.SetTexture(Dialog.ottoAngry);
-            }
-
-            // Angel
-            else if (state == Dialog.angel)
-            {
-                // Regular
-                if (portraitState == State.regular) this.sprite.SetTexture(Dialog.angelRegular);
-
-                // Thinking
-                if (portraitState == State.thinking) this.sprite.SetTexture(Dialog.angelThinking);
-            }
-
-            // Micah
-            else if (state == Dialog.micah)
-            {
-                // Regular
-                if (portraitState == State.regular) this.sprite.SetTexture(Dialog.micahRegular);
-            }
-
-            // Smokey
-            else if (state == Dialog.smokey)
-            {
-                // Regular
-                if (portraitState == State.regular) this.sprite.SetTexture(Dialog.smokeyRegular);
-
-                // Excited
-                if (portraitState == State.excited) this.sprite.SetTexture(Dialog.smokeyExcited);
-
-                // Creepy
-                if (portraitState == State.creepy) this.sprite.SetTexture(Dialog.smokeyCreepy);
+                Debug.Print("Attempted to set Portrait to a state that does not exist!");
             }
         }
 

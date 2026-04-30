@@ -157,9 +157,12 @@ namespace BetweenTheLines.Source
             // Gameplay
             foyer, livingRoom, mainHall, bathroom, kitchen, closet,
 
+            // Cinematics
+            lessonLearned1, lessonLearned2, lessonLearned3, lessonLearned4,
+
             // --- Credits ---
 
-            // Cats
+        // Cats
             picklesIrl, angelIrl, smokeyIrl;
 
         // --- Fonts ---
@@ -223,6 +226,12 @@ namespace BetweenTheLines.Source
             Assets.mapBathroom = content.Load<Texture2D>("Assets/Images/Level/House/Map/MapBathroom");
             Assets.mapKitchen = content.Load<Texture2D>("Assets/Images/Level/House/Map/MapKitchen");
             Assets.mapCloset = content.Load<Texture2D>("Assets/Images/Level/House/Map/MapCloset");
+
+            // Dialog Cinematics
+            Assets.lessonLearned1 = content.Load<Texture2D>("Assets/Images/Level/Cinematic/lessonLearned1");
+            Assets.lessonLearned2 = content.Load<Texture2D>("Assets/Images/Level/Cinematic/lessonLearned2");
+            Assets.lessonLearned3 = content.Load<Texture2D>("Assets/Images/Level/Cinematic/lessonLearned3");
+            Assets.lessonLearned4 = content.Load<Texture2D>("Assets/Images/Level/Cinematic/lessonLearned4");
 
             // --- Portraits ---
 
@@ -434,11 +443,26 @@ namespace BetweenTheLines.Source
             };
 
             chapter1bathroom = new DialogString[]{
-                Line(pickles, "Test")
+                Line(pickles, "This bathroom is really nice, actually."),
+                Line(pickles, "I wouldn't mind taking a shit in here... Hehehe."),
+                Line(faun, "....."),
+                Line(pickles, "She didn't like that...", innerThought),
+                Line(pickles, "Hey... Any other rooms to show me?")
             };
 
             chapter1kitchen = new DialogString[]{
-                Line(pickles, "Test")
+                Line(faun, "T-this is the kitchen... It has everything you'd expect.\nSilverware, appliances, and more..."),
+                Line(pickles, "Huh. You'd really expect this place to be more run down..."),
+                Line(pickles, "Hey, Faun."),
+                Line(faun, "Mm? W-who, me?"),
+                Line(pickles, "Yeah, I've been thinking about the host you mentioned.\nWho is he?"),
+                Line(faun, "W-well, he's certainly young looking..."),
+                Line(faun, "He's no older than 20..."),
+                Line(pickles, "Howcome I haven't seen him yet?"),
+                Line(faun, "A-ah, that's because he announced the \"game\" moments before\nyou arrived."),
+                Line(pickles, "The game...?"),
+                Line(faun, "Otto wasn't very happy, but the strange man said\nhe would \"await your arrival...\""),
+                Line(pickles, "Who the hell is this host, treating this scam like some kind\nof dinner party?", innerThought)
             };
 
             chapter1closet = new DialogString[]{
@@ -462,11 +486,11 @@ namespace BetweenTheLines.Source
 
             chapter1part2 = new DialogString[]{
                 Line(unknown, "I'm glad to see you all get acquainted with one another!"),
-                Line(pickles, "That voice...", innerThought),
+                Line(pickles, "That voice... It doesn't sound close to the nervousness\neveryone else is feeling.", innerThought),
                 Line(faun, "That's-!"),
                 Line(unknown, "Meeee!"),
                 Line(pickles, "Who the hell..."),
-                Line(otto, "You again?! I thought I told you to scram for good, ya douche!"),
+                Line(otto, "You again?! I thought I told you to fuck off for good, ya douche!"), // Holy edgy
                 Line(unknown, "Ah, but I just couldn't help myself...!\nI was getting jealous of all your smiles! Your joy!"),
                 Line(pickles, "Are you the host here..?"),
                 Line(unknown, "But of course I am!"),
@@ -474,6 +498,7 @@ namespace BetweenTheLines.Source
                 Line(pickles, "Smokeston... Where have I heard that name?", innerThought),
                 Line(otto, "If you can't understand my words..."),
                 Line(otto, "I'LL JUST HAVE TO BEAT THE SENSE INTO YA!"),
+                Line(faun, "No...! OTTO!"),
                 Line(smokey, "Woah woah woah! I wouldn't do that if I were you...!"),
                 Line(smokey, "My guts will go allllll over the place if you-"),
                 Line(pickles, "The sound of a sharp punch filled the room before he could finish.", innerThought),
@@ -484,9 +509,9 @@ namespace BetweenTheLines.Source
                 Line(otto, "How'd ya like that, asshole?! I told you, don't fuck with me!"),
                 Line(pickles, "I couldn't believe what I just witnessed.\nOtto, who was completely innocent prior to the argument he started...", innerThought),
                 Line(pickles, "Punched a hole through Smokeston.", innerThought),
-                Line(6, "Oh... This isn't good... Not at all..."),
+                Line(smokey, "Oh... This isn't good... Not at all..."),
                 Line(pickles, "Why hasn't he passed out yet? Losing that much blood should've\nkilled him, let alone the fatal injury he clearly suffers.", innerThought),
-                Line(6, "Aw, it's all over the furniture... Not cool, Otto!\nI had high hopes for you..."),
+                Line(smokey, "Aw, it's all over the furniture... Not cool, Otto!\nI had high hopes for you..."),
                 Line(otto, "The fuck? Is that not enough for..."),
                 Line(otto, "..."),
                 Line(pickles, "Otto suddenly stopped speaking.", innerThought),

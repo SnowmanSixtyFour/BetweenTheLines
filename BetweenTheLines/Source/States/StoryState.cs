@@ -15,7 +15,7 @@ namespace BetweenTheLines.Source.States
     internal class StoryState : State
     {
         // Objects
-        private StaticSprite cinematic;
+        private StaticSprite cinematic, dialogCinematic;
         private Overlay overlay;
 
         // Intro Objects
@@ -35,6 +35,9 @@ namespace BetweenTheLines.Source.States
 
         // Portraits
         Portrait portrait;
+
+        // Cinematics
+        bool dialogCinematicVisible = false;
 
         // --- Map ---
 
@@ -88,6 +91,7 @@ namespace BetweenTheLines.Source.States
             
             // Cinematic and Overlay
             cinematic = new StaticSprite(null, new Rectangle(0, 0, cam.Width, cam.Height), Color.White);
+            dialogCinematic = new StaticSprite(null, new Rectangle(0, 0, cam.Width, cam.Height), Color.White);
 
             overlay = new Overlay();
             overlay.cam = cam; // Set Camera for Overlay
@@ -361,12 +365,60 @@ namespace BetweenTheLines.Source.States
                             portrait.SetState(Dialog.smokey, Portrait.State.excited);
                             StopSong();
                         }
-                        if (dialogBox.currentLine == 1)
+                        if (dialogBox.currentLine == 2)
                         {
+                            portrait.SetState(Dialog.faun, Portrait.State.worried);
                             ChangeSong(OST.intense);
                         }
-                        if (dialogBox.currentLine == 2) portrait.SetState(Dialog.faun, Portrait.State.worried);
                         if (dialogBox.currentLine == 3) portrait.SetState(Dialog.smokey, Portrait.State.excited);
+                        if (dialogBox.currentLine == 5) portrait.SetState(Dialog.otto, Portrait.State.angry);
+                        if (dialogBox.currentLine == 6) portrait.SetState(Dialog.smokey, Portrait.State.regular);
+                        if (dialogBox.currentLine == 9) portrait.SetState(Dialog.smokey, Portrait.State.excited);
+                        if (dialogBox.currentLine == 10) portrait.SetState(Dialog.smokey, Portrait.State.regular); // Dumb ahh stare
+                        if (dialogBox.currentLine == 11) portrait.SetState(Dialog.otto, Portrait.State.regular);
+                        if (dialogBox.currentLine == 12) portrait.SetState(Dialog.otto, Portrait.State.angry);
+                        if (dialogBox.currentLine == 13) portrait.SetState(Dialog.faun, Portrait.State.worried);
+                        if (dialogBox.currentLine == 14) portrait.SetState(Dialog.smokey, Portrait.State.regular);
+                        if (dialogBox.currentLine == 16) dialogCinematicVisible = true;
+                        if (dialogBox.currentLine == 18) dialogCinematic.SetTexture(Assets.lessonLearned1);
+                        if (dialogBox.currentLine == 19) dialogCinematic.SetTexture(Assets.lessonLearned2);
+                        if (dialogBox.currentLine == 20)
+                        {
+                            portrait.SetState(Dialog.faun, Portrait.State.worried);
+                            dialogCinematicVisible = false;
+                        }
+                        if (dialogBox.currentLine == 21) portrait.SetState(Dialog.otto, Portrait.State.angry);
+                        if (dialogBox.currentLine == 31)
+                        {
+                            StopSong();
+                            dialogCinematic.SetTexture(Assets.lessonLearned3);
+                            dialogCinematicVisible = true;
+                        }
+                        if (dialogBox.currentLine == 32) dialogCinematic.SetTexture(Assets.lessonLearned4);
+                        if (dialogBox.currentLine == 35)
+                        {
+                            portrait.SetState(Dialog.smokey, Portrait.State.creepy);
+                            dialogCinematicVisible = false;
+
+                            ChangeSong(OST.intense);
+                        }
+                        if (dialogBox.currentLine == 37) portrait.SetState(Dialog.otto, Portrait.State.regular);
+                        if (dialogBox.currentLine == 38) portrait.SetState(Dialog.faun, Portrait.State.worried);
+                        if (dialogBox.currentLine == 39) portrait.SetState(Dialog.angel, Portrait.State.thinking);
+                        if (dialogBox.currentLine == 40) portrait.SetState(Dialog.micah, Portrait.State.regular);
+                        if (dialogBox.currentLine == 41)
+                        {
+                            portrait.SetState(Dialog.smokey, Portrait.State.regular);
+                            StopSong();
+                        }
+                        if (dialogBox.currentLine == 46) portrait.SetState(Dialog.smokey, Portrait.State.excited);
+                        if (dialogBox.currentLine == 47) portrait.SetState(Dialog.smokey, Portrait.State.regular);
+                        if (dialogBox.currentLine == 48) portrait.SetState(Dialog.faun, Portrait.State.worried);
+                        if (dialogBox.currentLine == 49) portrait.SetState(Dialog.micah, Portrait.State.regular);
+                        if (dialogBox.currentLine == 51) portrait.SetState(Dialog.angel, Portrait.State.thinking);
+                        if (dialogBox.currentLine == 52) portrait.SetState(Dialog.otto, Portrait.State.regular);
+                        if (dialogBox.currentLine == 55) portrait.SetState(Dialog.faun, Portrait.State.worried);
+                        if (dialogBox.currentLine == 56) portrait.MoveLeftOffscreen(); // Hide Portrait after that whole mess.
                     }
 
                     // Chapter 1 Closet
@@ -382,11 +434,16 @@ namespace BetweenTheLines.Source.States
                     // Chapter 1 Kitchen
                     if (dialogBox.dialog == Dialog.chapter1kitchen)
                     {
+                        if (dialogBox.currentLine == 0) portrait.SetState(Dialog.faun, Portrait.State.regular);
+                        if (dialogBox.currentLine == 3) portrait.SetState(Dialog.faun, Portrait.State.worried);
+                        if (dialogBox.currentLine == 5) portrait.SetState(Dialog.faun, Portrait.State.regular);
                     }
 
                     // Chapter 1 Bathroom
                     if (dialogBox.dialog == Dialog.chapter1bathroom)
                     {
+                        if (dialogBox.currentLine == 0) portrait.SetState(Dialog.faun, Portrait.State.regular);
+                        if (dialogBox.currentLine == 2) portrait.SetState(Dialog.faun, Portrait.State.worried); // Bad shit joke
                     }
 
                     // Chapter 1 Part 1
@@ -674,6 +731,8 @@ namespace BetweenTheLines.Source.States
             // --- Overlay ---
 
             portrait.Draw(spriteBatch); // Portrait
+
+            if (dialogCinematicVisible) dialogCinematic.Draw(spriteBatch); // Dialog Cinematic
 
             dialogBox.Draw(spriteBatch); // Dialog Box
 
