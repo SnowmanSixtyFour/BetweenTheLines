@@ -82,8 +82,11 @@ namespace BetweenTheLines.Source.States
 
             Copyright (c) 2026 Snowman64
 
-            Licensed under the GNU General Public License v3.0.
+            Code is licensed under the GNU General Public License v3.0.
             https://www.gnu.org/licenses/gpl-3.0.html
+
+            All art and music assets are not licensed under GNU v3.0,
+            and are owned by their respective creators.
 
 
 
