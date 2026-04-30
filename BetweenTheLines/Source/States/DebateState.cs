@@ -18,5 +18,18 @@ namespace BetweenTheLines.Source.States
         public DebateState()
         {
         }
+
+        public override void OnUpdate(GameTime gameTime)
+        {
+        }
+
+        public override void OnDraw(SpriteBatch spriteBatch)
+        {
+        }
+
+        public override void ResetState()
+        {
+            base.ResetState();
+        }
     }
 }

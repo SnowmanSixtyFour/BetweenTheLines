@@ -49,7 +49,7 @@ namespace BetweenTheLines.Source.States
 
             // Cat Positions
             picklesAngelPos = 1800, // Pickles and Angel Y Positions
-            angelOffset = 400, // Angel X Offset
+            angelOffset = 330, // Angel X Offset
             smokeyPosX = 160, smokeyPosY = 2150, // Smokey Position
 
             catPicOffset = 50; // Picture Y Offset
@@ -85,8 +85,8 @@ namespace BetweenTheLines.Source.States
             Code is licensed under the GNU General Public License v3.0.
             https://www.gnu.org/licenses/gpl-3.0.html
 
-            All art and music assets are not licensed under GNU v3.0,
-            and are owned by their respective creators.
+            All art and music assets are are owned by their
+            respective creators.
 
 
 
