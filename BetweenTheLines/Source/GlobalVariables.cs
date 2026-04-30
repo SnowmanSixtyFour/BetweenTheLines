@@ -62,7 +62,8 @@ namespace BetweenTheLines.Source
         // Gameplay Variables
         public static string
             picklesArrivedTime, // Time Pickles Arrived at House
-            faunArrivedTime; // Time Faun Arrived at House
+            faunArrivedTime, // Time Faun Arrived at House
+            gameStartTime; // Time Game Started Officially
 
         // State
         public enum State
@@ -70,12 +71,13 @@ namespace BetweenTheLines.Source
             intro,
             title,
             options,
-            level,
+            story,
+            debate,
             credits
         }
 
         public static bool viewingCreditsFromTitle = false;
-        public static State currentState = State.intro; // Current state of the game - NOTE: Always starts on intro!
+        public static State currentState = State.debate; // Current state of the game - NOTE: Always starts on intro!
 
         // Cursor Size
         public static int
@@ -300,6 +302,11 @@ namespace BetweenTheLines.Source
             micah = 5,
             smokey = 6;
 
+        // Text IDs
+        internal static readonly byte
+            innerThought = 1,
+            tutorial = 2;
+
         // Dialog Portraits
 
         public static Texture2D
@@ -340,23 +347,23 @@ namespace BetweenTheLines.Source
             // Intro
 
             intro1 = new DialogString[]{
-                Line(0, "Last night, I got this letter...", 1),
-                Line(0, "It said \"Congratulations! You have won $1 000 000 dollars!\"", 1),
-                Line(0, "...Yeah, as if.", 1),
-                Line(1, "My name is Pickles. I'm a renowned detective.", 1),
-                Line(1, "In my line of work... I make a decent amount of money.", 1),
-                Line(1, "But this?...", 1),
-                Line(1, "I'm gonna get to the bottom of this.", 1),
-                Line(1, "Besides... Who would fall for a scheme like this?\nI've never seen something so outrageous.", 1)
+                Line(0, "Last night, I got this letter...", innerThought),
+                Line(0, "It said \"Congratulations! You have won $1 000 000 dollars!\"", innerThought),
+                Line(0, "...Yeah, as if.", innerThought),
+                Line(1, "My name is Pickles. I'm a renowned detective.", innerThought),
+                Line(1, "In my line of work... I make a decent amount of money.", innerThought),
+                Line(1, "But this?...", innerThought),
+                Line(1, "I'm gonna get to the bottom of this.", innerThought),
+                Line(1, "Besides... Who would fall for a scheme like this?\nI've never seen something so outrageous.", innerThought)
             };
 
             intro2 = new DialogString[]{
                 Line(1, "Well, here I am."),
-                Line(1, "This place's address was at the bottom of the letter.", 1),
+                Line(1, "This place's address was at the bottom of the letter.", innerThought),
                 Line(1, "Let's hope this wasn't a waste of my time."),
-                Line(-1, "In this game, you'll have to take full advantage of your surroundings.", 2),
-                Line(-1, "That means using the mouse to interact with objects\nthat are full of mystery, or might contain clues.", 2),
-                Line(-1, "Go on, try moving your mouse to interact with the door!", 2)
+                Line(-1, "In this game, you'll have to take full advantage of your surroundings.", tutorial),
+                Line(-1, "That means using the mouse to interact with objects\nthat are full of mystery, or might contain clues.", tutorial),
+                Line(-1, "Go on, try moving your mouse to interact with the door!", tutorial)
             };
 
             intro2a = new DialogString[]{
@@ -366,9 +373,9 @@ namespace BetweenTheLines.Source
             };
 
             preludeEnd = new DialogString[]{
-                Line(1, "When I stepped foot inside... The house didn't look unkept.", 1),
-                Line(1, "Despite it's shoddy look from outside...\nIt was as though someone really was waiting for me to arrive.", 1),
-                Line(1, "Without hesitation, I called out into the large foyer,\nand waited for a response.", 1),
+                Line(1, "When I stepped foot inside... The house didn't look unkept.", innerThought),
+                Line(1, "Despite it's shoddy look from outside...\nIt was as though someone really was waiting for me to arrive.", innerThought),
+                Line(1, "Without hesitation, I called out into the large foyer,\nand waited for a response.", innerThought),
                 Line(1, "Anyone home?"),
                 Line(0, "Um... Hi..."),
                 Line(1, "Huh?"),
@@ -382,7 +389,7 @@ namespace BetweenTheLines.Source
                 Line(2, "W-well, I got here at about " + Global.faunArrivedTime + ".."),
                 Line(1, "Since I arrived at " + Global.picklesArrivedTime + ", that would mean you got here\n10 minutes before me."),
                 Line(2, "Come with me... the others are waiting.\nI'll explain everything in the living room."),
-                Line(1, "The others...", 1),
+                Line(1, "The others...", innerThought),
                 Line(1, "Alright.")
             };
 
@@ -391,7 +398,7 @@ namespace BetweenTheLines.Source
                 Line(1, "Pickles. Detective P-"),
                 Line(0, "Yeah yeah, whatever. You here for the money?"),
                 Line(1, "...Yes. I'm here to uncover the true meaning behind\nthe letter I received in the mail."),
-                Line(1, "This guy's got some nerve...", 1),
+                Line(1, "This guy's got some nerve...", innerThought),
                 Line(0, "Look pal, the dough ain't here. Whole thing's a scam."),
                 Line(1, "I figured so. Do you know more about the situation?"),
                 Line(0, "'The hell do you think I'm gonna tell you that for?\nYou tryna take the money from me?"),
@@ -404,23 +411,23 @@ namespace BetweenTheLines.Source
                 Line(0, "Well, we all thought that it would be a good idea\nto leave the door as we found it."),
                 Line(1, "Ah, I see. And you are?"),
                 Line(4, "Angel. I may be past my prime, but back in my day...\nI was quite the lady."),
-                Line(1, "Despite the overlooming feeling of confusion, dread,\nand mystery...", 1),
-                Line(1, "I felt as though we were all becoming closer.", 1),
-                Line(1, "There was a cheerful feeling to the room's atmosphere.", 1),
+                Line(1, "Despite the overlooming feeling of confusion, dread,\nand mystery...", innerThought),
+                Line(1, "I felt as though we were all becoming closer.", innerThought),
+                Line(1, "There was a cheerful feeling to the room's atmosphere.", innerThought),
                 Line(1, "It's nice to meet you, Angel. Faun, Otto..."),
                 Line(1, "Are you the only people here?"),
                 Line(2, "N-No... This house..."),
                 Line(2, "Has a host."),
-                Line(1, "A host?", 1),
-                Line(1, "What... does she mean by that?", 1),
+                Line(1, "A host?", innerThought),
+                Line(1, "What... does she mean by that?", innerThought),
                 Line(1, "What do you mean, host?"),
-                Line(1, "The room went silent.", 1),
-                Line(1, "And just like that... That cheerfulness was gone.", 1),
+                Line(1, "The room went silent.", innerThought),
+                Line(1, "And just like that... That cheerfulness was gone.", innerThought),
                 Line(2, "Detective, I-I can show you around, if... if it's not too much trouble..."),
                 Line(1, "Sure. That would be nice."),
-                Line(-1, "Faun wants to show you around? How kind of her!", 2),
-                Line(-1, "This is where the game really opens up.\nExplore the world- *ahem* house... to your heart's content.", 2),
-                Line(-1, "Keep an eye on the map in the top right corner.\nIt'll help you keep track of where you are.", 2)
+                Line(-1, "Faun wants to show you around? How kind of her!", tutorial),
+                Line(-1, "This is where the game really opens up.\nExplore the world- *ahem* house... to your heart's content.", tutorial),
+                Line(-1, "Keep an eye on the map in the top right corner.\nIt'll help you keep track of where you are.", tutorial)
             };
 
             chapter1bathroom = new DialogString[]{
@@ -436,7 +443,7 @@ namespace BetweenTheLines.Source
                 Line(1, "It's fine. I'm still getting adjusted, so-"),
                 Line(5, "Cortisol levels rising. Begin the diaphragmatic process."),
                 Line(1, "...Huh?"),
-                Line(1, "I didn't catch a word of what she said.", 1),
+                Line(1, "I didn't catch a word of what she said.", innerThought),
                 Line(5, "O-oh, sorry, I didn't explain properly, did I?"),
                 Line(5, "In case you didn't know, diaphragmatic breathing exercises\ncan help you relax."),
                 Line(1, "I, uh..."),
@@ -445,19 +452,70 @@ namespace BetweenTheLines.Source
                 Line(1, "Really, it's fine..."),
                 Line(5, "No! It's not fine!"),
                 Line(5, "Allow me to start from the top. *ahem*"),
-                Line(1, "The sooner I get out of this closet, the better.", 1)
+                Line(1, "The sooner I get out of this closet, the better.", innerThought)
             };
 
             chapter1part2 = new DialogString[]{
                 Line(0, "I'm glad to see you all get acquainted with one another!"),
-                Line(1, "That voice...", 1),
+                Line(1, "That voice...", innerThought),
                 Line(2, "That's-!"),
                 Line(0, "Meeee!"),
                 Line(1, "Who the hell..."),
                 Line(3, "You again?! I thought I told you to scram for good, ya douche!"),
                 Line(0, "Ah, but I just couldn't help myself...!\nI was getting jealous of all your smiles! Your joy!"),
                 Line(1, "Are you the host here..?"),
-                Line(0, "But of course I am!")
+                Line(0, "But of course I am!"),
+                Line(6, "Smokeston Novikov, at your service!\nBut you can just call me Smokey. I'd prefer that!"),
+                Line(1, "Smokeston... Where have I heard that name?", innerThought),
+                Line(3, "If you can't understand my words..."),
+                Line(3, "I'LL JUST HAVE TO BEAT THE SENSE INTO YA!"),
+                Line(6, "Woah woah woah! I wouldn't do that if I were you...!"),
+                Line(6, "My guts will go allllll over the place if you-"),
+                Line(1, "The sound of a sharp punch filled the room before he could finish.", innerThought),
+                Line(1, "It was as though pure iron was forced through something soft and squishy.", innerThought),
+                Line(1, "And when my eyes finally adjusted...", innerThought),
+                Line(1, "There he was. Oozing with blood.", innerThought),
+                Line(2, "KYAAAAAAAAAAAAAAAAAA!"),
+                Line(3, "How'd ya like that, asshole?! I told you, don't fuck with me!"),
+                Line(1, "I couldn't believe what I just witnessed.\nOtto, who was completely innocent prior to the argument he started...", innerThought),
+                Line(1, "Punched a hole through Smokeston.", innerThought),
+                Line(6, "Oh... This isn't good... Not at all..."),
+                Line(1, "Why hasn't he passed out yet? Losing that much blood should've killed him,\nlet alone the fatal injury he clearly suffers.", innerThought),
+                Line(6, "Aw, it's all over the furniture... Not cool, Otto!\nI had high hopes for you..."),
+                Line(3, "The fuck? Is that not enough for..."),
+                Line(3, "..."),
+                Line(1, "Otto suddenly stopped speaking.", innerThought),
+                Line(1, "I didn't have the courage to ask him why, but...\nWhen I looked over at Smokeston...", innerThought),
+                Line(1, "...", innerThought),
+                Line(1, "...", innerThought),
+                Line(1, "Two unbelievable events happening, back to back.", innerThought),
+                Line(1, "I should be very careful around either of them. For now,\nFaun and the others seem reliable enough.", innerThought),
+                Line(6, "Where was I...? Oh, right."),
+                Line(6, "I'm the host of this game... treat me with a little respect, thank you."),
+                Line(3, "..."),
+                Line(2, "..."),
+                Line(4, "..."),
+                Line(5, "..."),
+                Line(1, "We were all in shock.", innerThought),
+                Line(1, "Minutes began to feel like hours.\nNone of us knew what to say about anything we had just witnessed.", innerThought),
+                Line(6, "... *sigh* So much for a perfect opening night."),
+                Line(6, "We'll take five.\nThen I want you all to come see the discovery I've made."),
+                Line(1, "...Discovery...?"),
+                Line(6, "Well yeah, duh! What kind of game would this be without an objective?"),
+                Line(6, "A hero without a princess to save... he's just a nobody, right?"),
+                Line(2, "S-so, y-you were serious about this \"game\" y-you've prepared..."),
+                Line(5, "According to my calculations, he's not lying..."),
+                Line(5, "When he announced it at " + Global.gameStartTime + ", I checked his pulse.\nHe was dead serious."),
+                Line(4, "I'm afraid I'm just too old for social experiments like this.\nYou younger generations disgust me."),
+                Line(3, "Yo, doctor, how do you know that's not bullshit?\nFor all we know, that pulse you felt could've been fake."),
+                Line(3, "I mean, shit, you saw what happened when I lost control."),
+                Line(3, "I don't have the brains to orchestrate something as beautiful as that.\nTrust me."),
+                Line(2, "*sniff* I w-want to g-get out of here... I-I don't like this...!"),
+                Line(1, "...What the fuck?", innerThought),
+                Line(1, "What... is this?"),
+                Line(1, "I didn't question it...\nBut none of us had left the old house.", innerThought),
+                Line(1, "I couldn't tell you why...", innerThought),
+                Line(1, "But that would soon turn out to be our biggest mistake.", innerThought),
             };
         }
 

@@ -146,7 +146,7 @@ namespace BetweenTheLines.Source.States
 
             // Switch State
             this.changeState = true;
-            Global.currentState = Global.State.level;
+            Global.currentState = Global.State.story;
         }
 
         public void GoToOptions()

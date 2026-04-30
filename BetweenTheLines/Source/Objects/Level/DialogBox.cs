@@ -41,7 +41,7 @@ namespace BetweenTheLines.Source.Objects.Level
             "Otto",
             "Angel",
             "Micah",
-            "Smokey"
+            "Smokeston"
         };
 
         // Dialog

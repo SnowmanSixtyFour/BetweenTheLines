@@ -133,6 +133,7 @@ namespace BetweenTheLines.Source.States
             // Set Real Time Variables
             Global.picklesArrivedTime = DateTime.Now.ToShortTimeString(); // Pickles Arrived upon Chapter 1 Start
             Global.faunArrivedTime = DateTime.Now.AddMinutes(-10).ToShortTimeString(); // Faun Arrived 10 Minutes Earlier than Pickles
+            Global.gameStartTime = DateTime.Now.AddMinutes(-5).ToShortTimeString(); // Game Started 5 Minutes Before Pickles Arrived
 
             // Load Dialog after Variables Set
             Dialog.LoadDialog();
