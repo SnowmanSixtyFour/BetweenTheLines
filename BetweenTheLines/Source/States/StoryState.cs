@@ -382,12 +382,12 @@ namespace BetweenTheLines.Source.States
                             portrait.SetState(Dialog.smokey, Portrait.State.excited);
                             StopSong();
                         }
-                        if (dialogBox.currentLine == 2)
+                        if (dialogBox.currentLine == 2) portrait.SetState(Dialog.faun, Portrait.State.worried);
+                        if (dialogBox.currentLine == 3)
                         {
-                            portrait.SetState(Dialog.faun, Portrait.State.worried);
+                            portrait.SetState(Dialog.smokey, Portrait.State.excited);
                             ChangeSong(OST.intense);
                         }
-                        if (dialogBox.currentLine == 3) portrait.SetState(Dialog.smokey, Portrait.State.excited);
                         if (dialogBox.currentLine == 5) portrait.SetState(Dialog.otto, Portrait.State.angry);
                         if (dialogBox.currentLine == 6) portrait.SetState(Dialog.smokey, Portrait.State.regular);
                         if (dialogBox.currentLine == 9) portrait.SetState(Dialog.smokey, Portrait.State.excited);
@@ -416,10 +416,12 @@ namespace BetweenTheLines.Source.States
                         {
                             portrait.SetState(Dialog.smokey, Portrait.State.creepy);
                             dialogCinematicVisible = false;
-
+                        }
+                        if (dialogBox.currentLine == 37)
+                        {
+                            portrait.SetState(Dialog.otto, Portrait.State.regular);
                             ChangeSong(OST.intense);
                         }
-                        if (dialogBox.currentLine == 37) portrait.SetState(Dialog.otto, Portrait.State.regular);
                         if (dialogBox.currentLine == 38) portrait.SetState(Dialog.faun, Portrait.State.worried);
                         if (dialogBox.currentLine == 39) portrait.SetState(Dialog.angel, Portrait.State.thinking);
                         if (dialogBox.currentLine == 40) portrait.SetState(Dialog.micah, Portrait.State.regular);

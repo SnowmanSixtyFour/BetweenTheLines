@@ -114,7 +114,8 @@ namespace BetweenTheLines.Source.States
         /// <param name="music">The Song variable to play.</param>
         public void ChangeSong(Song music)
         {
-            MediaPlayer.Play(music);
+            // Start New Song if Not Already Playing
+            if (MediaPlayer.Queue.ActiveSong != music) MediaPlayer.Play(music);
         }
 
         public void Update(GameTime gameTime)

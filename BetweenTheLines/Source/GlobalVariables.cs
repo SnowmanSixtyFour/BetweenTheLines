@@ -275,26 +275,19 @@ namespace BetweenTheLines.Source
 
             SFX.footsteps = content.Load<SoundEffect>("Assets/Audio/SFX/footsteps");
 
-            // NOTE: Music is ran in try and catch to prevent errors while copyrighted placeholder music is left out of the source code.
-
             // Music
-            try
-            {
-                OST.title = content.Load<Song>("Assets/Audio/Music/Title");
-                OST.intro = content.Load<Song>("Assets/Audio/Music/Intro");
-                OST.intense = content.Load<Song>("Assets/Audio/Music/Intense");
-            }
-            catch (Exception e)
-            {
-                Debug.Print("Error! " + e);
-            }
+            OST.title = content.Load<Song>("Assets/Audio/Music/Title");
+            OST.intro = content.Load<Song>("Assets/Audio/Music/Intro");
+            OST.intense = content.Load<Song>("Assets/Audio/Music/Intense");
 
             // Fonts
 
+            // Default
             Assets.arial = content.Load<SpriteFont>("Assets/Fonts/Arial");
 
             // Shaders
 
+            // CRT Filter
             Assets.crt = content.Load<Effect>("Assets/Shaders/CRTFilter");
         }
     }
