@@ -77,7 +77,7 @@ namespace BetweenTheLines.Source
         }
 
         public static bool viewingCreditsFromTitle = false;
-        public static State currentState = State.debate; // Current state of the game - NOTE: Always starts on intro!
+        public static State currentState = State.intro; // Current state of the game - NOTE: Always starts on intro!
 
         // Cursor Size
         public static int
@@ -431,9 +431,11 @@ namespace BetweenTheLines.Source
             };
 
             chapter1bathroom = new DialogString[]{
+                Line(1, "Test")
             };
 
             chapter1kitchen = new DialogString[]{
+                Line(1, "Test")
             };
 
             chapter1closet = new DialogString[]{
@@ -472,7 +474,7 @@ namespace BetweenTheLines.Source
                 Line(6, "Woah woah woah! I wouldn't do that if I were you...!"),
                 Line(6, "My guts will go allllll over the place if you-"),
                 Line(1, "The sound of a sharp punch filled the room before he could finish.", innerThought),
-                Line(1, "It was as though pure iron was forced through something soft and squishy.", innerThought),
+                Line(1, "It was as though pure iron was forced through something\nsoft and squishy.", innerThought),
                 Line(1, "And when my eyes finally adjusted...", innerThought),
                 Line(1, "There he was. Oozing with blood.", innerThought),
                 Line(2, "KYAAAAAAAAAAAAAAAAAA!"),
@@ -480,7 +482,7 @@ namespace BetweenTheLines.Source
                 Line(1, "I couldn't believe what I just witnessed.\nOtto, who was completely innocent prior to the argument he started...", innerThought),
                 Line(1, "Punched a hole through Smokeston.", innerThought),
                 Line(6, "Oh... This isn't good... Not at all..."),
-                Line(1, "Why hasn't he passed out yet? Losing that much blood should've killed him,\nlet alone the fatal injury he clearly suffers.", innerThought),
+                Line(1, "Why hasn't he passed out yet? Losing that much blood should've\nkilled him, let alone the fatal injury he clearly suffers.", innerThought),
                 Line(6, "Aw, it's all over the furniture... Not cool, Otto!\nI had high hopes for you..."),
                 Line(3, "The fuck? Is that not enough for..."),
                 Line(3, "..."),
@@ -515,7 +517,7 @@ namespace BetweenTheLines.Source
                 Line(1, "What... is this?"),
                 Line(1, "I didn't question it...\nBut none of us had left the old house.", innerThought),
                 Line(1, "I couldn't tell you why...", innerThought),
-                Line(1, "But that would soon turn out to be our biggest mistake.", innerThought),
+                Line(1, "But that would soon turn out to be our biggest mistake.", innerThought)
             };
         }
 

@@ -170,6 +170,8 @@ namespace BetweenTheLines.Source.States
                 // Map Exploration - Change room depending on trigger clicked
                 if (exploring)
                 {
+                    // Room Movement Events
+
                     if (currentRoom != Room.mainHall)
                     {
                         // Foyer
@@ -259,6 +261,10 @@ namespace BetweenTheLines.Source.States
                         {
                             currentRoom = Room.livingRoom;
                             SFX.footsteps.Play();
+
+                            // Chapter 1 Part 2 Dialog
+                            if (dialogBox.dialog != Dialog.chapter1part2
+                                && seenBathroom && seenKitchen && seenCloset) StopExploring(Dialog.chapter1part2);
                         }
 
                         // Go to Bathroom
@@ -290,9 +296,34 @@ namespace BetweenTheLines.Source.States
                     }
                 }
 
-                // Update Cinematic to Match Relevant Room
-                if (dialogBox.endOfDialog)
+                // On Left Click
+                if (LeftClicked())
                 {
+                    // --- Chapter 1 Part 1 Dialog ---
+
+                    // Closet Dialog
+                    if (currentRoom == Room.closet && !seenCloset)
+                    {
+                        seenCloset = true;
+                        StopExploring(Dialog.chapter1closet);
+                    }
+
+                    // Kitchen Dialog
+                    if (currentRoom == Room.kitchen && !seenKitchen)
+                    {
+                        seenKitchen = true;
+                        StopExploring(Dialog.chapter1kitchen);
+                    }
+
+                    // Bathroom Dialog
+                    if (currentRoom == Room.bathroom && !seenBathroom)
+                    {
+                        seenBathroom = true;
+                        StopExploring(Dialog.chapter1bathroom);
+                    }
+
+                    // --- Update Cinematic to Match Relevant Room ---
+
                     // Foyer
                     if (currentRoom == Room.foyer) cinematic.SetTexture(Assets.foyer);
 
@@ -322,6 +353,22 @@ namespace BetweenTheLines.Source.States
                 {
                     // --- Dialog Events ---
 
+                    // Chapter 1 Part 2
+                    if (dialogBox.dialog == Dialog.chapter1part2)
+                    {
+                        if (dialogBox.currentLine == 0)
+                        {
+                            portrait.SetState(Dialog.smokey, Portrait.State.excited);
+                            StopSong();
+                        }
+                        if (dialogBox.currentLine == 1)
+                        {
+                            ChangeSong(OST.intense);
+                        }
+                        if (dialogBox.currentLine == 2) portrait.SetState(Dialog.faun, Portrait.State.worried);
+                        if (dialogBox.currentLine == 3) portrait.SetState(Dialog.smokey, Portrait.State.excited);
+                    }
+
                     // Chapter 1 Closet
                     if (dialogBox.dialog == Dialog.chapter1closet)
                     {
@@ -330,6 +377,16 @@ namespace BetweenTheLines.Source.States
                         if (dialogBox.currentLine == 2) portrait.SetState(Dialog.micah, Portrait.State.regular);
                         if (dialogBox.currentLine == 10) portrait.SetState(Dialog.faun, Portrait.State.regular);
                         if (dialogBox.currentLine == 11) portrait.SetState(Dialog.micah, Portrait.State.regular);
+                    }
+
+                    // Chapter 1 Kitchen
+                    if (dialogBox.dialog == Dialog.chapter1kitchen)
+                    {
+                    }
+
+                    // Chapter 1 Bathroom
+                    if (dialogBox.dialog == Dialog.chapter1bathroom)
+                    {
                     }
 
                     // Chapter 1 Part 1
@@ -394,13 +451,16 @@ namespace BetweenTheLines.Source.States
 
                     // --- Dialog End Events ---
 
-                    // CHAPTER 1
+                    // CHAPTER 1 PART 1
 
                     // Closet
-                    if (dialogBox.dialog == Dialog.chapter1closet)
-                    {
-                        ContinueExploring(seenCloset);
-                    }
+                    if (dialogBox.dialog == Dialog.chapter1closet && seenCloset) ContinueExploring();
+
+                    // Kitchen
+                    if (dialogBox.dialog == Dialog.chapter1kitchen && seenKitchen) ContinueExploring();
+
+                    // Bathroom
+                    if (dialogBox.dialog == Dialog.chapter1bathroom && seenBathroom) ContinueExploring();
 
                     // Part 1
                     if (dialogBox.dialog == Dialog.chapter1part1)
@@ -415,13 +475,6 @@ namespace BetweenTheLines.Source.States
                         // Begin Exploration of Map
                         exploring = true;
                         if (currentRoom == Room.unknown) currentRoom = Room.livingRoom;
-
-                        // Map Dialog
-                        if (currentRoom == Room.closet && !seenCloset)
-                        {
-                            // Set Dialog to Closet
-                            StopExploring(Dialog.chapter1closet);
-                        }
                     }
 
                     // PRELUDE
@@ -557,7 +610,7 @@ namespace BetweenTheLines.Source.States
         /// Continue exploration of the map at the player's free will.
         /// </summary>
         /// <param name="roomExplored">The bool to set to true, which will prevent the same scene from happening twice.</param>
-        public void ContinueExploring(bool roomExplored)
+        public void ContinueExploring()
         {
             // Hide Dialog
             dialogBox.Hide();
@@ -567,11 +620,7 @@ namespace BetweenTheLines.Source.States
             cursorVisible = true;
 
             // Continue Exploring
-
             exploring = true;
-
-            // Set Explored Room to True
-            roomExplored = true;
         }
 
         public override void ResetState()
