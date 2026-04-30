@@ -4,7 +4,7 @@ The Between the Lines source code is licensed under the [GNU General Public Lice
 
 All non-code assets, such as art and music, are owned by their respective creators.
 
-All Freesound.org sounds used are licensed under the [Creative Commons 0 License](https://creativecommons.org/publicdomain/zero/1.0/).
+All Freesound.org sounds used are licensed under the [Creative Commons 0 License](https://creativecommons.org/publicdomain/zero/1.0/). All sounds used can be found in [Credits.cs](https://github.com/SnowmanSixtyFour/BetweenTheLines/blob/game-jam/BetweenTheLines/Source/States/CreditsState.cs).
 
 ## GNU General Public License v3.0
 ```
