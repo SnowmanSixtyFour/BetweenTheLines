@@ -167,6 +167,8 @@ namespace BetweenTheLines.Source.States
 
             // Exploration
             dialogCinematicVisible = false;
+            dialogCinematic.SetTexture(null);
+
             seenBathroom = false;
             seenKitchen = false;
             seenCloset = false;
