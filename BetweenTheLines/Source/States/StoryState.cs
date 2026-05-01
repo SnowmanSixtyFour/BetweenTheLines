@@ -54,14 +54,23 @@ namespace BetweenTheLines.Source.States
         }
         public Room currentRoom = Room.unknown;
 
-        // Map Exploration
-        private bool exploring = false;
-
         // Chapter 1 Progression
         private bool
+            // Map Exploration
+            exploring = false,
+
+            // Rooms Seen
             seenBathroom = false,
             seenKitchen = false,
-            seenCloset = false;
+            seenCloset = false,
+
+            // Investigation
+            investigating = false,
+
+            // Evidence Seen
+            seenEvidence1 = false,
+            seenEvidence2 = false,
+            seenEvidence3 = false;
 
         // Map Triggers
         private StaticSprite
@@ -83,13 +92,21 @@ namespace BetweenTheLines.Source.States
             // Closet
             closetToMainHall;
 
+        // Investigation Triggers
+        private StaticSprite
+            evidence1, evidence2, evidence3;
+
         // Trigger Color
         private Color triggerColor = Color.Transparent;
 
         public StoryState()
         {
-            // --- Set Objects ---
+            // --- Debug ---
             
+            if (Global.debug) triggerColor = Color.Red * 0.5f; // Trigger Color
+
+            // --- Set Objects ---
+
             // Cinematic and Overlay
             cinematic = new StaticSprite(null, new Rectangle(0, 0, cam.Width, cam.Height), Color.White);
             dialogCinematic = new StaticSprite(null, new Rectangle(0, 0, cam.Width, cam.Height), Color.White);
@@ -97,7 +114,7 @@ namespace BetweenTheLines.Source.States
             overlay = new Overlay();
             overlay.cam = cam; // Set Camera for Overlay
 
-            cinematicDoorTrigger = new StaticSprite(null, new Rectangle(new Point((cam.Width / 2) - (doorWidth / 2) + doorPaddingX, (cam.Height - doorHeight) - doorPaddingY), new Point(doorWidth, doorHeight)), Color.Transparent);
+            cinematicDoorTrigger = new StaticSprite(null, new Rectangle(new Point((cam.Width / 2) - (doorWidth / 2) + doorPaddingX, (cam.Height - doorHeight) - doorPaddingY), new Point(doorWidth, doorHeight)), triggerColor);
 
             // Door
             dialogBox = new DialogBox();
@@ -120,6 +137,12 @@ namespace BetweenTheLines.Source.States
             kitchenToMainHall = new StaticSprite(null, new Rectangle(30, 145, 122, 270), triggerColor);
             
             closetToMainHall = new StaticSprite(null, new Rectangle(620, 155, 122, 270), triggerColor);
+
+            // Investigation Triggers
+
+            evidence1 = new StaticSprite(null, new Rectangle(0, 0, 30, 30), triggerColor);
+            evidence2 = new StaticSprite(null, new Rectangle(120, 0, 30, 30), triggerColor);
+            evidence3 = new StaticSprite(null, new Rectangle(240, 0, 30, 30), triggerColor);
 
             // Set Default Properties of State
             SetDefaultVariables();
@@ -181,6 +204,46 @@ namespace BetweenTheLines.Source.States
 
             if (!Global.paused)
             {
+                // Seen all Evidence
+                if (dialogBox.dialog != Dialog.chapter1investigationEnd
+                    && investigating
+                    && seenEvidence1 && seenEvidence2 && seenEvidence3)
+                {
+                    // Stop Investigation
+                    investigating = false;
+
+                    // Set Dialog
+                    dialogBox.setDialog(Dialog.chapter1investigationEnd);
+                }
+
+                // Investigation - Click on evidence
+                if (investigating)
+                {
+                    // Dialog
+
+                    if (cursor.HoveringOver(evidence1.GetDestRect()) && LeftClicked())
+                    {
+                        seenEvidence1 = true;
+                        dialogBox.setDialog(Dialog.chapter1evidence1);
+                    }
+                    if (cursor.HoveringOver(evidence2.GetDestRect()) && LeftClicked())
+                    {
+                        seenEvidence2 = true;
+                        dialogBox.setDialog(Dialog.chapter1evidence2);
+                    }
+                    if (cursor.HoveringOver(evidence3.GetDestRect()) && LeftClicked())
+                    {
+                        seenEvidence3 = true;
+                        dialogBox.setDialog(Dialog.chapter1evidence3);
+                    }
+
+                    // Cursor Inspect
+
+                    if (cursor.HoveringOver(evidence1.GetDestRect())) cursor.Inspect();
+                    if (cursor.HoveringOver(evidence2.GetDestRect())) cursor.Inspect();
+                    if (cursor.HoveringOver(evidence3.GetDestRect())) cursor.Inspect();
+                }
+
                 // Map Exploration - Change room depending on trigger clicked
                 if (exploring)
                 {
@@ -375,6 +438,16 @@ namespace BetweenTheLines.Source.States
                 {
                     // --- Dialog Events ---
 
+                    // Evidence
+                    if (dialogBox.dialog == Dialog.chapter1evidence1 || dialogBox.dialog == Dialog.chapter1evidence2 || dialogBox.dialog == Dialog.chapter1evidence3)
+                    {
+                        // Stop Exploration
+                        exploring = false;
+
+                        // Disable Interaction with Evidence Temporarily
+                        investigating = false;
+                    }
+
                     // Investigation
                     if (dialogBox.dialog == Dialog.chapter1investigation)
                     {
@@ -473,11 +546,15 @@ namespace BetweenTheLines.Source.States
                     // CHAPTER 1 PART 2
 
                     // Investigation Dialog
-                    if (dialogBox.dialog == Dialog.chapter1investigation)
+                    if (dialogBox.dialog == Dialog.chapter1investigation
+                        || dialogBox.dialog == Dialog.chapter1evidence1 || dialogBox.dialog == Dialog.chapter1evidence2 || dialogBox.dialog == Dialog.chapter1evidence3)
                     {
-                        // Begin Investigation with Cursor
+                        // Allow Interaction with Cursor
                         dialogBox.Hide();
                         cursorVisible = true;
+
+                        // Begin Investigation
+                        investigating = true;
                     }
 
                     // Part 2
@@ -678,49 +755,67 @@ namespace BetweenTheLines.Source.States
 
         public override void OnDraw(SpriteBatch spriteBatch)
         {
-            // Draw Objects
-
             // --- Scene ---
 
             cinematic.Draw(spriteBatch); // Cinematic Artwork
 
-            cinematicDoorTrigger.Draw(spriteBatch); // Door Trigger (Invisible)
-
-            // Map Triggers
-            if (currentRoom == Room.foyer)
-            {
-                foyerToLivingRoom.Draw(spriteBatch);
-            }
-            else if (currentRoom == Room.livingRoom)
-            {
-                livingRoomToFoyer.Draw(spriteBatch);
-                livingRoomToMainHall.Draw(spriteBatch);
-            }
-            else if (currentRoom == Room.mainHall)
-            {
-                mainHallToLivingRoom.Draw(spriteBatch);
-                mainHallToBathroom.Draw(spriteBatch);
-                mainHallToKitchen.Draw(spriteBatch);
-                mainHallToCloset.Draw(spriteBatch);
-            }
-            else if (currentRoom == Room.bathroom)
-            {
-                bathroomToMainHall.Draw(spriteBatch);
-            }
-            else if (currentRoom == Room.kitchen)
-            {
-                kitchenToMainHall.Draw(spriteBatch);
-            }
-            else if (currentRoom == Room.closet)
-            {
-                closetToMainHall.Draw(spriteBatch);
-            }
-
-            // --- Overlay ---
+            // --- Portrait ---
 
             portrait.Draw(spriteBatch); // Portrait
 
             if (dialogCinematicVisible) dialogCinematic.Draw(spriteBatch); // Dialog Cinematic
+
+            // --- Triggers ---
+
+            if (Global.debug)
+            {
+                if (dialogBox.dialog == Dialog.intro2) cinematicDoorTrigger.Draw(spriteBatch); // Door Trigger during Intro
+
+                // Exploration
+                if (!investigating && exploring)
+                {
+                    // Map Triggers
+                    if (currentRoom == Room.foyer)
+                    {
+                        foyerToLivingRoom.Draw(spriteBatch);
+                    }
+                    else if (currentRoom == Room.livingRoom)
+                    {
+                        livingRoomToFoyer.Draw(spriteBatch);
+                        livingRoomToMainHall.Draw(spriteBatch);
+                    }
+                    else if (currentRoom == Room.mainHall)
+                    {
+                        mainHallToLivingRoom.Draw(spriteBatch);
+                        mainHallToBathroom.Draw(spriteBatch);
+                        mainHallToKitchen.Draw(spriteBatch);
+                        mainHallToCloset.Draw(spriteBatch);
+                    }
+                    else if (currentRoom == Room.bathroom)
+                    {
+                        bathroomToMainHall.Draw(spriteBatch);
+                    }
+                    else if (currentRoom == Room.kitchen)
+                    {
+                        kitchenToMainHall.Draw(spriteBatch);
+                    }
+                    else if (currentRoom == Room.closet)
+                    {
+                        closetToMainHall.Draw(spriteBatch);
+                    }
+                }
+
+                // Investigation
+                else if (investigating)
+                {
+                    // Evidence
+                    evidence1.Draw(spriteBatch);
+                    evidence2.Draw(spriteBatch);
+                    evidence3.Draw(spriteBatch);
+                }
+            }
+
+            // --- Overlay ---
 
             dialogBox.Draw(spriteBatch); // Dialog Box
 

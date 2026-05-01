@@ -305,6 +305,9 @@ namespace BetweenTheLines.Source.Objects.Level
             this.endOfDialog = false; // Set Bool to False
 
             this.dialog = newDialog; // Set New Dialog
+
+            // Show Dialog Box
+            this.Show();
         }
 
         // Continue Dialog

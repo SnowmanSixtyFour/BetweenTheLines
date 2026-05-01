@@ -21,6 +21,9 @@ namespace BetweenTheLines.Source
         // Quit Game
         public static bool quit = false;
 
+        // Debug
+        public static bool debug = true;
+
         // Window
 
         public static string windowName = "Between the Lines";
@@ -356,8 +359,12 @@ namespace BetweenTheLines.Source
             chapter1bathroom, chapter1kitchen, chapter1closet, // Exploration
             chapter1part2,
 
+            // Investigation
+            chapter1investigation, // Intro
+            chapter1evidence1, chapter1evidence2, chapter1evidence3, // Evidence
+            chapter1investigationEnd, // Buildup to Trial
+
             // Trial
-            chapter1investigation,
             chapter1trial1, chapter1trial2, chapter1trial3,
             chapter1postTrial;
 
@@ -371,7 +378,8 @@ namespace BetweenTheLines.Source
             intro1 = new DialogString[]{
                 Line(pickles, "Last night, I got this letter...", innerThought, hideName: true),
                 Line(pickles, "It said \"Congratulations! You have won $1 000 000 dollars!\"", innerThought, hideName: true),
-                Line(pickles, "...Yeah, as if.", innerThought, hideName: true),
+                Line(pickles, "Signed by someone known as \"Novikov.\"", innerThought, hideName: true),
+                Line(pickles, "...Yeah, as if.\nHowever, the name sounds familiar...", innerThought, hideName: true),
                 Line(pickles, "My name is Pickles. I'm a renowned detective.", innerThought),
                 Line(pickles, "In my line of work... I make a decent amount of money.", innerThought),
                 Line(pickles, "But this?...", innerThought),
@@ -564,8 +572,77 @@ namespace BetweenTheLines.Source
                 Line(pickles, "Is that...?"),
                 Line(pickles, "...", innerThought),
                 Line(pickles, "I couldn't believe what I was looking at.", innerThought),
+                Line(smokey, "For your first task, I want you to identify the body."),
+                Line(smokey, "You should be good at that, right detective?"),
+                Line(otto, "That's... Shit..."),
+                Line(faun, "W-w-wha... T-this..."),
+                Line(micah, "Oh dear..."),
+                Line(angel, "..."),
                 Line(pickles, "A body...", innerThought),
-                Line(pickles, "A real dead body was in front of me.", innerThought)
+                Line(pickles, "A real dead body was in front of me.", innerThought),
+                Line(smokey, "After enough time has passed, well..."),
+                Line(smokey, "I'll fill you all in on the rest afterwards."),
+                Line(pickles, "I thought I'd be more prepared... but this was my first time\nhaving to deal with anything like this.", innerThought),
+                Line(faun, "N-no... NO!"),
+                Line(pickles, "Faun... I can't imagine how she's feeling.", innerThought),
+                Line(pickles, "And what the hell does Smokey have planned? I can't leave\nthis place until I figure out his goals...", innerThought),
+                Line(pickles, "Get it together, Pickles... Let's investigate.", innerThought),
+            };
+
+            chapter1evidence1 = new DialogString[] {
+                Line(pickles, "Test")
+            };
+
+            chapter1evidence3 = new DialogString[] {
+                Line(pickles, "Test")
+            };
+
+            chapter1evidence2 = new DialogString[] {
+                Line(pickles, "Test")
+            };
+
+            chapter1investigationEnd = new DialogString[]{
+                Line(smokey, "That's all there is to the crime scene, right?"),
+                Line(pickles, "W...What?"),
+                Line(pickles, "I slowly felt my patience thinning. In that moment...", innerThought),
+                Line(pickles, "Smokeston, I came here because of the scam you sent each of us.\nAnd if you don't wipe that cheerful attitude off your face..."),
+                Line(smokey, "Ah, you're just as they describe you, Pickles! Always so tense."),
+                Line(pickles, "Shut the hell up. I've had it with this.\nThis is a living, breathing person I'm looking at..."),
+                Line(pickles, "And you expect me to entertain any more of this?"),
+                Line(smokey, "Well... Not breathing any more, but..."),
+                Line(smokey, "Won't you all humour me a little while longer?\nThe fun part is about to begin!"),
+                Line(faun, "F-fun...? Oh, no..."),
+                Line(otto, "I feel you, cat. This shit has gone too far."),
+                Line(faun, "*sniff* mm..."),
+                Line(angel, "Smokeston. What do you gain from this experience?"),
+                Line(smokey, "What do I... gain?"),
+                Line(angel, "You are clearly messing with their heads here.\nJust drop the haunted house act."),
+                Line(micah, "M-Ms. Angel, this isn't... this isn't fake."),
+                Line(angel, "Doctor, I would have expected you to be no more foolish\nthan the rest of the young boys and girls here."),
+                Line(pickles, "I'm... not that young..."),
+                Line(otto, "The hell, old lady? Have you gone senile!?\nCan't you tell the difference between fiction and reality?!"),
+                Line(angel, "And you, Otto. Clearly we are from two different worlds.\nWe simply cannot see eye to eye."),
+                Line(otto, "You got that right, you old hag!"),
+                Line(micah, "What do you suggest we do now, Ms. Angel?"),
+                Line(angel, "There's no need for the authorities, unless our host decides\nto use force on us."),
+                Line(angel, "You kids are obsessed with that AI nonsense these days.\nI'm sure Novikov has his ways of fooling us."),
+                Line(smokey, "Comparing me to AI... Why that's just...!"),
+                Line(smokey, "I'M NOTHING LIKE THAT GENERATIVE FILTH!\nI'm a work of art, man-made!"),
+                Line(smokey, "Everything you've seen up until this point is real!\n100% real! As real as it could be!"),
+                Line(micah, "I must say, if Ms. Angel is right, Mr. Novikov possesses\ngenerative AI far beyond what we consider advanced."),
+                Line(micah, "Could it be...? Is he really, a true artificial intelligence?"),
+                Line(micah, "In which case, I wouldn't mind dissecting him...\nSending him to my lab... Seeing what makes him tick...!"),
+                Line(otto, "Bahaha! Where's your device hiding at?!\nSpin around, let the cat do a body check!"),
+                Line(smokey, "I'm... ..."),
+                Line(smokey, "I've never felt more hurt in my life! For the last time,\nI am NOT a machine!!"),
+                Line(smokey, "If you all truly believe that this experience is fictional...\nThen you wouldn't mind walking with me."),
+                Line(pickles, "..."),
+                Line(otto, "..."),
+                Line(faun, "..."),
+                Line(angel, "...Oh, alright.\nWe shall humour you just a little longer."),
+                Line(smokey, "Oh, splendid! Amazing! Right this way!\nOur little game is about to get so much bigger!"),
+                Line(pickles, "It's all fake, right?", innerThought),
+                Line(pickles, "Right...?", innerThought),
             };
 
             chapter1trial1 = new DialogString[]{
