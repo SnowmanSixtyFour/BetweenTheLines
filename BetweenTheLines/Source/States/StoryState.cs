@@ -527,6 +527,15 @@ namespace BetweenTheLines.Source.States
 
                     // --- Dialog End Events ---
 
+                    // CHAPTER 1 PART 2
+
+                    // Part 2
+                    if (dialogBox.dialog == Dialog.chapter1part2)
+                    {
+                        // Dialog
+                        dialogBox.setDialog(Dialog.chapter1investigation); // Set to Investigation
+                    }
+
                     // CHAPTER 1 PART 1
 
                     // Closet
