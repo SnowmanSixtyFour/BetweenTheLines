@@ -17,6 +17,8 @@ Explore a point-and-click world inspired by visual novels games such as the Dang
 
 [Snowman64](https://github.com/SnowmanSixtyFour) | <b>Creator</b> & Lead Programmer
 
+[ShawSure](https://bsky.app/profile/shawsure.bsky.social) | Artist
+
 [River347](https://river347.bandcamp.com/) | Composer
 ### Special Thanks
 Timothy Lottes - [CRT Filter (Public Domain)](https://github.com/libretro/glsl-shaders/blob/master/crt/shaders/crt-lottes.glsl)
