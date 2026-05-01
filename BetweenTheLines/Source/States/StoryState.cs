@@ -214,6 +214,9 @@ namespace BetweenTheLines.Source.States
 
                     // Set Dialog
                     dialogBox.setDialog(Dialog.chapter1investigationEnd);
+
+                    // Hide Cursor
+                    cursorVisible = false;
                 }
 
                 // Investigation - Click on evidence
@@ -438,6 +441,17 @@ namespace BetweenTheLines.Source.States
                 {
                     // --- Dialog Events ---
 
+                    // Investigation End
+                    if (dialogBox.dialog == Dialog.chapter1investigationEnd)
+                    {
+                        if (dialogBox.currentLine == 39)
+                        {
+                            // Hide Body and Blacken Dialog Cinematic
+                            dialogCinematic.SetTexture(null);
+                            dialogCinematic.SetColor(Color.Black);
+                        }
+                    }
+
                     // Evidence
                     if (dialogBox.dialog == Dialog.chapter1evidence1 || dialogBox.dialog == Dialog.chapter1evidence2 || dialogBox.dialog == Dialog.chapter1evidence3)
                     {
@@ -453,7 +467,7 @@ namespace BetweenTheLines.Source.States
                     {
                         if (dialogBox.currentLine == 3)
                         {
-                            dialogCinematic.SetTexture(null); // Body Image
+                            dialogCinematic.SetTexture(null); // Body Image - NULL PLACEHOLDER
                             dialogCinematic.SetColor(Color.White);
                         }
                     }
@@ -717,7 +731,6 @@ namespace BetweenTheLines.Source.States
         {
             // Show Dialog
             dialogBox.setDialog(dialog); // Set Dialog
-            dialogBox.Show();
             portrait.MoveToCenter();
 
             // Hide Cursor

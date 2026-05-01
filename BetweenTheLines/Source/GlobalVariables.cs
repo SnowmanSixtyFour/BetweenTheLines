@@ -590,15 +590,15 @@ namespace BetweenTheLines.Source
             };
 
             chapter1evidence1 = new DialogString[] {
-                Line(pickles, "Test")
+                Line(pickles, "Test 1")
             };
 
             chapter1evidence3 = new DialogString[] {
-                Line(pickles, "Test")
+                Line(pickles, "Test 2")
             };
 
             chapter1evidence2 = new DialogString[] {
-                Line(pickles, "Test")
+                Line(pickles, "Test 3")
             };
 
             chapter1investigationEnd = new DialogString[]{
