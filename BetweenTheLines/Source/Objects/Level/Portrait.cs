@@ -64,7 +64,7 @@ namespace BetweenTheLines.Source.Objects.Level
             // --- Graphics ---
 
             // Set Sprite
-            SetState((byte)dialog.character, (State)dialog.state);
+            if (dialog.currentLine == 0) SetState((byte)dialog.character, (State)dialog.state);
 
             // --- Move Events ---
 
