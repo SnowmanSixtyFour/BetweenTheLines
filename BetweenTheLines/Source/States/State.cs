@@ -94,7 +94,7 @@ namespace BetweenTheLines.Source.States
 
             // Text
             pauseText = new Text(Assets.arial, "Paused", new Vector2((cam.Width / 2), (cam.Height / 2) - pauseTextPadding), Color.White, 2.0f, true);
-            pauseTooltip = new Text(Assets.arial, "", new Vector2((cam.Width / 2) - 160, (cam.Height / 2) + pauseTextPadding), Color.White, 1.0f, false);
+            pauseTooltip = new Text(Assets.arial, pauseTooltipMenu, new Vector2((cam.Width / 2) - 160, (cam.Height / 2) + pauseTextPadding), Color.Gray, 1.0f, false);
 
             // CRT Filter
             crtVignette = new StaticSprite(Assets.crtVignette, new Rectangle(0, 0, cam.Width, cam.Height), Color.White);

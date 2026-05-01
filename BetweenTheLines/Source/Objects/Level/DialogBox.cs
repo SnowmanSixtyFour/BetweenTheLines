@@ -20,6 +20,9 @@ namespace BetweenTheLines.Source.Objects.Level
         private int height = (Global.windowHeight / 3);
         private Rectangle boxRectangle;
 
+        public int state { get; internal set; }
+        public int character { get; internal set; }
+
         // Text
         private Text
             text, name;
@@ -79,7 +82,7 @@ namespace BetweenTheLines.Source.Objects.Level
             nameOttoColor = new Color(250, 80, 120),
             nameAngelColor = Color.LightGray,
             nameMicahColor = Color.Wheat,
-            nameSmokeyColor = Color.MediumPurple,
+            nameSmokeyColor = new Color(177, 142, 259),
             
             // Other
             invisibleColor = new Color(0, 0, 0, 0);
@@ -91,6 +94,8 @@ namespace BetweenTheLines.Source.Objects.Level
 
             this.name = new Text(Assets.arial, "", new Vector2((box.GetDestRect().X + textPadding), (box.GetDestRect().Y + textPadding)), nameColor, 1.0f, false);
             this.text = new Text(Assets.arial, "", new Vector2((box.GetDestRect().X + textPadding + xOffset), (box.GetDestRect().Y + yOffset)), textColor, 1.0f, false);
+
+            this.state = 0;
         }
 
         public void Update(GameTime gameTime, float dialogSpeed)
@@ -98,7 +103,10 @@ namespace BetweenTheLines.Source.Objects.Level
             // --- Dialog Text ---
 
             // Update Current Line
-            currentLine = steps;
+            if (currentLine != steps) currentLine = steps;
+
+            // Set Dialog Properties
+            if (steps <= (dialog.Length - 1) || currentLine == 0) SetDialogProperties();
 
             // Only update Dialog Box if position is not changing
             if (!lowering && !heightening)
@@ -109,14 +117,22 @@ namespace BetweenTheLines.Source.Objects.Level
                     // Update Timer
                     timeElapsed += (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-                    // Set Name to Blank if -1 or Lower
-                    if (dialog[steps].name <= -1)
+                    // If Name should not appear at all
+                    if (dialog[steps].name <= Dialog.noName)
                     {
                         this.name.setText("");
                     }
+
+                    // If Name is Hidden in Dialog
+                    else if (dialog[steps].hideName == true)
+                    {
+                        // Set name to Unknown (first name in list)
+                        this.name.setText(names[0]);
+                    }
+
+                    // Set Name to Array Name
                     else
                     {
-                        // Set Name to Array Name
                         this.name.setText(names[dialog[steps].name]);
                     }
 
@@ -237,6 +253,20 @@ namespace BetweenTheLines.Source.Objects.Level
                     heightening = false;
                 }
             }
+        }
+
+        /// <summary>
+        /// Sets the properties of the dialog box, from the current line of dialog being read.
+        /// </summary>
+        public void SetDialogProperties()
+        {
+            // Dialog Properties
+
+            // Get Character State
+            this.state = dialog[currentLine].state;
+
+            // Get Character Name
+            this.character = dialog[currentLine].name;
         }
 
         public void Draw(SpriteBatch spriteBatch)

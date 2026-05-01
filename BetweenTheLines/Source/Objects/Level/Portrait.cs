@@ -13,7 +13,6 @@ namespace BetweenTheLines.Source.Objects.Level
     internal class Portrait
     {
         public StaticSprite sprite { get; private set; }
-        private int character;
 
         public enum State
         {
@@ -45,11 +44,8 @@ namespace BetweenTheLines.Source.Objects.Level
             moveToLeftOffscreen = false, // To Left
             moveToRightOffscreen = false; // To Right
 
-        public Portrait(byte character, byte state = 0)
+        public Portrait(byte state = 0)
         {
-            // --- Variables ---
-            this.character = character;
-
             // --- Portrait ---
 
             // Set Sprite
@@ -63,8 +59,13 @@ namespace BetweenTheLines.Source.Objects.Level
             SetState(state, this.portraitState);
         }
 
-        public void Update(GameTime gameTime)
+        public void Update(GameTime gameTime, DialogBox dialog)
         {
+            // --- Graphics ---
+
+            // Set Sprite
+            SetState((byte)dialog.character, (State)dialog.state);
+
             // --- Move Events ---
 
             if (fromLeftToCenter) // Center, from Left Edge of Screen
@@ -154,13 +155,12 @@ namespace BetweenTheLines.Source.Objects.Level
         public void SetState(byte state, State newPortraitState)
         {
             // Set Properties
-            this.character = state;
             portraitState = newPortraitState;
 
             try
             {
                 // Pickles
-                if (state == Dialog.pickles)
+                if (state == Dialog.pickles && Dialog.picklesVisible) // Pickles has a special condition whether he should be visible or not
                 {
                     // Regular
                     if (portraitState == State.regular) this.sprite.SetTexture(Dialog.picklesRegular);
@@ -170,7 +170,7 @@ namespace BetweenTheLines.Source.Objects.Level
                 }
 
                 // Faun
-                else if (state == Dialog.faun)
+                if (state == Dialog.faun)
                 {
                     // Regular
                     if (portraitState == State.regular) this.sprite.SetTexture(Dialog.faunRegular);
@@ -180,7 +180,7 @@ namespace BetweenTheLines.Source.Objects.Level
                 }
 
                 // Otto
-                else if (state == Dialog.otto)
+                if (state == Dialog.otto)
                 {
                     // Regular
                     if (portraitState == State.regular) this.sprite.SetTexture(Dialog.ottoRegular);
@@ -190,7 +190,7 @@ namespace BetweenTheLines.Source.Objects.Level
                 }
 
                 // Angel
-                else if (state == Dialog.angel)
+                if (state == Dialog.angel)
                 {
                     // Regular
                     if (portraitState == State.regular) this.sprite.SetTexture(Dialog.angelRegular);
@@ -200,14 +200,14 @@ namespace BetweenTheLines.Source.Objects.Level
                 }
 
                 // Micah
-                else if (state == Dialog.micah)
+                if (state == Dialog.micah)
                 {
                     // Regular
                     if (portraitState == State.regular) this.sprite.SetTexture(Dialog.micahRegular);
                 }
 
                 // Smokey
-                else if (state == Dialog.smokey)
+                if (state == Dialog.smokey)
                 {
                     // Regular
                     if (portraitState == State.regular) this.sprite.SetTexture(Dialog.smokeyRegular);
@@ -220,9 +220,9 @@ namespace BetweenTheLines.Source.Objects.Level
                 }
             }
             // If Portrait does not exist
-            catch
+            catch (Exception e)
             {
-                Debug.Print("Attempted to set Portrait to a state that does not exist!");
+                Debug.Print(e.ToString());
             }
         }
 

@@ -299,7 +299,6 @@ namespace BetweenTheLines.Source
     {
         // Character IDs
         internal static readonly byte
-            unknown = 0,
             pickles = 1,
             faun = 2,
             otto = 3,
@@ -313,6 +312,17 @@ namespace BetweenTheLines.Source
         internal static readonly byte
             innerThought = 1,
             tutorial = 2;
+
+        // Portrait Poses
+        internal static readonly byte
+            regular = 0,
+            thinking = 1,
+            worried = 2,
+            angry = 3,
+            excited = 4,
+            creepy = 5;
+
+        public static bool picklesVisible = true;
 
         // Dialog Portraits
 
@@ -359,9 +369,9 @@ namespace BetweenTheLines.Source
             // Intro
 
             intro1 = new DialogString[]{
-                Line(unknown, "Last night, I got this letter...", innerThought),
-                Line(unknown, "It said \"Congratulations! You have won $1 000 000 dollars!\"", innerThought),
-                Line(unknown, "...Yeah, as if.", innerThought),
+                Line(pickles, "Last night, I got this letter...", innerThought, hideName: true),
+                Line(pickles, "It said \"Congratulations! You have won $1 000 000 dollars!\"", innerThought, hideName: true),
+                Line(pickles, "...Yeah, as if.", innerThought, hideName: true),
                 Line(pickles, "My name is Pickles. I'm a renowned detective.", innerThought),
                 Line(pickles, "In my line of work... I make a decent amount of money.", innerThought),
                 Line(pickles, "But this?...", innerThought),
@@ -389,11 +399,11 @@ namespace BetweenTheLines.Source
                 Line(pickles, "Despite it's shoddy look from outside...\nIt was as though someone really was waiting for me to arrive.", innerThought),
                 Line(pickles, "Without hesitation, I called out into the large foyer,\nand waited for a response.", innerThought),
                 Line(pickles, "Anyone home?"),
-                Line(unknown, "Um... Hi..."),
+                Line(faun, "Um... Hi...", hideName: true),
                 Line(pickles, "Huh?"),
-                Line(unknown, "So you... got the same letter as us."),
+                Line(faun, "So you... got the same letter as us.", hideName: true),
                 Line(pickles, "Yeah. I'm guessing I'm not the only one, then."),
-                Line(unknown, "B-before we go, I should probably introduce myself..."),
+                Line(faun, "B-before we go, I should probably introduce myself...", hideName: true),
                 Line(faun, "I'm Faun. I got here first. I-It's nice to meet you..."),
                 Line(pickles, "The name's Pickles. Detective Pickles.\nI'm here on behalf of my work investigating this..."),
                 Line(faun, "...Weirdly obvious scam?"),
@@ -406,21 +416,21 @@ namespace BetweenTheLines.Source
             };
 
             chapter1part1 = new DialogString[]{
-                Line(unknown, "'The hell? Who's this tail licker?"),
+                Line(otto, "'The hell? Who's this tail licker?", hideName: true),
                 Line(pickles, "Pickles. Detective P-"),
-                Line(unknown, "Yeah yeah, whatever. You here for the money?"),
+                Line(otto, "Yeah yeah, whatever. You here for the money?", state: angry, hideName: true),
                 Line(pickles, "...Yes. I'm here to uncover the true meaning behind\nthe letter I received in the mail."),
                 Line(pickles, "This guy's got some nerve...", innerThought),
-                Line(unknown, "Look pal, the dough ain't here. Whole thing's a scam."),
+                Line(otto, "Look pal, the dough ain't here. Whole thing's a scam.", hideName: true),
                 Line(pickles, "I figured so. Do you know more about the situation?"),
-                Line(unknown, "'The hell do you think I'm gonna tell you that for?\nYou tryna take the money from me?"),
-                Line(faun, "O-Otto... He's just as confused as the rest of us... So..."),
+                Line(otto, "'The hell do you think I'm gonna tell you that for?\nYou tryna take the money from me?", state: angry, hideName: true),
+                Line(faun, "O-Otto... He's just as confused as the rest of us... So...", state: worried),
                 Line(otto, "... *sigh* Fine. You're lucky the li'l lady is here.\nOtherwise I woulda-"),
                 Line(faun, "Otto...!"),
                 Line(otto, "Oh, nevermind..."),
                 Line(pickles, "First, I'd like to know why the door was left unlocked."),
                 Line(pickles, "It seems... hazardous to leave this seemingly abandoned house just...\nunlocked. For anyone to come inside."),
-                Line(unknown, "Well, we all thought that it would be a good idea\nto leave the door as we found it."),
+                Line(angel, "Well, we all thought that it would be a good idea\nto leave the door as we found it.", state: thinking, hideName: true),
                 Line(pickles, "Ah, I see. And you are?"),
                 Line(angel, "Angel. I may be past my prime, but back in my day...\nI was quite the lady."),
                 Line(pickles, "Despite the overlooming feeling of confusion, dread,\nand mystery...", innerThought),
@@ -428,8 +438,8 @@ namespace BetweenTheLines.Source
                 Line(pickles, "There was a cheerful feeling to the room's atmosphere.", innerThought),
                 Line(pickles, "It's nice to meet you, Angel, Faun..."),
                 Line(pickles, "Are you the only people here?"),
-                Line(faun, "N-No... This house..."),
-                Line(faun, "Has a host."),
+                Line(faun, "N-No... This house...", state: worried),
+                Line(faun, "Has a host.", state: worried),
                 Line(pickles, "A host?", innerThought),
                 Line(pickles, "What... does she mean by that?", innerThought),
                 Line(pickles, "What do you mean, host?"),
@@ -445,7 +455,7 @@ namespace BetweenTheLines.Source
             chapter1bathroom = new DialogString[]{
                 Line(pickles, "This bathroom is really nice, actually."),
                 Line(pickles, "I wouldn't mind taking a shit in here... Hehehe."),
-                Line(faun, "....."),
+                Line(faun, ".....", state: worried),
                 Line(pickles, "She didn't like that...", innerThought),
                 Line(pickles, "Hey... Any other rooms to show me?")
             };
@@ -454,20 +464,20 @@ namespace BetweenTheLines.Source
                 Line(faun, "T-this is the kitchen... It has everything you'd expect.\nSilverware, appliances, and more..."),
                 Line(pickles, "Huh. You'd really expect this place to be more run down..."),
                 Line(pickles, "Hey, Faun."),
-                Line(faun, "Mm? W-who, me?"),
+                Line(faun, "Mm? W-who, me?", state: worried),
                 Line(pickles, "Yeah, I've been thinking about the host you mentioned.\nWho is he?"),
                 Line(faun, "W-well, he's certainly young looking..."),
                 Line(faun, "He's no older than 20..."),
                 Line(pickles, "Howcome I haven't seen him yet?"),
-                Line(faun, "A-ah, that's because he announced the \"game\" moments before\nyou arrived."),
+                Line(faun, "A-ah, that's because he announced the \"game\" moments before\nyou arrived.", state: worried),
                 Line(pickles, "The game...?"),
                 Line(faun, "Otto wasn't very happy, but the strange man said\nhe would \"await your arrival...\""),
                 Line(pickles, "Who the hell is this host, treating this scam like some kind\nof dinner party?", innerThought)
             };
 
             chapter1closet = new DialogString[]{
-                Line(unknown, "Mmm... What time is it...?"),
-                Line(faun, "M-Micah, you know you shouldn't be sleeping in the closet..."),
+                Line(micah, "Mmm... What time is it...?", hideName: true),
+                Line(faun, "M-Micah, you know you shouldn't be sleeping in the closet...", state: worried),
                 Line(micah, "Oh d-d-dear! My apologies...!"),
                 Line(pickles, "It's fine. I'm still getting adjusted, so-"),
                 Line(micah, "Your cortisol levels are rising. Begin the diaphragmatic process."),
@@ -476,7 +486,7 @@ namespace BetweenTheLines.Source
                 Line(micah, "O-oh, sorry, I didn't explain properly, did I?"),
                 Line(micah, "In case you didn't know, diaphragmatic breathing exercises\ncan help you relax."),
                 Line(pickles, "I, uh..."),
-                Line(faun, "M-Micah! He has no idea what you're talking about..."),
+                Line(faun, "M-Micah! He has no idea what you're talking about...", state: worried),
                 Line(micah, "WHAT?! Ohmygoodness I am SO sorry!"),
                 Line(pickles, "Really, it's fine..."),
                 Line(micah, "No! It's not fine!"),
@@ -485,34 +495,34 @@ namespace BetweenTheLines.Source
             };
 
             chapter1part2 = new DialogString[]{
-                Line(unknown, "I'm glad to see you all get acquainted with one another!"),
+                Line(smokey, "I'm glad to see you all get acquainted with one another!", state: excited, hideName: true),
                 Line(pickles, "That voice... It doesn't sound close to the nervousness\neveryone else is feeling.", innerThought),
-                Line(faun, "That's-!"),
-                Line(unknown, "Meeee!"),
+                Line(faun, "That's-!", state: worried),
+                Line(smokey, "Meeee!", state: excited, hideName: true),
                 Line(pickles, "Who the hell..."),
-                Line(otto, "You again?! I thought I told you to fuck off for good, ya douche!"), // Holy edgy
-                Line(unknown, "Ah, but I just couldn't help myself...!\nI was getting jealous of all your smiles! Your joy!"),
+                Line(otto, "You again?! I thought I told you to fuck off for good, ya douche!"),
+                Line(smokey, "Ah, but I just couldn't help myself...!\nI was getting jealous of all your smiles! Your joy!", hideName: true),
                 Line(pickles, "Are you the host here..?"),
-                Line(unknown, "But of course I am!"),
+                Line(smokey, "But of course I am!", state: excited, hideName: true),
                 Line(smokey, "Smokeston Novikov, at your service!\nBut you can just call me Smokey. I'd prefer that!"),
                 Line(pickles, "Smokeston... Where have I heard that name?", innerThought),
                 Line(otto, "If you can't understand my words..."),
                 Line(otto, "I'LL JUST HAVE TO BEAT THE SENSE INTO YA!"),
-                Line(faun, "No...! OTTO!"),
+                Line(faun, "No...! OTTO!", state: worried),
                 Line(smokey, "Woah woah woah! I wouldn't do that if I were you...!"),
-                Line(smokey, "My guts will go allllll over the place if you-"),
+                Line(smokey, "My guts will go allllll over the place if you-", state: excited),
                 Line(pickles, "The sound of a sharp punch filled the room before he could finish.", innerThought),
                 Line(pickles, "It was as though pure iron was forced through something\nsoft and squishy.", innerThought),
                 Line(pickles, "And when my eyes finally adjusted...", innerThought),
                 Line(pickles, "There he was. Oozing with blood.", innerThought),
-                Line(faun, "KYAAAAAAAAAAAAAAAAAA!"),
+                Line(faun, "KYAAAAAAAAAAAAAAAAAA!", state: worried),
                 Line(otto, "How'd ya like that, asshole?! I told you, don't fuck with me!"),
                 Line(pickles, "I couldn't believe what I just witnessed.\nOtto, who was completely innocent prior to the argument he started...", innerThought),
                 Line(pickles, "Punched a hole through Smokeston.", innerThought),
-                Line(smokey, "Oh... This isn't good... Not at all..."),
+                Line(smokey, "Oh... This isn't good... Not at all...", state: creepy),
                 Line(pickles, "Why hasn't he passed out yet? Losing that much blood should've\nkilled him, let alone the fatal injury he clearly suffers.", innerThought),
-                Line(smokey, "Aw, it's all over the furniture... Not cool, Otto!\nI had high hopes for you..."),
-                Line(otto, "The fuck? Is that not enough for..."),
+                Line(smokey, "Aw, it's all over the furniture... Not cool, Otto!\nI had high hopes for you...", state: creepy),
+                Line(otto, "The fuck? Is that not enough for...", state: angry),
                 Line(otto, "..."),
                 Line(pickles, "Otto suddenly stopped speaking.", innerThought),
                 Line(pickles, "I didn't have the courage to ask him why, but...\nWhen I looked over at Smokeston...", innerThought),
@@ -520,27 +530,27 @@ namespace BetweenTheLines.Source
                 Line(pickles, "...", innerThought),
                 Line(pickles, "Two unbelievable events happening, back to back.", innerThought),
                 Line(pickles, "I should be very careful around either of them. For now,\nFaun and the others seem reliable enough.", innerThought),
-                Line(smokey, "Where was I...? Oh, right."),
-                Line(smokey, "I'm the host of this game... treat me with a little respect, thank you."),
+                Line(smokey, "Where was I...? Oh, right.", state: creepy),
+                Line(smokey, "I'm the host of this game... treat me with a little respect, thank you.", state: creepy),
                 Line(otto, "..."),
-                Line(faun, "..."),
-                Line(angel, "..."),
+                Line(faun, "...", state: worried),
+                Line(angel, "...", state: thinking),
                 Line(micah, "..."),
                 Line(pickles, "We were all in shock.", innerThought),
                 Line(pickles, "Minutes began to feel like hours.\nNone of us knew what to say about anything we had just witnessed.", innerThought),
                 Line(smokey, "... *sigh* So much for a perfect opening night."),
                 Line(smokey, "We'll take five.\nThen I want you all to come see the discovery I've made."),
                 Line(pickles, "...Discovery...?"),
-                Line(smokey, "Well yeah, duh! What kind of game would this be without an objective?"),
+                Line(smokey, "Well yeah, duh! What kind of game would this be without an objective?", state: excited),
                 Line(smokey, "A hero without a princess to save... he's just a nobody, right?"),
-                Line(faun, "S-so, y-you were serious about this \"game\" y-you've prepared..."),
+                Line(faun, "S-so, y-you were serious about this \"game\" y-you've prepared...", state: worried),
                 Line(micah, "According to my calculations, he's not lying..."),
                 Line(micah, "When he announced it at " + Global.gameStartTime + ", I checked his pulse.\nHe was dead serious."),
-                Line(angel, "I'm afraid I'm just too old for social experiments like this.\nYou younger generations disgust me."),
+                Line(angel, "I'm afraid I'm just too old for social experiments like this.\nYou younger generations disgust me.", state: thinking),
                 Line(otto, "Yo, doctor, how do you know that's not bullshit?\nFor all we know, that pulse you felt could've been fake."),
                 Line(otto, "I mean, shit, you saw what happened when I lost control."),
                 Line(otto, "I don't have the brains to orchestrate something as beautiful as that.\nTrust me."),
-                Line(faun, "*sniff* I w-want to g-get out of here... I-I don't like this...!"),
+                Line(faun, "*sniff* I w-want to g-get out of here... I-I don't like this...!", state: worried),
                 Line(pickles, "...What the fuck?", innerThought),
                 Line(pickles, "What... is this?"),
                 Line(pickles, "I didn't question it...\nBut none of us had left the old house.", innerThought),
@@ -549,7 +559,13 @@ namespace BetweenTheLines.Source
             };
 
             chapter1investigation = new DialogString[]{
-                Line(pickles, "Test")
+                Line(pickles, "Smokey brought us to the staircase at the end\nof the main hall.", innerThought),
+                Line(pickles, "What we found there surprised us all...", innerThought),
+                Line(pickles, "Is that...?"),
+                Line(pickles, "...", innerThought),
+                Line(pickles, "I couldn't believe what I was looking at.", innerThought),
+                Line(pickles, "A body...", innerThought),
+                Line(pickles, "A real dead body was in front of me.", innerThought)
             };
 
             chapter1trial1 = new DialogString[]{
@@ -570,9 +586,9 @@ namespace BetweenTheLines.Source
         }
 
         // Create Dialog String
-        public static DialogString Line(int name, string text, int textColor = 0)
+        public static DialogString Line(int name, string text, int textColor = 0, int state = 0, bool hideName = false)
         {
-            return new DialogString(name, text, textColor);
+            return new DialogString(name, text, textColor, state, hideName);
         }
     }
 }
