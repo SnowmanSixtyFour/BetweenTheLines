@@ -45,12 +45,12 @@ namespace BetweenTheLines.Source.States
             logoYStart = 700,
             creditsXPadding = 375,
             creditsYStart = 800,
-            creditsYEnd = -1750, // Credits End (Go back to Title)
+            creditsYEnd = -1780, // Credits End (Go back to Title)
 
             // Cat Positions
-            picklesAngelPos = 1800, // Pickles and Angel Y Positions
+            picklesAngelPos = 1850, // Pickles and Angel Y Positions
             angelOffset = 330, // Angel X Offset
-            smokeyPosX = 160, smokeyPosY = 2150, // Smokey Position
+            smokeyPosX = 160, smokeyPosY = 2200, // Smokey Position
 
             catPicOffset = 50; // Picture Y Offset
         private Point catPicSize = new Point(250, 250); // Picture Size
@@ -69,7 +69,7 @@ namespace BetweenTheLines.Source.States
 
             Development Team
 
-            Snowman64 - Programmer, Writer, Composer
+            Snowman64 - Programmer, Writer
             ShawSure - Artist
             River347 - Composer
 

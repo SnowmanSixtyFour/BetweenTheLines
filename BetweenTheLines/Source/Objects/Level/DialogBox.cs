@@ -69,9 +69,17 @@ namespace BetweenTheLines.Source.Objects.Level
             textDefaultColor = Color.White,
             textThoughtColor = Color.LightBlue,
             textTooltipColor = Color.LightGreen,
-            
+
             // Name
             nameColor = Color.LightYellow,
+
+            nameDefaultColor = Color.LightYellow,
+            namePicklesColor = new Color(179, 196, 213),
+            nameFaunColor = Color.LightSalmon,
+            nameOttoColor = new Color(250, 80, 120),
+            nameAngelColor = Color.LightGray,
+            nameMicahColor = Color.Wheat,
+            nameSmokeyColor = Color.MediumPurple,
             
             // Other
             invisibleColor = new Color(0, 0, 0, 0);
@@ -161,8 +169,21 @@ namespace BetweenTheLines.Source.Objects.Level
                             this.textColor = textDefaultColor;
                         }
 
-                        // Set Color
+                        // Set Colour
                         this.text.setColor(textColor);
+
+                        // --- Set Name Colour ---
+
+                        if (dialog[steps].name == Dialog.pickles) this.nameColor = namePicklesColor;
+                        else if (dialog[steps].name == Dialog.faun) this.nameColor = nameFaunColor;
+                        else if (dialog[steps].name == Dialog.otto) this.nameColor = nameOttoColor;
+                        else if (dialog[steps].name == Dialog.angel) this.nameColor = nameAngelColor;
+                        else if (dialog[steps].name == Dialog.micah) this.nameColor = nameMicahColor;
+                        else if (dialog[steps].name == Dialog.smokey) this.nameColor = nameSmokeyColor;
+                        else this.nameColor = nameDefaultColor;
+
+                        // Set Colour
+                        this.name.setColor(nameColor);
                     }
                 }
                 // When End of Dialog Reached

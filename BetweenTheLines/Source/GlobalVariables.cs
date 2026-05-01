@@ -340,11 +340,14 @@ namespace BetweenTheLines.Source
             intro1,
             intro2, intro2a, // Tutorial
             preludeEnd,
-            
+
             // Chapter 1
             chapter1part1,
             chapter1bathroom, chapter1kitchen, chapter1closet, // Exploration
-            chapter1part2;
+            chapter1part2,
+
+            // Trial
+            chapter1trial1, chapter1trial2, chapter1trial3, chapter1postTrial;
 
         public static void LoadDialog()
         {
@@ -541,6 +544,22 @@ namespace BetweenTheLines.Source
                 Line(pickles, "I didn't question it...\nBut none of us had left the old house.", innerThought),
                 Line(pickles, "I couldn't tell you why...", innerThought),
                 Line(pickles, "But that would soon turn out to be our biggest mistake.", innerThought)
+            };
+
+            chapter1trial1 = new DialogString[]{
+                Line(pickles, "Test")
+            };
+
+            chapter1trial2 = new DialogString[]{
+                Line(pickles, "Test")
+            };
+
+            chapter1trial3 = new DialogString[]{
+                Line(pickles, "Test")
+            };
+
+            chapter1postTrial = new DialogString[]{
+                Line(pickles, "Test")
             };
         }
 
