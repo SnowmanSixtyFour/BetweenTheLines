@@ -50,7 +50,7 @@ namespace BetweenTheLines.Source.States
             // Set Options
             cursorVisible = true;
 
-            // Set Previous Options (For Exitting without Saving Changes)
+            // Set Previous Options (For Exiting without Saving Changes)
             SetPreviousOptions();
 
             // --- Set Objects ---
@@ -85,6 +85,11 @@ namespace BetweenTheLines.Source.States
                 (int)(backDont.Width * 1.5f) + (backButtonPadding * 2), // X
                 (cam.Height - backDont.Height) - backButtonPadding) // Y
                 );
+
+            // --- Set State ---
+
+            // Reset State to Set Default Variables for Objects
+            ResetState();
         }
 
         public void SetPreviousOptions()

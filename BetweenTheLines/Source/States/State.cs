@@ -316,8 +316,8 @@ namespace BetweenTheLines.Source.States
             if (Global.active && Global.paused) Global.paused = false;
 
             // Set Cursor Position to Center of Screen
-            cursor.X = (screenWidth / 2);    // X
-            cursor.Y = (screenHeight / 2);   // Y
+            cursor.X = (Global.windowWidth / 2);    // X
+            cursor.Y = (Global.windowHeight / 2);   // Y
         }
 
         // --- Controls ---

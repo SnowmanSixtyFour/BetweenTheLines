@@ -593,11 +593,11 @@ namespace BetweenTheLines.Source
                 Line(pickles, "Test 1")
             };
 
-            chapter1evidence3 = new DialogString[] {
-                Line(pickles, "Test 2")
+            chapter1evidence2 = new DialogString[] {
+                Line(faun, "Test 2")
             };
 
-            chapter1evidence2 = new DialogString[] {
+            chapter1evidence3 = new DialogString[] {
                 Line(pickles, "Test 3")
             };
 
@@ -646,7 +646,16 @@ namespace BetweenTheLines.Source
             };
 
             chapter1trial1 = new DialogString[]{
-                Line(pickles, "Test")
+                Line(smokey, "Okay! Now that we're all here, let me explain how\nthe debate works."),
+                Line(smokey, "Each of you in this room will talk amongst yourselves, and me,\nabout who the killer might be!"),
+                Line(pickles, "The killer is... one of us?"),
+                Line(smokey, "Well, duh! I wouldn't kill without reason!"),
+                Line(smokey, "I had a prime opportunity to kill Otto earlier\nfor how he disrespected me..."),
+                Line(smokey, "But I'm too kind to do that!"),
+                Line(otto, "You gotta be kidding me..."),
+                Line(smokey, "Now, let's begin with the debate."),
+                Line(smokey, "Detective Pickles... Can you tell us about the body?"),
+                Line(pickles, "Sure.")
             };
 
             chapter1trial2 = new DialogString[]{
