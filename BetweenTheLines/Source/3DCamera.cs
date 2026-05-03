@@ -49,7 +49,7 @@ namespace BetweenTheLines.Source.Graphics
             basicEffect.View = viewMatrix;
             basicEffect.World = worldMatrix;
 
-            graphicsDevice.Clear(Color.CornflowerBlue);
+            // graphicsDevice.Clear(Color.CornflowerBlue);
 
             // Draw Geometry
             graphicsDevice.SetVertexBuffer(vertexBuffer);

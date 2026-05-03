@@ -86,6 +86,25 @@ namespace BetweenTheLines.Source.States
                     else rescanLine.SetY(rescanLine.GetY() + rescanLineIncrement);
                 }
             }
+
+            // While Game Paused
+            if (Global.paused)
+            {
+                // During Gameplay (Story, Debate)
+                if (Global.currentState == Global.State.story
+                    || Global.currentState == Global.State.debate)
+                {
+                    // Check if R is Pressed (Return to Menu)
+                    if (KeyPress(Keys.R))
+                    {
+                        ChangeSong(OST.title);
+
+                        // Switch State
+                        this.changeState = true;
+                        Global.currentState = Global.State.title;
+                    }
+                }
+            }
         }
 
         public override void OnDraw(SpriteBatch spriteBatch)

@@ -553,6 +553,13 @@ namespace BetweenTheLines.Source.States
 
                     // CHAPTER 1 PART 2
 
+                    // End of Investigation
+                    if (dialogBox.dialog == Dialog.chapter1investigationEnd)
+                    {
+                        // Switch State to Debate
+                        GoToDebate();
+                    }
+
                     // Investigation Dialog
                     if (dialogBox.dialog == Dialog.chapter1investigation
                         || dialogBox.dialog == Dialog.chapter1evidence1 || dialogBox.dialog == Dialog.chapter1evidence2 || dialogBox.dialog == Dialog.chapter1evidence3)
@@ -701,20 +708,16 @@ namespace BetweenTheLines.Source.States
                 dialogBox.Update(gameTime, Global.dialogSpeed);
                 overlay.Update(gameTime, this);
             }
+        }
 
-            // During Pause
-            else
-            {
-                // Check if R is Pressed (Return to Menu)
-                if (KeyPress(Keys.R))
-                {
-                    ChangeSong(OST.title);
+        public void GoToDebate()
+        {
+            // Set Music
+            ChangeSong(OST.trial);
 
-                    // Switch State
-                    this.changeState = true;
-                    Global.currentState = Global.State.title;
-                }
-            }
+            // Switch State
+            this.changeState = true;
+            Global.currentState = Global.State.debate;
         }
 
         /// <summary>

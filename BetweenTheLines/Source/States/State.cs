@@ -143,8 +143,9 @@ namespace BetweenTheLines.Source.States
 
                     // Toggle Pause Tooltip Depending on State
 
-                    // During Gameplay
-                    if (Global.currentState == Global.State.story)
+                    // During Gameplay (Story, Debate)
+                    if (Global.currentState == Global.State.story
+                        || Global.currentState == Global.State.debate)
                     {
                         this.pauseTooltip.setText(pauseTooltipGame);
                     }

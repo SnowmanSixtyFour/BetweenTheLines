@@ -42,9 +42,9 @@ namespace BetweenTheLines.Source.States
         {
             // Create Triangle
             triangleVertices = new VertexPositionColor[3];
-            triangleVertices[0] = new VertexPositionColor(new Vector3(0, 20, 0), Color.Red);
-            triangleVertices[1] = new VertexPositionColor(new Vector3(-20, -20, 0), Color.Green);
-            triangleVertices[2] = new VertexPositionColor(new Vector3(20, -20, 0), Color.Blue);
+            triangleVertices[0] = new VertexPositionColor(new Vector3(0, 70, 0), Color.Red);
+            triangleVertices[1] = new VertexPositionColor(new Vector3(-70, -70, 0), Color.Green);
+            triangleVertices[2] = new VertexPositionColor(new Vector3(70, -70, 0), Color.Blue);
 
             vertexBuffer = new VertexBuffer(MainGame.publicGraphicsDevice, typeof(VertexPositionColor), 3, BufferUsage.WriteOnly);
             vertexBuffer.SetData<VertexPositionColor>(triangleVertices);
@@ -60,7 +60,13 @@ namespace BetweenTheLines.Source.States
                 if (KeyPress(Keys.Enter) || LeftClicked()) dialogBox.Proceed();
             }
 
-            // Update 3D Background
+            // Rotate 3D Background
+            Matrix rotationMatrix = Matrix.CreateRotationY(
+                                        MathHelper.ToRadians(1f));
+            bgCam.position = Vector3.Transform(bgCam.position,
+                          rotationMatrix);
+
+            // Update 3D Camera
             bgCam.Update(gameTime);
 
             // Update Objects
@@ -70,7 +76,7 @@ namespace BetweenTheLines.Source.States
 
         public override void OnDraw(SpriteBatch spriteBatch)
         {
-            // Draw 3D Background
+            // Draw 3D Camera View
             bgCam.Draw(vertexBuffer);
 
             // Draw Objects
@@ -82,9 +88,6 @@ namespace BetweenTheLines.Source.States
 
         public override void ResetState()
         {
-            // Set Music
-            ChangeSong(OST.trial);
-
             // Set Dialog
             dialogBox.Show();
             dialogBox.setDialog(Dialog.chapter1trial1);
