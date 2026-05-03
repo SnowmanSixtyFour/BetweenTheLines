@@ -94,7 +94,10 @@ namespace BetweenTheLines.Source.States
             currentState.Draw(spriteBatch);
 
             // CRT Filter
-            if (Global.rescanLineVisible) rescanLine.Draw(spriteBatch); // Rescan Line
+            if (Global.crtFilter)
+            {
+                if (Global.rescanLineVisible) rescanLine.Draw(spriteBatch); // Rescan Line
+            }
         }
     }
 }
