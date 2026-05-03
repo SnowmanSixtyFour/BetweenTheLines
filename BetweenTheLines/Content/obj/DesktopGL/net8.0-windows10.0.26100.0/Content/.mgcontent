@@ -30,6 +30,7 @@
     <File>C:/Users/CJMT/Documents/GitHub/BetweenTheLines/BetweenTheLines/Content/Assets/Images/Global/pixel.png</File>
     <File>C:/Users/CJMT/Documents/GitHub/BetweenTheLines/BetweenTheLines/Content/Assets/Images/Intro/GameJam.png</File>
     <File>C:/Users/CJMT/Documents/GitHub/BetweenTheLines/BetweenTheLines/Content/Assets/Images/Intro/Snowman64.png</File>
+    <File>C:/Users/CJMT/Documents/GitHub/BetweenTheLines/BetweenTheLines/Content/Assets/Images/Level/Cinematic/corpse.png</File>
     <File>C:/Users/CJMT/Documents/GitHub/BetweenTheLines/BetweenTheLines/Content/Assets/Images/Level/Cinematic/lessonLearned1.png</File>
     <File>C:/Users/CJMT/Documents/GitHub/BetweenTheLines/BetweenTheLines/Content/Assets/Images/Level/Cinematic/lessonLearned2.png</File>
     <File>C:/Users/CJMT/Documents/GitHub/BetweenTheLines/BetweenTheLines/Content/Assets/Images/Level/Cinematic/lessonLearned3.png</File>
@@ -87,6 +88,7 @@
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File>Assets/Images/Global/CursorInspect</File>
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

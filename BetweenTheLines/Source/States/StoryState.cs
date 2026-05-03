@@ -467,7 +467,7 @@ namespace BetweenTheLines.Source.States
                     {
                         if (dialogBox.currentLine == 3)
                         {
-                            dialogCinematic.SetTexture(null); // Body Image - NULL PLACEHOLDER
+                            dialogCinematic.SetTexture(Assets.corpse);
                             dialogCinematic.SetColor(Color.White);
                         }
                     }

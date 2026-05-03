@@ -165,6 +165,7 @@ namespace BetweenTheLines.Source
 
             // Cinematics
             lessonLearned1, lessonLearned2, lessonLearned3, lessonLearned4,
+            corpse,
 
             // --- Credits ---
 
@@ -238,6 +239,8 @@ namespace BetweenTheLines.Source
             Assets.lessonLearned2 = content.Load<Texture2D>("Assets/Images/Level/Cinematic/lessonLearned2");
             Assets.lessonLearned3 = content.Load<Texture2D>("Assets/Images/Level/Cinematic/lessonLearned3");
             Assets.lessonLearned4 = content.Load<Texture2D>("Assets/Images/Level/Cinematic/lessonLearned4");
+
+            Assets.corpse = content.Load<Texture2D>("Assets/Images/Level/Cinematic/corpse");
 
             // --- Portraits ---
 
