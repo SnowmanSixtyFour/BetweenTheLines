@@ -64,9 +64,11 @@ namespace BetweenTheLines.Source
 
         // Gameplay Variables
         public static string
-            picklesArrivedTime, // Time Pickles Arrived at House
-            faunArrivedTime, // Time Faun Arrived at House
-            gameStartTime; // Time Game Started Officially
+            // Time Events
+            picklesArrivedTime, // Pickles Arrived at House
+            faunArrivedTime, // Faun Arrived at House
+            gameStartTime, // Game Started Officially
+            arthurKilledTime; // Arthur Killed
 
         // State
         public enum State
@@ -80,7 +82,7 @@ namespace BetweenTheLines.Source
         }
 
         public static bool viewingCreditsFromTitle = false;
-        public static State currentState = State.intro; // Current state of the game - NOTE: Always starts on intro!
+        public static State currentState = State.debate; // Current state of the game - NOTE: Always starts on intro!
 
         // Cursor Size
         public static int
@@ -94,10 +96,20 @@ namespace BetweenTheLines.Source
             crtFilter = false,
             rescanLineVisible = false,
 
-            menuAnimations = true;
+            menuAnimations = true,
+            backculling = false;
 
         // GUI Colors
         public static Color titleColor = Color.LightGray;
+
+        // Dialog
+
+        // Text Speed
+        public static float
+            defaultDialogSpeed = 0.02f, // Normal - 20 Milliseconds
+            fastDialogSpeed = 0.01f; // Fast - 10 Milliseconds
+
+        public static float dialogSpeed;
     }
 
     // Store Game Soundtrack in OST
@@ -651,16 +663,42 @@ namespace BetweenTheLines.Source
             };
 
             chapter1trial1 = new DialogString[]{
-                Line(smokey, "Okay! Now that we're all here, let me explain how\nthe debate works."),
-                Line(smokey, "Each of you in this room will talk amongst yourselves, and me,\nabout who the killer might be!"),
+                Line(smokey, "Okay! Now that we're all here, let me explain how the debate works."),
+                Line(smokey, "Each of you in this room will talk amongst yourselves, and me,\nabout who the killer might be!", state: excited),
                 Line(pickles, "The killer is... one of us?"),
                 Line(smokey, "Well, duh! I wouldn't kill without reason!"),
-                Line(smokey, "I had a prime opportunity to kill Otto earlier\nfor how he disrespected me..."),
-                Line(smokey, "But I'm too kind to do that!"),
+                Line(pickles, "I'm just not following. He expects us to believe that?", innerThought),
+                Line(smokey, "I had a prime opportunity to kill Otto earlier for\nhow he disrespected me...", state: creepy),
+                Line(smokey, "But I'm too kind to do that!", state: excited),
                 Line(otto, "You gotta be kidding me..."),
                 Line(smokey, "Now, let's begin with the debate."),
                 Line(smokey, "Detective Pickles... Can you tell us about the body?"),
-                Line(pickles, "Sure.")
+                Line(pickles, "Sure. Arthur's time of death was at " + Global.arthurKilledTime + "."),
+                Line(pickles, "His cause of death was a broken neck,\nafter an impact from quite a decent height up."),
+                Line(pickles, "Micah was able to perform an autopsy. And her results were..."),
+                Line(micah, "Arthur was definitely killed at " + Global.arthurKilledTime + ". I'm sure of it."),
+                Line(micah, "Another detail I noticed was a large bruise on his face,\nspecifically on his left cheek."),
+                Line(micah, "It was a puncture wound, albeit not the cause of death...\nDespite how much blood he lost from it."),
+                Line(faun, "W-well, now that w-we know the t-time... We can pinpoint the k-k-killer.", state: worried),
+                Line(smokey, "Nice observation, Faun! To give swift justice to the killer,\nwe must find out whodunnit!", state: excited),
+                Line(pickles, "So the general consensus, judging by the crime scene..."),
+                Line(pickles, "Is that Arthur's death was caused by falling from the flight of stairs,\nleading to the second floor. Then-"),
+                Line(otto, "Sometime before " + Global.arthurKilledTime + ", he got socked in the face!"),
+                Line(pickles, "That's... one way you could put it. But yes, that's how it played out."),
+                Line(pickles, "Now the question is... Why?"),
+                Line(otto, "..."),
+                Line(micah, "..."),
+                Line(angel, "If I may add to the consensus, detective...", state: thinking),
+                Line(pickles, "Go ahead. We need as much information as we can get."),
+                Line(angel, "Thank you, darling. I would like to declare that Me and Faun\nare perfectly in the clear."),
+                Line(faun, "A-Angel! T-they're not going to believe that...!", state: worried),
+                Line(faun, "I-It is true, I-I would never...k-k-kill..someone...\nBut neither would you..."),
+                Line(faun, "We have to convince them...!", state: worried),
+                Line(angel, "The proof is in the evidence we already know.", state: thinking),
+                Line(pickles, "It is..?", innerThought),
+                Line(angel, "Me and Faun arrived at the same time. Would you happen to remember when that is?"),
+                Line(pickles, "That's right... Faun told me as soon as I arrived...! I should know this..."),
+                Line(pickles, "It was 10 minutes before I arrived, which should have been at...")
             };
 
             chapter1trial2 = new DialogString[]{

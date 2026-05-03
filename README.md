@@ -23,6 +23,8 @@ Explore a point-and-click world inspired by visual novels games such as the Dang
 ### Special Thanks
 Timothy Lottes - [CRT Filter (Public Domain)](https://github.com/libretro/glsl-shaders/blob/master/crt/shaders/crt-lottes.glsl)
 
+GameFromScratch.com - [Beginning 3D Programming](https://gamefromscratch.com/monogame-tutorial-beginning-3d-programming/)
+
 #### Full credits can be found in-game, or in [Credits.cs](https://github.com/SnowmanSixtyFour/BetweenTheLines/blob/game-jam/BetweenTheLines/Source/States/CreditsState.cs).
 
 <img style="display: block;" src="img/banner_copyright.png">

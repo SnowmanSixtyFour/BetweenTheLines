@@ -78,6 +78,7 @@ namespace BetweenTheLines.Source.States
             Special Thanks
 
             CRT Scanline Shaders (Public Domain) - Timothy Lottes
+            Beginning 3D Programming - GameFromScratch.com
 
 
 
