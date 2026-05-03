@@ -383,6 +383,10 @@ namespace BetweenTheLines.Source
 
             // Trial
             chapter1trial1, chapter1trial2, chapter1trial3,
+
+            chapter1trial1question, chapter1trial2question, chapter1trial3question,
+            chapter1trial1right, chapter1trial1wrong, chapter1trial2right, chapter1trial2wrong, chapter1trial3right, chapter1trial3wrong,
+
             chapter1postTrial;
 
         public static void LoadDialog()
@@ -393,7 +397,7 @@ namespace BetweenTheLines.Source
             // Intro
 
             intro1 = new DialogString[]{
-                Line(pickles, "Last night, I got this letter...", innerThought, hideName: true),
+                Line(pickles, "Yesterday, I got this letter...", innerThought, hideName: true),
                 Line(pickles, "It said \"Congratulations! You have won $1 000 000 dollars!\"", innerThought, hideName: true),
                 Line(pickles, "Signed by someone known as \"Novikov.\"", innerThought, hideName: true),
                 Line(pickles, "...Yeah, as if.\nHowever, the name sounds familiar...", innerThought, hideName: true),
@@ -696,16 +700,69 @@ namespace BetweenTheLines.Source
                 Line(faun, "We have to convince them...!", state: worried),
                 Line(angel, "The proof is in the evidence we already know.", state: thinking),
                 Line(pickles, "It is..?", innerThought),
-                Line(angel, "Me and Faun arrived at the same time. Would you happen to remember when that is?"),
-                Line(pickles, "That's right... Faun told me as soon as I arrived...! I should know this..."),
+                Line(angel, "Me and Faun arrived at the same time.\nWould you happen to remember when that is?"),
+                Line(noName, "Angel is asking you a tough question...", tutorial),
+                Line(noName, "During debates, you'll have to choose your answer,\nbut think carefully about it.", tutorial),
+                Line(noName, "You will be given a single right answer, and multiple wrong ones.", tutorial)
+            };
+
+            chapter1trial1question = new DialogString[]{
+                Line(pickles, "That's right...\nFaun told me as soon as I arrived...! I should know this..."),
                 Line(pickles, "It was 10 minutes before I arrived, which should have been at...")
+            };
+
+            chapter1trial1right = new DialogString[]{
+                Line(pickles, "That's right. Faun arrived at " + Global.faunArrivedTime + "."),
+                Line(angel, "And when Faun arrived, I had arrived at the same time.\nIsn't that right, Faun?"),
+                Line(faun, "Y-yes! That's completely true...!"),
+                Line(faun, "If A-Arthur really was k-killed at " + Global.arthurKilledTime + "...\nHow could m-me or Angel have done it...?"),
+                Line(angel, "We both met up outside the building at " + Global.faunArrivedTime + "."),
+                Line(pickles, "Meaning that you two couldn't have possibly killed Arthur..."),
+                Line(otto, "Hang on a sec...!"),
+                Line(otto, "How do we know that's not bullshit?!", state: angry),
+                Line(pickles, "..."),
+                Line(otto, "For all we know, one of them... or both of them...\nCould be lying!", state: angry),
+                Line(angel, "Otto. Do you, or anyone else remember seeing me,\nor Faun before " + Global.faunArrivedTime + "?", state: angry),
+                Line(otto, "Well...no..."),
+                Line(otto, "Damn it... You're in the clear for now!", state: angry),
+                Line(pickles, "Otto's a real troublemaker... Isn't he?", innerThought)
+            };
+
+            chapter1trial1wrong = new DialogString[]{
+                Line(faun, "...No...", state: worried),
+                Line(angel, "Now that's not right at all.", state: thinking),
+                Line(pickles, "I was... wrong?\nI've got to think this through, one more time...", innerThought)
             };
 
             chapter1trial2 = new DialogString[]{
                 Line(pickles, "Test")
             };
 
+            chapter1trial2question = new DialogString[]{
+                Line(pickles, "Test")
+            };
+
+            chapter1trial2right = new DialogString[]{
+                Line(pickles, "Test")
+            };
+
+            chapter1trial2wrong = new DialogString[]{
+                Line(pickles, "Test")
+            };
+
             chapter1trial3 = new DialogString[]{
+                Line(pickles, "Test")
+            };
+
+            chapter1trial3question = new DialogString[]{
+                Line(pickles, "Test")
+            };
+
+            chapter1trial3right = new DialogString[]{
+                Line(pickles, "Test")
+            };
+
+            chapter1trial3wrong = new DialogString[]{
                 Line(pickles, "Test")
             };
 

@@ -220,8 +220,11 @@ namespace BetweenTheLines.Source.States
                     if (MouseMoved())
                     {
                         // Update Cursor Position
-                        cursor.X += (mouse.X - screenWidth / 2);    // X
-                        cursor.Y += (mouse.Y - screenHeight / 2);   // Y
+                        if (cursorVisible)
+                        {
+                            cursor.X += (mouse.X - screenWidth / 2);    // X
+                            cursor.Y += (mouse.Y - screenHeight / 2);   // Y
+                        }
                     }
 
                     // Center Mouse

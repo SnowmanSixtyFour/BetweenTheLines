@@ -71,6 +71,15 @@ namespace BetweenTheLines.Source.Objects.GUI
                 ));
         }
 
+        public void SetText(String newText)
+        {
+            // Set New Text
+            this.text.setText(newText);
+
+            // Reposition Text on Button
+            SetPosition(this.bounds.Location);
+        }
+
         public void Update(GameTime gameTime, Cursor cursor, bool clicked)
         {
             // --- Update Variables ---

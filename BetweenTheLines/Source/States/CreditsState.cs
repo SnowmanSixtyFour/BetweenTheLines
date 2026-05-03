@@ -43,14 +43,14 @@ namespace BetweenTheLines.Source.States
 
             // Y Positions
             logoYStart = 700,
-            creditsXPadding = 375,
+            creditsXPadding = 400,
             creditsYStart = 800,
             creditsYEnd = -1780, // Credits End (Go back to Title)
 
             // Cat Positions
             picklesAngelPos = 1850, // Pickles and Angel Y Positions
-            angelOffset = 330, // Angel X Offset
-            smokeyPosX = 160, smokeyPosY = 2200, // Smokey Position
+            angelOffset = 400, // Angel X Offset
+            smokeyPosX = 200, smokeyPosY = 2200, // Smokey Position
 
             catPicOffset = 50; // Picture Y Offset
         private Point catPicSize = new Point(250, 250); // Picture Size
