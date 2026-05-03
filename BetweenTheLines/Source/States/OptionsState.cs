@@ -19,7 +19,8 @@ namespace BetweenTheLines.Source.States
         private bool
             previousMusic,
             previousFullscreen,
-            previousCRT;
+            previousCRT,
+            previousRescan;
 
         // Sprite Scroll Speeds
         private float
@@ -36,7 +37,8 @@ namespace BetweenTheLines.Source.States
         private Checkbox
             music,
             fullscreen,
-            crtFilter;
+            crtFilter,
+            rescanLine;
 
         // Buttons
         private Button
@@ -67,6 +69,7 @@ namespace BetweenTheLines.Source.States
 
             crtFilter = new Checkbox(new Point(620, 60), "CRT Filter");
             // crtFilter = new Checkbox(new Point(40, 320), "CRT Filter");
+            rescanLine = new Checkbox(new Point(620, 150), "Scan Line");
 
             UpdateSprites();
 
@@ -99,6 +102,8 @@ namespace BetweenTheLines.Source.States
             previousFullscreen = Global.fullscreen; // Fullscreen Mode
 
             previousCRT = Global.crtFilter; // CRT Filter
+
+            previousRescan = Global.rescanLineVisible; // Rescan Line
         }
 
         public override void OnUpdate(GameTime gameTime)
@@ -153,6 +158,19 @@ namespace BetweenTheLines.Source.States
                     crtFilter.clicked = false;
                 }
 
+                // While CRT Filter is Active
+                if (rescanLine.clicked)
+                {
+                    // Toggle CRT Filter
+                    Global.rescanLineVisible = !Global.rescanLineVisible;
+
+                    // Update Status
+                    UpdateSprites();
+
+                    // End Click Event
+                    rescanLine.clicked = false;
+                }
+
                 // Buttons
                 if (backSave.clicked) SaveAndExit();
                 if (backDont.clicked) ExitWithoutSaving();
@@ -163,6 +181,7 @@ namespace BetweenTheLines.Source.States
                 fullscreen.Update(gameTime, cursor, LeftClicked());
 
                 crtFilter.Update(gameTime, cursor, LeftClicked());
+                if (Global.crtFilter) rescanLine.Update(gameTime, cursor, LeftClicked());
 
                 backDont.Update(gameTime, cursor, LeftClicked());
                 backSave.Update(gameTime, cursor, LeftClicked());
@@ -182,6 +201,9 @@ namespace BetweenTheLines.Source.States
 
             // CRT Filter
             crtFilter.active = Global.crtFilter;
+
+            // Rescan Line
+            rescanLine.active = Global.rescanLineVisible;
         }
 
         public override void ResetState()
@@ -200,8 +222,10 @@ namespace BetweenTheLines.Source.States
                 XDocument settingsDoc = XDocument.Load("C:/Users/" + Environment.UserName + "/Documents/My Games/Between the Lines/Settings.xml");
 
                 settingsDoc.Descendants("Fullscreen").First().Value = Convert.ToString(Global.fullscreen);
-                settingsDoc.Descendants("CRTFilter").First().Value = Convert.ToString(Global.crtFilter);
                 settingsDoc.Descendants("Music").First().Value = Convert.ToString(Global.musicEnabled);
+
+                settingsDoc.Descendants("CRTFilter").First().Value = Convert.ToString(Global.crtFilter);
+                settingsDoc.Descendants("RescanLine").First().Value = Convert.ToString(Global.rescanLineVisible);
 
                 settingsDoc.Save("C:/Users/" + Environment.UserName + "/Documents/My Games/Between the Lines/Settings.xml", SaveOptions.None);
 
@@ -228,6 +252,7 @@ namespace BetweenTheLines.Source.States
             Global.musicEnabled = previousMusic;
             Global.fullscreen = previousFullscreen;
             Global.crtFilter = previousCRT;
+            Global.rescanLineVisible = previousRescan;
 
             // --- Exit State ---
 
@@ -257,6 +282,7 @@ namespace BetweenTheLines.Source.States
             fullscreen.Draw(spriteBatch);
 
             crtFilter.Draw(spriteBatch);
+            if (Global.crtFilter) rescanLine.Draw(spriteBatch);
 
             backSave.Draw(spriteBatch);
             backDont.Draw(spriteBatch);

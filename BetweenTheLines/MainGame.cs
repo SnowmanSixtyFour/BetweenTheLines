@@ -93,9 +93,21 @@ namespace BetweenTheLines
                 XDocument settingsDoc = XDocument.Load("C:/Users/" + Environment.UserName + "/Documents/My Games/Between the Lines/Settings.xml");
 
                 // Set Settings to File Properties
-                Global.fullscreen = Convert.ToBoolean(settingsDoc.Descendants("Fullscreen").First().Value);
-                Global.crtFilter = Convert.ToBoolean(settingsDoc.Descendants("CRTFilter").First().Value);
-                Global.musicEnabled = Convert.ToBoolean(settingsDoc.Descendants("Music").First().Value);
+                try
+                {
+                    Global.fullscreen = Convert.ToBoolean(settingsDoc.Descendants("Fullscreen").First().Value);
+                    Global.musicEnabled = Convert.ToBoolean(settingsDoc.Descendants("Music").First().Value);
+
+                    Global.crtFilter = Convert.ToBoolean(settingsDoc.Descendants("CRTFilter").First().Value);
+                    Global.rescanLineVisible = Convert.ToBoolean(settingsDoc.Descendants("RescanLine").First().Value);
+                }
+                catch (Exception e)
+                {
+                    Debug.Print("A specific setting could not be found!\n" + e); // Print Error Log
+
+                    // Run New Settings File
+                    CreateSettingsFile();
+                }
 
                 Debug.Print("Settings.xml loaded!");
             }
@@ -188,7 +200,10 @@ namespace BetweenTheLines
 
         private void CheckAndCreateSettingsFile()
         {
+            // Write Error Log
             Debug.Print("Settings.xml does not exist in the current directory. Creating a new file...");
+
+            // --- Create Directory ---
 
             if (Directory.Exists("C:/Users/" + Environment.UserName + "/Documents/"))
             {
@@ -232,8 +247,10 @@ namespace BetweenTheLines
             // Create Settings.xml File
             var settingsDoc = new XDocument(new XElement("Settings",
                 new XElement("Fullscreen", new XElement("Value", graphics.IsFullScreen)),
+                new XElement("Music", new XElement("Value", Global.musicEnabled)),
+
                 new XElement("CRTFilter", new XElement("Value", Global.crtFilter)),
-                new XElement("Music", new XElement("Value", Global.musicEnabled))
+                new XElement("RescanLine", new XElement("Value", Global.rescanLineVisible))
                 ));
             
             // Save File

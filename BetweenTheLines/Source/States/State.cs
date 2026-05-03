@@ -291,8 +291,7 @@ namespace BetweenTheLines.Source.States
             // CRT Filter
             if (Global.crtFilter)
             {
-                // Vignette
-                crtVignette.Draw(spriteBatch);
+                crtVignette.Draw(spriteBatch); // Vignette
             }
         }
 

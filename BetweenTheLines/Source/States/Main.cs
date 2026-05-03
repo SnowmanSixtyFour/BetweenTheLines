@@ -21,6 +21,13 @@ namespace BetweenTheLines.Source.States
         private DebateState debate;
         private CreditsState credits;
 
+        // CRT Filter
+        public StaticSprite
+            rescanLine;
+        private int
+            rescanLineHeight = 100,
+            rescanLineIncrement = 1;
+
         public Main()
         {
             // Set Main
@@ -34,6 +41,11 @@ namespace BetweenTheLines.Source.States
             story = new StoryState(); // Story
             debate = new DebateState(); // Debate
             credits = new CreditsState(); // Credits
+
+            currentState = new State(); // Current State (Blank)
+
+            // CRT Filter
+            rescanLine = new StaticSprite(null, new Rectangle(0, 0, cam.Width, -rescanLineHeight), (Color.Black * 0.15f));
         }
 
         public override void OnUpdate(GameTime gameTime)
@@ -60,12 +72,29 @@ namespace BetweenTheLines.Source.States
 
             // Update State
             currentState.Update(gameTime);
+
+            // CRT Filter
+            if (Global.crtFilter)
+            {
+                // Rescan Line
+                if (Global.rescanLineVisible)
+                {
+                    // When Rescan Line Reaches Bottom of Screen
+                    if (rescanLine.GetY() > (cam.Height + rescanLineHeight)) rescanLine.SetY(-rescanLineHeight);
+
+                    // Add to Rescan Line Y
+                    else rescanLine.SetY(rescanLine.GetY() + rescanLineIncrement);
+                }
+            }
         }
 
         public override void OnDraw(SpriteBatch spriteBatch)
         {
             // Draw Current State
             currentState.Draw(spriteBatch);
+
+            // CRT Filter
+            if (Global.rescanLineVisible) rescanLine.Draw(spriteBatch); // Rescan Line
         }
     }
 }

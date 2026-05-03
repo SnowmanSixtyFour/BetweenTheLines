@@ -92,6 +92,8 @@ namespace BetweenTheLines.Source
 
         public static bool
             crtFilter = false,
+            rescanLineVisible = false,
+
             menuAnimations = true;
 
         // GUI Colors
