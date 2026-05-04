@@ -83,7 +83,7 @@ namespace BetweenTheLines.Source
         }
 
         public static bool viewingCreditsFromTitle = false;
-        public static State currentState = State.intro; // Current state of the game - NOTE: Always starts on intro!
+        public static State currentState = State.debate; // Current state of the game - NOTE: Always starts on intro!
 
         // Cursor Size
         public static int

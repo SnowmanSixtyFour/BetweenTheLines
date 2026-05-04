@@ -100,8 +100,18 @@ namespace BetweenTheLines.Source.States
                     // --- Controls ---
 
                     // A & D / Left & Right
-                    if (KeyPress(Keys.A) || KeyPress(Keys.Left)) culprit--;
-                    if (KeyPress(Keys.D) || KeyPress(Keys.Right)) culprit++;
+                    if (KeyPress(Keys.A) || KeyPress(Keys.Left))
+                    {
+                        SFX.button.Play(); // Play SFX
+
+                        culprit--; // Remove from Culprit Count
+                    }
+                    if (KeyPress(Keys.D) || KeyPress(Keys.Right))
+                    {
+                        SFX.button.Play(); // Play SFX
+
+                        culprit++; // Add to Culprit Count
+                    }
 
                     // Cap Selected Culprit
                     if (culprit < 0 || culprit > maxCulpritAmount) culprit = 0;
@@ -143,6 +153,13 @@ namespace BetweenTheLines.Source.States
 
                 if (dialogBox.endOfDialog)
                 {
+                    // End of Culprit Selection
+
+                    if (dialogBox.dialog == Dialog.chapter1culpritOtto)
+                    {
+                        // WIP
+                    }
+
                     // Trial Pt. 3
 
                     // Culprit Selection

@@ -111,7 +111,7 @@ namespace BetweenTheLines.Source.States
 
             // Door
             dialogBox = new DialogBox();
-            portrait = new Portrait(Dialog.regular);
+            portrait = new Portrait();
 
             // Map Triggers
 
