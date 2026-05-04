@@ -41,10 +41,16 @@ namespace BetweenTheLines.Source.States
             multipleChoice = false,
 
             answerSelected = false, // When Answer Dialog Should be Set
-            correctAnswerChosen = false;
+            correctAnswerChosen = false,
+
+            selectingCulprit = false;
         private Button
             option1, option2, option3;
-        private int correctAnswer = 1;
+        private int
+            correctAnswer = 1, // Correct Answer for Multiple Choice (To be changed)
+
+            culprit = 0, // Selected Culprit to Accuse
+            maxCulpritAmount = 4; // Amount of Culprits to Choose From (Starts at 0)
 
         public DebateState()
         {
@@ -88,6 +94,42 @@ namespace BetweenTheLines.Source.States
             {
                 // --- Game Progression ---
 
+                // Selecting a Culprit
+                if (selectingCulprit)
+                {
+                    // --- Controls ---
+
+                    // A & D / Left & Right
+                    if (KeyPress(Keys.A) || KeyPress(Keys.Left)) culprit--;
+                    if (KeyPress(Keys.D) || KeyPress(Keys.Right)) culprit++;
+
+                    // Cap Selected Culprit
+                    if (culprit < 0 || culprit > maxCulpritAmount) culprit = 0;
+
+                    // Select Culprit
+                    if (KeyPress(Keys.Enter))
+                    {
+                        // Set Dialog
+                        if (culprit == 0) dialogBox.setDialog(Dialog.chapter1culpritFaun); // Faun
+                        if (culprit == 1) dialogBox.setDialog(Dialog.chapter1culpritOtto); // Otto
+                        if (culprit == 2) dialogBox.setDialog(Dialog.chapter1culpritAngel); // Angel
+                        if (culprit == 3) dialogBox.setDialog(Dialog.chapter1culpritMicah); // Micah
+                        if (culprit == 4) dialogBox.setDialog(Dialog.chapter1culpritSmokey); // Smokey
+
+                        // End Selection Event
+                        selectingCulprit = false;
+                    }
+
+                    // --- Visuals ---
+
+                    // Set Portrait Depending on Selection
+                    if (culprit == 0) portrait.SetState(Dialog.faun, Portrait.State.regular); // Faun
+                    if (culprit == 1) portrait.SetState(Dialog.otto, Portrait.State.regular); // Otto
+                    if (culprit == 2) portrait.SetState(Dialog.angel, Portrait.State.regular); // Angel
+                    if (culprit == 3) portrait.SetState(Dialog.micah, Portrait.State.regular); // Micah
+                    if (culprit == 4) portrait.SetState(Dialog.smokey, Portrait.State.regular); // Smokey
+                }
+
                 // When Dialog Not Finished
                 if (!dialogBox.endOfDialog)
                 {
@@ -103,12 +145,22 @@ namespace BetweenTheLines.Source.States
                 {
                     // Trial Pt. 3
 
-                    // Question
+                    // Culprit Selection
 
-                    if (dialogBox.dialog == Dialog.chapter1trial3right)
+                    if (dialogBox.dialog == Dialog.chapter1trial3right // When Multiple Choice Finished
+                        
+                        // Wrong Culprit Selected
+                        || dialogBox.dialog == Dialog.chapter1culpritFaun
+                        || dialogBox.dialog == Dialog.chapter1culpritAngel
+                        || dialogBox.dialog == Dialog.chapter1culpritMicah
+                        || dialogBox.dialog == Dialog.chapter1culpritSmokey)
                     {
-                        // End Trial - WIP
+                        // Select a Culprit
+                        dialogBox.Hide();
+                        selectingCulprit = true;
                     }
+
+                    // Question
 
                     if (dialogBox.dialog == Dialog.chapter1trial3wrong)
                     {

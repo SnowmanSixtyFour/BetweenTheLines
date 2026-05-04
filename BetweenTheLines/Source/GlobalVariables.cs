@@ -341,7 +341,6 @@ namespace BetweenTheLines.Source
 
         // Portrait Poses
         internal static readonly byte
-            regular = 0,
             thinking = 1,
             worried = 2,
             angry = 3,
@@ -393,8 +392,9 @@ namespace BetweenTheLines.Source
             chapter1trial1question, chapter1trial2question, chapter1trial3question,
             chapter1trial1right, chapter1trial1wrong, chapter1trial2right, chapter1trial2wrong, chapter1trial3right, chapter1trial3wrong,
 
-            // Culprit
-            chapter1culpritOtto, chapter1culpritAngel, chapter1culpritFaun, chapter1culpritMicah, chapter1culpritSmokey,
+            // Culprit Accusations
+            chapter1culpritOtto, // Correct
+            chapter1culpritAngel, chapter1culpritFaun, chapter1culpritMicah, chapter1culpritSmokey, // Incorrect
 
             // End of Trial
             chapter1postTrial;
