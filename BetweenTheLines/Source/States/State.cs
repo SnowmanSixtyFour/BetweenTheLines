@@ -120,6 +120,35 @@ namespace BetweenTheLines.Source.States
 
         public void Update(GameTime gameTime)
         {
+            // --- Audio ---
+
+            // Loop Music
+            if (MediaPlayer.State == MediaState.Stopped)
+            {
+                // Trial
+                if (MediaPlayer.Queue.ActiveSong == OST.trialIntro) MediaPlayer.Play(OST.trial);
+            }
+
+            // Music Toggled
+            if (Global.musicToggled)
+            {
+                // Music Disabled
+                if (!Global.musicEnabled)
+                {
+                    // Lower the volume to 0
+                    MediaPlayer.Volume = 0.0f;
+                }
+                // Music Enabled
+                else
+                {
+                    // Set the volume back to default
+                    MediaPlayer.Volume = 1.0f;
+                }
+
+                // End Event
+                Global.musicToggled = false;
+            }
+
             // --- State ---
 
             // Update state variables
@@ -240,28 +269,6 @@ namespace BetweenTheLines.Source.States
 
             // Update Cursor
             cursor.Update(gameTime);
-
-            // --- Audio ---
-
-            // Music Toggled
-            if (Global.musicToggled)
-            {
-                // Music Disabled
-                if (!Global.musicEnabled)
-                {
-                    // Lower the volume to 0
-                    MediaPlayer.Volume = 0.0f;
-                }
-                // Music Enabled
-                else
-                {
-                    // Set the volume back to default
-                    MediaPlayer.Volume = 1.0f;
-                }
-
-                // End Event
-                Global.musicToggled = false;
-            }
         }
 
         public virtual void OnUpdate(GameTime gameTime)

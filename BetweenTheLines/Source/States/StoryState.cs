@@ -713,7 +713,7 @@ namespace BetweenTheLines.Source.States
         public void GoToDebate()
         {
             // Set Music
-            ChangeSong(OST.trial);
+            ChangeSong(OST.trialIntro);
 
             // Switch State
             this.changeState = true;

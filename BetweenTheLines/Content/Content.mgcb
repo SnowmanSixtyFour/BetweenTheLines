@@ -37,6 +37,12 @@
 /processorParam:Quality=Best
 /build:Assets/Audio/Music/Trial.mp3
 
+#begin Assets/Audio/Music/TrialIntro.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Assets/Audio/Music/TrialIntro.mp3
+
 #begin Assets/Audio/SFX/button.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
@@ -199,7 +205,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Assets/Images/Global/CursorInspect.png;Assets/Images/Global/CursorInspect
+/build:Assets/Images/Global/CursorInspect.png
 
 #begin Assets/Images/Global/DialogBox.png
 /importer:TextureImporter

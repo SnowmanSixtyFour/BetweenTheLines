@@ -82,7 +82,7 @@ namespace BetweenTheLines.Source
         }
 
         public static bool viewingCreditsFromTitle = false;
-        public static State currentState = State.intro; // Current state of the game - NOTE: Always starts on intro!
+        public static State currentState = State.debate; // Current state of the game - NOTE: Always starts on intro!
 
         // Cursor Size
         public static int
@@ -119,7 +119,7 @@ namespace BetweenTheLines.Source
             title,
             intro,
             intense,
-            trial;
+            trialIntro, trial;
     }
 
     // Sound Effects
@@ -300,6 +300,8 @@ namespace BetweenTheLines.Source
             OST.title = content.Load<Song>("Assets/Audio/Music/Title");
             OST.intro = content.Load<Song>("Assets/Audio/Music/Intro");
             OST.intense = content.Load<Song>("Assets/Audio/Music/Intense");
+
+            OST.trialIntro = content.Load<Song>("Assets/Audio/Music/TrialIntro");
             OST.trial = content.Load<Song>("Assets/Audio/Music/Trial");
 
             // Fonts
@@ -596,8 +598,9 @@ namespace BetweenTheLines.Source
                 Line(smokey, "For your first task, I want you to identify the body."),
                 Line(smokey, "You should be good at that, right detective?"),
                 Line(otto, "That's... Shit..."),
+                Line(otto, "Arthur... No fuckin' way...!"),
                 Line(faun, "W-w-wha... T-this..."),
-                Line(micah, "Oh dear..."),
+                Line(micah, "Oh dear... A-Arthur...!"),
                 Line(angel, "..."),
                 Line(pickles, "A body...", innerThought),
                 Line(pickles, "A real dead body was in front of me.", innerThought),
@@ -605,6 +608,7 @@ namespace BetweenTheLines.Source
                 Line(smokey, "I'll fill you all in on the rest afterwards."),
                 Line(pickles, "I thought I'd be more prepared... but this was my first time\nhaving to deal with anything like this.", innerThought),
                 Line(faun, "N-no... NO!"),
+                Line(faun, "W-who is that..?! And W-why is he...!"),
                 Line(pickles, "Faun... I can't imagine how she's feeling.", innerThought),
                 Line(pickles, "And what the hell does Smokey have planned? I can't leave\nthis place until I figure out his goals...", innerThought),
                 Line(pickles, "Get it together, Pickles... Let's investigate.", innerThought),

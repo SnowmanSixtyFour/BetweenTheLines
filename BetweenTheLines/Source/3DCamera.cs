@@ -42,7 +42,7 @@ namespace BetweenTheLines.Source.Graphics
             viewMatrix = Matrix.CreateLookAt(position, target, Vector3.Up);
         }
 
-        public void Draw(VertexBuffer vertexBuffer)
+        public void Draw(VertexBuffer vertexBuffer, int amountOfVertices)
         {
             // Set Rendering Shader
             basicEffect.Projection = projectionMatrix;
@@ -63,7 +63,7 @@ namespace BetweenTheLines.Source.Graphics
             foreach (EffectPass pass in basicEffect.CurrentTechnique.Passes)
             {
                 pass.Apply();
-                graphicsDevice.DrawPrimitives(PrimitiveType.TriangleList, 0, 3);
+                graphicsDevice.DrawPrimitives(PrimitiveType.TriangleStrip, 0, amountOfVertices);
             }
         }
     }

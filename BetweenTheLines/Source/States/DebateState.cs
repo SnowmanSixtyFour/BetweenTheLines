@@ -18,13 +18,23 @@ namespace BetweenTheLines.Source.States
 {
     internal class DebateState : State
     {
+        // Dialog
         private DialogBox dialogBox;
         private Portrait portrait;
 
+        // Sprites
+        private StaticSprite BG;
+
+        // Sprite Scroll Speeds
+        private float
+            bgScrollSpeed = 40.0f; // BG Speed
+
         // 3D Background
-        private VertexPositionColor[] triangleVertices;
+        private VertexPositionColor[] mapVertices;
         private VertexBuffer vertexBuffer;
         private _3DCamera bgCam;
+        private int amountOfVertices = 5,
+            floorWidth = 500, floorY = -100;
 
         // Interactivity
         private bool
@@ -38,6 +48,9 @@ namespace BetweenTheLines.Source.States
 
         public DebateState()
         {
+            // Set BG Sprite
+            BG = new StaticSprite(Assets.titleBG, new Rectangle(0, 0, Global.windowWidth, Global.windowHeight), (Color.White * 0.5f), true);
+
             // Set 3D Background
             bgCam = new _3DCamera(this.graphicsDevice);
             SetWorld();
@@ -57,14 +70,16 @@ namespace BetweenTheLines.Source.States
 
         public void SetWorld()
         {
-            // Create Triangle
-            triangleVertices = new VertexPositionColor[3];
-            triangleVertices[0] = new VertexPositionColor(new Vector3(0, 70, 0), Color.Red);
-            triangleVertices[1] = new VertexPositionColor(new Vector3(-70, -70, 0), Color.Green);
-            triangleVertices[2] = new VertexPositionColor(new Vector3(70, -70, 0), Color.Blue);
+            // Create Floor
+            mapVertices = new VertexPositionColor[amountOfVertices];
+            mapVertices[0] = new VertexPositionColor(new Vector3(-floorWidth, floorY, -floorWidth), Color.SaddleBrown);
+            mapVertices[1] = new VertexPositionColor(new Vector3(floorWidth, floorY, -floorWidth), Color.Black);
+            mapVertices[2] = new VertexPositionColor(new Vector3(-floorWidth, floorY, floorWidth), Color.Black);
+            mapVertices[3] = new VertexPositionColor(new Vector3(floorWidth, floorY, floorWidth), Color.SaddleBrown);
+            mapVertices[4] = new VertexPositionColor(new Vector3(floorWidth, floorY, floorWidth), Color.Black);
 
-            vertexBuffer = new VertexBuffer(MainGame.publicGraphicsDevice, typeof(VertexPositionColor), 3, BufferUsage.WriteOnly);
-            vertexBuffer.SetData<VertexPositionColor>(triangleVertices);
+            vertexBuffer = new VertexBuffer(MainGame.publicGraphicsDevice, typeof(VertexPositionColor), amountOfVertices, BufferUsage.WriteOnly);
+            vertexBuffer.SetData<VertexPositionColor>(mapVertices);
         }
 
         public override void OnUpdate(GameTime gameTime)
@@ -124,7 +139,17 @@ namespace BetweenTheLines.Source.States
                     }
                 }
 
-                // Rotate 3D Background
+                // --- Scrolling Sprites ---
+
+                // Update Offsets by Speed
+                float bgOffset = bgScrollSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+                // Set Sprite Positions to Offset Values
+                BG.offset += bgOffset;
+
+                // --- 3D Background ---
+
+                // Rotate Matrix
                 Matrix rotationMatrix = Matrix.CreateRotationY(
                                             MathHelper.ToRadians(1f));
                 bgCam.position = Vector3.Transform(bgCam.position,
@@ -200,8 +225,10 @@ namespace BetweenTheLines.Source.States
 
         public override void OnDraw(SpriteBatch spriteBatch)
         {
-            // Draw 3D Camera View
-            bgCam.Draw(vertexBuffer);
+            // Background
+            graphicsDevice.Clear(Color.SaddleBrown * 0.5f); // Skybox Colour
+            BG.Draw(spriteBatch); // Skybox Sprite
+            bgCam.Draw(vertexBuffer, amountOfVertices); // 3D Camera View
 
             // Draw Objects
 
