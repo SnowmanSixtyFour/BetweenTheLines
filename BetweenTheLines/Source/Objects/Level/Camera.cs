@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace BetweenTheLines.Source.Objects
+namespace BetweenTheLines.Source.Objects.Level
 {
     internal class Camera
     {

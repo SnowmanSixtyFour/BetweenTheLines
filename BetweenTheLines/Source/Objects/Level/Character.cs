@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using BetweenTheLines.Source.Graphics;
 
-namespace BetweenTheLines.Source.Objects
+namespace BetweenTheLines.Source.Objects.Level
 {
     internal class Character
     {
@@ -27,7 +27,7 @@ namespace BetweenTheLines.Source.Objects
         int maxFrames;
         public bool flipped;
 
-        public List<String> animation;
+        public List<string> animation;
         protected List<int> startFrame, endFrame;
 
         // Controls
@@ -36,24 +36,24 @@ namespace BetweenTheLines.Source.Objects
         public Character(Texture2D texture, Point location, Point size, Point sheetSize, Color color)
         {
             // Set variables
-            this.X = location.X;
-            this.Y = location.Y;
+            X = location.X;
+            Y = location.Y;
 
-            if (texture != null) this.defaultWidth = sheetSize.X;
-            else this.defaultWidth = size.X;
+            if (texture != null) defaultWidth = sheetSize.X;
+            else defaultWidth = size.X;
 
-            this.defaultHeight = size.Y;
+            defaultHeight = size.Y;
             this.sheetSize = sheetSize;
             UpdateSize();
 
-            animation = new List<String>();
+            animation = new List<string>();
             startFrame = new List<int>();
             endFrame = new List<int>();
 
             // Create Sprite
             sprite = new Sprite(texture,                // Texture
                 new Rectangle(new Point(X, Y),          // Position
-                new Point(this.Width, this.Height)),    // Size
+                new Point(Width, Height)),    // Size
                 new Rectangle(new Point(0, 0),          // Sprite Sheet Frame Position
                 sheetSize),                             // Sprite Sheet Size
                 color);                                 // Color
@@ -88,7 +88,7 @@ namespace BetweenTheLines.Source.Objects
             // Update
 
             // Sprite
-            sprite.flipped = this.flipped;
+            sprite.flipped = flipped;
 
             sprite.SetDestRect(new Rectangle(
                 new Point(X, Y),
@@ -96,7 +96,7 @@ namespace BetweenTheLines.Source.Objects
 
             // Current Frame of Sprite Sheet
             sprite.SetSourceRect(new Rectangle(
-                new Point((sheetSize.X * frame), 0),
+                new Point(sheetSize.X * frame, 0),
                 new Point(sheetSize.X, sheetSize.Y)));
 
             // Draw
@@ -106,20 +106,20 @@ namespace BetweenTheLines.Source.Objects
 
         // Animate
 
-        public void CreateAnimation(String name, int startFrame, int endFrame)
+        public void CreateAnimation(string name, int startFrame, int endFrame)
         {
             // Add Animation to Name List
-            this.animation.Add(name);
+            animation.Add(name);
 
             // Start and End Frames
             this.startFrame.Add(startFrame);
             this.endFrame.Add(endFrame);
         }
 
-        public void PlayAnimation(String name)
+        public void PlayAnimation(string name)
         {
             // Select Animation
-            int animNumber = this.animation.IndexOf(name);
+            int animNumber = animation.IndexOf(name);
 
             // Play Selected Animation
             PlayAnimation(startFrame[animNumber], endFrame[animNumber]);
@@ -150,12 +150,12 @@ namespace BetweenTheLines.Source.Objects
 
         public void SetSprite(Texture2D newTexture)
         {
-            this.sprite.SetTexture(newTexture);
+            sprite.SetTexture(newTexture);
         }
 
         public void SetFrame(int newFrame)
         {
-            this.frame = newFrame;
+            frame = newFrame;
         }
 
         // Interaction
@@ -163,22 +163,22 @@ namespace BetweenTheLines.Source.Objects
         public bool CollidesWith(Character collider)
         {
             // Colliding character is intersecting another character
-            return this.Bounds.Intersects(collider.Bounds);
+            return Bounds.Intersects(collider.Bounds);
         }
 
         // Setters
 
         public void SetSize(int newSize)
         {
-            this.resize = newSize;
+            resize = newSize;
 
             UpdateSize();
         }
 
         private void UpdateSize()
         {
-            this.Width = (defaultWidth * resize);
-            this.Height = (defaultHeight * resize);
+            Width = defaultWidth * resize;
+            Height = defaultHeight * resize;
         }
 
         // Controls

@@ -19,10 +19,10 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using BetweenTheLines.Source.Objects;
 using BetweenTheLines.Source.Graphics;
 using BetweenTheLines.Source.Objects.GUI;
 using Microsoft.Xna.Framework.Media;
+using BetweenTheLines.Source.Objects.Level;
 
 namespace BetweenTheLines.Source.States
 {

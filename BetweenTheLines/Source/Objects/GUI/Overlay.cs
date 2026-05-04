@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using BetweenTheLines.Source.Graphics;
-using BetweenTheLines.Source.Objects;
 using BetweenTheLines.Source.Objects.Level;
 using BetweenTheLines.Source.States;
 

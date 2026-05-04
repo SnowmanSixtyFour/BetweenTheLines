@@ -1,8 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using BetweenTheLines.Source;
 
-namespace BetweenTheLines.Source.Graphics
+namespace BetweenTheLines.Source.Objects.Level
 {
     internal class _3DCamera
     {

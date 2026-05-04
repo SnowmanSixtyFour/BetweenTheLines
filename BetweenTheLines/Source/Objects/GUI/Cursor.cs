@@ -9,6 +9,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using BetweenTheLines.Source.Graphics;
+using BetweenTheLines.Source.Objects.Level;
 
 namespace BetweenTheLines.Source.Objects.GUI
 {
