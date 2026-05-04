@@ -72,6 +72,7 @@ namespace BetweenTheLines.Source.Objects.Level
             textDefaultColor = Color.White,
             textThoughtColor = Color.LightBlue,
             textTooltipColor = Color.LightGreen,
+            textImportantColor = Color.Yellow,
 
             // Name
             nameColor = Color.LightYellow,
@@ -168,15 +169,20 @@ namespace BetweenTheLines.Source.Objects.Level
 
                         if (dialog[steps].textColor != 0)
                         {
-                            // Thought Text (1)
-                            if (dialog[steps].textColor == 1)
+                            // Thought Text
+                            if (dialog[steps].textColor == Dialog.innerThought)
                             {
                                 this.textColor = textThoughtColor;
                             }
-                            // Tooltip Text (2)
-                            if (dialog[steps].textColor == 2)
+                            // Tooltip Text
+                            if (dialog[steps].textColor == Dialog.tutorial)
                             {
                                 this.textColor = textTooltipColor;
+                            }
+                            // Important Text
+                            if (dialog[steps].textColor == Dialog.important)
+                            {
+                                this.textColor = textImportantColor;
                             }
                         }
                         // Default Text

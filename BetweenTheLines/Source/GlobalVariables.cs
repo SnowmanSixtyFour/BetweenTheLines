@@ -68,7 +68,8 @@ namespace BetweenTheLines.Source
             picklesArrivedTime, // Pickles Arrived at House
             faunArrivedTime, // Faun Arrived at House
             gameStartTime, // Game Started Officially
-            arthurKilledTime; // Arthur Killed
+            arthurKilledTime, // Arthur Killed
+            ottoArrivedTime; // Otto Arrived at House
 
         // State
         public enum State
@@ -335,7 +336,8 @@ namespace BetweenTheLines.Source
             noName = -1;
         internal static readonly byte
             innerThought = 1,
-            tutorial = 2;
+            tutorial = 2,
+            important = 3;
 
         // Portrait Poses
         internal static readonly byte
@@ -391,6 +393,10 @@ namespace BetweenTheLines.Source
             chapter1trial1question, chapter1trial2question, chapter1trial3question,
             chapter1trial1right, chapter1trial1wrong, chapter1trial2right, chapter1trial2wrong, chapter1trial3right, chapter1trial3wrong,
 
+            // Culprit
+            chapter1culpritOtto, chapter1culpritAngel, chapter1culpritFaun, chapter1culpritMicah, chapter1culpritSmokey,
+
+            // End of Trial
             chapter1postTrial;
 
         public static void LoadDialog()
@@ -682,8 +688,8 @@ namespace BetweenTheLines.Source
             // Trial
 
             chapter1trial1 = new DialogString[]{
-                Line(smokey, "Okay! Now that we're all here, let me explain how the debate works."),
-                Line(smokey, "Each of you in this room will talk amongst yourselves, and me,\nabout who the killer might be!", state: excited),
+                Line(smokey, "Okay! Now that we're all here, let me explain how the debate works.", important),
+                Line(smokey, "Each of you in this room will talk amongst yourselves, and me,\nabout who the killer might be!", important, state: excited),
                 Line(pickles, "The killer is... one of us?"),
                 Line(smokey, "Well, duh! I wouldn't kill without reason!"),
                 Line(pickles, "I'm just not following. He expects us to believe that?", innerThought),
@@ -692,17 +698,17 @@ namespace BetweenTheLines.Source
                 Line(otto, "You gotta be kidding me..."),
                 Line(smokey, "Now, let's begin with the debate."),
                 Line(smokey, "Detective Pickles... Can you tell us about the body?"),
-                Line(pickles, "Sure. Arthur's time of death was at " + Global.arthurKilledTime + "."),
-                Line(pickles, "His cause of death was a broken neck,\nafter an impact from quite a decent height up."),
+                Line(pickles, "Sure. Arthur's time of death was at " + Global.arthurKilledTime + ".", important),
+                Line(pickles, "His cause of death was a broken neck,\nafter an impact from quite a decent height up.", important),
                 Line(pickles, "Micah was able to perform an autopsy. And her results were..."),
-                Line(micah, "Arthur was definitely killed at " + Global.arthurKilledTime + ". I'm sure of it."),
+                Line(micah, "Arthur was definitely killed at " + Global.arthurKilledTime + ". I'm sure of it.", important),
                 Line(micah, "Another detail I noticed was a large bruise on his face,\nspecifically on his left cheek."),
                 Line(micah, "It was a puncture wound, albeit not the cause of death...\nDespite how much blood he lost from it."),
                 Line(faun, "W-well, now that w-we know the t-time... We can pinpoint the k-k-killer.", state: worried),
                 Line(smokey, "Nice observation, Faun! To give swift justice to the killer,\nwe must find out whodunnit!", state: excited),
                 Line(pickles, "So the general consensus, judging by the crime scene..."),
                 Line(pickles, "Is that Arthur's death was caused by falling from the flight of stairs\nleading to the second floor. Then-"),
-                Line(otto, "Sometime before " + Global.arthurKilledTime + ", he got socked in the face!"),
+                Line(otto, "Sometime before " + Global.arthurKilledTime + ", he got socked in the face!", important),
                 Line(pickles, "That's... one way you could put it. But yes, that's how it played out."),
                 Line(pickles, "Now the question is... Why?"),
                 Line(otto, "..."),
@@ -715,7 +721,7 @@ namespace BetweenTheLines.Source
                 Line(faun, "We have to convince them...!", state: worried),
                 Line(angel, "The proof is in the evidence we already know.", state: thinking),
                 Line(pickles, "It is..?", innerThought),
-                Line(angel, "Me and Faun arrived at the same time.\nWould you happen to remember when that is?"),
+                Line(angel, "Me and Faun arrived at the same time.\nWould you happen to remember when that is?", important),
                 Line(noName, "Angel is asking you a tough question...", tutorial),
                 Line(noName, "During debates, you'll have to choose your answer,\nbut think carefully about it.", tutorial),
                 Line(noName, "You will be given a single right answer, and multiple wrong ones.", tutorial)
@@ -727,7 +733,7 @@ namespace BetweenTheLines.Source
             };
 
             chapter1trial1right = new DialogString[]{
-                Line(pickles, "That's right. Faun arrived at " + Global.faunArrivedTime + "."),
+                Line(pickles, "That's right. Faun arrived at " + Global.faunArrivedTime + ".", important),
                 Line(angel, "And when Faun arrived, I had arrived at the same time.\nIsn't that right, Faun?"),
                 Line(faun, "Y-yes! That's completely true...!"),
                 Line(faun, "If A-Arthur really was k-killed at " + Global.arthurKilledTime + "...\nHow could m-me or Angel have done it...?"),
@@ -754,7 +760,7 @@ namespace BetweenTheLines.Source
                 Line(pickles, "I was trying to avoid it... Because I just can't believe...", innerThought),
                 Line(pickles, "...No, that's not it. I can believe it.\nI just don't want to...", innerThought),
                 Line(otto, "Oh yeah? And what would that be?"),
-                Line(smokey, "The syringe found at the body."),
+                Line(smokey, "The syringe found at the body.", important),
                 Line(otto, "..."),
                 Line(faun, "...", state: worried),
                 Line(pickles, "The atmosphere got intense.", innerThought),
@@ -774,7 +780,7 @@ namespace BetweenTheLines.Source
                 Line(pickles, "Micah, although I want to believe you..."),
                 Line(pickles, "You've got to explain your reasoning. Why would such\na medical device be found by the body?"),
                 Line(micah, "Because the killer is trying to frame me..."),
-                Line(micah, "Put the medical equipment next to the body... Fill it with anesthetics...\nMake it look like the smart one did it!"),
+                Line(micah, "Put the medical equipment next to the body... Fill it with anesthetics...\nMake it look like the smart one did it!", important),
                 Line(pickles, "M-Micah... What was that just now?"),
                 Line(micah, "Hm?"),
                 Line(pickles, "How would you know the syringe had anesthetics in it?"),
@@ -787,35 +793,252 @@ namespace BetweenTheLines.Source
                 Line(pickles, "Explain your reasoning."),
                 Line(micah, "Well, first thing's first, about the syringe!"),
                 Line(micah, "There's a laboratory on the floor above.\nIt's full of all the latest medical equipment."),
-                Line(micah, "")
+                Line(micah, "Scalpels, bandages, thermometers... Even anesthetics.", important),
+                Line(micah, "Now, as you recall, I performed an autopsy on the body.\nWith that, you can make your judgement from there."),
+                Line(pickles, "She's being awfully vague... How can she be so confident...?", innerThought),
+                Line(pickles, "Wait... Maybe she was innocent this whole time.", innerThought)
             };
 
             chapter1trial2question = new DialogString[]{
-                Line(pickles, "Test")
+                Line(pickles, "Considering Arthur's cause of death was...")
             };
 
             chapter1trial2right = new DialogString[]{
-                Line(pickles, "Test")
+                Line(pickles, "A broken neck... Right?"),
+                Line(micah, "Ding ding! That's the right answer!\nGive yourself a pat on the back, detective!"),
+                Line(noName, "Great job on the debate so far! Got a favourite character yet?", tutorial),
+                Line(noName, "Do you like one of the ladies, like Faun, or Micah...\nOne of the guys, such as Otto or Smokey...", tutorial),
+                Line(noName, "Or maybe you're plain, like Pickles.", tutorial),
+                Line(noName, "The fact of the matter is... You're coming up to the end of the debate,\nSo keep going just a little further!", tutorial),
+                Line(otto, "Sure, it's nice and all to know his cause of death..."),
+                Line(otto, "But how the hell does that make you innocent in all this?!", state: angry),
+                Line(micah, "Why would I, the doctor, decide to leave my syringe, which I had\nsupposedly used to kill him..."),
+                Line(micah, "Next to his body, still full?"),
+                Line(pickles, "That's right...! The syringe hadn't been used...\nIt was full of anesthetics."),
+                Line(faun, "Woah! I never would have noticed..."),
+                Line(smokey, "Ah, don't you love to see the power of teamwork?!", state: excited),
+                Line(otto, "Keep that mouth of yours shut!", state: angry),
+                Line(pickles, "It just wouldn't make sense for someone as knowledgeable as Micah to\nbe so careless in her planning."),
+                Line(micah, "Aw, you're gonna make me blush! Stop that!")
             };
 
             chapter1trial2wrong = new DialogString[]{
-                Line(pickles, "Test")
+                Line(micah, "BZZZT! Wrong!"),
+                Line(pickles, "Huh..?"),
+                Line(micah, "Don't you remember my autopsy at all..?! We discussed this\nat the beginning of the debate!", important),
+                Line(pickles, "Damn it... I've got to think harder about this...!", innerThought)
             };
 
             chapter1trial3 = new DialogString[]{
-                Line(pickles, "Test")
+                Line(angel, "We can safely deduct that me and Faun are safe, and that Micah is\nto be trusted. So who else seems suspicious?"),
+                Line(angel, "Perhaps... It's the detective who arrived late.", important, state: thinking),
+                Line(smokey, "Oooh, blame the detective! I like it!", state: excited),
+                Line(smokey, "Do you think that he killed Arthur, and then hid the evidence?!\nBecause, you know... He's a detective!"),
+                Line(pickles, "Smokey's really getting on my nerves...\nHe's clearly just trying to stir up conversation.", innerThought),
+                Line(micah, "T-that's not hard to believe..."),
+                Line(pickles, "Hang on, you believe them..?"),
+                Line(otto, "Shit... You wouldn't double cross us like that... Unless..."),
+                Line(pickles, "This is starting to look bad...", innerThought),
+                Line(pickles, "Listen... I wouldn't have-"),
+                Line(faun, "No."),
+                Line(pickles, "Huh?", innerThought),
+                Line(faun, "Pickles couldn't have possibly killed Arthur..."),
+                Line(otto, "'The fuck makes you so sure?"),
+                Line(faun, "A-Ah!", state: worried),
+                Line(faun, "W-Well... I was with him the whole time...", state: worried),
+                Line(faun, "A-And he a-arrived at " + Global.picklesArrivedTime + "!\nWhy would he plan something so perfectly..."),
+                Line(faun, "Having a full understanding of the s-situation... And killing someone...\nHalf an hour before he arrives..."),
+                Line(faun, "None of it adds up."),
+                Line(pickles, "Wow... She's speaking how I would.", innerThought),
+                Line(pickles, "I've never seen Faun so confident... She must really trust me.", innerThought),
+                Line(angel, "Now now, Faun... We believe you.\nI was merely suspicious of Pickles.", state: thinking),
+                Line(angel, "After all this fuss, even this old lady's losing her trust... Hehehe."),
+                Line(pickles, "So we can rule out 4 different suspects...\nFaun, Angel, Micah, and me..."),
+                Line(pickles, "That just leaves Smokey and Otto."),
+                Line(otto, "I'd like to point out somethin' strange."),
+                Line(pickles, "Go on."),
+                Line(otto, "First off, I don't need your damn permission to speak!", state: angry),
+                Line(otto, "Second... I kinda wanna be serious about it."),
+                Line(pickles, "..."),
+                Line(otto, "If Arthur died at " + Global.arthurKilledTime + "..."),
+                Line(otto, "How the hell did ALL of us miss his body for a whole half an hour?!", state: angry),
+                Line(otto, "And I'm not just pissed at you guys... I'm pretty angry at myself, too!\nThat's just too convenient...!"),
+                Line(otto, "Did the killer hide the body...?! Or did he use magic...?!"),
+                Line(otto, "Whatever it is, it's driving me!", state: angry),
+                Line(pickles, "Hold on, Otto. You might be onto something."),
+                Line(otto, "It WAS magic?!", state: angry),
+                Line(pickles, "N-No..."),
+                Line(pickles, "..."),
+                Line(pickles, "I was thinking about the first thing you said.\nAbout moving the body."),
+                Line(smokey, "..."),
+                Line(pickles, "Could the killer have moved the body somewhere?", important),
+                Line(smokey, "Good observation."),
+                Line(pickles, "Huh?"),
+                Line(pickles, "Smokey...?", innerThought),
+                Line(otto, "Hey hey..."),
+                Line(otto, "HEY! What was all that talk about not killing anyone?!", state: angry),
+                Line(smokey, "Settle down! Let me explain myself...", state: excited),
+                Line(otto, "Oh, HELL no!", state: angry),
+                Line(angel, "Otto... you need to calm down.", state: thinking),
+                Line(angel, "Even if he's suspicious, we need to hear him out first.\nI realize that much.", state: thinking),
+                Line(faun, "W-Well... S-Smokey...?", state: worried),
+                Line(smokey, "Ah, thank you all!\nYour generosity will not go to waste...!", state: excited),
+                Line(smokey, "The body had been hidden in the closet.", important),
+                Line(pickles, "W-what...?", innerThought),
+                Line(pickles, "D-did he really just... Confirm that?\nHe looks confident.", innerThought),
+                Line(otto, "..."),
+                Line(pickles, "..."),
+                Line(faun, ""),
+                Line(faun, "...!", state: worried),
+                Line(pickles, "Faun looked horrified...", innerThought),
+                Line(pickles, "But... Why?", innerThought)
             };
 
             chapter1trial3question = new DialogString[]{
-                Line(pickles, "Test")
+                Line(pickles, "Who was in the closet when I arrived?")
             };
 
             chapter1trial3right = new DialogString[]{
-                Line(pickles, "Test")
+                Line(pickles, "...Micah."),
+                Line(faun, "KYAAA! I-I didn't want to s-s-say it..!", state: worried),
+                Line(micah, "Awawawa?! Me again?!"),
+                Line(pickles, "I'm sorry...\nNo one else was in the closet as long as you."),
+                Line(pickles, "You were asleep in it.", important),
+                Line(otto, "Shit..!"),
+                Line(micah, "W-w-wait! I thought we established...!"),
+                Line(angel, "...", state: thinking),
+                Line(micah, "N-no...!"),
+                Line(smokey, "Hang on! You didn't let me finish speaking."),
+                Line(pickles, "We... didn't?", innerThought),
+                Line(pickles, "You've had a lot of time to speak...", innerThought),
+                Line(smokey, "I'm the one who moved the body.", state: excited),
+                Line(pickles, "... What?"),
+                Line(smokey, "Ah, I just couldn't help it!", state: excited),
+                Line(smokey, "A kill happened so early... I had to!\nI didn't want to spoil the game for everyone!", state: excited),
+                Line(smokey, "A mysterious crime is far more interesting than an easy crime...\nRight, detective?"),
+                Line(pickles, "..."),
+                Line(pickles, "Normally I would agree, but this...", innerThought),
+                Line(pickles, "Something's very wrong about this situation.", innerThought),
+                Line(pickles, "Why am I so... worried?", innerThought),
+                Line(pickles, "And why... am I sticking this out to the end?\nI should have called for backup...", innerThought),
+                Line(pickles, "And yet... Something feels like it's keeping me here.", innerThought),
+                Line(smokey, "That's why I had to hide the body in the closet."),
+                Line(smokey, "Behind all the clothes, where you couldn't find it!", state: excited),
+                Line(smokey, "For Micah to not be able to smell it, however...\nYou've got one heck of a nose!"),
+                Line(micah, "Ehehe..."),
+                Line(smokey, "Can you feel it...? The debate is about to end!", important),
+                Line(noName, "You may not like him... But he's right.", tutorial),
+                Line(noName, "As they say...\n\"The worst person you know just made a great point.\"", tutorial),
+                Line(noName, "As we reach the end of the debate, you'll have to choose who you\nbelieve is the culprit of the murder.", tutorial),
+                Line(noName, "Are you ready?", tutorial)
             };
 
             chapter1trial3wrong = new DialogString[]{
-                Line(pickles, "Test")
+                Line(faun, "N-No... Pickles...", state: worried),
+                Line(faun, "That's n-not right at all...", state: worried),
+                Line(pickles, "That's right... Faun was with me at the time.", innerThought)
+            };
+
+            // Correct Culprit
+
+            chapter1culpritOtto = new DialogString[]{
+                Line(pickles, "There's no other person! It has to be you... Otto!"),
+                Line(otto, "Huh?! Me... The hell?!"),
+                Line(otto, "Don't go accusing people like that, jackass!", state: angry),
+                Line(pickles, "No... I have proof."),
+                Line(otto, "H-Huh?!"),
+                Line(otto, "What...? WHAT?!", state: angry),
+                Line(otto, "You think I'M the killer?\nYou think it'd be that obvious?!", state: angry),
+                Line(otto, "Let's say I did kill him..."),
+                Line(otto, "How the hell would it be obvious?!", state: angry),
+                Line(otto, "You've all been going back and forth about each other...\nBut I'm clean in this!", state: angry),
+                Line(angel, "You seem awfully tense for someone as innocent as you say.", state: thinking),
+                Line(otto, "..."),
+                Line(angel, "If you would, Otto...\nPlease tell us when you arrived."),
+                Line(smokey, "...", state: excited),
+                Line(otto, "..."),
+                Line(otto, "........."),
+                Line(smokey, "Aw... You don't wanna tell 'em?"),
+                Line(otto, "N-no... I'm forgetting!"),
+                Line(otto, "I don't keep track of useless shit like that!", state: angry),
+                Line(faun, "O-Otto...!", state: worried),
+                Line(pickles, "Otto... Was it really you...?", innerThought),
+                Line(smokey, "He arrived at " + Global.ottoArrivedTime + "."),
+                Line(smokey, "Do what you will with that information. Teehee!", state: excited),
+                Line(otto, "Why, you fuckin'...!", state: angry),
+                Line(otto, "... I mean... It's chill."),
+                Line(otto, "Yeah. ..."),
+                Line(pickles, "Otto... If you and Arthur arrived at " + Global.ottoArrivedTime + "..."),
+                Line(pickles, "I'd like to know what you two were doing."),
+                Line(pickles, "Please, don't leave out any details..."),
+                Line(otto, "Wha..."),
+                Line(otto, "Don't fuckin lecture me! I'm not taking SHIT from you!", state: angry), // So edgy
+                Line(faun, "O-Otto, you're s-scaring me..!", state: worried),
+                Line(otto, "Good! You'll know not to fuck with me, then!", state: angry),
+                Line(faun, "AAH!", state: angry),
+                Line(angel, "Otto, that's enough.", state: thinking),
+                Line(otto, "No... Fuck you.", state: angry), // Balkan Rage Mode Activated
+                Line(smokey, "Oh dear."),
+                Line(otto, "Fuck ALL of you!\nBlaming me for any of this...?!", state: angry),
+                Line(otto, "Act like I'm the killed, because I arrived early...", state: angry),
+                Line(otto, "ALL BECAUSE OF A MISTAKE?!", important),
+                Line(pickles, "..."),
+                Line(faun, "...!", state: worried),
+                Line(micah, "..."),
+                Line(angel, "...", state: thinking),
+                Line(smokey, "..."),
+                Line(otto, "...", state: angry),
+                Line(otto, "..."),
+                Line(smokey, "...", state: excited),
+                Line(smokey, "I think we've done good enough.", state: excited)
+            };
+
+            // Incorrect Culprits
+
+            chapter1culpritAngel = new DialogString[]{
+                Line(pickles, "There's no other person! It has to be you... Angel!"),
+                Line(angel, "I arrived at the same time as Faun.", state: thinking),
+                Line(angel, "Unless you wish to prove that I orchestrated the murder\nas early as you would have been able to..."),
+                Line(angel, "Let's see you prove it, detective.", state: thinking),
+                Line(pickles, "She really has a strong footing in this debate...", innerThought),
+                Line(pickles, "No, what am I thinking? There's no way Angel...\nCould be the killer.", innerThought),
+            };
+
+            chapter1culpritFaun = new DialogString[]{
+                Line(pickles, "There's no other person! It has to be you... Faun!"),
+                Line(faun, "W-whaa..?! M-me...?", state: worried),
+                Line(faun, "B-But... we were with each other... The w-whole...", state: worried),
+                Line(faun, "Mmm... *sniff* P-Pickles...", state: worried),
+                Line(pickles, "Is she...?", innerThought),
+                Line(pickles, "That's right... She was with me the whole time.", innerThought),
+                Line(pickles, "I must have hurt her feelings...", innerThought),
+                Line(pickles, "I'm sorry, Faun... I didn't..."),
+                Line(pickles, "Damn it... I've got to think harder about this.", innerThought)
+            };
+
+            chapter1culpritMicah = new DialogString[] {
+                Line(pickles, "There's no other person! It has to be you... Micah!"),
+                Line(micah, "Awawawawa...waaa?!"),
+                Line(pickles, "...Right?"),
+                Line(micah, "There are several factors as to why I could not be...\nsuch scum like you..."),
+                Line(pickles, "What?!"),
+                Line(micah, "Accusing me without proof... Such scum you are...!"),
+                Line(micah, "You and Otto... Scum brothers!"),
+                Line(otto, "Hey, the hell?! He's the one who accused you... Not me!", state: angry),
+                Line(pickles, "Damn, she's really not the killer?...", innerThought),
+                Line(pickles, "So much evidence pointed towards her, and yet...", innerThought),
+                Line(pickles, "I've got to think harder about it...", innerThought)
+            };
+
+            chapter1culpritSmokey = new DialogString[] {
+                Line(pickles, "There's no other person! It has to be you... Smokey!"),
+                Line(smokey, "Wha? You dare accuse the host of this game...?"),
+                Line(smokey, "A daring move on your part!", state: excited),
+                Line(smokey, "Sorry, but no. I admitted to moving the body."),
+                Line(smokey, "A host can't kill his guests..."),
+                Line(smokey, "So use that noggin of yours to find the real killer!", state: excited),
+                Line(pickles, "I was... wrong?", innerThought),
+                Line(pickles, "I've got to think harder about this...\nIf it's not Smokey, then...?", innerThought)
             };
 
             // Trial Ending

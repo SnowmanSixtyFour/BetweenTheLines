@@ -1,13 +1,14 @@
-﻿using System;
+﻿using BetweenTheLines.Source.Graphics;
+using BetweenTheLines.Source.Graphics;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Graphics;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.Xna.Framework;
-using BetweenTheLines.Source.Graphics;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Audio;
-using BetweenTheLines.Source.Graphics;
+using Windows.Devices.Geolocation;
 
 namespace BetweenTheLines.Source.Objects.GUI
 {
@@ -65,10 +66,7 @@ namespace BetweenTheLines.Source.Objects.GUI
             this.sprite.SetDestRect(new Rectangle(X, Y, Width, Height));
 
             // Text Position
-            this.text.setPosition(new Vector2(
-                newPosition.X + (this.Width / 2) - (this.text.getText().Length * (this.textSize * 5) + 4), // X
-                newPosition.Y + (this.Height / 3) // Y
-                ));
+            this.SetTextSize(textSize);
         }
 
         public void SetText(String newText)
@@ -78,6 +76,22 @@ namespace BetweenTheLines.Source.Objects.GUI
 
             // Reposition Text on Button
             SetPosition(this.bounds.Location);
+        }
+
+        public Text GetText()
+        {
+            return this.text;
+        }
+
+        public void SetTextSize(float newSize)
+        {
+            this.text.setSize(newSize);
+
+            // Reposition Text after Resize
+            this.text.setPosition(new Vector2(
+                this.X + (this.Width / 2) - (this.text.getText().Length * (this.textSize * 5) + 4), // X
+                this.Y + (this.Height / 3) // Y
+                ));
         }
 
         public void Update(GameTime gameTime, Cursor cursor, bool clicked)

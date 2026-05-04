@@ -101,7 +101,94 @@ namespace BetweenTheLines.Source.States
 
                 if (dialogBox.endOfDialog)
                 {
+                    // Trial Pt. 3
+
+                    // Question
+
+                    if (dialogBox.dialog == Dialog.chapter1trial3right)
+                    {
+                        // End Trial - WIP
+                    }
+
+                    if (dialogBox.dialog == Dialog.chapter1trial3wrong)
+                    {
+                        // Go Back to Question
+                        dialogBox.setDialog(Dialog.chapter1trial3question);
+                    }
+
+                    if (dialogBox.dialog == Dialog.chapter1trial3question)
+                    {
+                        // Multiple Choice
+
+                        // When Answer Selected
+                        if (answerSelected)
+                        {
+                            // Correct and Incorrect Answer Dialog
+                            if (correctAnswerChosen) dialogBox.setDialog(Dialog.chapter1trial3right);
+                            else dialogBox.setDialog(Dialog.chapter1trial3wrong);
+
+                            // Hide Multiple Choice
+                            multipleChoice = false;
+
+                            // End Answer Selected Event
+                            answerSelected = false;
+                        }
+                        // Show Multiple Choice
+                        else if (!multipleChoice)
+                        {
+                            ShowMultipleChoice("Micah", "Otto", "Angel", 1);
+
+                            MultipleChoiceButtonSize(1.0f);
+                        }
+                    }
+
+                    // Discussion
+                    if (dialogBox.dialog == Dialog.chapter1trial3)
+                    {
+                        dialogBox.setDialog(Dialog.chapter1trial3question);
+                    }
+
                     // Trial Pt. 2
+
+                    // Question
+
+                    if (dialogBox.dialog == Dialog.chapter1trial2right)
+                    {
+                        // Go to Trial Pt. 3
+                        dialogBox.setDialog(Dialog.chapter1trial3);
+                    }
+
+                    if (dialogBox.dialog == Dialog.chapter1trial2wrong)
+                    {
+                        // Go Back to Question
+                        dialogBox.setDialog(Dialog.chapter1trial2question);
+                    }
+
+                    if (dialogBox.dialog == Dialog.chapter1trial2question)
+                    {
+                        // Multiple Choice
+
+                        // When Answer Selected
+                        if (answerSelected)
+                        {
+                            // Correct and Incorrect Answer Dialog
+                            if (correctAnswerChosen) dialogBox.setDialog(Dialog.chapter1trial2right);
+                            else dialogBox.setDialog(Dialog.chapter1trial2wrong);
+
+                            // Hide Multiple Choice
+                            multipleChoice = false;
+
+                            // End Answer Selected Event
+                            answerSelected = false;
+                        }
+                        // Show Multiple Choice
+                        else if (!multipleChoice)
+                        {
+                            ShowMultipleChoice("Stab Wound", "Injection", "Broken Neck", 3);
+
+                            MultipleChoiceButtonSize(0.8f);
+                        }
+                    }
 
                     // Discussion
                     if (dialogBox.dialog == Dialog.chapter1trial2)
@@ -115,7 +202,7 @@ namespace BetweenTheLines.Source.States
 
                     if (dialogBox.dialog == Dialog.chapter1trial1right)
                     {
-                        // Go Back to Question
+                        // Go to Trial Pt. 2
                         dialogBox.setDialog(Dialog.chapter1trial2);
                     }
 
@@ -143,7 +230,12 @@ namespace BetweenTheLines.Source.States
                             answerSelected = false;
                         }
                         // Show Multiple Choice
-                        else if (!multipleChoice) ShowMultipleChoice(Global.picklesArrivedTime, Global.faunArrivedTime, Global.arthurKilledTime, 2);
+                        else if (!multipleChoice)
+                        {
+                            ShowMultipleChoice(Global.picklesArrivedTime, Global.faunArrivedTime, Global.arthurKilledTime, 2);
+
+                            MultipleChoiceButtonSize(1.0f);
+                        }
                     }
 
                     // Discussion
@@ -191,6 +283,10 @@ namespace BetweenTheLines.Source.States
 
                     // Hide Cursor
                     cursorVisible = false;
+
+                    // Set Cursor to Center (Prevent Clicking the Wrong Option)
+                    cursor.X = Global.windowWidth / 2;
+                    cursor.Y = Global.windowHeight / 2;
                 }
 
                 // Select Correct Answer
@@ -235,6 +331,18 @@ namespace BetweenTheLines.Source.States
 
             // Show Multiple Choice Options
             multipleChoice = true;
+        }
+
+        /// <summary>
+        /// Sets the size of the text of the multiple choice buttons.
+        /// </summary>
+        /// <param name="newSize">The float size of the button text. (E.g. 1.0f, 0.75f)</param>
+        public void MultipleChoiceButtonSize(float newSize)
+        {
+            // Set Size of all Text for Buttons
+            this.option1.SetTextSize(newSize);
+            this.option2.SetTextSize(newSize);
+            this.option3.SetTextSize(newSize);
         }
 
         public override void OnDraw(SpriteBatch spriteBatch)

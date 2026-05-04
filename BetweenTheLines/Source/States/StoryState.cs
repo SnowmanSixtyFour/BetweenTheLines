@@ -153,9 +153,10 @@ namespace BetweenTheLines.Source.States
 
             // Set Real Time Variables
             Global.picklesArrivedTime = DateTime.Now.ToShortTimeString(); // Pickles Arrived upon Chapter 1 Start
-            Global.faunArrivedTime = DateTime.Now.AddMinutes(-10).ToShortTimeString(); // Faun Arrived 10 Minutes Earlier than Pickles
+            Global.faunArrivedTime = DateTime.Now.AddMinutes(-10).ToShortTimeString(); // Faun (and Angel) Arrived 10 Minutes Earlier than Pickles
             Global.gameStartTime = DateTime.Now.AddMinutes(-5).ToShortTimeString(); // Game Started 5 Minutes Before Pickles Arrived
             Global.arthurKilledTime = DateTime.Now.AddMinutes(-30).ToShortTimeString(); // Faun Arrived 10 Minutes Earlier than Pickles
+            Global.ottoArrivedTime = DateTime.Now.AddHours(-1).ToShortTimeString(); // Otto (and Arthur) Arrived 1 Hour Earlier than Pickles
 
             // Load Dialog after Variables Set
             Dialog.LoadDialog();
@@ -438,6 +439,10 @@ namespace BetweenTheLines.Source.States
                     // Investigation End
                     if (dialogBox.dialog == Dialog.chapter1investigationEnd)
                     {
+                        if (dialogBox.currentLine == 37)
+                        {
+                            StopSong();
+                        }
                         if (dialogBox.currentLine == 39)
                         {
                             // Hide Body and Blacken Dialog Cinematic
@@ -463,6 +468,10 @@ namespace BetweenTheLines.Source.States
                         {
                             dialogCinematic.SetTexture(Assets.corpse);
                             dialogCinematic.SetColor(Color.White);
+                        }
+                        if (dialogBox.currentLine == 4)
+                        {
+                            ChangeSong(OST.intense);
                         }
                     }
 
