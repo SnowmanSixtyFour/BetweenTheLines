@@ -690,7 +690,7 @@ namespace BetweenTheLines.Source
                 Line(faun, "W-well, now that w-we know the t-time... We can pinpoint the k-k-killer.", state: worried),
                 Line(smokey, "Nice observation, Faun! To give swift justice to the killer,\nwe must find out whodunnit!", state: excited),
                 Line(pickles, "So the general consensus, judging by the crime scene..."),
-                Line(pickles, "Is that Arthur's death was caused by falling from the flight of stairs,\nleading to the second floor. Then-"),
+                Line(pickles, "Is that Arthur's death was caused by falling from the flight of stairs\nleading to the second floor. Then-"),
                 Line(otto, "Sometime before " + Global.arthurKilledTime + ", he got socked in the face!"),
                 Line(pickles, "That's... one way you could put it. But yes, that's how it played out."),
                 Line(pickles, "Now the question is... Why?"),
@@ -739,7 +739,41 @@ namespace BetweenTheLines.Source
             };
 
             chapter1trial2 = new DialogString[]{
-                Line(pickles, "Test")
+                Line(smokey, "I believe there's a critical part of this case that none of you have\nthought to mention!", state: excited),
+                Line(pickles, "I was trying to avoid it... Because I just can't believe...", innerThought),
+                Line(pickles, "...No, that's not it. I can believe it.\nI just don't want to...", innerThought),
+                Line(otto, "Oh yeah? And what would that be?"),
+                Line(smokey, "The syringe found at the body."),
+                Line(otto, "..."),
+                Line(faun, "...", state: worried),
+                Line(pickles, "The atmosphere got intense.", innerThought),
+                Line(pickles, "None of us wanted to accept the reality that Micah,\nour friend... could have killed Arthur.", innerThought),
+                Line(pickles, "Micah, I want to hear your thoughts on the matter."),
+                Line(micah, "N-now, I know what it looks like...!"),
+                Line(faun, "M-Micah... I believe you...", state: worried),
+                Line(faun, "Y-You would n-never...never do something like that...!"),
+                Line(otto, "Oh, yeah? How do we know for sure?", state: angry),
+                Line(angel, "I hate to agree with Otto... But it's too soon to decide\nwhether Micah is safe.", state: thinking),
+                Line(micah, "Wait... Nonono, I can explain!"),
+                Line(micah, "You guys aren't going to believe this... but..."),
+                Line(micah, "I never put that syringe there!"),
+                Line(otto, "Oh yeah, you punk?! You expect us to just sit here,\nand listen to your lies because of your PhD?!", state: angry),
+                Line(micah, "M-my PhD has nothing to do with this...! You scumbucket!"),
+                Line(otto, "What... What the fuck did you call me?", state: angry),
+                Line(pickles, "Micah, although I want to believe you..."),
+                Line(pickles, "You've got to explain your reasoning. Why would such\na medical device be found by the body?"),
+                Line(micah, "Because the killer is trying to frame me..."),
+                Line(micah, "Put the medical equipment next to the body... Fill it with anesthetics...\nMake it look like the smart one did it!"),
+                Line(pickles, "M-Micah... What was that just now?"),
+                Line(micah, "Hm?"),
+                Line(pickles, "How would you know the syringe had anesthetics in it?"),
+                Line(micah, "Wawawaaa?!"),
+                Line(otto, "Oh, shit! Good work scruffy!"),
+                Line(pickles, "Listen, Micah... I'm not blaming you immediately."),
+                Line(pickles, "I've been hollered at in the workplace for being too soft.\nThat's why I'm giving you the benefit of the doubt."),
+                Line(micah, "Good, because Ididn'tdoit!!"),
+                Line(pickles, "Slow down..."),
+                Line(pickles, "Explain your reasoning.")
             };
 
             chapter1trial2question = new DialogString[]{

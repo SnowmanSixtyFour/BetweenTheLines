@@ -101,9 +101,23 @@ namespace BetweenTheLines.Source.States
 
                 if (dialogBox.endOfDialog)
                 {
+                    // Trial Pt. 2
+
+                    // Discussion
+                    if (dialogBox.dialog == Dialog.chapter1trial2)
+                    {
+                        dialogBox.setDialog(Dialog.chapter1trial2question);
+                    }
+
                     // Trial Pt. 1
 
                     // Question
+
+                    if (dialogBox.dialog == Dialog.chapter1trial1right)
+                    {
+                        // Go Back to Question
+                        dialogBox.setDialog(Dialog.chapter1trial2);
+                    }
 
                     if (dialogBox.dialog == Dialog.chapter1trial1wrong)
                     {
