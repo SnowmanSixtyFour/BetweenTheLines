@@ -395,10 +395,9 @@ namespace BetweenTheLines.Source
 
         public static void LoadDialog()
         {
-            // NOTE: Lines of dialog are formatted like this:
-            // Integer number Name | String Text
+            // --- Intro ---
 
-            // Intro
+            // Outside
 
             intro1 = new DialogString[]{
                 Line(pickles, "Yesterday, I got this letter...", innerThought, hideName: true),
@@ -427,6 +426,8 @@ namespace BetweenTheLines.Source
                 Line(pickles, "I guess I'll just have to head inside.\nI'll be sure to keep my guard up...")
             };
 
+            // Inside
+
             preludeEnd = new DialogString[]{
                 Line(pickles, "When I stepped foot inside... The house didn't look unkept.", innerThought),
                 Line(pickles, "Despite it's shoddy look from outside...\nIt was as though someone really was waiting for me to arrive.", innerThought),
@@ -447,6 +448,10 @@ namespace BetweenTheLines.Source
                 Line(pickles, "The others...", innerThought),
                 Line(pickles, "Alright.")
             };
+
+            // --- Chapter 1 ---
+
+            // Exploration
 
             chapter1part1 = new DialogString[]{
                 Line(otto, "'The hell? Who's this tail licker?", hideName: true),
@@ -591,6 +596,8 @@ namespace BetweenTheLines.Source
                 Line(pickles, "But that would soon turn out to be our biggest mistake.", innerThought)
             };
 
+            // Investigation
+
             chapter1investigation = new DialogString[]{
                 Line(pickles, "Smokey brought us to the staircase at the end\nof the main hall.", innerThought),
                 Line(pickles, "What we found there surprised us all...", innerThought),
@@ -621,7 +628,7 @@ namespace BetweenTheLines.Source
             };
 
             chapter1evidence2 = new DialogString[] {
-                Line(faun, "Test 2")
+                Line(pickles, "Test 2")
             };
 
             chapter1evidence3 = new DialogString[] {
@@ -671,6 +678,8 @@ namespace BetweenTheLines.Source
                 Line(pickles, "It's all fake, right?", innerThought),
                 Line(pickles, "Right...?", innerThought),
             };
+
+            // Trial
 
             chapter1trial1 = new DialogString[]{
                 Line(smokey, "Okay! Now that we're all here, let me explain how the debate works."),
@@ -775,7 +784,10 @@ namespace BetweenTheLines.Source
                 Line(pickles, "I've been hollered at in the workplace for being too soft.\nThat's why I'm giving you the benefit of the doubt."),
                 Line(micah, "Good, because Ididn'tdoit!!"),
                 Line(pickles, "Slow down..."),
-                Line(pickles, "Explain your reasoning.")
+                Line(pickles, "Explain your reasoning."),
+                Line(micah, "Well, first thing's first, about the syringe!"),
+                Line(micah, "There's a laboratory on the floor above.\nIt's full of all the latest medical equipment."),
+                Line(micah, "")
             };
 
             chapter1trial2question = new DialogString[]{
@@ -805,6 +817,8 @@ namespace BetweenTheLines.Source
             chapter1trial3wrong = new DialogString[]{
                 Line(pickles, "Test")
             };
+
+            // Trial Ending
 
             chapter1postTrial = new DialogString[]{
                 Line(pickles, "Test")
