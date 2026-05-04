@@ -191,6 +191,10 @@ namespace BetweenTheLines.Source.States
             seenBathroom = false;
             seenKitchen = false;
             seenCloset = false;
+
+            seenEvidence1 = false;
+            seenEvidence2 = false;
+            seenEvidence3 = false;
         }
 
         public override void OnUpdate(GameTime gameTime)
@@ -265,6 +269,8 @@ namespace BetweenTheLines.Source.States
                         // Closet Dialog
                         if (currentRoom == Room.closet && !seenCloset)
                         {
+                            if (dialogBox.currentLine == 0) portrait.SetState(Dialog.faun, Portrait.State.regular); // Set to Faun before she moves onscreen
+
                             seenCloset = true;
                             StopExploring(Dialog.chapter1closet);
                         }
@@ -272,6 +278,8 @@ namespace BetweenTheLines.Source.States
                         // Kitchen Dialog
                         if (currentRoom == Room.kitchen && !seenKitchen)
                         {
+                            if (dialogBox.currentLine == 0) portrait.SetState(Dialog.faun, Portrait.State.regular); // Set to Faun before she moves onscreen
+
                             seenKitchen = true;
                             StopExploring(Dialog.chapter1kitchen);
                         }
@@ -726,6 +734,9 @@ namespace BetweenTheLines.Source.States
         {
             // Set Music
             ChangeSong(OST.trialIntro);
+
+            // Show Pickles
+            Dialog.picklesVisible = true;
 
             // Switch State
             this.changeState = true;

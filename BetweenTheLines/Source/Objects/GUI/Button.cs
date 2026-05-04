@@ -97,48 +97,50 @@ namespace BetweenTheLines.Source.Objects.GUI
         public void Update(GameTime gameTime, Cursor cursor, bool clicked)
         {
             // --- Update Variables ---
-
-            // Highlighted Color
-            if (this.highlighted) this.color = this.highlightedColor;
-            else this.color = this.defaultColor;
-
-            // --- Update Sprite ---
-
-            // Color
-            this.sprite.SetColor(color);
-
-            // --- Cursor Properties ---
-
-            // Highlight Cursor
-            cursor.Highlight(this);
-
-            // When Clicked
-            if (this.clicked)
+            if (!Global.paused)
             {
-                // Play Click SFX
-                SFX.button.Play();
+                // Highlighted Color
+                if (this.highlighted) this.color = this.highlightedColor;
+                else this.color = this.defaultColor;
 
-                // End Click Event
-                this.clicked = false;
-            }
+                // --- Update Sprite ---
 
-            // Get Cursor Hover
-            if (cursor.HoveringOver(this.bounds))
-            {
-                // Highlight
-                this.highlighted = true;
+                // Color
+                this.sprite.SetColor(color);
+
+                // --- Cursor Properties ---
+
+                // Highlight Cursor
+                cursor.Highlight(this);
 
                 // When Clicked
-                if (clicked) this.clicked = true;
+                if (this.clicked)
+                {
+                    // Play Click SFX
+                    SFX.button.Play();
 
-                // End Click Event
-                else this.clicked = false;
-            }
-            // Cursor is Not Hovering over Button
-            else
-            {
-                // Unhighlight
-                this.highlighted = false;
+                    // End Click Event
+                    this.clicked = false;
+                }
+
+                // Get Cursor Hover
+                if (cursor.HoveringOver(this.bounds))
+                {
+                    // Highlight
+                    this.highlighted = true;
+
+                    // When Clicked
+                    if (clicked) this.clicked = true;
+
+                    // End Click Event
+                    else this.clicked = false;
+                }
+                // Cursor is Not Hovering over Button
+                else
+                {
+                    // Unhighlight
+                    this.highlighted = false;
+                }
             }
         }
 
