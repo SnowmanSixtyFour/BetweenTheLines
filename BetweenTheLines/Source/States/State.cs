@@ -122,11 +122,20 @@ namespace BetweenTheLines.Source.States
         {
             // --- Audio ---
 
+            if (MediaPlayer.Queue.ActiveSong == OST.trialIntro)
+            {
+                MediaPlayer.IsRepeating = false;
+            }
+            else
+            {
+                MediaPlayer.IsRepeating = true;
+            }
+
             // Loop Music
-            if (MediaPlayer.State == MediaState.Stopped)
+            if (MediaPlayer.Queue.ActiveSong == OST.trialIntro && MediaPlayer.State == MediaState.Stopped)
             {
                 // Trial
-                if (MediaPlayer.Queue.ActiveSong == OST.trialIntro) MediaPlayer.Play(OST.trial);
+                MediaPlayer.Play(OST.trial);
             }
 
             // Music Toggled

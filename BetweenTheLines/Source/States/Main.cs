@@ -42,8 +42,6 @@ namespace BetweenTheLines.Source.States
             debate = new DebateState(); // Debate
             credits = new CreditsState(); // Credits
 
-            currentState = new State(); // Current State (Blank)
-
             // CRT Filter
             rescanLine = new StaticSprite(null, new Rectangle(0, 0, cam.Width, -rescanLineHeight), (Color.Black * 0.15f));
         }
@@ -70,24 +68,7 @@ namespace BetweenTheLines.Source.States
                 currentState.changeState = false;
             }
 
-            // Update State
-            currentState.Update(gameTime);
-
-            // CRT Filter
-            if (Global.crtFilter)
-            {
-                // Rescan Line
-                if (Global.rescanLineVisible)
-                {
-                    // When Rescan Line Reaches Bottom of Screen
-                    if (rescanLine.GetY() > (cam.Height + rescanLineHeight)) rescanLine.SetY(-rescanLineHeight);
-
-                    // Add to Rescan Line Y
-                    else rescanLine.SetY(rescanLine.GetY() + rescanLineIncrement);
-                }
-            }
-
-            // While Game Paused
+            // While Game is Paused
             if (Global.paused)
             {
                 // During Gameplay (Story, Debate)
@@ -100,8 +81,29 @@ namespace BetweenTheLines.Source.States
                         ChangeSong(OST.title);
 
                         // Switch State
-                        this.changeState = true;
+                        currentState.changeState = true;
                         Global.currentState = Global.State.title;
+                    }
+                }
+            }
+
+            // Update State
+            currentState.Update(gameTime);
+
+            // While Game is Unpaused
+            if (!Global.paused)
+            {
+                // CRT Filter
+                if (Global.crtFilter)
+                {
+                    // Rescan Line
+                    if (Global.rescanLineVisible)
+                    {
+                        // When Rescan Line Reaches Bottom of Screen
+                        if (rescanLine.GetY() > (cam.Height + rescanLineHeight)) rescanLine.SetY(-rescanLineHeight);
+
+                        // Add to Rescan Line Y
+                        else rescanLine.SetY(rescanLine.GetY() + rescanLineIncrement);
                     }
                 }
             }

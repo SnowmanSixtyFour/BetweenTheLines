@@ -513,7 +513,7 @@ namespace BetweenTheLines.Source.States
                         if (dialogBox.currentLine == 24) ChangeSong(OST.intense);
                         if (dialogBox.currentLine == 29)
                         {
-                            ChangeSong(OST.intro);
+                            ChangeSong(OST.chillout);
                         }
                     }
 
@@ -644,6 +644,9 @@ namespace BetweenTheLines.Source.States
 
                         // Play Footsteps SFX
                         SFX.footsteps.Play();
+
+                        // Stop Music
+                        StopSong();
                     }
 
                     // Intro 2
