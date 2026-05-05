@@ -69,7 +69,7 @@ namespace BetweenTheLines.Source.States
 
             Development Team
 
-            Snowman64 - Programmer, Writer, Artist
+            Snowman64 - Programmer, Writer, Background Artist
             ShawSure - Lead Artist
             River347 - Composer
 
