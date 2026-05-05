@@ -20,6 +20,8 @@ Explore a point-and-click world inspired by visual novels games such as the Dang
 [ShawSure](https://bsky.app/profile/shawsure.bsky.social) | Artist
 
 [River347](https://river347.bandcamp.com/) | Composer
+
+[Maple2n3e](https://bsky.app/profile/maple2n3e.bsky.social) | Additional Artist
 ### Special Thanks
 Timothy Lottes - [CRT Filter (Public Domain)](https://github.com/libretro/glsl-shaders/blob/master/crt/shaders/crt-lottes.glsl)
 

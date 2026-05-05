@@ -87,10 +87,13 @@ namespace BetweenTheLines.Source.States
 
         // Investigation Triggers
         private StaticSprite
-            evidence1, evidence2, evidence3;
+            evidenceSyringe, evidenceWatch, evidenceAutopsy;
 
         // Trigger Color
         private Color triggerColor = Color.Transparent;
+
+        // Audio
+        public bool playStabSFX = true; // Stab SFX
 
         public StoryState()
         {
@@ -133,9 +136,9 @@ namespace BetweenTheLines.Source.States
 
             // Investigation Triggers
 
-            evidence1 = new StaticSprite(null, new Rectangle(0, 0, 30, 30), triggerColor);
-            evidence2 = new StaticSprite(null, new Rectangle(120, 0, 30, 30), triggerColor);
-            evidence3 = new StaticSprite(null, new Rectangle(240, 0, 30, 30), triggerColor);
+            evidenceSyringe = new StaticSprite(null, new Rectangle(132, 289, 161, 47), triggerColor);
+            evidenceWatch = new StaticSprite(null, new Rectangle(588, 232, 36, 36), triggerColor);
+            evidenceAutopsy = new StaticSprite(null, new Rectangle(448, 166, 130, 42), triggerColor);
 
             // Set Default Properties of State
             SetDefaultVariables();
@@ -163,25 +166,29 @@ namespace BetweenTheLines.Source.States
 
             // --- Objects ---
 
-            // Cinematic BG
-            cinematic.SetTexture(Assets.intro1); // Set to Intro 1 by Default
-            
-            // Portraits
-            portrait.Hide(); // Hide Portrait on Start
-            portrait.SetState(Dialog.pickles, Portrait.State.regular); // Set to Pickles
+            // Set Values if Not Finished Trial
+            if (!Global.finishedChapter1)
+            {
+                // Cinematic BG
+                cinematic.SetTexture(Assets.intro1); // Set to Intro 1 by Default
 
-            // Dialog Box
-            dialogBox.ResetText(); // Reset Text (IMPORTANT! To clear any last dialog before reset)
-            dialogBox.Show();
+                // Portraits
+                portrait.Hide(); // Hide Portrait on Start
+                portrait.SetState(Dialog.pickles, Portrait.State.regular); // Set to Pickles
 
-            dialogBox.setDialog(Dialog.intro1); // Set to Intro 1
-            Global.dialogSpeed = Global.defaultDialogSpeed; // Reset Dialog Speed (Default)
+                // Dialog Box
+                dialogBox.ResetText(); // Reset Text (IMPORTANT! To clear any last dialog before reset)
+                dialogBox.Show();
 
-            // Overlay
-            overlay.chapter.setText("    INTRO"); // Set Chapter Text
+                dialogBox.setDialog(Dialog.intro1); // Set to Intro 1
+                Global.dialogSpeed = Global.defaultDialogSpeed; // Reset Dialog Speed (Default)
 
-            // Map
-            currentRoom = Room.unknown; // Set Current Room to Outside
+                // Overlay
+                overlay.chapter.setText("    INTRO"); // Set Chapter Text
+
+                // Map
+                currentRoom = Room.unknown; // Set Current Room to Outside
+            }
 
             // Exploration
             dialogCinematicVisible = false;
@@ -203,6 +210,12 @@ namespace BetweenTheLines.Source.States
 
             if (!Global.paused)
             {
+                // Investigation Music
+                if (investigating)
+                {
+                    if (MediaPlayer.State == MediaState.Stopped || MediaPlayer.Queue.ActiveSong != OST.intense) MediaPlayer.Play(OST.intense);
+                }
+
                 // Seen all Evidence
                 if (dialogBox.dialog != Dialog.chapter1investigationEnd
                     && investigating
@@ -223,27 +236,27 @@ namespace BetweenTheLines.Source.States
                 {
                     // Dialog
 
-                    if (cursor.HoveringOver(evidence1.GetDestRect()) && LeftClicked())
+                    if (cursor.HoveringOver(evidenceSyringe.GetDestRect()) && LeftClicked())
                     {
                         seenEvidence1 = true;
-                        dialogBox.setDialog(Dialog.chapter1evidence1);
+                        dialogBox.setDialog(Dialog.chapter1evidenceSyringe);
                     }
-                    if (cursor.HoveringOver(evidence2.GetDestRect()) && LeftClicked())
+                    if (cursor.HoveringOver(evidenceWatch.GetDestRect()) && LeftClicked())
                     {
                         seenEvidence2 = true;
-                        dialogBox.setDialog(Dialog.chapter1evidence2);
+                        dialogBox.setDialog(Dialog.chapter1evidenceWatch);
                     }
-                    if (cursor.HoveringOver(evidence3.GetDestRect()) && LeftClicked())
+                    if (cursor.HoveringOver(evidenceAutopsy.GetDestRect()) && LeftClicked())
                     {
                         seenEvidence3 = true;
-                        dialogBox.setDialog(Dialog.chapter1evidence3);
+                        dialogBox.setDialog(Dialog.chapter1evidenceAutopsy);
                     }
 
                     // Cursor Inspect
 
-                    if (cursor.HoveringOver(evidence1.GetDestRect())) cursor.Inspect();
-                    if (cursor.HoveringOver(evidence2.GetDestRect())) cursor.Inspect();
-                    if (cursor.HoveringOver(evidence3.GetDestRect())) cursor.Inspect();
+                    if (cursor.HoveringOver(evidenceSyringe.GetDestRect())) cursor.Inspect();
+                    if (cursor.HoveringOver(evidenceWatch.GetDestRect())) cursor.Inspect();
+                    if (cursor.HoveringOver(evidenceAutopsy.GetDestRect())) cursor.Inspect();
                 }
 
                 // Map Exploration - Change room depending on trigger clicked
@@ -444,6 +457,40 @@ namespace BetweenTheLines.Source.States
                 {
                     // --- Dialog Events ---
 
+                    // Chapter 1 Trial End
+                    if (dialogBox.dialog == Dialog.chapter1postTrial)
+                    {
+                        if (dialogBox.currentLine == 0)
+                        {
+                            // Hide Cinematic
+                            dialogCinematicVisible = false;
+
+                            // Show Portrait
+                            portrait.MoveToCenter();
+                        }
+                        if (dialogBox.currentLine == 11)
+                        {
+                            // Show Cinematic as Black
+                            dialogCinematicVisible = true;
+                            dialogCinematic.SetTexture(null);
+                            dialogCinematic.SetColor(Color.Black);
+
+                            // Play Stab SFX
+                            if (playStabSFX)
+                            {
+                                SFX.stab.Play();
+                                playStabSFX = false;
+                            }
+                        }
+                        if (dialogBox.currentLine == 13)
+                        {
+                            // Show Smokey Cinematic
+                            ChangeSong(OST.intense); // Intense Music
+                            dialogCinematic.SetTexture(Assets.lessonLearned2);
+                            dialogCinematic.SetColor(Color.White);
+                        }
+                    }
+
                     // Investigation End
                     if (dialogBox.dialog == Dialog.chapter1investigationEnd)
                     {
@@ -460,7 +507,7 @@ namespace BetweenTheLines.Source.States
                     }
 
                     // Evidence
-                    if (dialogBox.dialog == Dialog.chapter1evidence1 || dialogBox.dialog == Dialog.chapter1evidence2 || dialogBox.dialog == Dialog.chapter1evidence3)
+                    if (dialogBox.dialog == Dialog.chapter1evidenceSyringe || dialogBox.dialog == Dialog.chapter1evidenceWatch || dialogBox.dialog == Dialog.chapter1evidenceAutopsy)
                     {
                         // Stop Exploration
                         exploring = false;
@@ -477,10 +524,6 @@ namespace BetweenTheLines.Source.States
                             dialogCinematic.SetTexture(Assets.corpse);
                             dialogCinematic.SetColor(Color.White);
                         }
-                        if (dialogBox.currentLine == 4)
-                        {
-                            ChangeSong(OST.intense);
-                        }
                     }
 
                     // Chapter 1 Part 2
@@ -494,7 +537,17 @@ namespace BetweenTheLines.Source.States
                         {
                             ChangeSong(OST.intense);
                         }
-                        if (dialogBox.currentLine == 16) dialogCinematicVisible = true;
+                        if (dialogBox.currentLine == 16)
+                        {
+                            dialogCinematicVisible = true;
+                            
+                            if (playStabSFX)
+                            {
+                                SFX.stab.Play();
+                                playStabSFX = false;
+                            }
+                        }
+                        if (dialogBox.currentLine == 17) playStabSFX = true;
                         if (dialogBox.currentLine == 18) dialogCinematic.SetTexture(Assets.lessonLearned1);
                         if (dialogBox.currentLine == 19) dialogCinematic.SetTexture(Assets.lessonLearned2);
                         if (dialogBox.currentLine == 20)
@@ -520,7 +573,10 @@ namespace BetweenTheLines.Source.States
                         {
                             StopSong();
                         }
-                        if (dialogBox.currentLine == 56) portrait.MoveLeftOffscreen(); // Hide Portrait after that whole mess.
+                        if (dialogBox.currentLine == 56)
+                        {
+                            portrait.MoveLeftOffscreen();
+                        }
                     }
 
                     // Chapter 1 Part 1
@@ -568,6 +624,31 @@ namespace BetweenTheLines.Source.States
 
                     // --- Dialog End Events ---
 
+                    // Trial End (Chapter 1 Finished)
+
+                    if (dialogBox.dialog == Dialog.chapter1postTrial)
+                    {
+                        // Go to Credits
+
+                        // Set Viewing Credits from Gameplay
+                        Global.viewingCreditsFromTitle = false;
+
+                        // Switch State
+                        ChangeSong(OST.title);
+                        this.changeState = true;
+                        Global.currentState = Global.State.credits;
+                    }
+
+                    // When Returning from Debate
+                    if (Global.finishedChapter1)
+                    {
+                        // Set Dialog
+                        dialogBox.setDialog(Dialog.chapter1postTrial);
+
+                        // Disable Check
+                        Global.finishedChapter1 = false;
+                    }
+
                     // CHAPTER 1 PART 2
 
                     // End of Investigation
@@ -579,7 +660,7 @@ namespace BetweenTheLines.Source.States
 
                     // Investigation Dialog
                     if (dialogBox.dialog == Dialog.chapter1investigation
-                        || dialogBox.dialog == Dialog.chapter1evidence1 || dialogBox.dialog == Dialog.chapter1evidence2 || dialogBox.dialog == Dialog.chapter1evidence3)
+                        || dialogBox.dialog == Dialog.chapter1evidenceSyringe || dialogBox.dialog == Dialog.chapter1evidenceWatch || dialogBox.dialog == Dialog.chapter1evidenceAutopsy)
                     {
                         // Allow Interaction with Cursor
                         dialogBox.Hide();
@@ -842,9 +923,9 @@ namespace BetweenTheLines.Source.States
                 else if (investigating)
                 {
                     // Evidence
-                    evidence1.Draw(spriteBatch);
-                    evidence2.Draw(spriteBatch);
-                    evidence3.Draw(spriteBatch);
+                    evidenceSyringe.Draw(spriteBatch);
+                    evidenceWatch.Draw(spriteBatch);
+                    evidenceAutopsy.Draw(spriteBatch);
                 }
             }
 

@@ -161,7 +161,18 @@ namespace BetweenTheLines.Source.States
 
                     if (dialogBox.dialog == Dialog.chapter1culpritOtto)
                     {
-                        // WIP
+                        // Set Finished Chapter 1 Trigger
+                        Global.finishedChapter1 = true;
+
+                        // Stop Music
+                        StopSong();
+
+                        // Hide Pickles
+                        Dialog.picklesVisible = false;
+
+                        // Switch State
+                        this.changeState = true;
+                        Global.currentState = Global.State.story;
                     }
 
                     // Trial Pt. 3

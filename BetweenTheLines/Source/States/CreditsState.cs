@@ -45,12 +45,12 @@ namespace BetweenTheLines.Source.States
             logoYStart = 700,
             creditsXPadding = 400,
             creditsYStart = 800,
-            creditsYEnd = -1780, // Credits End (Go back to Title)
+            creditsYEnd = -2075, // Credits End (Go back to Title)
 
             // Cat Positions
-            picklesAngelPos = 1850, // Pickles and Angel Y Positions
+            picklesAngelPos = 2000, // Pickles and Angel Y Positions
             angelOffset = 400, // Angel X Offset
-            smokeyPosX = 200, smokeyPosY = 2200, // Smokey Position
+            smokeyPosX = 200, smokeyPosY = 2330, // Smokey Position
 
             catPicOffset = 50; // Picture Y Offset
         private Point catPicSize = new Point(250, 250); // Picture Size
@@ -61,7 +61,7 @@ namespace BetweenTheLines.Source.States
         private String creditsString = """
             Created by Snowman64
 
-            Developed from April 7, 2026 - TBA
+            Developed from April 7, 2026 - May 5, 2026
             Made for the Mystery Game Jam 2026 on itch.io.
             https://itch.io/jam/mystery-game-jam-2026
 
@@ -77,8 +77,11 @@ namespace BetweenTheLines.Source.States
 
             Special Thanks
 
+            Faun's Nervous Portrait - Maple2n3e
             CRT Scanline Shaders (Public Domain) - Timothy Lottes
             Beginning 3D Programming - GameFromScratch.com
+            Spike Chunsoft
+            Mystery Gamedev
 
 
 
@@ -105,6 +108,9 @@ namespace BetweenTheLines.Source.States
 
             footsteps.wav - TampaJoey
             https://freesound.org/people/TampaJoey/sounds/588501/
+
+            Knife Stab Pull.wav - neilsher
+            https://freesound.org/people/neilsher/sounds/411742/
 
             All Freesound.org sounds used are licensed
             under the Creative Commons 0 License.

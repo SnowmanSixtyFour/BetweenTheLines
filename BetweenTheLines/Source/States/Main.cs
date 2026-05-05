@@ -80,6 +80,8 @@ namespace BetweenTheLines.Source.States
                     {
                         ChangeSong(OST.title);
 
+                        Global.finishedChapter1 = false;
+
                         // Switch State
                         currentState.changeState = true;
                         Global.currentState = Global.State.title;

@@ -22,7 +22,7 @@ namespace BetweenTheLines.Source
         public static bool quit = false;
 
         // Debug
-        public static bool debug = true;
+        public static bool debug = false;
 
         // Window
 
@@ -85,6 +85,10 @@ namespace BetweenTheLines.Source
         public static bool viewingCreditsFromTitle = false;
         public static State currentState = State.intro; // Current state of the game - NOTE: Always starts on intro!
 
+        // Completed Chapters
+        public static bool
+            finishedChapter1 = false;
+
         // Cursor Size
         public static int
             cursorWidth = 16, cursorHeight = 20, // Size of Cursor
@@ -135,7 +139,8 @@ namespace BetweenTheLines.Source
             typewriter, dialogContinue,
 
             // --- Actions ---
-            footsteps;
+            footsteps,
+            stab;
     }
 
     // Game Assets
@@ -297,6 +302,7 @@ namespace BetweenTheLines.Source
             SFX.dialogContinue = content.Load<SoundEffect>("Assets/Audio/SFX/dialogContinue");
 
             SFX.footsteps = content.Load<SoundEffect>("Assets/Audio/SFX/footsteps");
+            SFX.stab = content.Load<SoundEffect>("Assets/Audio/SFX/stab");
 
             // Music
             OST.title = content.Load<Song>("Assets/Audio/Music/Title");
@@ -383,7 +389,7 @@ namespace BetweenTheLines.Source
 
             // Investigation
             chapter1investigation, // Intro
-            chapter1evidence1, chapter1evidence2, chapter1evidence3, // Evidence
+            chapter1evidenceSyringe, chapter1evidenceWatch, chapter1evidenceAutopsy, // Evidence
             chapter1investigationEnd, // Buildup to Trial
 
             // Trial
@@ -410,7 +416,7 @@ namespace BetweenTheLines.Source
                 Line(pickles, "It said \"Congratulations! You have won $1 000 000 dollars!\"", innerThought, hideName: true),
                 Line(pickles, "Signed by someone known as \"Novikov.\"", innerThought, hideName: true),
                 Line(pickles, "...Yeah, as if.\nHowever, the name sounds familiar...", innerThought, hideName: true),
-                Line(pickles, "My name is Pickles. I'm a renowned detective.", innerThought),
+                Line(pickles, "My name is Pickles. I'm a renowned detective.\nSome say my heart is too soft... I prefer it that way.", innerThought),
                 Line(pickles, "In my line of work... I make a decent amount of money.", innerThought),
                 Line(pickles, "But this?...", innerThought),
                 Line(pickles, "I'm gonna get to the bottom of this.", innerThought),
@@ -571,7 +577,7 @@ namespace BetweenTheLines.Source
                 Line(pickles, "Otto suddenly stopped speaking.", innerThought),
                 Line(pickles, "I didn't have the courage to ask him why, but...\nWhen I looked over at Smokeston...", innerThought),
                 Line(pickles, "...", innerThought),
-                Line(pickles, "...", innerThought),
+                Line(pickles, "...He healed himself.", innerThought),
                 Line(pickles, "Two unbelievable events happening, back to back.", innerThought),
                 Line(pickles, "I should be very careful around either of them. For now,\nFaun and the others seem reliable enough.", innerThought),
                 Line(smokey, "Where was I...? Oh, right.", state: creepy),
@@ -629,16 +635,44 @@ namespace BetweenTheLines.Source
                 Line(pickles, "Get it together, Pickles... Let's investigate.", innerThought),
             };
 
-            chapter1evidence1 = new DialogString[] {
-                Line(pickles, "Test 1")
+            chapter1evidenceSyringe = new DialogString[] {
+                Line(pickles, "What's this syringe doing here...?"),
+                Line(pickles, "And why's it full of... Some sort of liquid...?"),
+                Line(otto, "Hey, between you and me, cat..."),
+                Line(otto, "Micah's a real professional doctor.\nYou thinkin' what I'm thinkin'?"),
+                Line(pickles, "..."),
+                Line(otto, "I knew we had the same idea!"),
+                Line(otto, "Micah's gotta be suspicious... Hmm..."),
+                Line(pickles, "I haven't said anything yet...", innerThought),
+                Line(pickles, "How can we say for sure?"),
+                Line(otto, "Huh? Isn't that enough evidence?"),
+                Line(pickles, "When the time comes, I'll confront my suspects.\nI'm not the kind of detective to rush things."),
+                Line(otto, "Oh. Lame.")
             };
 
-            chapter1evidence2 = new DialogString[] {
-                Line(pickles, "Test 2")
+            chapter1evidenceWatch = new DialogString[] {
+                Line(pickles, "This wristwatch is cracked... Huh?", innerThought),
+                Line(pickles, "It says " + Global.arthurKilledTime + " on it..."),
+                Line(faun, "W-woah... T-t-that's way before any of us came..."),
+                Line(faun, "That must be important..."),
+                Line(pickles, "You're right. I'll be sure to take note of this."),
+                Line(pickles, "Although she isn't a proper detective...", innerThought),
+                Line(pickles, "Having Faun around is nice.", innerThought)
             };
 
-            chapter1evidence3 = new DialogString[] {
-                Line(pickles, "Test 3")
+            chapter1evidenceAutopsy = new DialogString[] {
+                Line(pickles, "The body appears to be in alright condition."),
+                Line(micah, "That's because the death was swift and painless!"),
+                Line(pickles, "W-Wha?!"),
+                Line(micah, "Oops! Let me clarify."),
+                Line(micah, "I performed an autopsy on the body, judging by the time\nfound on his wrist watch..."),
+                Line(micah, "He died long before we found him."),
+                Line(pickles, "She couldn't have worded it any more politely...", innerThought),
+                Line(pickles, "No, what I'm more worried about...\nIs how we missed the body until now.", innerThought),
+                Line(micah, "Arthur, the victim you see here, had his neck broken."),
+                Line(pickles, "He... did?"),
+                Line(micah, "My best guess is that he fell down the flight of stairs.\nAt which point, the killer made sure nobody was around..."),
+                Line(pickles, "The killer must have made sure to hide their tracks.")
             };
 
             chapter1investigationEnd = new DialogString[]{
@@ -926,11 +960,12 @@ namespace BetweenTheLines.Source
                 Line(smokey, "Behind all the clothes, where you couldn't find it!", state: excited),
                 Line(smokey, "For Micah to not be able to smell it, however...\nYou've got one heck of a nose!"),
                 Line(micah, "Ehehe..."),
+                Line(pickles, "Who's innocent... And who's guilty...?", innerThought),
                 Line(smokey, "Can you feel it...? The debate is about to end!", important),
                 Line(noName, "You may not like him... But he's right.", tutorial),
                 Line(noName, "As they say...\n\"The worst person you know just made a great point.\"", tutorial),
                 Line(noName, "As we reach the end of the debate, you'll have to choose who you\nbelieve is the culprit of the murder.", tutorial),
-                Line(noName, "Are you ready?", tutorial)
+                Line(noName, "Press A and D, or use the arrow keys to select the culprit.\nAre you ready?", tutorial)
             };
 
             chapter1trial3wrong = new DialogString[]{
@@ -1045,7 +1080,25 @@ namespace BetweenTheLines.Source
             // Trial Ending
 
             chapter1postTrial = new DialogString[]{
-                Line(pickles, "Test")
+                Line(smokey, "I'm glad we could share this experience together."),
+                Line(smokey, "You all mean a lot to me...!", state: excited),
+                Line(faun, "W-w-what's going to happen to... Otto...", state: worried),
+                Line(otto, "..."),
+                Line(otto, "Sorry guys... I fucked up."),
+                Line(otto, "We got into a bad argument, and I..."),
+                Line(otto, "I overreacted."),
+                Line(angel, "Still, I can't believe it warranted a murder.", state: thinking),
+                Line(smokey, "Ah, an accidental murder... How tragic!", state: excited),
+                Line(smokey, "Well, no good story ends without a moral."),
+                Line(otto, "Huh? The hell does that-"),
+                Line(noName, "*THUD*"),
+                Line(smokey, "..."),
+                Line(smokey, "Thank you all for coming."),
+                Line(smokey, "Let's keep the game going... As long as possible."),
+                Line(pickles, "..."),
+                Line(smokey, "Oh, and about the money... We can discuss that later."),
+                Line(smokey, "For now... Just enjoy the ride."),
+                Line(smokey, "The game's just begun.")
             };
         }
 
