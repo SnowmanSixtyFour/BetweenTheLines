@@ -27,7 +27,7 @@ Timothy Lottes - [CRT Filter (Public Domain)](https://github.com/libretro/glsl-s
 
 GameFromScratch.com - [Beginning 3D Programming](https://gamefromscratch.com/monogame-tutorial-beginning-3d-programming/)
 
-#### Full credits can be found in-game, or in [Credits.cs](https://github.com/SnowmanSixtyFour/BetweenTheLines/blob/game-jam/BetweenTheLines/Source/States/CreditsState.cs).
+#### Full credits can be found in-game, or in [Credits.cs](https://github.com/SnowmanSixtyFour/BetweenTheLines/blob/game-jam-revisions/BetweenTheLines/Source/States/CreditsState.cs).
 
 <img style="display: block;" src="img/banner_copyright.png">
 
@@ -35,4 +35,4 @@ Copyright (c) 2026 Snowman64, under the [GNU General Public License v3.0](https:
 
 All Freesound.org sounds used are licensed under the [Creative Commons 0 License](https://creativecommons.org/publicdomain/zero/1.0/).
 
-For more information, view the [License](https://github.com/SnowmanSixtyFour/BetweenTheLines/blob/game-jam/LICENSE.md).
+For more information, view the [License](https://github.com/SnowmanSixtyFour/BetweenTheLines/blob/game-jam-revisions/LICENSE.md).

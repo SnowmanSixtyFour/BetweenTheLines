@@ -54,7 +54,7 @@ namespace BetweenTheLines.Source
         // Game
 
         // Version (start with "v")
-        public static string gameVersion = "Mystery Game Jam 2026 Edition"; // NOTE: Version does not have a real number for game jam release!
+        public static string gameVersion = "Mystery Game Jam 2026 Edition (Rev. 2)"; // NOTE: Version does not have a real number for game jam release!
 
         public static bool
             paused = false,
