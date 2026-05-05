@@ -99,6 +99,10 @@ namespace BetweenTheLines.Source.States
                 {
                     // --- Controls ---
 
+                    // Prevent Culprit Value from Going Out of Bounds
+                    if (culprit < 0) culprit = maxCulpritAmount; // Max
+                    if (culprit > maxCulpritAmount) culprit = 0; // Min
+
                     // A & D / Left & Right
                     if (KeyPress(Keys.A) || KeyPress(Keys.Left))
                     {
@@ -113,11 +117,8 @@ namespace BetweenTheLines.Source.States
                         culprit++; // Add to Culprit Count
                     }
 
-                    // Cap Selected Culprit
-                    if (culprit < 0 || culprit > maxCulpritAmount) culprit = 0;
-
                     // Select Culprit
-                    if (KeyPress(Keys.Enter))
+                    if (KeyPress(Keys.Enter) || LeftClicked())
                     {
                         // Set Dialog
                         if (culprit == 0) dialogBox.setDialog(Dialog.chapter1culpritFaun); // Faun
@@ -125,6 +126,9 @@ namespace BetweenTheLines.Source.States
                         if (culprit == 2) dialogBox.setDialog(Dialog.chapter1culpritAngel); // Angel
                         if (culprit == 3) dialogBox.setDialog(Dialog.chapter1culpritMicah); // Micah
                         if (culprit == 4) dialogBox.setDialog(Dialog.chapter1culpritSmokey); // Smokey
+
+                        // Show Pickles
+                        Dialog.picklesVisible = true;
 
                         // End Selection Event
                         selectingCulprit = false;
@@ -172,9 +176,13 @@ namespace BetweenTheLines.Source.States
                         || dialogBox.dialog == Dialog.chapter1culpritMicah
                         || dialogBox.dialog == Dialog.chapter1culpritSmokey)
                     {
-                        // Select a Culprit
                         dialogBox.Hide();
+
+                        // Select a Culprit
                         selectingCulprit = true;
+
+                        // Hide Pickles
+                        Dialog.picklesVisible = false;
                     }
 
                     // Question
@@ -255,7 +263,7 @@ namespace BetweenTheLines.Source.States
                         {
                             ShowMultipleChoice("Stab Wound", "Injection", "Broken Neck", 3);
 
-                            MultipleChoiceButtonSize(0.8f);
+                            MultipleChoiceButtonSize(0.85f);
                         }
                     }
 

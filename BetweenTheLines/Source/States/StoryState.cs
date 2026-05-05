@@ -23,7 +23,7 @@ namespace BetweenTheLines.Source.States
         private StaticSprite cinematicDoorTrigger;
         private int
             doorWidth = 60, doorHeight = 80,
-            doorPaddingX = 40, doorPaddingY = 40;
+            doorPaddingX = 80, doorPaddingY = 40;
 
         private DialogBox dialogBox;
 

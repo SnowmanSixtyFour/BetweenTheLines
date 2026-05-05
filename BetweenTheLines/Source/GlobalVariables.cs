@@ -83,7 +83,7 @@ namespace BetweenTheLines.Source
         }
 
         public static bool viewingCreditsFromTitle = false;
-        public static State currentState = State.debate; // Current state of the game - NOTE: Always starts on intro!
+        public static State currentState = State.intro; // Current state of the game - NOTE: Always starts on intro!
 
         // Cursor Size
         public static int
@@ -724,11 +724,11 @@ namespace BetweenTheLines.Source
                 Line(angel, "Me and Faun arrived at the same time.\nWould you happen to remember when that is?", important),
                 Line(noName, "Angel is asking you a tough question...", tutorial),
                 Line(noName, "During debates, you'll have to choose your answer,\nbut think carefully about it.", tutorial),
-                Line(noName, "You will be given a single right answer, and multiple wrong ones.", tutorial)
+                Line(noName, "You will be given a single right answer, and multiple wrong ones.", tutorial),
+                Line(pickles, "That's right...\nFaun told me as soon as I arrived...! I should know this...")
             };
 
             chapter1trial1question = new DialogString[]{
-                Line(pickles, "That's right...\nFaun told me as soon as I arrived...! I should know this..."),
                 Line(pickles, "It was 10 minutes before I arrived, which should have been at...")
             };
 
@@ -888,7 +888,7 @@ namespace BetweenTheLines.Source
                 Line(pickles, "D-did he really just... Confirm that?\nHe looks confident.", innerThought),
                 Line(otto, "..."),
                 Line(pickles, "..."),
-                Line(faun, ""),
+                Line(faun, "..."),
                 Line(faun, "...!", state: worried),
                 Line(pickles, "Faun looked horrified...", innerThought),
                 Line(pickles, "But... Why?", innerThought)
@@ -1027,7 +1027,8 @@ namespace BetweenTheLines.Source
                 Line(otto, "Hey, the hell?! He's the one who accused you... Not me!", state: angry),
                 Line(pickles, "Damn, she's really not the killer?...", innerThought),
                 Line(pickles, "So much evidence pointed towards her, and yet...", innerThought),
-                Line(pickles, "I've got to think harder about it...", innerThought)
+                Line(pickles, "I've got to think harder about it...", innerThought),
+                Line(pickles, "Who haven't we interrogated yet...?", innerThought)
             };
 
             chapter1culpritSmokey = new DialogString[] {
