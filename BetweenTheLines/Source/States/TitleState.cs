@@ -20,7 +20,12 @@ namespace BetweenTheLines.Source.States
         // Variables
 
         // Sprites
-        private StaticSprite BG;
+        private StaticSprite
+            BG,
+
+            pickles, smokey;
+        private int charSize = 300;
+        private Color charColor = (Color.Gray);
 
         // Sprite Scroll Speeds
         private float
@@ -56,7 +61,10 @@ namespace BetweenTheLines.Source.States
             // --- Graphics ---
 
             // BG
-            BG = new StaticSprite(Assets.titleBG, new Rectangle(0, 0, Global.windowWidth, Global.windowHeight), Color.White, true);
+            BG = new StaticSprite(Assets.titleBG, new Rectangle(0, 0, Global.windowWidth, Global.windowHeight), Color.DarkGray, true);
+
+            pickles = new StaticSprite(Dialog.picklesRegular, new Rectangle(Global.windowWidth - (charSize / 2), 0, charSize, Global.windowHeight), charColor);
+            smokey = new StaticSprite(Dialog.smokeyRegular, new Rectangle(-charSize / 2, 0, charSize, Global.windowHeight), charColor);
 
             // Logo
             logo = new StaticSprite(Assets.logo, new Rectangle(new Point((cam.Width / 2) - (logoSize.X / 2), logoPadding), logoSize), Color.White);
@@ -125,6 +133,10 @@ namespace BetweenTheLines.Source.States
 
             // Sprites
             BG.Draw(spriteBatch);
+
+            pickles.Draw(spriteBatch);
+            smokey.Draw(spriteBatch);
+
             logo.Draw(spriteBatch);
             gameVersion.Draw(spriteBatch);
             gameCredits.Draw(spriteBatch);

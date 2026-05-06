@@ -61,7 +61,6 @@ namespace BetweenTheLines.Source.States
         private String creditsString = """
             Created by Snowman64
 
-            Developed from April 7, 2026 - May 5, 2026
             Made for the Mystery Game Jam 2026 on itch.io.
             https://itch.io/jam/mystery-game-jam-2026
 

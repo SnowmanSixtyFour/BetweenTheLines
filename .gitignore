@@ -4,8 +4,12 @@
 # Build
 /BetweenTheLines/bin
 /BetweenTheLines/obj
+
+# Content
 /BetweenTheLines/Content/bin
-/BetweenTheLines/Content/obj
+/BetweenTheLines/Content/obj/DesktopGL
+/BetweenTheLines/Content/obj/DesktopGL/net8.0-windows10.0.26100.0
+/BetweenTheLines/Content/obj/DesktopGL/net8.0-windows10.0.26100.0/Content
 
 # Visual Studio
 .vs/
