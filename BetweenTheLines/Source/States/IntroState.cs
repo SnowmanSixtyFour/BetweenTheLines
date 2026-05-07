@@ -41,6 +41,8 @@ namespace BetweenTheLines.Source.States
 
         protected int opacity = 0, fadeTime = 12;
 
+        protected Text disclaimer;
+
         public IntroState()
         {
             // --- State ---
@@ -69,13 +71,18 @@ namespace BetweenTheLines.Source.States
                 (jamWidth * jamResize), // Width
                 (jamHeight * jamResize)), // Height
                 Color.White);
+
+            // Set Text
+            disclaimer = new Text(Assets.arial, "This game contains foul language, slight blood and gore, and other mature themes.", new Vector2(17, Global.windowHeight - 35), Color.White, 0.93f, false);
         }
 
         public override void OnUpdate(GameTime gameTime)
         {
-            // Keep Logo Variables Updated
-            snowman64.SetColor(new Color(opacity, opacity, opacity, opacity));
-            gameJam.SetColor(new Color(opacity, opacity, opacity, opacity));
+            // Keep Opacity of Graphics Updated (Fadein and Fadeout)
+            Color opacityColor = new Color(opacity, opacity, opacity, opacity);
+            snowman64.SetColor(opacityColor);
+            gameJam.SetColor(opacityColor);
+            disclaimer.setColor(opacityColor);
 
             // Run Timer for Scene
             if (introTime < timerEnd) introTime += increment;
@@ -114,6 +121,8 @@ namespace BetweenTheLines.Source.States
 
             snowman64.Draw(spriteBatch);
             gameJam.Draw(spriteBatch);
+
+            disclaimer.Draw(spriteBatch);
         }
     }
 }
