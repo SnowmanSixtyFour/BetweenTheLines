@@ -1015,7 +1015,7 @@ namespace BetweenTheLines.Source
                 Line(otto, "No... Fuck you.", state: angry), // Balkan Rage Mode Activated
                 Line(smokey, "Oh dear."),
                 Line(otto, "Fuck ALL of you!\nBlaming me for any of this...?!", state: angry),
-                Line(otto, "Act like I'm the killed, because I arrived early...", state: angry),
+                Line(otto, "Act like I'm the killer, because I arrived early...", state: angry),
                 Line(otto, "ALL BECAUSE OF A MISTAKE?!", important),
                 Line(pickles, "..."),
                 Line(faun, "...!", state: worried),
