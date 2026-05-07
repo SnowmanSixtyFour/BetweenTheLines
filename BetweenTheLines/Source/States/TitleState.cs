@@ -37,6 +37,7 @@ namespace BetweenTheLines.Source.States
 
         // Text
         private Text
+            gameJam,
             gameVersion,
             gameCredits,
             chapter;
@@ -70,6 +71,8 @@ namespace BetweenTheLines.Source.States
             logo = new StaticSprite(Assets.logo, new Rectangle(new Point((cam.Width / 2) - (logoSize.X / 2), logoPadding), logoSize), Color.White);
 
             // Text
+            gameJam = new Text(Assets.arial, "Mystery Game Jam 2026 Edition", new Vector2((logo.GetDestRect().X + 5), (logo.GetDestRect().Bottom + 15)), Color.White, 1.0f, false);
+
             gameVersion = new Text(Assets.arial, (Global.gameVersion), new Vector2(10, (cam.Height - 30)), Color.White, 1.0f, false);
 
             gameCredits = new Text(Assets.arial, "(c) 2026 Snowman64", new Vector2((cam.Width - 230), (cam.Height - 30)), Color.White, 1.0f, false);
@@ -138,8 +141,11 @@ namespace BetweenTheLines.Source.States
             smokey.Draw(spriteBatch);
 
             logo.Draw(spriteBatch);
+            if (Global.gameJam) gameJam.Draw(spriteBatch);
+
             gameVersion.Draw(spriteBatch);
             gameCredits.Draw(spriteBatch);
+
             if (cursor.HoveringOver(startButton.bounds)) chapter.Draw(spriteBatch);
 
             // Buttons

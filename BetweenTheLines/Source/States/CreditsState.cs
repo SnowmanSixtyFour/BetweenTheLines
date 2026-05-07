@@ -124,7 +124,10 @@ namespace BetweenTheLines.Source.States
 
             // Game Logo
             logo = new StaticSprite(Assets.logo, new Rectangle(new Point((cam.Width / 2) - (logoSize.X / 2), logoYStart - logoSize.Y), logoSize), Color.White);
-            versionNum = new Text(Assets.arial, Global.gameVersion, new Vector2(logo.GetDestRect().Center.X, logo.GetDestRect().Bottom + verNumOffset), Color.White, 1.0f, true);
+
+            // Game Version
+            if (Global.gameJam) versionNum = new Text(Assets.arial, "Mystery Game Jam 2026 Edition", new Vector2(logo.GetDestRect().Center.X, logo.GetDestRect().Bottom + verNumOffset), Color.White, 1.0f, true); // Display Game Jam under Logo
+            else versionNum = new Text(Assets.arial, Global.gameVersion, new Vector2(logo.GetDestRect().Center.X, logo.GetDestRect().Bottom + verNumOffset), Color.White, 1.0f, true); // Display Version under Logo
 
             // --- Credits ---
 
