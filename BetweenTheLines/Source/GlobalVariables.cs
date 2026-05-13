@@ -600,7 +600,7 @@ namespace BetweenTheLines.Source
                 Line(angel, "I'm afraid I'm just too old for social experiments like this.\nYou younger generations disgust me.", state: thinking),
                 Line(otto, "Yo, doctor, how do you know that's not bullshit?\nFor all we know, that pulse you felt could've been fake."),
                 Line(otto, "I mean, shit, you saw what happened when I lost control."),
-                Line(otto, "I don't have the brains to orchestrate something as beautiful as that.\nTrust me."),
+                Line(otto, "I don't have the brains to orchestrate somethin' as crazy as that.\nTrust me."),
                 Line(faun, "*sniff* I w-want to g-get out of here... I-I don't like this...!", state: worried),
                 Line(pickles, "...What the fuck?", innerThought),
                 Line(pickles, "What... is this?"),
