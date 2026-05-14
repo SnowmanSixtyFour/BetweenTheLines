@@ -1,4 +1,4 @@
-<div style="text-align: center;">
+<div align="center">
 <a href="https://snowman64.itch.io/between-the-lines">
   <img align="center" src="img/logo.png" alt="Between the Lines">
 </a>
