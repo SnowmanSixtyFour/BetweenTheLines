@@ -1,5 +1,5 @@
 <a href="https://snowman64.itch.io/between-the-lines">
-  <img src="img/logo.png" alt="Between the Lines">
+  <img align="center" src="img/logo.png" alt="Between the Lines">
 </a>
 <br>
 <a href="https://www.gnu.org/licenses/gpl-3.0.en.html">
