@@ -57,7 +57,7 @@ namespace BetweenTheLines.Source.States
         // Pause Strings
         private String
             pauseTooltipMenu = "Press ESCAPE to resume focus.",
-            pauseTooltipGame = "Press ESCAPE to resume focus.\n\nR to exit to main menu.";
+            pauseTooltipGame = "Press ESCAPE to resume focus.\n\nR to Exit\n\nH to view History";
 
         // State Changed
         public bool changeState = false;

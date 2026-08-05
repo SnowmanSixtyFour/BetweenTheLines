@@ -26,6 +26,7 @@ namespace BetweenTheLines.Source.States
             doorPaddingX = 80, doorPaddingY = 40;
 
         private DialogBox dialogBox;
+        private DialogHistory dialogHistory;
 
         // Portraits
         Portrait portrait;
