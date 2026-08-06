@@ -29,9 +29,9 @@ namespace BetweenTheLines.Source.States
         // Graphics
         protected StaticSprite snowman64;
         protected int
-            logoWidth = 81, logoHeight = 8,
-            logoResize = 8,
-            logoYOffset = 80;
+            logoWidth = 359, logoHeight = 63,
+            logoResize = 2,
+            logoYOffset = 60;
 
         protected StaticSprite gameJam;
         protected int
