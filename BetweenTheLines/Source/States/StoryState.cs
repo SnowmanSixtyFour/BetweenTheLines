@@ -10,6 +10,7 @@ using BetweenTheLines.Source.Objects;
 using BetweenTheLines.Source.Objects.GUI;
 using BetweenTheLines.Source.Objects.Level;
 using Microsoft.Xna.Framework.Audio;
+using System.Diagnostics;
 
 namespace BetweenTheLines.Source.States
 {
@@ -111,9 +112,10 @@ namespace BetweenTheLines.Source.States
             overlay = new Overlay();
             overlay.cam = cam; // Set Camera for Overlay
 
+            // Door
             cinematicDoorTrigger = new StaticSprite(null, new Rectangle(new Point((cam.Width / 2) - (doorWidth / 2) + doorPaddingX, (cam.Height - doorHeight) - doorPaddingY), new Point(doorWidth, doorHeight)), triggerColor);
 
-            // Door
+            // Dialog
             dialogBox = new DialogBox();
             portrait = new Portrait();
 
@@ -614,7 +616,22 @@ namespace BetweenTheLines.Source.States
                     // --- Game Progression ---
 
                     // Proceed Dialog
-                    if (KeyPress(Keys.Enter) || LeftClicked()) dialogBox.Proceed();
+                    if (KeyPress(Keys.Enter) || LeftClicked())
+                    {
+                        dialogBox.Proceed();
+
+                        try
+                        {
+                            dialogHistory.Add(dialogBox.dialog[dialogBox.currentLine]); // Add Current Line to History
+
+                            if (dialogHistory.Length > dialogHistory.MaxSize) dialogHistory.RemoveFirst(); // Remove Oldest Line if History is too Long
+                        }
+                        catch
+                        {
+                            // No Dialog Found
+                            Debug.Print("No dialog found! Cancelled writing to History.");
+                        }
+                    }
                 }
 
                 // When Dialog is finished

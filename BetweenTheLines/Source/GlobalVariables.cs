@@ -172,7 +172,7 @@ namespace BetweenTheLines.Source
 
             // --- Title ---
             logo,
-            titleBG,
+            titleBG, titleGradient,
 
             // --- Level ---
 
@@ -228,6 +228,7 @@ namespace BetweenTheLines.Source
 
             // --- Title ---
             Assets.titleBG = content.Load<Texture2D>("Assets/Images/Title/Diamonds");
+            Assets.titleGradient = content.Load<Texture2D>("Assets/Images/Title/TitleGradient");
             Assets.logo = content.Load<Texture2D>("Assets/Images/Title/Logo");
 
             // --- Gameplay ---

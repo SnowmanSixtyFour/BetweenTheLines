@@ -22,10 +22,10 @@ namespace BetweenTheLines.Source.States
         // Sprites
         private StaticSprite
             BG,
-
-            pickles, smokey;
+            pickles, smokey,
+            gradient;
         private int charSize = 300;
-        private Color charColor = (Color.Gray);
+        private Color charColor = (Color.White);
 
         // Sprite Scroll Speeds
         private float
@@ -66,6 +66,8 @@ namespace BetweenTheLines.Source.States
 
             pickles = new StaticSprite(Dialog.picklesRegular, new Rectangle(Global.windowWidth - (charSize / 2), 0, charSize, Global.windowHeight), charColor);
             smokey = new StaticSprite(Dialog.smokeyRegular, new Rectangle(-charSize / 2, 0, charSize, Global.windowHeight), charColor);
+
+            gradient = new StaticSprite(Assets.titleGradient, new Rectangle(0, 0, Global.windowWidth, Global.windowHeight), Color.White);
 
             // Logo
             logo = new StaticSprite(Assets.logo, new Rectangle(new Point((cam.Width / 2) - (logoSize.X / 2), logoPadding), logoSize), Color.White);
@@ -139,6 +141,8 @@ namespace BetweenTheLines.Source.States
 
             pickles.Draw(spriteBatch);
             smokey.Draw(spriteBatch);
+
+            gradient.Draw(spriteBatch);
 
             logo.Draw(spriteBatch);
             if (Global.gameJam) gameJam.Draw(spriteBatch);

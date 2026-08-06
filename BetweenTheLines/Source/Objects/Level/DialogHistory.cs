@@ -10,12 +10,24 @@ namespace BetweenTheLines.Source.Objects.Level
 {
     internal class DialogHistory
     {
+        // Public Variables
+        public readonly int MaxSize = 5;
+
+        // Private Variables
         private List<DialogString> history;
+
+        // Length of History List
+        public int Length
+        {
+            get { return history.Count; }
+        }
 
         public DialogHistory()
         {
             history = new List<DialogString>();
         }
+
+        // Getters and Setters
 
         public void Add(DialogString dialog)
         {
@@ -25,6 +37,14 @@ namespace BetweenTheLines.Source.Objects.Level
         public void Remove(DialogString dialog)
         {
             history.Remove(dialog);
+        }
+
+        public void RemoveFirst()
+        {
+            if (history.Count > 0)
+            {
+                history.RemoveAt(0);
+            }
         }
     }
 }
